@@ -1,5 +1,4 @@
 # SWT: Afternoon 2
- testing   
 This is the repository for the team *SWT: Afternoon 2*
 
 Technology:
@@ -24,3 +23,15 @@ called swt-2020. From menu bar choose Privileges and localhost select
 =======
 
 
+
+
+How to start the project:
+Backend part:
+1. Download Java 1.8 and set the path for the JAVA variable ( https://www.oracle.com/java/technologies/javase-jdk8-downloads.html )
+2. Download and install gradle 6.2.2 and configure the path ( https://docs.gradle.org/current/userguide/installation.html )
+3. Clone the project
+4. Start the gradle daemon by typing "gradle bootRun" inside of your terminal
+Frontend part:
+1. Install NodeJS
+2. Navigate inside of SWT-Afternoon 2, to the Hotel folder and run "npm i"
+3. Start the frontend by typing "ng serve --open"
