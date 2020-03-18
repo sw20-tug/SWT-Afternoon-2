@@ -2,6 +2,11 @@
  
 This is the repository for the team *SWT: Afternoon 2*
 
+Technology:
+Java 1.8, Typescript, Angular 8, Spring Boot, MySQL
+
+
+
 Start and install data base: 
 
 1. Download and install MySQL Workbench
@@ -16,3 +21,6 @@ called swt-2020. From menu bar choose Privileges and localhost select
 "Edit privileges" set password to "admin"
 6. Open file with path C:\xampp\phpMyAdmin\config.inc.php and change password to "admin"
 7. Import sql file in phpMyAdmin data interface
+=======
+
+
