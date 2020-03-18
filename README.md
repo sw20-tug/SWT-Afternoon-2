@@ -20,10 +20,6 @@ called swt-2020. From menu bar choose Privileges and localhost select
 "Edit privileges" set password to "admin"
 6. Open file with path C:\xampp\phpMyAdmin\config.inc.php and change password to "admin"
 7. Import sql file in phpMyAdmin data interface
-=======
-
-
-
 
 How to start the project:
 Backend part:
@@ -35,3 +31,5 @@ Frontend part:
 1. Install NodeJS
 2. Navigate inside of SWT-Afternoon 2, to the Hotel folder and run "npm i"
 3. Start the frontend by typing "ng serve --open"
+=======
+=======
