@@ -1,0 +1,60 @@
+
+.hotel-item {
+    margin-top: 1%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.hotel-image {
+    max-width: 80%;
+}
+
+.no-padding {
+    padding: 0;
+}
+
+.price-text {
+    float: right;
+}
+
+.name-text {
+    margin-right: 1%; 
+}
+
+.star {
+    position: relative;
+    display: inline-block;
+    font-size: 1rem;
+    color: #d3d3d3;
+}
+
+.full {
+    color: #f6ab3f;
+}
+
+.half {
+    position: absolute;
+    display: inline-block;
+    overflow: hidden;
+    color: #f6ab3f;
+}
+
+.badge {
+    font-size: 0.8rem;
+}
+
+.badge-warning {
+    color: white;
+}
+
+.float-left {
+    float: left;
+}
+
+.text-icon {
+    line-height: inherit;
+    margin-right: 2%;
+}
+
+.justify-content {
+    text-align: justify;
+}

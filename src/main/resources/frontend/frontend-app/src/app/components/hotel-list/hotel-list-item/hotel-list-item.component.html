@@ -1,0 +1,52 @@
+<div *ngIf="hotel" class="row hotel-item">
+    <div class="col-md-3 no-padding">
+        <img src="{{ hotel.imagePath }}" alt="{{ hotel.name }}" class="img-responsive hotel-image">
+    </div>
+    <div class="col-md-9">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-7">
+                        <h5 class="name-text">{{ hotel.name }}</h5>
+                    </div>
+                    <div class="col-md-5">
+                        <ngb-rating [rate]="hotel.stars" [readonly]="true" [max]="5">
+                            <ng-template let-fill="fill">
+                                <span class="star" [class.full]="fill === 100">
+                                <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+                                </span>
+                            </ng-template>
+                        </ngb-rating>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <p class="justify-content">{{ hotel.description }}</p>
+                    </div>                   
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p class="">Price per night: {{ hotel.price }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <span class="badge badge-pill" [ngClass]="{'badge-success' : hotel.getRating() == 'Excellent', 'badge-warning' : hotel.getRating() == 'Good','badge-danger' : hotel.getRating() == 'Poor' }">{{ hotel.rate | number:'1.1-1' }}</span>
+                    </div>
+                    <div class="col-md-9">
+                        <p class="">{{ hotel.getRating() }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <i class="fa fa-location-arrow float-left text-icon" aria-hidden="true"></i>
+                        <p class="">{{ hotel.city }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
