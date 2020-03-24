@@ -5,19 +5,23 @@
 }
 
 .hotel-image {
-    max-width: 80%;
+    max-width: 100%;
+    vertical-align: middle;
 }
 
 .no-padding {
     padding: 0;
 }
-
+.row{
+    padding-top: 1%;
+}
 .price-text {
     float: right;
 }
 
 .name-text {
     margin-right: 1%; 
+    font-size: 1rem;
 }
 
 .star {
@@ -55,6 +59,88 @@
     margin-right: 2%;
 }
 
+.badge.badge-pill{
+    width: 5.2vw;
+    height: 5.2vh;
+    font-size: 1.4vw;
+}
+.fa.fa-location-arrow {
+    width: 3vw;
+    height: 3vh;
+}
+
 .justify-content {
     text-align: justify;
+}
+
+.rating, .city, .justify-content, .price {
+    font-size: 1rem;
+}
+
+@media (min-width: 576px) and ( max-width: 768px) {
+.justify-content{ font-size: 1.2rem; }
+.city , .rating, .price{ font-size: 1.4rem; }
+.name-text, .star{font-size: 1.8rem;}
+.badge.badge-pill{
+    width: 13vw;
+    height: 6vh;
+    font-size: 3.5vw;
+    }
+.fa.fa-location-arrow {
+    width: 3vw;
+    height: 5vh;
+    }
+}
+
+@media (min-width: 200px)  and ( max-width: 575px){
+.justify-content{ font-size: 0.85rem; }
+.city , .rating, .price{ font-size: 0.95rem; }
+.name-text, .star{font-size: 1.2rem;}
+.badge.badge-pill{
+    width: 8vw;
+    height: 2.5vh;
+    font-size: 2vw;
+    }
+.fa.fa-location-arrow {
+    width: 4vw;
+    height: 2vh;
+    }
+}
+@media (min-width: 768px)  and ( max-width: 991px) {
+.justify-content, .city { font-size: 1.05rem; }
+.rating, .price { font-size: 1rem;}
+.name-text, .star{font-size: 1.4rem;}
+.badge.badge-pill{
+    width: 5.5vw;
+    height: 4vh;
+    font-size: 1.7vw;
+    }
+}
+
+@media (min-width: 992px)  and ( max-width: 1999px) {
+.justify-content, .rating, .price, .city { font-size: 1.2rem; }
+.name-text, .star{font-size: 2rem;}
+.badge.badge-pill{
+    width: 7vw;
+    height: 5vh;
+    font-size: 1.6vw;
+    }
+    .fa.fa-location-arrow {
+        width: 2vw;
+        height: 3vh;
+        }
+}
+@media (min-width: 1200px) {
+    .justify-content{ font-size: 1.2rem; }
+    .rating, .price, .city { font-size: 1.4rem; }
+    .name-text, .star {font-size: 2rem;}
+    .badge.badge-pill{
+        width: 6vw;
+        height: 5vh;
+        font-size: 1.5vw;
+        }
+        .fa.fa-location-arrow {
+            width: 1.7vw;
+            height: 4vh;
+            }
 }
