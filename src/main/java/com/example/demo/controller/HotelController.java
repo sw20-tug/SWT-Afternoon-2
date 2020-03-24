@@ -9,7 +9,7 @@ import java.util.List;
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 
-public class MainController {
+public class HotelController {
   @Autowired
   private HotelRepository hotel_repository;
 
