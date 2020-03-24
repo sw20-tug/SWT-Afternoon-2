@@ -8,6 +8,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { HotelListComponent } from './components/hotel-list/hotel-list.component';
 import { HotelListItemComponent } from './components/hotel-list/hotel-list-item/hotel-list-item.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {HttpClientService} from "./service/http-client.service";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -20,12 +22,13 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule
   ],
   exports: [
     HeaderComponent
   ],
-  providers: [],
+  providers: [HttpClientService, HttpClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
