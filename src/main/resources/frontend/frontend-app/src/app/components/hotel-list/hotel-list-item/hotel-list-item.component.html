@@ -1,0 +1,55 @@
+<div *ngIf="hotel" class="row hotel-item  ">
+    
+    <div class="col-md-4 col-sm-12 col-xs-12 col-lg-5 col-xl-4 no-padding">
+        
+        <img src="{{ hotel.imagePath }}" alt="{{ hotel.name }}" class="img-fluid">
+      
+    </div>
+    <div class="col-md-8 col-sm-12 col-xs-12 col-lg-7 col-xl-8">
+        <div class="row">
+            <div class="col-md-8 col-sm-12 col-xs-12 col-lg-12 col-xl-8">
+                <div class="row">
+                    <div class="col-md-8 col-sm-12 col-xs-8 col-lg-12 col-xl-8">
+                        <h5 class="name-text">{{ hotel.name }}</h5>
+                    </div>
+                    <div class="col-md-8 col-sm-12 col-xs-4 col-lg-12 col-xl-8">
+                        <ngb-rating [rate]="hotel.stars" [readonly]="true" [max]="5">
+                            <ng-template let-fill="fill">
+                                <span class="star" [class.full]="fill === 100">
+                                <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+                                </span>
+                            </ng-template>
+                        </ngb-rating>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-xs-12 col-lg-12 col-xl-12">
+                        <p class="justify-content">{{ hotel.description }}</p>
+                    </div>                   
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-12 col-xs-12 col-lg-12 col-xl-4">
+                <div class="row">
+                    <div class="col-md-12 col-sm-6 col-xs-6 col-lg-12 col-xl-12">
+                        <p class="price">Price per night: {{ hotel.price }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-2 col-xs-3 col-lg-2 col-xl-4">
+                        <span class="badge badge-pill" [ngClass]="{'badge-success' : hotel.getRating() == 'Excellent', 'badge-warning' : hotel.getRating() == 'Good','badge-danger' : hotel.getRating() == 'Poor' }">{{ hotel.rate | number:'1.1-1' }}</span>
+                    </div>
+                    <div class="col-md-6 col-sm-10 col-lg-9 col-xs-3 col-lg-9 col-xl-6">
+                        <p class="rating">{{ hotel.getRating() }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12">
+                        <i class="fa fa-location-arrow float-left text-icon " aria-hidden="true"></i>
+                        <p class="city">{{ hotel.city }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
