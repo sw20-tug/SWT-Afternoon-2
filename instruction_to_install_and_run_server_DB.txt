@@ -1,0 +1,18 @@
+1. Download MySql installater from https://dev.mysql.com/downloads/installer/ select first verision(web/smaller one)
+	a. Select: No thanks, just start my download.
+	b. Run downloaded file
+2. Select Developer Default, and execute all products 
+3. Product Configuration
+	a. Select "Standalone MySQL Server .."
+	b. Next
+	c. Account and Roles, choose password "root"
+	d. Server Config: Next, Execute, Finish
+	e. Router COnfig: Next, Finish
+	f. Enter passtword "root" click on check and then Next, Execute and Finish 
+4. Start MySQL Workbench 
+5. Select localhost and enter password "root"
+6. From Menubar Click on "Server" -> "Data Import"
+7. Select "Import from Self-Contained File" and select the file given in GIT Repo
+8. If you allready have a Schema select it and import file, sonst click on new enter name and on buttom right "Start Import"
+	(If you can not see "Start Import", check out the buttons on top-right cornner)
+9. On the left side you will see all Schemas, click on refresh button and you are on. 
