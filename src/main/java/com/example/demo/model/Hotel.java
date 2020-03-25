@@ -2,8 +2,6 @@ package com.example.demo.model;
 
 import javax.persistence.*;
 
-import com.example.demo.HotelRepository;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -37,9 +35,8 @@ public class Hotel {
   private int stars;
 
   @ManyToOne
-  private Categories category;
-
-  public Hotel(String name, int rate, String price, String city, String description, String imagePath, int stars,Categories category) {
+  private Category category = new Category();
+  public Hotel(String name, int rate, String price, String city, String description, String imagePath, int stars, Category category) {
     this.rate = rate;
     this.name = name;
     this.price = price;
@@ -55,4 +52,54 @@ public class Hotel {
   }
   public Hotel() {
   }
+
+  public String getName(){
+    return this.name;
+  }
+  public int getRate(){
+    return this.rate;
+  }
+  public String getPrice(){
+    return this.price;
+  }
+  public String getCity(){
+    return this.city;
+  }
+  public String getDescription(){
+    return this.description;
+  }
+  public String getImage(){
+    return this.imagePath;
+  }
+  public int getStars(){
+    return this.stars;
+  }
+  public Category getCategory(){
+    return this.category;
+  }
+  public void setName(String name){
+    this.name = name;
+  }
+  public void setRate(int rate){
+    this.rate = rate;
+  }
+  public void setPrice(String price){
+    this.price = price;
+  }
+  public void setCity(String city){
+    this.city = city;
+  }
+  public void setDescription(String description){
+    this.description = description;
+  }
+  public void setImage(String imagePath){
+    this.imagePath = imagePath;
+  }
+  public void setStars(int stars){
+    this.stars = stars;
+  }
+  public void setCategory(Category category){
+    this.category = category;
+  }
+
 }
