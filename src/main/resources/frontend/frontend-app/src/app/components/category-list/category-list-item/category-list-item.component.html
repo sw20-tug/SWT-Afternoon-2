@@ -1,0 +1,7 @@
+<div *ngIf="category" class="category">
+  <h3>Category: {{category.name}}</h3>
+    <app-hotel-list
+      [hotels]="category.hotels">
+    </app-hotel-list>
+</div>
+

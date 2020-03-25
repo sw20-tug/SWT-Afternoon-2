@@ -1,4 +1,3 @@
-
 .hotel-item {
     margin-top: 1%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -20,14 +19,14 @@
 }
 
 .name-text {
-    margin-right: 1%; 
-    font-size: 1rem;
+    margin-right: 1%;
+    font-size: 0.8rem;
 }
 
 .star {
     position: relative;
     display: inline-block;
-    font-size: 1rem;
+    font-size: 0.8rem;
     color: #d3d3d3;
 }
 
@@ -44,6 +43,12 @@
 
 .badge {
     font-size: 0.8rem;
+    width:100%;
+    height: 2rem;
+}
+
+.badge .badge-pill {
+  font-size: 0.8rem;
 }
 
 .badge-warning {
@@ -60,10 +65,9 @@
 }
 
 .badge.badge-pill{
-    width: 5.2vw;
-    height: 5.2vh;
     font-size: 1.4vw;
 }
+
 .fa.fa-location-arrow {
     width: 3vw;
     height: 3vh;
@@ -78,11 +82,10 @@
 }
 
 @media (min-width: 576px) and ( max-width: 768px) {
-.justify-content{ font-size: 1.2rem; }
-.city , .rating, .price{ font-size: 1.4rem; }
-.name-text, .star{font-size: 1.8rem;}
+.justify-content{ font-size: 1rem; }
+.city , .rating, .price{ font-size: 1.2rem; }
+.name-text, .star{font-size: 1.2rem;}
 .badge.badge-pill{
-    width: 13vw;
     height: 6vh;
     font-size: 3.5vw;
     }
@@ -97,8 +100,6 @@
 .city , .rating, .price{ font-size: 0.95rem; }
 .name-text, .star{font-size: 1.2rem;}
 .badge.badge-pill{
-    width: 8vw;
-    height: 2.5vh;
     font-size: 2vw;
     }
 .fa.fa-location-arrow {
@@ -111,8 +112,6 @@
 .rating, .price { font-size: 1rem;}
 .name-text, .star{font-size: 1.4rem;}
 .badge.badge-pill{
-    width: 5.5vw;
-    height: 4vh;
     font-size: 1.7vw;
     }
 }
@@ -121,8 +120,6 @@
 .justify-content, .rating, .price, .city { font-size: 1.2rem; }
 .name-text, .star{font-size: 2rem;}
 .badge.badge-pill{
-    width: 7vw;
-    height: 5vh;
     font-size: 1.6vw;
     }
     .fa.fa-location-arrow {
@@ -131,13 +128,12 @@
         }
 }
 @media (min-width: 1200px) {
-    .justify-content{ font-size: 1.2rem; }
-    .rating, .price, .city { font-size: 1.4rem; }
-    .name-text, .star {font-size: 2rem;}
+    .justify-content{ font-size: 1rem; }
+    .price, .city { font-size: 1rem; }
+    .rating { font-size: 1.2rem }
+    .name-text, .star {font-size: 1.2rem;}
     .badge.badge-pill{
-        width: 6vw;
-        height: 5vh;
-        font-size: 1.5vw;
+        font-size: 1vw;
         }
         .fa.fa-location-arrow {
             width: 1.7vw;
