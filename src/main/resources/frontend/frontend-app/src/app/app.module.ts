@@ -26,7 +26,7 @@ import { SearchboxComponent } from './components/searchbox/searchbox.component';
     HotelListItemComponent,
     CategoryListComponent,
     CategoryListItemComponent,
-    CategoryCardComponent
+    CategoryCardComponent,
     NgbdButtonsCheckbox,
     SearchboxComponent,
   ],
