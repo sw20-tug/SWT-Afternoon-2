@@ -1,27 +1,27 @@
 package com.example.demo.controller;
-
-import com.example.demo.HotelRepository;
 import com.example.demo.model.Hotel;
+import com.example.demo.model.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RestController
-@CrossOrigin(origins = "http://localhost:3306")
-
+@CrossOrigin("http://localhost:4200")
 public class HotelController {
   @Autowired
-  private HotelRepository hotel_repository;
+  private HotelService hotelService;
+  private Hotel hotel = new Hotel();
 
-  @GetMapping("/hotels")
-  public List<Hotel> getUsers() {
-
-    return (List<Hotel>) hotel_repository.findAll();
+  public HotelController(HotelService hotelService)
+  {
+    this.hotelService = hotelService;
+    this.hotel = new Hotel();
   }
 
-  @PostMapping("/hotels")
-  void addHotel(@RequestBody Hotel hotel) {
-    hotel_repository.save(hotel);
+  public void printMeHotel(){
+    hotel = this.hotelService.getHotelByName("Bosna Hotel");
+    System.out.println("Hotel City:" + hotel.getCity());
   }
 
 }

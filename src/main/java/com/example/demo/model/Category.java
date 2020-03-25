@@ -8,7 +8,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Categories {
+public class Category {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long id;
@@ -16,11 +16,20 @@ public class Categories {
   @Column
   private String name;
 
-  public Categories(String name) {
+  public Category(String name) {
     this.name = name;
   }
 
-  public Categories() {
+  public Category() {
     this.name = "";
+  }
+
+  public String getName()
+  {
+    return this.name;
+  }
+  public void setName(String name)
+  {
+    this.name = name;
   }
 }
