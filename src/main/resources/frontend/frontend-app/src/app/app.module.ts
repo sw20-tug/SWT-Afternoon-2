@@ -10,6 +10,9 @@ import { HotelListItemComponent } from './components/hotel-list/hotel-list-item/
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {HttpClientService} from "./service/http-client.service";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
+import { CategoryListComponent } from './components/category-list/category-list.component';
+import { CategoryListItemComponent } from './components/category-list/category-list-item/category-list-item.component';
+import { CategoryCardComponent } from './components/category-card/category-card.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,10 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
     HomeComponent,
     HeaderComponent,
     HotelListComponent,
-    HotelListItemComponent
+    HotelListItemComponent,
+    CategoryListComponent,
+    CategoryListItemComponent,
+    CategoryCardComponent
   ],
   imports: [
     BrowserModule,
