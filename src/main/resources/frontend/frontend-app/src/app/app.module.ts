@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +14,8 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { CategoryListComponent } from './components/category-list/category-list.component';
 import { CategoryListItemComponent } from './components/category-list/category-list-item/category-list-item.component';
 import { CategoryCardComponent } from './components/category-card/category-card.component';
+import { NgbdButtonsCheckbox } from './components/button-checkbox/button-checkbox.component';
+import { SearchboxComponent } from './components/searchbox/searchbox.component';
 
 @NgModule({
   declarations: [
@@ -24,11 +27,14 @@ import { CategoryCardComponent } from './components/category-card/category-card.
     CategoryListComponent,
     CategoryListItemComponent,
     CategoryCardComponent
+    NgbdButtonsCheckbox,
+    SearchboxComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
+    FormsModule,
     HttpClientModule
   ],
   exports: [
