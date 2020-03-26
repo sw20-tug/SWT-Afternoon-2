@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 import com.example.demo.model.Hotel;
+import com.example.demo.model.HotelRepository;
 import com.example.demo.model.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,8 @@ import java.util.List;
 public class HotelController {
   @Autowired
   private HotelService hotelService;
+  @Autowired
+  private HotelRepository hotelRepository;
   private Hotel hotel = new Hotel();
 
   public HotelController(HotelService hotelService)
@@ -24,4 +27,9 @@ public class HotelController {
     System.out.println("Hotel City:" + hotel.getCity());
   }
 
+  @GetMapping(path="/hotels")
+  public @ResponseBody Iterable<Hotel> getAllHotels() {
+    System.out.println("Objects are ");
+    return hotelRepository.findAll();
+  }
 }

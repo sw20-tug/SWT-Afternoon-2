@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 import com.example.demo.model.Category;
 import com.example.demo.model.CategoryService;
+import com.example.demo.model.Hotel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -24,4 +25,6 @@ public class CategoryController {
     this.category = this.categoryService.getCategoryByName("sexhotel");
     System.out.println("Category name:" + category.getName());
   }
+
+
 }
