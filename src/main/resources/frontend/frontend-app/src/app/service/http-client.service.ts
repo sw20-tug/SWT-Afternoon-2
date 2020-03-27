@@ -22,6 +22,6 @@ export class HttpClientService {
   } */
   public getHotelWithinPriceRange(price: number): Observable<Hotel[]>
   {
-    return this.http.get<Hotel[]>(this.usersUrl + '/hotel?price=?+' + price);
+    return this.http.get<Hotel[]>(this.usersUrl + '/hotel?price=' + price);
   }
 }
