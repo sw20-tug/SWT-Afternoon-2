@@ -16,6 +16,8 @@ import { CategoryListItemComponent } from './components/category-list/category-l
 import { CategoryCardComponent } from './components/category-card/category-card.component';
 import { NgbdButtonsCheckbox } from './components/button-checkbox/button-checkbox.component';
 import { SearchboxComponent } from './components/searchbox/searchbox.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxBootstrapSliderModule } from 'ngx-bootstrap-slider';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { SearchboxComponent } from './components/searchbox/searchbox.component';
     AppRoutingModule,
     NgbModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NoopAnimationsModule,
+    NgxBootstrapSliderModule
   ],
   exports: [
     HeaderComponent
