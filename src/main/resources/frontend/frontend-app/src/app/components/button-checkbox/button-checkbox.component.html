@@ -30,3 +30,9 @@
   </label>
   </div>
 </div>
+<div class = "filters box-around" >
+  <h5 class="price-box">Price </h5>
+  <mv-slider [(value)]="value" [min]="1" [max]="1000" [enabled]="enabled" (slideStop)="change($event)"></mv-slider>
+  {{value}}
+</div>
+
