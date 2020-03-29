@@ -83,9 +83,9 @@ CREATE TABLE `hotel` (
 --
 
 INSERT INTO `hotel` (`id`, `city`, `description`, `image_path`, `name`, `price`, `rate`, `stars`, `category_id`) VALUES
-(2, 'Graz', 'best hotel', 'no image', 'Graz Hotel', '100Euros', 5, 5, 1),
-(4, 'Bosna', 'best hotel', 'no image', 'Bosna Hotel', '100Euros', 5, 5, 3),
-(6, 'Wien', 'best hotel', 'no image', 'Wien Hotel', '100Euros', 5, 5, 5);
+(2, 'Graz', 'best hotel', 'no image', 'Graz Hotel', '100', 5, 5, 1),
+(4, 'Bosna', 'best hotel', 'no image', 'Bosna Hotel', '90', 5, 5, 3),
+(6, 'Wien', 'best hotel', 'no image', 'Wien Hotel', '80', 5, 5, 5);
 
 --
 -- Indexes for dumped tables
