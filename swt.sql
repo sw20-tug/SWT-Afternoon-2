@@ -72,7 +72,7 @@ CREATE TABLE `hotel` (
   `description` varchar(255) DEFAULT NULL,
   `image_path` varchar(255) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
-  `price` varchar(255) DEFAULT NULL,
+  `price` int(11) DEFAULT NULL,
   `rate` int(11) DEFAULT NULL,
   `stars` int(11) DEFAULT NULL,
   `category_id` bigint(20) DEFAULT NULL
