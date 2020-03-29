@@ -34,8 +34,7 @@ public class HotelController {
     System.out.println("Hotel City:" + hotel.getCity());
 
 
-    List<Hotel> hotels_within_price_range = filter_getHotelWithinPriceRange("80");
-
+    //List<Hotel> hotels_within_price_range = filter_getHotelWithinPriceRange("80");
 
   }
 
@@ -45,18 +44,18 @@ public class HotelController {
     return hotelRepository.findAll();
   }
 
-  @GetMapping(path="/hotels?price")
+  @GetMapping(path="/hotel?price=")
   public @ResponseBody Iterable<Hotel> getHotelWithinPriceRange(@RequestParam String price) {
     System.out.println("Objects are ");
 
-    List<Hotel> hotels_within_price_range = filter_getHotelWithinPriceRange(price);
-    Iterable<Hotel> return_hotels_within_price_range = hotels_within_price_range;
+    //List<Hotel> hotels_within_price_range = filter_getHotelWithinPriceRange(price);
+    //Iterable<Hotel> return_hotels_within_price_range = hotels_within_price_range;
 
-    return return_hotels_within_price_range;
+    return filter_getHotelWithinPriceRange(price);
   }
 
   //-----Filtering----//
-  private List<Hotel> filter_getHotelWithinPriceRange(String price)
+  private Iterable<Hotel> filter_getHotelWithinPriceRange(String price)
   {
     int hotel_price = Integer.parseInt(price);
     List<Hotel> hotels_within_price_range = new ArrayList<Hotel>();
@@ -74,7 +73,12 @@ public class HotelController {
     for(Hotel hotel_sorted: hotels_within_price_range)
       System.out.println("hotel is: " + hotel_sorted.getName() + " and price is " + hotel_sorted.getPrice());
 
-    return hotels_within_price_range;
+    Iterable<Hotel> hotels__ = hotels_within_price_range;
+    for(Hotel it: hotels__)
+      System.out.println(it.getName() + " " + it.getPrice());
+
+
+    return hotels__;
   }
 
 }
