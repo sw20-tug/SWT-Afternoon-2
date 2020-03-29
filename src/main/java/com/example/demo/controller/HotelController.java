@@ -2,83 +2,68 @@ package com.example.demo.controller;
 import com.example.demo.model.Hotel;
 import com.example.demo.model.HotelRepository;
 import com.example.demo.model.HotelService;
+import org.apache.catalina.filters.CorsFilter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Collections;
+import java.util.*;
 
-
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
-@CrossOrigin("http://localhost:4200")
 public class HotelController {
-
 
   @Autowired
   private HotelService hotelService;
   @Autowired
   private HotelRepository hotelRepository;
   private Hotel hotel = new Hotel();
+  private FilteringOperation filteringOperation;
 
   public HotelController(HotelService hotelService)
   {
     this.hotelService = hotelService;
     this.hotel = new Hotel();
+    this.filteringOperation = new FilteringOperation(hotelService);
   }
 
+
+  //--for testing---//
   public void printMeHotel(){
     hotel = this.hotelService.getHotelByName("Bosna Hotel");
     System.out.println("hotel price is: " + hotel.getPrice());
     System.out.println("Hotel City:" + hotel.getCity());
 
 
-    //List<Hotel> hotels_within_price_range = filter_getHotelWithinPriceRange("80");
+  //    Iterable<Hotel> hotels__ = filter_getHotelWithinPriceRange("80");;
+  //    for(Hotel it: hotels__)
+  //      System.out.println("test" + it.getName() + " " + it.getPrice());
+
 
   }
+
+  //---Endpoints---//
 
   @GetMapping(path="/hotels")
   public @ResponseBody Iterable<Hotel> getAllHotels() {
-    System.out.println("Objects are ");
+    System.out.println("All Hotels ");
     return hotelRepository.findAll();
   }
 
-  @GetMapping(path="/hotel?price=")
+  @GetMapping(path="/hotel")
   public @ResponseBody Iterable<Hotel> getHotelWithinPriceRange(@RequestParam String price) {
-    System.out.println("Objects are ");
-
-    //List<Hotel> hotels_within_price_range = filter_getHotelWithinPriceRange(price);
-    //Iterable<Hotel> return_hotels_within_price_range = hotels_within_price_range;
-
-    return filter_getHotelWithinPriceRange(price);
+    System.out.println("price is " + price);
+    System.out.println("Hotels within price ");
+    return filteringOperation.filter_getHotelWithinPriceRange(price);
   }
 
-  //-----Filtering----//
-  private Iterable<Hotel> filter_getHotelWithinPriceRange(String price)
-  {
-    int hotel_price = Integer.parseInt(price);
-    List<Hotel> hotels_within_price_range = new ArrayList<Hotel>();
-    for(Hotel hotel: hotelService.getHotels())
-    {
-
-      if(hotel.getPrice() <= hotel_price)
-      {
-        hotels_within_price_range.add(hotel);
-        System.out.println("hotel name is: " + hotel.getName() + " and price is " + hotel.getPrice());
-      }
-    }
-
-    Collections.sort(hotels_within_price_range);
-    for(Hotel hotel_sorted: hotels_within_price_range)
-      System.out.println("hotel is: " + hotel_sorted.getName() + " and price is " + hotel_sorted.getPrice());
-
-    Iterable<Hotel> hotels__ = hotels_within_price_range;
-    for(Hotel it: hotels__)
-      System.out.println(it.getName() + " " + it.getPrice());
-
-
-    return hotels__;
+  @GetMapping(path="/activities=")
+  public @ResponseBody Iterable<Hotel> getActivities(@RequestParam String[] activities) {
+    System.out.println("Hotels according activites ");
+    //TODO
+    return hotelRepository.findAll();
   }
 
 }

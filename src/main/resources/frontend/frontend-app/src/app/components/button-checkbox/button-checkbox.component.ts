@@ -30,8 +30,9 @@ export class NgbdButtonsCheckbox {
   };
 
   sortHotelsByPrice($event) {
-    this.HttpClientService.getHotelWithActivities(this.selectedActivities).subscribe(hotels => {
-      this.HotelService.updateHotelList(hotels);
+    this.HttpClientService.getHotelWithinPriceRange(this.value).subscribe(hotels => {
+      console.log(hotels)
+      //this.HotelService.updateHotelList(hotels);
     })
   }
 
