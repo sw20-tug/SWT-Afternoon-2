@@ -8,7 +8,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Hotel {
+public class Hotel implements Comparable<Hotel>{
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long id;
@@ -20,7 +20,7 @@ public class Hotel {
   private int rate;
 
   @Column
-  private String price;
+  private Integer price;
 
   @Column
   private String city;
@@ -36,7 +36,7 @@ public class Hotel {
 
   @ManyToOne
   private Category category = new Category();
-  public Hotel(String name, int rate, String price, String city, String description, String imagePath, int stars, Category category) {
+  public Hotel(String name, int rate, Integer price, String city, String description, String imagePath, int stars, Category category) {
     this.rate = rate;
     this.name = name;
     this.price = price;
@@ -59,7 +59,7 @@ public class Hotel {
   public int getRate(){
     return this.rate;
   }
-  public String getPrice(){
+  public Integer getPrice(){
     return this.price;
   }
   public String getCity(){
@@ -83,7 +83,7 @@ public class Hotel {
   public void setRate(int rate){
     this.rate = rate;
   }
-  public void setPrice(String price){
+  public void setPrice(Integer price){
     this.price = price;
   }
   public void setCity(String city){
@@ -102,4 +102,9 @@ public class Hotel {
     this.category = category;
   }
 
+
+  @Override
+  public int compareTo(Hotel hotel) {
+    return this.getPrice().compareTo(hotel.getPrice());
+  }
 }
