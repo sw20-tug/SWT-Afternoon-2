@@ -18,6 +18,7 @@ import { NgbdButtonsCheckbox } from './components/button-checkbox/button-checkbo
 import { SearchboxComponent } from './components/searchbox/searchbox.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxBootstrapSliderModule } from 'ngx-bootstrap-slider';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { NgxBootstrapSliderModule } from 'ngx-bootstrap-slider';
     FormsModule,
     HttpClientModule,
     NoopAnimationsModule,
-    NgxBootstrapSliderModule
+    NgxBootstrapSliderModule,
+    NgMultiSelectDropDownModule.forRoot()
   ],
   exports: [
     HeaderComponent

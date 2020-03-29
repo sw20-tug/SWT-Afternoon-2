@@ -24,4 +24,11 @@ export class HttpClientService {
   {
     return this.http.get<Hotel[]>(this.usersUrl + '/hotel?price=' + price);
   }
+
+  public getHotelWithActivities(activities: string[]): Observable<Hotel[]>
+  {
+    return this.http.get<Hotel[]>(this.usersUrl + '/activities=' + activities);
+  }
+
+
 }
