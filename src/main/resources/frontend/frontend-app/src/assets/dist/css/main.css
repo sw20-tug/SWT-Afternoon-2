@@ -4,30 +4,29 @@
   border-bottom: 1px solid gray;
 }
 
-.box-around {
-  border: 1px solid gray;
-}
-
 .mat-slider-horizontal {
   height: 48px;
   min-width: 180px !important;
 }
 
-.activities-dropdown {
-  display: inline-block !important;
-  margin-bottom: 0 !important;
-  font-weight: 400 !important;
-  line-height: 1.52857143;
-  text-align: left;
-  vertical-align: middle;
-  cursor: pointer;
-  background-image: none;
-  border: 1px solid gray !important;
-  padding: 10px !important;
-  margin-left: 10px !important;
-  width: 232px !important;
-}
-
 .margin-button {
   margin-top: 15px !important;
+}
+
+.star {
+  position: relative;
+  display: inline-block;
+  color: #d3d3d3;
+  font-size: 2rem;
+}
+
+.full {
+  color: #f6ab3f;
+}
+
+.half {
+  position: absolute;
+  display: inline-block;
+  overflow: hidden;
+  color: #f6ab3f;
 }

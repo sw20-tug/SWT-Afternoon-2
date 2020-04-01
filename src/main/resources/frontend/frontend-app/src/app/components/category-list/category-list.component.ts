@@ -26,4 +26,8 @@ export class CategoryListComponent implements OnInit {
       new Category("Camping", null)
     ];
   }
+
+  onCategoryClick(index: number){
+    
+  }
 }

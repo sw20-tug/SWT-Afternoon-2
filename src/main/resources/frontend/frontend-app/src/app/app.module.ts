@@ -14,11 +14,20 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { CategoryListComponent } from './components/category-list/category-list.component';
 import { CategoryListItemComponent } from './components/category-list/category-list-item/category-list-item.component';
 import { CategoryCardComponent } from './components/category-card/category-card.component';
-import { NgbdButtonsCheckbox } from './components/button-checkbox/button-checkbox.component';
 import { SearchboxComponent } from './components/searchbox/searchbox.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxBootstrapSliderModule } from 'ngx-bootstrap-slider';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import {MatCardModule} from '@angular/material/card';
+import { FiltersComponent } from './components/filters/filters.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule, MatIcon } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatButtonModule } from '@angular/material/button';
+import {MatSelectModule} from '@angular/material/select';
+
 
 @NgModule({
   declarations: [
@@ -30,8 +39,8 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     CategoryListComponent,
     CategoryListItemComponent,
     CategoryCardComponent,
-    NgbdButtonsCheckbox,
     SearchboxComponent,
+    FiltersComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +50,15 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     HttpClientModule,
     NoopAnimationsModule,
     NgxBootstrapSliderModule,
-    NgMultiSelectDropDownModule.forRoot()
+    NgMultiSelectDropDownModule.forRoot(),
+    MatCardModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatCheckboxModule,
+    MatRadioModule,
+    MatButtonModule,
+    MatSelectModule
   ],
   exports: [
     HeaderComponent

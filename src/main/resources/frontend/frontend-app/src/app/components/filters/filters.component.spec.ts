@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ButtonCheckboxComponent } from './button-checkbox.component';
+import { FiltersComponent } from './filters.component';
 
-describe('ButtonCheckboxComponent', () => {
-  let component: ButtonCheckboxComponent;
-  let fixture: ComponentFixture<ButtonCheckboxComponent>;
+describe('FiltersComponent', () => {
+  let component: FiltersComponent;
+  let fixture: ComponentFixture<FiltersComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ButtonCheckboxComponent ]
+      declarations: [ FiltersComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ButtonCheckboxComponent);
+    fixture = TestBed.createComponent(FiltersComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
