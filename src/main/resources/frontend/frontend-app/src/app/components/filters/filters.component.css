@@ -1,13 +1,18 @@
+.filters-list {
+  margin-top: 10px;
+}
+
 .filters {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
   padding: 10px;
   margin: 10px;
   white-space: nowrap;
+  width: 100%;
+  border: 1px solid gray;
 }
 
-.form-check {
-  padding: 10px;
+.filter-item {
   margin: 10px;
   white-space: nowrap;
 }
@@ -21,4 +26,14 @@ padding: 10px;
     border-radius: 5px;
     display: block;
     width: 80px;
-    margin: 0px auto 0px auto;}
+    margin: 0px auto 0px auto;
+}
+
+.dropdown {
+  font-weight: 400;
+  text-align: left;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid gray;
+}
