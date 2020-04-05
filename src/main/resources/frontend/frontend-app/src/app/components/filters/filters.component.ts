@@ -57,6 +57,7 @@ export class FiltersComponent {
     this.activities = ["Gym", "Running", "Open bar"];
     this.locations = ["Graz", "Vienna", "Salzburg"];
     this.selectedActivities = [];
+    this.selectedLocations = [];
 
   }
 
