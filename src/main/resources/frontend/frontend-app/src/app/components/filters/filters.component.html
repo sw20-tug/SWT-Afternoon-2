@@ -11,10 +11,10 @@
         <div class="col-6">
           <mat-form-field appearance="legacy" style="width: 100%;">
             <mat-label>max</mat-label>
-            <input matInput>      
+            <input matInput>
           </mat-form-field>
         </div>
-    </div> 
+    </div>
   </div>
   <div class="filters">
     <h4 class="price-box">Customer rating</h4>
@@ -28,10 +28,10 @@
         <div class="col-6">
           <mat-form-field appearance="legacy" style="width: 100%;">
             <mat-label>max</mat-label>
-            <input matInput>      
+            <input matInput>
           </mat-form-field>
         </div>
-    </div> 
+    </div>
   </div>
   <div class="filters">
     <h4 class="price-box">Stars</h4>
@@ -44,7 +44,7 @@
         </ng-template>
       </ngb-rating>
     </div>
-  </div>  
+  </div>
   <div class="filters dropdown">
     <h4 class="price-box">Activities</h4>
     <ng-multiselect-dropdown
@@ -54,7 +54,7 @@
       [settings]="dropdownSettings"
       (onSelect)="selectActivities()">
     </ng-multiselect-dropdown>
-    <br/>    
+    <br/>
   </div>
   <div class="filters dropdown">
     <h4 class="price-box">Locations</h4>
@@ -65,7 +65,7 @@
       [settings]="dropdownSettings"
       (onSelect)="selectLocations()">
     </ng-multiselect-dropdown>
-    <br/>    
+    <br/>
   </div>
   <div class="filters">
     <h4 class="price-box">Other filters</h4>
@@ -117,7 +117,10 @@
       <div class="col-12">
         <mat-radio-button id="rating" value=3>Rating</mat-radio-button>
       </div>
-    </mat-radio-group>  
+      <div class="col-12">
+        <mat-radio-button id="stars" value=4>Stars</mat-radio-button>
+      </div>
+    </mat-radio-group>
     <div class="row" style="display: flex; align-items: center; justify-content: center;">
       <button mat-raised-button color="accent" style="text-align: center;">Sort</button>
     </div>
