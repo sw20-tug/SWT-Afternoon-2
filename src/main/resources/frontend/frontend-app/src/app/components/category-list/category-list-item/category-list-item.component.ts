@@ -13,9 +13,12 @@ export class CategoryListItemComponent implements OnInit {
   @Input() category: Category;
 
   sortOptions = [
-    {id: 1, name: 'Price'},
-    {id: 2, name: 'Rating'},
-    {id: 3, name: 'Stars'}
+    {id: 1, name: 'Price Lowest'},
+    {id: 2, name: 'Price Highest'},
+    {id: 3, name: 'Rating Lowest'},
+    {id: 4, name: 'Rating Highest'},
+    {id: 5, name: 'Stars Lowest'},
+    {id: 6, name: 'Stars Highest'}
   ];
 
   selectedSortOption: any;
