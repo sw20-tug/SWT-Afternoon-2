@@ -33,7 +33,6 @@ export class HttpClientService {
   public getHotelWithinPriceRange(price: number): Observable<Hotel[]>
   {
     return this.http.get<Hotel[]>(this.usersUrl+ '/hotel?price=' + price);
-
   }
 
   public getHotelWithActivities(activities: string[]): Observable<any>
@@ -44,6 +43,12 @@ export class HttpClientService {
     );
   }
 
+  // public getFilteredHotels(filters: any[]): Observable<Hotel[]>
+  // {
+  //   return this.http.get<Hotel[]>(this.usersUrl+ '/hotels?filtered' + filters);
+  //
+  // }
+
   public errorHandler(error) {
     let errorMessage = '';
     if(error.error instanceof ErrorEvent) {
@@ -53,7 +58,5 @@ export class HttpClientService {
     }
     return throwError(errorMessage);
   }
-
-
 
 }

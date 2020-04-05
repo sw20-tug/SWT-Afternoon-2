@@ -1,21 +1,60 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.Category;
 import com.example.demo.model.Hotel;
 import com.example.demo.model.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class FilteringOperation {
+public class CustomerInput {
+  private enum Sort {BY_PRICE, BY_DISTANCE_FROM_CENTER, BY_RATING}
 
   @Autowired
   private HotelService hotelService;
-  public FilteringOperation(HotelService hotelService)
+  private Sort default_sort;
+
+  //user input parameters
+  private String min_price_per_night = null;
+  private String max_price_per_night = null;
+  private String min_customer_rating = null;
+  private String max_customer_rating = null;
+  private String customer_stars = null;
+  private String[] activities = null;
+  private String[] locations = null;
+  private Boolean[] other_filters = null;
+
+  //reset all parameters
+  public CustomerInput(HotelService hotelService)
   {
-      this.hotelService = hotelService;
+    default_sort = Sort.BY_PRICE;
+    this.hotelService = hotelService;
+    this.min_price_per_night = null;
+    this.max_price_per_night = null;
+    this.min_customer_rating = null;
+    this.max_customer_rating = null;
+    this.customer_stars = null;
+    this.activities = null;
+    this.locations = null;
+    this.other_filters = null;
+  }
+
+  public CustomerInput(String min_price_per_night_, String max_price_per_night_,
+                       String min_customer_rating_, String max_customer_rating_, String customer_stars_,
+                       String[] activities_, String[] locations_, Boolean[] other_filters_)
+  {
+    this.min_price_per_night = min_price_per_night_;
+    this.max_price_per_night = max_price_per_night_;
+    this.min_customer_rating = min_customer_rating_;
+    this.max_customer_rating = max_customer_rating_;
+    this.customer_stars = customer_stars_;
+    this.activities = activities_;
+    this.locations = locations_;
+    this.other_filters = other_filters_;
   }
 
   //-----Filtering----//
@@ -26,10 +65,6 @@ public class FilteringOperation {
     for(String filter_iterator: filters)
     {
       switch(filter_iterator) {
-        case "price":
-          System.out.println("price");
-          applied_filters.add(Filters.PRICE);
-          break;
         case "parking":
           System.out.println("parking");
           break;
@@ -71,6 +106,9 @@ public class FilteringOperation {
 
   public Iterable<Hotel> filter_getHotelWithinPriceRange(String price)
   {
+
+    List<Category> categories = new ArrayList<Category>();
+
     List<Hotel> hotels_within_price_range = new ArrayList<Hotel>();
     for(Hotel hotel: hotelService.getHotels())
     {
@@ -91,6 +129,19 @@ public class FilteringOperation {
       System.out.println(it.getName() + " " + it.getPrice());
 
     return hotels__;
+  }
+
+  public Iterable<Categories> applyAllFilters()
+  {
+    List<Categories> categories = new ArrayList<Categories>();
+    List<Hotel> all_hotels = hotelService.getHotels();
+    Hotels hotels_1 = new Hotels(all_hotels);
+    categories.add(new Categories(hotels_1));
+
+    List<Hotel> hotels_within_price_range = new ArrayList<Hotel>();
+    Iterable<Hotel> found_hotels = hotels_within_price_range;
+
+    return categories;
   }
 
 }
