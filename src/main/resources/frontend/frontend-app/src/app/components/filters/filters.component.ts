@@ -1,10 +1,11 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {IDropdownSettings} from "ng-multiselect-dropdown";
 import {HttpClientService} from "../../service/http-client.service";
-import {HotelListComponent} from "../hotel-list/hotel-list.component";
 import {HotelService} from "../../service/hotel.service";
-import {Hotel} from "../hotel-list/hotel.model";
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
+import { Category } from '../category-list/category.model';
+import { OtherFilters } from './other-filter.model';
+import { FiltersModel } from './filters.model';
 
 @Component({
   selector: 'filters',
@@ -14,15 +15,23 @@ import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 })
 
 export class FiltersComponent {
+  @Output()
+  filteredCategories: EventEmitter<Category[]> = new EventEmitter();
+
   private selectedItems: Map<string, Array<any>>;
   private _dropdownSettings: IDropdownSettings;
   public activities: any;
-  public currentlySelectedActivities: any;
-  public selectedActivities: any[];
   public locations: any;
+  public selectedActivities: any[] = [];
+  
+  public minPrice: number;
+  public maxPrice: number;
+  public minRating: number;
+  public maxRating: number;
+  public starsFilter: number = 0;
+  public currentlySelectedActivities: any;  
   public currentlySelectedLocations: any;
-  public selectedLocations: any[];
-  public ratingFilterValue: number = 0;
+  public otherFilters: OtherFilters; 
 
   public get dropdownSettings() {
     return this._dropdownSettings;
@@ -57,7 +66,7 @@ export class FiltersComponent {
     this.activities = ["Gym", "Running", "Open bar"];
     this.locations = ["Graz", "Vienna", "Salzburg"];
     this.selectedActivities = [];
-
+    this.otherFilters = new OtherFilters();
   }
 
   public selectActivities() {
@@ -70,8 +79,21 @@ export class FiltersComponent {
     })
   }
 
-  public selectLocations() {
-    this.selectedLocations.push(this.currentlySelectedLocations);
+  public applyAllFilters() {
+    // object filled with all filters from frontend
+    var filterModel = new FiltersModel(
+        this.minPrice,
+        this.maxPrice,
+        this.minRating,
+        this.maxRating,
+        this.starsFilter,
+        this.currentlySelectedActivities, 
+        this.currentlySelectedLocations,
+        this.otherFilters);
+
+    // send this filtersModel to backend and recieve list of categories with filtered hotels, then emit this list
+    var filteredCategoriesList = [];
+    this.filteredCategories.emit(filteredCategoriesList);
   }
 }
 
