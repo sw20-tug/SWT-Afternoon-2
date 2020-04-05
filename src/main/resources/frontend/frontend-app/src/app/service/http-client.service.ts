@@ -36,6 +36,12 @@ export class HttpClientService {
 
   }
 
+  public getFilteredHotels(filters: any[]): Observable<Hotel[]>
+  {
+    return this.http.get<Hotel[]>(this.usersUrl+ '/hotels?filtered' + filters);
+
+  }
+
   public getHotelWithActivities(activities: string[]): Observable<any>
   {
     return this.http.get<Hotel[]>(this.usersUrl + '/activities=' + activities, this.httpOptions) .pipe(
