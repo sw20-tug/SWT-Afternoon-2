@@ -23,15 +23,15 @@ export class FiltersComponent {
   public activities: any;
   public locations: any;
   public selectedActivities: any[] = [];
-  
+
   public minPrice: number;
   public maxPrice: number;
   public minRating: number;
   public maxRating: number;
   public starsFilter: number = 0;
-  public currentlySelectedActivities: any;  
+  public currentlySelectedActivities: any;
   public currentlySelectedLocations: any;
-  public otherFilters: OtherFilters; 
+  public otherFilters: OtherFilters;
 
   public get dropdownSettings() {
     return this._dropdownSettings;
@@ -64,7 +64,7 @@ export class FiltersComponent {
       allowSearchFilter: true
     };
     this.activities = ["Gym", "Running", "Open bar"];
-    this.locations = ["Graz", "Vienna", "Salzburg"];
+    this.locations = ["Graz", "Vienna", "Salzburg", "Paris", "Dubai", "Munich", "Berlin", "Stuttgart", "Hamburg", "Frankfurt", "Madrid", "Barcelona", "Rome", "Venice", "Milan", "London", "Amsterdam", "Florence", "Prague", "Istanbul", "Sarajevo", "Zagreb", "Athens", "Maldives", "Phuket", "Ljubljana", "Belgrade", "Budapest"];
     this.selectedActivities = [];
     this.otherFilters = new OtherFilters();
 
@@ -88,7 +88,7 @@ export class FiltersComponent {
         this.minRating,
         this.maxRating,
         this.starsFilter,
-        this.currentlySelectedActivities, 
+        this.currentlySelectedActivities,
         this.currentlySelectedLocations,
         this.otherFilters);
 
