@@ -27,6 +27,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 @NgModule({
@@ -58,7 +59,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatCheckboxModule,
     MatRadioModule,
     MatButtonModule,
-    MatSelectModule
+    MatSelectModule,
+    NgSelectModule
   ],
   exports: [
     HeaderComponent
