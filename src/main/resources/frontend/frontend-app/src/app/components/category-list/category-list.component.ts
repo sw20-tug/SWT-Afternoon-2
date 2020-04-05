@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import { Category } from './category.model'
 import { Hotel } from '../hotel-list/hotel.model';
 
@@ -25,6 +25,10 @@ export class CategoryListComponent implements OnInit {
       new Category("Family", null),
       new Category("Camping", null)
     ];
+  }
+
+  filteredCategories(filteredCategoryList: any[]){
+    this.categories = filteredCategoryList;
   }
 
   onCategoryClick(index: number){

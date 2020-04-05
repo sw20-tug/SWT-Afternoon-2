@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 public enum Filters {
-  PRICE,
   PARKING,
   RESTAURANT,
   PETS_ALLOWED,
@@ -11,7 +10,5 @@ public enum Filters {
   AIR_CONDITIONING,
   FREE_WIFI,
   SAUNA,
-  FITNESS,
-  DISTANCE_FROM_CENTER,
-  RATING
+  FITNESS
 }
