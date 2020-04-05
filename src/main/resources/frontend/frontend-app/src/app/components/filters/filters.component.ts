@@ -5,6 +5,7 @@ import {HotelService} from "../../service/hotel.service";
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Category } from '../category-list/category.model';
 import { OtherFilters } from './other-filter.model';
+import { FiltersModel } from './filters.model';
 
 @Component({
   selector: 'filters',
@@ -30,7 +31,7 @@ export class FiltersComponent {
   public starsFilter: number = 0;
   public currentlySelectedActivities: any;  
   public currentlySelectedLocations: any;
-  public otherFilters: OtherFilters;
+  public otherFilters: OtherFilters; 
 
   public get dropdownSettings() {
     return this._dropdownSettings;
@@ -79,7 +80,20 @@ export class FiltersComponent {
   }
 
   public applyAllFilters() {
-    
+    // object filled with all filters from frontend
+    var filterModel = new FiltersModel(
+        this.minPrice,
+        this.maxPrice,
+        this.minRating,
+        this.maxRating,
+        this.starsFilter,
+        this.currentlySelectedActivities, 
+        this.currentlySelectedLocations,
+        this.otherFilters);
+
+    // send this filtersModel to backend and recieve list of categories with filtered hotels, then emit this list
+    var filteredCategoriesList = [];
+    this.filteredCategories.emit(filteredCategoriesList);
   }
 }
 
