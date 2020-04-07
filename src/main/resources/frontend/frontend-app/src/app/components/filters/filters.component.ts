@@ -74,12 +74,6 @@ export class FiltersComponent {
     this.selectedActivities.push(this.currentlySelectedActivities);
   }
 
-  public sortHotelsByActivity() {
-    this.HttpClientService.getHotelWithActivities(this.selectedActivities).subscribe(hotels => {
-      this.HotelService.updateHotelList(hotels);
-    })
-  }
-
   public applyAllFilters() {
     // object filled with all filters from frontend
     var filterModel = new FiltersModel(
@@ -92,9 +86,14 @@ export class FiltersComponent {
         this.currentlySelectedLocations,
         this.otherFilters);
 
+        this.HttpClientService.getFilteredHotels(this.minPrice, this.maxPrice, this.minRating, this.maxRating,
+          this.starsFilter,
+          this.currentlySelectedActivities,
+          this.currentlySelectedLocations).subscribe();
+
     // send this filtersModel to backend and recieve list of categories with filtered hotels, then emit this list
-    var filteredCategoriesList = [];
-    this.filteredCategories.emit(filteredCategoriesList);
+    //var filteredCategoriesList = [];
+    //this.filteredCategories.emit(filteredCategoriesList);
   }
 }
 
