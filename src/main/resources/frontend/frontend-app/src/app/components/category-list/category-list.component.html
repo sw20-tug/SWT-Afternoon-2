@@ -1,9 +1,13 @@
 <div class="row">
   <div class="col-lg-3 col-md-4">
-    <filters></filters>
+    <filters
+    (filteredCategories)="filteredCategories($event)"></filters>
   </div>
   <div class="col-lg-9 col-md-8">
     <div class="row category-filters">
+      <div *ngIf="categories.length == 0" class="col-lg-2 col-md-4 col-xs-4 category-card">
+        <h3>No results</h3> 
+      </div>
       <div class="col-lg-2 col-md-4 col-xs-4 category-card" *ngFor="let category of categories; let i=index">
         <mat-card (click)="onCategoryClick(i)">
           <p class="text-center" style="width: 100%;">
