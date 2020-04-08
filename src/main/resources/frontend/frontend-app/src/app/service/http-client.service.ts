@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable, throwError} from "rxjs";
 import {Hotel} from "../components/hotel-list/hotel.model";
-import {catchError, min, retry} from "rxjs/operators";
+import {Category} from "../components/category-list/category.model";
 
 @Injectable({
   providedIn: 'root'
@@ -39,13 +39,12 @@ export class HttpClientService {
   public getFilteredHotels(minPrice: number, maxPrice: number,
                            minRating: number, maxRating: number,
                            starsFilter: number, currentlySelectedActivities: string[],
-                           currentlySelectedLocations: string[]): Observable<Hotel[]>
+                           currentlySelectedLocations: string[], otherFilters: boolean[]): Observable<Category[]>
   {
-    console.log(minPrice)
-    console.log("teetteete")
-    return this.http.get<Hotel[]>(this.usersUrl+ '/apply?minPrice=' + minPrice + '&maxPrice=' + maxPrice + '&minRating='
+
+    return this.http.get<Category[]>(this.usersUrl+ '/apply?minPrice=' + minPrice + '&maxPrice=' + maxPrice + '&minRating='
       + minRating+ '&maxRating=' + maxRating + '&starsFilter=' + starsFilter + '&currentlySelectedActivities=' + currentlySelectedActivities
-      + '&currentlySelectedActivities=' + currentlySelectedLocations);
+      + '&currentlySelectedLocations=' + currentlySelectedLocations + '&otherFilters=' + otherFilters);
 
   }
 

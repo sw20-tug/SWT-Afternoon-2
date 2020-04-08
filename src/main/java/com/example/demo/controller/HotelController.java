@@ -53,11 +53,12 @@ public class HotelController {
 
 
   @GetMapping(path="/apply")
-  public @ResponseBody Iterable<Hotel> getHotelsThroughAllFilters(@RequestParam String minPrice, @RequestParam String maxPrice,
-                                                                    @RequestParam String minRating, @RequestParam String maxRating,
-                                                                     @RequestParam String starsFilter,
-                                                                    @RequestParam String[] currentlySelectedActivities,
-                                                                    @RequestParam String[] currentlySelectedLocations)
+  public @ResponseBody Iterable<Categories> getHotelsThroughAllFilters(@RequestParam String minPrice, @RequestParam String maxPrice,
+                                                                       @RequestParam String minRating, @RequestParam String maxRating,
+                                                                       @RequestParam String starsFilter,
+                                                                       @RequestParam String[] currentlySelectedActivities,
+                                                                       @RequestParam String[] currentlySelectedLocations,
+                                                                       @RequestParam Boolean[] otherFilters)
   {
     System.out.println("Sorting through all filters ");
     System.out.println("print me all parameters: ");
@@ -66,24 +67,23 @@ public class HotelController {
     System.out.println("min_customer_rating: " +  minRating);
     System.out.println("max_customer_rating: " +  maxRating);
     System.out.println("customer_stars: " +  starsFilter);
-//
+
     System.out.println("activities: ");
     for(String activities_it: currentlySelectedActivities )
       System.out.println(activities_it);
 
-//    System.out.println("locations: ");
-//    for(String locations_it: locations)
-//      System.out.println(locations_it);
-//
-//    System.out.println("other_filters: ");
-//    for(Boolean other_filters_it: other_filters)
-//      System.out.println(other_filters_it);
-//
-//    customerInput = new CustomerInput(min_price_per_night, max_price_per_night, min_customer_rating, max_customer_rating,
-//                                      customer_stars, activities, locations, other_filters);
-    //TODO
-    return hotelRepository.findAll();
-    //return customerInput.applyAllFilters();
+    System.out.println("locations: ");
+    for(String locations_it: currentlySelectedLocations)
+      System.out.println(locations_it);
+
+    System.out.println("other_filters: ");
+    for(Boolean other_filters_it: otherFilters)
+      System.out.println(other_filters_it);
+
+    customerInput = new CustomerInput(minPrice, maxPrice, minRating, maxRating, starsFilter,
+      currentlySelectedActivities, currentlySelectedLocations, otherFilters);
+
+    return customerInput.applyAllFilters();
   }
 
 }
