@@ -44,9 +44,10 @@ export class HttpClientService {
                            currentlySelectedLocations: string[], otherFilters: boolean[]): Observable<Category[]>
   {
 
-    return this.http.get<Category[]>(this.usersUrl+ '/apply?minPrice=' + minPrice + '&maxPrice=' + maxPrice + '&minRating='
-      + minRating+ '&maxRating=' + maxRating + '&starsFilter=' + starsFilter + '&currentlySelectedActivities=' + currentlySelectedActivities
-      + '&currentlySelectedLocations=' + currentlySelectedLocations + '&otherFilters=' + otherFilters);
+    return this.http.get<Category[]>(this.usersUrl+ '/apply?minPrice=' + this.checkIfUndefined(minPrice) + '&maxPrice=' + this.checkIfUndefined(maxPrice)
+      + '&minRating=' + this.checkIfUndefined(minRating)+ '&maxRating=' + this.checkIfUndefined(maxRating) + '&starsFilter=' + starsFilter +
+      '&currentlySelectedActivities=' + this.checkIfUndefined(currentlySelectedActivities)
+      + '&currentlySelectedLocations=' + this.checkIfUndefined(currentlySelectedLocations) + '&otherFilters=' + otherFilters);
   }
 
   public getHotelWithActivities(activities: string[]): Observable<any> {
@@ -56,21 +57,14 @@ export class HttpClientService {
     );
   }
 
-  public sortByCriteria(criteria: number): Observable<any> {
+  public sortByCriteria(category_id: number): Observable<any> {
     console.log("Htp options are, ", new HttpHeaders());
-    return this.http.get<Hotel[]>(this.usersUrl + '/criteria?category_id=' + criteria, this.httpOptions).pipe(
+    return this.http.get<Hotel[]>(this.usersUrl + '/criteria?category_id=' + category_id, this.httpOptions).pipe(
       retry(this.retryCount),
       catchError(this.errorHandler)
     );
-    // return this.http.get("/api/countries", {params: criteria.toString()})
 
   }
-
-  // public getFilteredHotels(filters: any[]): Observable<Hotel[]>
-  // {
-  //   return this.http.get<Hotel[]>(this.usersUrl+ '/hotels?filtered' + filters);
-  //
-  // }
 
   public errorHandler(error) {
     let errorMessage = '';
@@ -80,6 +74,27 @@ export class HttpClientService {
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
     return throwError(errorMessage);
+  }
+
+  //helper function
+  public checkIfUndefined (value)
+  {
+    if(value === undefined)
+      return 0;
+    else
+      return value;
+  }
+
+  public checkIfEmptyList(list_to_send)
+  {
+    if(list_to_send === undefined)
+    {
+      return '';
+    }
+    else
+    {
+      return list_to_send;
+    }
   }
 
 }

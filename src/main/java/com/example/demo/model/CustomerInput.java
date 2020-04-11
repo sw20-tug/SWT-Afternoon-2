@@ -1,19 +1,13 @@
 package com.example.demo.model;
 
-import com.example.demo.model.*;
 import com.example.demo.controller.Categories;
-import com.example.demo.controller.Filters;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class CustomerInput {
-  private enum Sort {BY_PRICE, BY_DISTANCE_FROM_CENTER, BY_RATING}
-
   private static final int LOWEST_PRICE = 1;
   private static final int HIGHEST_PRICE = 2;
   private static final int LOWEST_RATING = 3;
@@ -27,9 +21,6 @@ public class CustomerInput {
   @Autowired
   CategoryRepository cr;
 
-  private HotelService hotelService;
-  private Sort default_sort;
-
   //user input parameters
   private Integer min_price_per_night = null;
   private Integer max_price_per_night = null;
@@ -40,12 +31,9 @@ public class CustomerInput {
   private String[] locations = null;
   private Boolean[] other_filters = null;
 
-
   //reset all parameters
-  public CustomerInput(HotelService hotelService)
+  public CustomerInput()
   {
-    default_sort = Sort.BY_PRICE;
-    this.hotelService = new HotelService(hr);
     this.min_price_per_night = null;
     this.max_price_per_night = null;
     this.min_customer_rating = null;
@@ -60,68 +48,23 @@ public class CustomerInput {
                        Integer min_customer_rating_, Integer max_customer_rating_, Integer customer_stars_,
                        String[] activities_, String[] locations_, Boolean[] other_filters_)
   {
-
-    this.hotelService = new HotelService(hr);
     this.min_price_per_night = min_price_per_night_;
     this.max_price_per_night = max_price_per_night_;
     this.min_customer_rating = min_customer_rating_;
     this.max_customer_rating = max_customer_rating_;
     this.customer_stars = customer_stars_;
+
     this.activities = activities_;
     this.locations = locations_;
     this.other_filters = other_filters_;
   }
 
-  //-----Filtering----//
-  private void determineFilters(String[] filters) {
-    List<Filters> applied_filters = new ArrayList<Filters>();
-
-    for (String filter_iterator : filters) {
-      switch (filter_iterator) {
-        case "parking":
-          System.out.println("parking");
-          break;
-        case "restaurant":
-          System.out.println("restaurant");
-          break;
-        case "non_smoking_rooms":
-          System.out.println("non_smoking_rooms");
-          break;
-        case "pets_allowed":
-          System.out.println("pets_allowed");
-          break;
-        case "swimming_pool":
-          System.out.println("swimming_pool");
-          break;
-        case "beach_front":
-          System.out.println("beach_front");
-          break;
-        case "air_conditioning":
-          System.out.println("air_conditioning");
-          break;
-        case "free_wifi":
-          System.out.println("free_wifi");
-          break;
-        case "sauna":
-          System.out.println("sauna");
-          break;
-        case "fitness":
-          System.out.println("fitness");
-          break;
-        default:
-          System.out.println("There is no such filter");
-      }
-    }
-
-  }
-
-
-  public Iterable<Hotel> filter_getHotelWithinPriceRange(String price) {
+  public Iterable<Hotel> filter_getHotelWithinPriceRange(String price, HotelService hotelService_) {
 
     List<Category> categories = new ArrayList<Category>();
 
     List<Hotel> hotels_within_price_range = new ArrayList<Hotel>();
-    for (Hotel hotel : hotelService.getHotels()) {
+    for (Hotel hotel : hotelService_.getHotels()) {
 
       if (hotel.getPrice() <= Integer.parseInt(price)) {
         hotels_within_price_range.add(hotel);
@@ -157,18 +100,29 @@ public class CustomerInput {
     return null;
   }
 
-  public Iterable<Categories> applyAllFilters() {
-    List<Categories> categories = new ArrayList<Categories>();
-    if(hotelService == null)
-      System.out.println("null sam");
-    List<Hotel> all_hotels = hotelService.getHotels();
-    Categories category_1 = new Categories(all_hotels);
-    categories.add(category_1);
+  public Iterable<Categories> applyAllFilters(HotelService hotelService) {
+    List<Categories> filteredHotelsInsideCategories = new ArrayList<Categories>();
 
-    List<Hotel> hotels_within_price_range = new ArrayList<Hotel>();
-    Iterable<Hotel> found_hotels = hotels_within_price_range;
+    Categories category_romantic = new Categories();
+    //example how to fill category with hotels
+    category_romantic.setHotel_inside_category(hotelService.getHotels());
 
-    return categories;
+    Categories category_adventure = new Categories();
+    Categories category_holiday = new Categories();
+    Categories category_wellness = new Categories();
+    Categories category_family = new Categories();
+    Categories category_camping = new Categories();
+
+    //TODO filtering
+
+    filteredHotelsInsideCategories.add(category_romantic);
+    filteredHotelsInsideCategories.add(category_adventure);
+    filteredHotelsInsideCategories.add(category_holiday);
+    filteredHotelsInsideCategories.add(category_wellness);
+    filteredHotelsInsideCategories.add(category_family);
+    filteredHotelsInsideCategories.add(category_camping);
+
+    return filteredHotelsInsideCategories;
   }
 
 }
