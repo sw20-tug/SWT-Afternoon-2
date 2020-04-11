@@ -56,9 +56,9 @@ export class HttpClientService {
     );
   }
 
-  public sortByCriteria(criteria: number): Observable<any> {
+  public sortByCriteria(category_id: number): Observable<any> {
     console.log("Htp options are, ", new HttpHeaders());
-    return this.http.get<Hotel[]>(this.usersUrl + '/criteria?category_id=' + criteria, this.httpOptions).pipe(
+    return this.http.get<Hotel[]>(this.usersUrl + '/criteria?category_id=' + category_id, this.httpOptions).pipe(
       retry(this.retryCount),
       catchError(this.errorHandler)
     );

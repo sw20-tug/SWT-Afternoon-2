@@ -27,7 +27,6 @@ public class CustomerInput {
   @Autowired
   CategoryRepository cr;
 
-  private HotelService hotelService;
   private Sort default_sort;
 
   //user input parameters
@@ -40,12 +39,10 @@ public class CustomerInput {
   private String[] locations = null;
   private Boolean[] other_filters = null;
 
-
   //reset all parameters
-  public CustomerInput(HotelService hotelService)
+  public CustomerInput()
   {
     default_sort = Sort.BY_PRICE;
-    this.hotelService = new HotelService(hr);
     this.min_price_per_night = null;
     this.max_price_per_night = null;
     this.min_customer_rating = null;
@@ -60,8 +57,6 @@ public class CustomerInput {
                        Integer min_customer_rating_, Integer max_customer_rating_, Integer customer_stars_,
                        String[] activities_, String[] locations_, Boolean[] other_filters_)
   {
-
-    this.hotelService = new HotelService(hr);
     this.min_price_per_night = min_price_per_night_;
     this.max_price_per_night = max_price_per_night_;
     this.min_customer_rating = min_customer_rating_;
@@ -72,56 +67,12 @@ public class CustomerInput {
     this.other_filters = other_filters_;
   }
 
-  //-----Filtering----//
-  private void determineFilters(String[] filters) {
-    List<Filters> applied_filters = new ArrayList<Filters>();
-
-    for (String filter_iterator : filters) {
-      switch (filter_iterator) {
-        case "parking":
-          System.out.println("parking");
-          break;
-        case "restaurant":
-          System.out.println("restaurant");
-          break;
-        case "non_smoking_rooms":
-          System.out.println("non_smoking_rooms");
-          break;
-        case "pets_allowed":
-          System.out.println("pets_allowed");
-          break;
-        case "swimming_pool":
-          System.out.println("swimming_pool");
-          break;
-        case "beach_front":
-          System.out.println("beach_front");
-          break;
-        case "air_conditioning":
-          System.out.println("air_conditioning");
-          break;
-        case "free_wifi":
-          System.out.println("free_wifi");
-          break;
-        case "sauna":
-          System.out.println("sauna");
-          break;
-        case "fitness":
-          System.out.println("fitness");
-          break;
-        default:
-          System.out.println("There is no such filter");
-      }
-    }
-
-  }
-
-
-  public Iterable<Hotel> filter_getHotelWithinPriceRange(String price) {
+  public Iterable<Hotel> filter_getHotelWithinPriceRange(String price, HotelService hotelService_) {
 
     List<Category> categories = new ArrayList<Category>();
 
     List<Hotel> hotels_within_price_range = new ArrayList<Hotel>();
-    for (Hotel hotel : hotelService.getHotels()) {
+    for (Hotel hotel : hotelService_.getHotels()) {
 
       if (hotel.getPrice() <= Integer.parseInt(price)) {
         hotels_within_price_range.add(hotel);
@@ -157,10 +108,9 @@ public class CustomerInput {
     return null;
   }
 
-  public Iterable<Categories> applyAllFilters() {
+  public Iterable<Categories> applyAllFilters(HotelService hotelService) {
     List<Categories> categories = new ArrayList<Categories>();
-    if(hotelService == null)
-      System.out.println("null sam");
+
     List<Hotel> all_hotels = hotelService.getHotels();
     Categories category_1 = new Categories(all_hotels);
     categories.add(category_1);
@@ -168,7 +118,7 @@ public class CustomerInput {
     List<Hotel> hotels_within_price_range = new ArrayList<Hotel>();
     Iterable<Hotel> found_hotels = hotels_within_price_range;
 
-    return categories;
+      return categories;
   }
 
 }

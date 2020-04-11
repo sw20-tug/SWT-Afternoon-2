@@ -26,15 +26,13 @@ public class HotelController {
   public HotelController(HotelService hotelService) {
     this.hotelService = hotelService;
     this.hotel = new Hotel();
-    this.customerInput = new CustomerInput(hotelService);
+    this.customerInput = new CustomerInput();
   }
 
 
   //--for testing---//
   public void printMeHotel() {
-    hotel = this.hotelService.getHotelByName("Bosna Hotel");
-    System.out.println("hotel price is: " + hotel.getPrice());
-    System.out.println("Hotel City:" + hotel.getCity());
+
     //    Iterable<Hotel> hotels__ = filter_getHotelWithinPriceRange("80");;
     //    for(Hotel it: hotels__)
     //      System.out.println("test" + it.getName() + " " + it.getPrice());
@@ -42,6 +40,11 @@ public class HotelController {
     //    Iterable<Hotel> hotels__ = filter_getHotelWithinPriceRange("80");;
     //    for(Hotel it: hotels__)
     //      System.out.println("test" + it.getName() + " " + it.getPrice());
+    Iterable<Categories> cat = customerInput.applyAllFilters(hotelService);
+    for(Categories cat_it: cat)
+      for(Hotel hotel_it: cat_it.hotel_inside_category)
+        System.out.println("hotel: " + hotel_it.getName());
+
   }
 
   //---Endpoints---//
@@ -57,7 +60,7 @@ public class HotelController {
   Iterable<Hotel> getHotelWithinPriceRange(@RequestParam String price) {
     System.out.println("price is " + price);
     System.out.println("Hotels within price ");
-    return customerInput.filter_getHotelWithinPriceRange(price);
+    return customerInput.filter_getHotelWithinPriceRange(price, hotelService);
   }
 
   @GetMapping(path = "/activities=")
@@ -70,10 +73,10 @@ public class HotelController {
 
   @GetMapping(path = "/criteria")
   public @ResponseBody
-  List<Hotel> getHotelByCriteria(@RequestParam String criteria) {
-    System.out.println("doso ?"+ criteria);
+  List<Hotel> getHotelByCriteria(@RequestParam String category_id) {
+    System.out.println("category_id : "+ category_id);
   //  System.out.println("Hotel with criteria is ?" + customerInput.getHotelByCriteria(1));
-    return customerInput.getHotelByCriteria(Integer.parseInt(criteria));
+    return customerInput.getHotelByCriteria(Integer.parseInt(category_id));
   }
 
 
@@ -110,7 +113,7 @@ public class HotelController {
       Integer.parseInt(maxRating), Integer.parseInt(starsFilter),
       currentlySelectedActivities, currentlySelectedLocations, otherFilters);
 
-    return customerInput.applyAllFilters();
+    return customerInput.applyAllFilters(this.hotelService);
   }
 
 }
