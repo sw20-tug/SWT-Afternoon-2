@@ -1,11 +1,18 @@
 package com.example.demo.controller;
 import com.example.demo.model.*;
+
+import com.example.demo.model.Category;
+import com.example.demo.model.Hotel;
+import com.example.demo.model.HotelRepository;
+import com.example.demo.model.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.criteria.CriteriaBuilder;
 
-@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
+import java.util.ArrayList;
+import java.util.List;
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 public class HotelController {
 
@@ -16,8 +23,7 @@ public class HotelController {
   private Hotel hotel = new Hotel();
   private CustomerInput customerInput;
 
-  public HotelController(HotelService hotelService)
-  {
+  public HotelController(HotelService hotelService) {
     this.hotelService = hotelService;
     this.hotel = new Hotel();
     this.customerInput = new CustomerInput(hotelService);
@@ -25,33 +31,51 @@ public class HotelController {
 
 
   //--for testing---//
-  public void printMeHotel(){
-
-    hotel = this.hotelService.getHotelByName("Hilton Hangzhou Qiandao Lake Resort");
+  public void printMeHotel() {
+    hotel = this.hotelService.getHotelByName("Bosna Hotel");
     System.out.println("hotel price is: " + hotel.getPrice());
     System.out.println("Hotel City:" + hotel.getCity());
     //    Iterable<Hotel> hotels__ = filter_getHotelWithinPriceRange("80");;
     //    for(Hotel it: hotels__)
     //      System.out.println("test" + it.getName() + " " + it.getPrice());
-    Iterable<Categories> found_hotels = customerInput.applyAllFilters();
-    for(Categories it: found_hotels)
-      for(Hotel it_hot: it.hotel_inside_category)
-            System.out.println("test" + it_hot.getName());
+
+    //    Iterable<Hotel> hotels__ = filter_getHotelWithinPriceRange("80");;
+    //    for(Hotel it: hotels__)
+    //      System.out.println("test" + it.getName() + " " + it.getPrice());
   }
 
   //---Endpoints---//
-  @GetMapping(path="/hotels")
-  public @ResponseBody Iterable<Hotel> getAllHotels() {
+  @GetMapping(path = "/hotels")
+  public @ResponseBody
+  Iterable<Hotel> getAllHotels() {
     System.out.println("All Hotels ");
     return hotelRepository.findAll();
   }
 
-  @GetMapping(path="/hotel")
-  public @ResponseBody Iterable<Hotel> getHotelWithinPriceRange(@RequestParam String price) {
+  @GetMapping(path = "/hotel")
+  public @ResponseBody
+  Iterable<Hotel> getHotelWithinPriceRange(@RequestParam String price) {
     System.out.println("price is " + price);
     System.out.println("Hotels within price ");
     return customerInput.filter_getHotelWithinPriceRange(price);
   }
+
+  @GetMapping(path = "/activities=")
+  public @ResponseBody
+  Iterable<Hotel> getActivities(@RequestParam String[] activities) {
+    System.out.println("Hotels according activites ");
+    //TODO
+    return hotelRepository.findAll();
+  }
+
+  @GetMapping(path = "/criteria")
+  public @ResponseBody
+  List<Hotel> getHotelByCriteria(@RequestParam String criteria) {
+    System.out.println("doso ?"+ criteria);
+  //  System.out.println("Hotel with criteria is ?" + customerInput.getHotelByCriteria(1));
+    return customerInput.getHotelByCriteria(Integer.parseInt(criteria));
+  }
+
 
 
   @GetMapping(path="/apply")
