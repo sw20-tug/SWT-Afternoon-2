@@ -1,12 +1,9 @@
 package com.example.demo.controller;
-import com.example.demo.model.Category;
-import com.example.demo.model.Hotel;
-import com.example.demo.model.HotelRepository;
-import com.example.demo.model.HotelService;
+import com.example.demo.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import javax.persistence.criteria.CriteriaBuilder;
 
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
@@ -29,12 +26,16 @@ public class HotelController {
 
   //--for testing---//
   public void printMeHotel(){
+
     hotel = this.hotelService.getHotelByName("Bosna Hotel");
     System.out.println("hotel price is: " + hotel.getPrice());
     System.out.println("Hotel City:" + hotel.getCity());
-  //    Iterable<Hotel> hotels__ = filter_getHotelWithinPriceRange("80");;
-  //    for(Hotel it: hotels__)
-  //      System.out.println("test" + it.getName() + " " + it.getPrice());
+    //    Iterable<Hotel> hotels__ = filter_getHotelWithinPriceRange("80");;
+    //    for(Hotel it: hotels__)
+    //      System.out.println("test" + it.getName() + " " + it.getPrice());
+    Iterable<Categories> found_hotels = customerInput.applyAllFilters();
+    for(Categories it: found_hotels)
+            System.out.println("test" + it);
   }
 
   //---Endpoints---//
@@ -80,7 +81,8 @@ public class HotelController {
     for(Boolean other_filters_it: otherFilters)
       System.out.println(other_filters_it);
 
-    customerInput = new CustomerInput(minPrice, maxPrice, minRating, maxRating, starsFilter,
+    customerInput = new CustomerInput(Integer.parseInt(minPrice), Integer.parseInt(maxPrice), Integer.parseInt(minRating),
+      Integer.parseInt(maxRating), Integer.parseInt(starsFilter),
       currentlySelectedActivities, currentlySelectedLocations, otherFilters);
 
     return customerInput.applyAllFilters();

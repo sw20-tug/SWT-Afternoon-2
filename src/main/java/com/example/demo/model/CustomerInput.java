@@ -1,5 +1,8 @@
-package com.example.demo.controller;
+package com.example.demo.model;
 
+import com.example.demo.controller.Categories;
+import com.example.demo.controller.Filters;
+import com.example.demo.controller.Hotels;
 import com.example.demo.model.Category;
 import com.example.demo.model.Hotel;
 import com.example.demo.model.HotelService;
@@ -19,11 +22,11 @@ public class CustomerInput {
   private Sort default_sort;
 
   //user input parameters
-  private String min_price_per_night = null;
-  private String max_price_per_night = null;
-  private String min_customer_rating = null;
-  private String max_customer_rating = null;
-  private String customer_stars = null;
+  private Integer min_price_per_night = null;
+  private Integer max_price_per_night = null;
+  private Integer min_customer_rating = null;
+  private Integer max_customer_rating = null;
+  private Integer customer_stars = null;
   private String[] activities = null;
   private String[] locations = null;
   private Boolean[] other_filters = null;
@@ -43,8 +46,8 @@ public class CustomerInput {
     this.other_filters = null;
   }
 
-  public CustomerInput(String min_price_per_night_, String max_price_per_night_,
-                       String min_customer_rating_, String max_customer_rating_, String customer_stars_,
+  public CustomerInput(Integer min_price_per_night_, Integer max_price_per_night_,
+                       Integer min_customer_rating_, Integer max_customer_rating_, Integer customer_stars_,
                        String[] activities_, String[] locations_, Boolean[] other_filters_)
   {
     this.min_price_per_night = min_price_per_night_;
