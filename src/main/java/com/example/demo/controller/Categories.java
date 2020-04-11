@@ -7,8 +7,9 @@ import java.util.List;
 public class Categories {
 
   public List <Hotel> hotel_inside_category;
-  public Categories(List <Hotel> hotel_inside_category_){
-    this.hotel_inside_category = hotel_inside_category_;
-  }
+  public Categories() {}
 
+  public void setHotel_inside_category(List<Hotel> hotel_inside_category) {
+    this.hotel_inside_category = hotel_inside_category;
+  }
 }

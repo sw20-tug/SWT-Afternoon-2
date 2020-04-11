@@ -23,6 +23,8 @@ public class HotelController {
   private Hotel hotel = new Hotel();
   private CustomerInput customerInput;
 
+  private static final int DEFAULT = 0;
+
   public HotelController(HotelService hotelService) {
     this.hotelService = hotelService;
     this.hotel = new Hotel();
@@ -40,11 +42,10 @@ public class HotelController {
     //    Iterable<Hotel> hotels__ = filter_getHotelWithinPriceRange("80");;
     //    for(Hotel it: hotels__)
     //      System.out.println("test" + it.getName() + " " + it.getPrice());
-    Iterable<Categories> cat = customerInput.applyAllFilters(hotelService);
-    for(Categories cat_it: cat)
-      for(Hotel hotel_it: cat_it.hotel_inside_category)
-        System.out.println("hotel: " + hotel_it.getName());
-
+    //    Iterable<Categories> cat = customerInput.applyAllFilters(hotelService);
+    //    for(Categories cat_it: cat)
+    //      for(Hotel hotel_it: cat_it.hotel_inside_category)
+    //        System.out.println("hotel: " + hotel_it.getName());
   }
 
   //---Endpoints---//
@@ -102,6 +103,7 @@ public class HotelController {
       System.out.println(activities_it);
 
     System.out.println("locations: ");
+    //System.out.println(currentlySelectedLocations.length);
     for(String locations_it: currentlySelectedLocations)
       System.out.println(locations_it);
 
@@ -109,9 +111,16 @@ public class HotelController {
     for(Boolean other_filters_it: otherFilters)
       System.out.println(other_filters_it);
 
-    customerInput = new CustomerInput(Integer.parseInt(minPrice), Integer.parseInt(maxPrice), Integer.parseInt(minRating),
-      Integer.parseInt(maxRating), Integer.parseInt(starsFilter),
-      currentlySelectedActivities, currentlySelectedLocations, otherFilters);
+    try {
+      customerInput = new CustomerInput(Integer.parseInt(minPrice), Integer.parseInt(maxPrice), Integer.parseInt(minRating),
+        Integer.parseInt(maxRating), Integer.parseInt(starsFilter),
+        currentlySelectedActivities, currentlySelectedLocations, otherFilters);
+    }
+    catch (Exception e)
+    {
+      System.out.println("customer input can not be created");
+      e.printStackTrace();
+    }
 
     return customerInput.applyAllFilters(this.hotelService);
   }
