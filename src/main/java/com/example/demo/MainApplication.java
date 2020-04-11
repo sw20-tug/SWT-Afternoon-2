@@ -54,9 +54,9 @@ public class MainApplication implements  CommandLineRunner {
     this.hc = new HotelController(hs);
     this.cc = new CategoryController(cs);
 
-//    fill_db();
-//    hc.printMeHotel();
-//    cc.printMeCategory();
+     //fill_db();
+    // hc.printMeHotel();
+    // cc.printMeCategory();
   }
 
   public void fill_db()

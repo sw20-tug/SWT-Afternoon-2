@@ -1,12 +1,9 @@
 package com.example.demo.controller;
-import com.example.demo.model.Category;
-import com.example.demo.model.Hotel;
-import com.example.demo.model.HotelRepository;
-import com.example.demo.model.HotelService;
+import com.example.demo.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import javax.persistence.criteria.CriteriaBuilder;
 
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
@@ -29,12 +26,16 @@ public class HotelController {
 
   //--for testing---//
   public void printMeHotel(){
+
     hotel = this.hotelService.getHotelByName("Bosna Hotel");
     System.out.println("hotel price is: " + hotel.getPrice());
     System.out.println("Hotel City:" + hotel.getCity());
-  //    Iterable<Hotel> hotels__ = filter_getHotelWithinPriceRange("80");;
-  //    for(Hotel it: hotels__)
-  //      System.out.println("test" + it.getName() + " " + it.getPrice());
+    //    Iterable<Hotel> hotels__ = filter_getHotelWithinPriceRange("80");;
+    //    for(Hotel it: hotels__)
+    //      System.out.println("test" + it.getName() + " " + it.getPrice());
+    Iterable<Categories> found_hotels = customerInput.applyAllFilters();
+    for(Categories it: found_hotels)
+            System.out.println("test" + it);
   }
 
   //---Endpoints---//
@@ -51,43 +52,38 @@ public class HotelController {
     return customerInput.filter_getHotelWithinPriceRange(price);
   }
 
-  @GetMapping(path="/activities=")
-  public @ResponseBody Iterable<Hotel> getActivities(@RequestParam String[] activities) {
-    System.out.println("Hotels according activites ");
-    //TODO
-    return hotelRepository.findAll();
-  }
 
-  @GetMapping(path="/allFilters=")
-  public @ResponseBody Iterable<Categories> getHotelsThroughAllFilters(@RequestParam String min_price_per_night, @RequestParam String max_price_per_night,
-                                                                    @RequestParam String min_customer_rating, @RequestParam String max_customer_rating,
-                                                                    @RequestParam String customer_stars, @RequestParam String[] activities,
-                                                                    @RequestParam String[] locations, @RequestParam Boolean[] other_filters) {
+  @GetMapping(path="/apply")
+  public @ResponseBody Iterable<Categories> getHotelsThroughAllFilters(@RequestParam String minPrice, @RequestParam String maxPrice,
+                                                                       @RequestParam String minRating, @RequestParam String maxRating,
+                                                                       @RequestParam String starsFilter,
+                                                                       @RequestParam String[] currentlySelectedActivities,
+                                                                       @RequestParam String[] currentlySelectedLocations,
+                                                                       @RequestParam Boolean[] otherFilters)
+  {
     System.out.println("Sorting through all filters ");
     System.out.println("print me all parameters: ");
-    System.out.println("min_price_per_night: " +  min_price_per_night);
-    System.out.println("max_price_per_night: " +  max_price_per_night);
-    System.out.println("min_customer_rating: " +  min_customer_rating);
-    System.out.println("max_customer_rating: " +  max_customer_rating);
-    System.out.println("customer_stars: " +  customer_stars);
+    System.out.println("min_price_per_night: " +  minPrice);
+    System.out.println("max_price_per_night: " +  maxPrice);
+    System.out.println("min_customer_rating: " +  minRating);
+    System.out.println("max_customer_rating: " +  maxRating);
+    System.out.println("customer_stars: " +  starsFilter);
 
     System.out.println("activities: ");
-    for(String activities_it: activities )
+    for(String activities_it: currentlySelectedActivities )
       System.out.println(activities_it);
 
     System.out.println("locations: ");
-    for(String locations_it: locations)
+    for(String locations_it: currentlySelectedLocations)
       System.out.println(locations_it);
 
     System.out.println("other_filters: ");
-    for(Boolean other_filters_it: other_filters)
+    for(Boolean other_filters_it: otherFilters)
       System.out.println(other_filters_it);
 
-    customerInput = new CustomerInput(min_price_per_night, max_price_per_night, min_customer_rating, max_customer_rating,
-                                      customer_stars, activities, locations, other_filters);
-    //TODO
-
-
+    customerInput = new CustomerInput(Integer.parseInt(minPrice), Integer.parseInt(maxPrice), Integer.parseInt(minRating),
+      Integer.parseInt(maxRating), Integer.parseInt(starsFilter),
+      currentlySelectedActivities, currentlySelectedLocations, otherFilters);
 
     return customerInput.applyAllFilters();
   }

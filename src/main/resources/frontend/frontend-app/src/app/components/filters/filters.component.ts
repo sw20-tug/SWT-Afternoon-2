@@ -74,27 +74,35 @@ export class FiltersComponent {
     this.selectedActivities.push(this.currentlySelectedActivities);
   }
 
-  public sortHotelsByActivity() {
-    this.HttpClientService.getHotelWithActivities(this.selectedActivities).subscribe(hotels => {
-      this.HotelService.updateHotelList(hotels);
-    })
-  }
-
   public applyAllFilters() {
     // object filled with all filters from frontend
     var filterModel = new FiltersModel(
-        this.minPrice,
-        this.maxPrice,
-        this.minRating,
-        this.maxRating,
-        this.starsFilter,
-        this.currentlySelectedActivities,
-        this.currentlySelectedLocations,
-        this.otherFilters);
+      this.minPrice,
+      this.maxPrice,
+      this.minRating,
+      this.maxRating,
+      this.starsFilter,
+      this.currentlySelectedActivities,
+      this.currentlySelectedLocations,
+      this.otherFilters);
 
-    // send this filtersModel to backend and recieve list of categories with filtered hotels, then emit this list
-    var filteredCategoriesList = [];
-    this.filteredCategories.emit(filteredCategoriesList);
+
+    //create list of booleans in order to send it into controller
+    var allFiltersIntoList = [this.otherFilters.parkingFilter, this.otherFilters.restaurantFilter, this.otherFilters.petsAllowedFilter,
+      this.otherFilters.nonsmokingRoomsFilter, this.otherFilters.swimmingPoolFilter, this.otherFilters.beachfrontFilter,
+      this.otherFilters.airConditioningFilter, this.otherFilters.freeWifiFilter,
+      this.otherFilters.saunaFilter, this.otherFilters.fitnessFilter]
+
+
+    this.HttpClientService.getFilteredHotels(this.minPrice, this.maxPrice, this.minRating, this.maxRating,
+      this.starsFilter,
+      this.currentlySelectedActivities,
+      this.currentlySelectedLocations, allFiltersIntoList).subscribe();
+
+    //send this filtersModel to backend and recieve list of categories with filtered hotels, then emit this list
+    //var filteredCategoriesList = [];
+    //this.filteredCategories.emit(filteredCategoriesList);
   }
+
 }
 

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable, throwError} from "rxjs";
 import {Hotel} from "../components/hotel-list/hotel.model";
-import {catchError, retry} from "rxjs/operators";
+import {Category} from "../components/category-list/category.model";
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,7 @@ export class HttpClientService {
     this.httpOptions.headers.append('Access-Control-Allow-Headers', '*');
     this.httpOptions.headers.append('Access-Control-Allow-Methods', '*');
     this.httpOptions.headers.append('Access-Control-Allow-Origin', '*');
-    this.usersUrl = 'http://localhost:8080/';
+    this.usersUrl = 'http://localhost:8080';
     this.retryCount = 1;
   }
   public findAll(): Observable<Hotel[]> {
@@ -32,22 +32,21 @@ export class HttpClientService {
 
   public getHotelWithinPriceRange(price: number): Observable<Hotel[]>
   {
+    console.log("test2")
     return this.http.get<Hotel[]>(this.usersUrl+ '/hotel?price=' + price);
   }
 
-  public getHotelWithActivities(activities: string[]): Observable<any>
+  public getFilteredHotels(minPrice: number, maxPrice: number,
+                           minRating: number, maxRating: number,
+                           starsFilter: number, currentlySelectedActivities: string[],
+                           currentlySelectedLocations: string[], otherFilters: boolean[]): Observable<Category[]>
   {
-    return this.http.get<Hotel[]>(this.usersUrl + '/activities=' + activities, this.httpOptions) .pipe(
-      retry(this.retryCount),
-      catchError(this.errorHandler)
-    );
-  }
 
-  // public getFilteredHotels(filters: any[]): Observable<Hotel[]>
-  // {
-  //   return this.http.get<Hotel[]>(this.usersUrl+ '/hotels?filtered' + filters);
-  //
-  // }
+    return this.http.get<Category[]>(this.usersUrl+ '/apply?minPrice=' + minPrice + '&maxPrice=' + maxPrice + '&minRating='
+      + minRating+ '&maxRating=' + maxRating + '&starsFilter=' + starsFilter + '&currentlySelectedActivities=' + currentlySelectedActivities
+      + '&currentlySelectedLocations=' + currentlySelectedLocations + '&otherFilters=' + otherFilters);
+
+  }
 
   public errorHandler(error) {
     let errorMessage = '';
