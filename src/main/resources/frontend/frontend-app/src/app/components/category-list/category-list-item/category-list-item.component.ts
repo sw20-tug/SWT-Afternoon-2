@@ -33,6 +33,7 @@ export class CategoryListItemComponent implements OnInit {
   console.log("$event is ? ", $event.id);
    this.httpClientService.sortByCriteria($event.id).subscribe(hotels => {
      console.log("Hotels?", hotels);
+     this.category.hotels = hotels;
    });
 
     // here should be an API call for retrieving sorted hotels
