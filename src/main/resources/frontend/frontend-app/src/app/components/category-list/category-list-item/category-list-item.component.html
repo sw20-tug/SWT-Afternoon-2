@@ -11,7 +11,7 @@
         appendTo="body"
         placeholder="Sort by:"
         [(ngModel)]="selectedSortOption"
-        (change)="sortListItems()">
+        (change)="sortListItems($event)">
         </ng-select>
     </div>
   </div>

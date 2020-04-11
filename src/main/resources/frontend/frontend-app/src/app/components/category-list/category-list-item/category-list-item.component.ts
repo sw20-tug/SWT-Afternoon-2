@@ -29,7 +29,11 @@ export class CategoryListItemComponent implements OnInit {
 
   constructor(private httpClientService: HttpClientService, private hotelService: HotelService) {}
 
-  sortListItems() {
+  sortListItems($event) {
+  console.log("$event is ? ", $event.id);
+   this.httpClientService.sortByCriteria($event.id).subscribe(hotels => {
+     console.log("Hotels?", hotels);
+   });
 
     // here should be an API call for retrieving sorted hotels
     // we should send this.selectedSortOption (1,2, or 3) and this.category.hotels

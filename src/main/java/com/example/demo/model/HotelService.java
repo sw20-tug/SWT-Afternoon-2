@@ -27,4 +27,6 @@ public class HotelService{
   public List<Hotel> getHotels() {
     return this.hr.findAll();
   }
+
+
 }
