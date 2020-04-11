@@ -2,14 +2,8 @@ package com.example.demo.model;
 
 import com.example.demo.controller.Categories;
 import com.example.demo.controller.Filters;
-import com.example.demo.controller.Hotels;
-import com.example.demo.model.Category;
-import com.example.demo.model.Hotel;
-import com.example.demo.model.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -18,6 +12,11 @@ public class CustomerInput {
   private enum Sort {BY_PRICE, BY_DISTANCE_FROM_CENTER, BY_RATING}
 
   @Autowired
+  HotelRepository hr;
+
+  @Autowired
+  CategoryRepository cr;
+
   private HotelService hotelService;
   private Sort default_sort;
 
@@ -35,7 +34,7 @@ public class CustomerInput {
   public CustomerInput(HotelService hotelService)
   {
     default_sort = Sort.BY_PRICE;
-    this.hotelService = hotelService;
+    this.hotelService = new HotelService(hr);
     this.min_price_per_night = null;
     this.max_price_per_night = null;
     this.min_customer_rating = null;
@@ -50,6 +49,8 @@ public class CustomerInput {
                        Integer min_customer_rating_, Integer max_customer_rating_, Integer customer_stars_,
                        String[] activities_, String[] locations_, Boolean[] other_filters_)
   {
+
+    this.hotelService = new HotelService(hr);
     this.min_price_per_night = min_price_per_night_;
     this.max_price_per_night = max_price_per_night_;
     this.min_customer_rating = min_customer_rating_;
@@ -137,9 +138,11 @@ public class CustomerInput {
   public Iterable<Categories> applyAllFilters()
   {
     List<Categories> categories = new ArrayList<Categories>();
+    if(hotelService == null)
+      System.out.println("null sam");
     List<Hotel> all_hotels = hotelService.getHotels();
-    Hotels hotels_1 = new Hotels(all_hotels);
-    categories.add(new Categories(hotels_1));
+    Categories category_1 = new Categories(all_hotels);
+    categories.add(category_1);
 
     List<Hotel> hotels_within_price_range = new ArrayList<Hotel>();
     Iterable<Hotel> found_hotels = hotels_within_price_range;

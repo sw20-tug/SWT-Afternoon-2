@@ -27,7 +27,7 @@ public class HotelController {
   //--for testing---//
   public void printMeHotel(){
 
-    hotel = this.hotelService.getHotelByName("Bosna Hotel");
+    hotel = this.hotelService.getHotelByName("Hilton Hangzhou Qiandao Lake Resort");
     System.out.println("hotel price is: " + hotel.getPrice());
     System.out.println("Hotel City:" + hotel.getCity());
     //    Iterable<Hotel> hotels__ = filter_getHotelWithinPriceRange("80");;
@@ -35,7 +35,8 @@ public class HotelController {
     //      System.out.println("test" + it.getName() + " " + it.getPrice());
     Iterable<Categories> found_hotels = customerInput.applyAllFilters();
     for(Categories it: found_hotels)
-            System.out.println("test" + it);
+      for(Hotel it_hot: it.hotel_inside_category)
+            System.out.println("test" + it_hot.getName());
   }
 
   //---Endpoints---//
