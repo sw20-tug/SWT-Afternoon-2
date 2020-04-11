@@ -97,7 +97,10 @@ export class FiltersComponent {
     this.HttpClientService.getFilteredHotels(this.minPrice, this.maxPrice, this.minRating, this.maxRating,
       this.starsFilter,
       this.currentlySelectedActivities,
-      this.currentlySelectedLocations, allFiltersIntoList).subscribe();
+      this.currentlySelectedLocations, allFiltersIntoList).subscribe( categories => {
+        console.log('Categories sent over are ? ', categories);
+        this.filteredCategories.emit(categories);
+    });
 
     //send this filtersModel to backend and recieve list of categories with filtered hotels, then emit this list
     //var filteredCategoriesList = [];
