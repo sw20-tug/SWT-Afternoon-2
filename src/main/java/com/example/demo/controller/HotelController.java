@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.criteria.CriteriaBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,8 @@ public class HotelController {
   @Autowired
   private HotelRepository hotelRepository;
   private Hotel hotel = new Hotel();
+
+  @Autowired
   private CustomerInput customerInput;
 
   private static final int DEFAULT = 0;
@@ -28,7 +31,6 @@ public class HotelController {
   public HotelController(HotelService hotelService) {
     this.hotelService = hotelService;
     this.hotel = new Hotel();
-    this.customerInput = new CustomerInput();
   }
 
 
@@ -68,7 +70,6 @@ public class HotelController {
   public @ResponseBody
   Iterable<Hotel> getActivities(@RequestParam String[] activities) {
     System.out.println("Hotels according activites ");
-    //TODO
     return hotelRepository.findAll();
   }
 
@@ -76,7 +77,6 @@ public class HotelController {
   public @ResponseBody
   List<Hotel> getHotelByCriteria(@RequestParam String category_id) {
     System.out.println("category_id : "+ category_id);
-  //  System.out.println("Hotel with criteria is ?" + customerInput.getHotelByCriteria(1));
     return customerInput.getHotelByCriteria(Integer.parseInt(category_id));
   }
 

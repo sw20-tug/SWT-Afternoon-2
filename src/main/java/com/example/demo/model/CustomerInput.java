@@ -2,11 +2,13 @@ package com.example.demo.model;
 
 import com.example.demo.controller.Categories;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import javax.validation.constraints.Null;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
+@Service
 public class CustomerInput {
   private static final int LOWEST_PRICE = 1;
   private static final int HIGHEST_PRICE = 2;
@@ -85,6 +87,9 @@ public class CustomerInput {
 
   public List<Hotel> getHotelByCriteria(int criteria) {
     if (criteria == CustomerInput.LOWEST_PRICE) {
+      System.out.println("ovdje sam uso");
+      if(hr == null)
+        System.out.println("nula je ?");
       return hr.findAllOrderByPriceAsc();
     } else if (criteria == CustomerInput.HIGHEST_PRICE) {
       return hr.findAllOrderByPriceDesc();
