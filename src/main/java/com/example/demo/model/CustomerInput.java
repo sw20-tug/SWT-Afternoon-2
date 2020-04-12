@@ -99,7 +99,7 @@ public class CustomerInput {
     }
     return null;
   }
-
+  /*
   public Iterable<Categories> applyAllFilters(HotelService hotelService) {
     List<Categories> filteredHotelsInsideCategories = new ArrayList<Categories>();
 
@@ -123,6 +123,6 @@ public class CustomerInput {
     filteredHotelsInsideCategories.add(category_camping);
 
     return filteredHotelsInsideCategories;
-  }
+  }*/
 
 }

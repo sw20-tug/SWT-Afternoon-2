@@ -67,9 +67,24 @@ public class Hotel implements Comparable<Hotel>{
   @Column
   private boolean fitness;
 
-  public Hotel(String name, String city, int rate, String imagePath,  String description, Integer price,  int stars, Category category,
+  @Column
+  private boolean activity_gym;
+
+  @Column
+  private boolean activity_running;
+
+  @Column
+  private boolean activity_openbar;
+
+  @Column
+  private String activity;
+
+  @Column
+  private String otherFilters;
+
+  public Hotel(String name, String city, int rate, String imagePath, String description, Integer price,  int stars, Category category,
                boolean parking, boolean restaurant, boolean pets, boolean smoking, boolean swimmingPool, boolean beachFront,
-               boolean airConditioning, boolean freeWifi, boolean sauna, boolean fitness) {
+               boolean airConditioning, boolean freeWifi, boolean sauna, boolean fitness,boolean activity_gym, boolean activity_running, boolean activity_openbar,String activity, String otherFilters) {
     this.rate = rate;
     this.name = name;
     this.price = price;
@@ -88,6 +103,11 @@ public class Hotel implements Comparable<Hotel>{
     this.freeWiFi = freeWifi;
     this.sauna = sauna;
     this.fitness = fitness;
+    this.activity_gym = activity_gym;
+    this.activity_running = activity_running;
+    this.activity_openbar = activity_openbar;
+    this.activity = activity;
+    this.otherFilters = otherFilters;
 
     //this.category = category;
   }
@@ -132,6 +152,13 @@ public class Hotel implements Comparable<Hotel>{
   public boolean getFreeWiFi(){return this.freeWiFi;}
   public boolean getSauna(){return this.sauna;}
   public boolean getFitness(){return this.fitness;}
+  public boolean getActivityGym(){return this.activity_gym;}
+  public boolean getActivityRunning(){return this.activity_running;}
+  public boolean getActivityOpenBar(){return this.activity_openbar;}
+
+  public String getActivity(){return this.activity;}
+  public String getOtherFilters(){return this.otherFilters;};
+
   public void setName(String name){
     this.name = name;
   }
@@ -166,7 +193,11 @@ public class Hotel implements Comparable<Hotel>{
   public void setFreeWiFi(boolean freeWiFi){this.freeWiFi = freeWiFi;}
   public void setSauna(boolean sauna){this.sauna = sauna;}
   public void setFitness(boolean fitness){ this.fitness = fitness;}
-
+  public void setActivityGym(boolean activity_gym) {this.activity_gym = activity_gym;}
+  public void setActivityRunning(boolean activity_running) {this.activity_running = activity_running;}
+  public void setActivityOpenBar(boolean activity_openbar){this.activity_openbar = activity_openbar;}
+  public void setActivity(String activity){this.activity = activity;}
+  public void setOtherFilters(String otherFilters){this.otherFilters = otherFilters; }
 
   @Override
   public int compareTo(Hotel hotel) {
