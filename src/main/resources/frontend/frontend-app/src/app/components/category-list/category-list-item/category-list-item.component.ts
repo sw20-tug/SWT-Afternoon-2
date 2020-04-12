@@ -11,6 +11,7 @@ import { HotelService } from '../../../service/hotel.service';
 })
 export class CategoryListItemComponent implements OnInit {
   @Input() category: Category;
+  private categoryID: number;
 
   sortOptions = [
     {id: 1, name: 'Price Lowest'},
@@ -24,24 +25,44 @@ export class CategoryListItemComponent implements OnInit {
   selectedSortOption: any;
 
   ngOnInit(): void {
+    this.determineCategoryID();
+  }
+  private determineCategoryID() {
+    if(this.category.name == 'Romantic')
+    {
+      this.categoryID = 1;
+    }
+    if(this.category.name == 'Adventure')
+    {
+      this.categoryID = 2;
+    }
+    if(this.category.name == 'Holiday')
+    {
+      this.categoryID = 3;
+    }
+    if(this.category.name == 'Wellness')
+    {
+      this.categoryID = 4;
+    }
+    if(this.category.name == 'Family')
+    {
+      this.categoryID = 5;
+    }
+    if(this.category.name == 'Camping')
+    {
+      this.categoryID = 6;
+    }
+  }
+  constructor(private httpClientService: HttpClientService, private hotelService: HotelService) {
 
   }
 
-  constructor(private httpClientService: HttpClientService, private hotelService: HotelService) {}
-
   sortListItems($event) {
-  console.log("$event is ? ", $event.id);
-   this.httpClientService.sortByCriteria($event.id).subscribe(hotels => {
+   this.httpClientService.sortByCriteria(this.categoryID, $event.id).subscribe(hotels => {
      console.log("Hotels?", hotels);
      this.category.hotels = hotels;
    });
 
-    // here should be an API call for retrieving sorted hotels
-    // we should send this.selectedSortOption (1,2, or 3) and this.category.hotels
-    // and recieve sorted hotels for that sort option
-
-    // var sortedHotels = ...
-    // this.category.hotels = sortedHotels;
   }
 
 }

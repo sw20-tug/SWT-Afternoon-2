@@ -2,11 +2,13 @@ package com.example.demo.model;
 
 import com.example.demo.controller.Categories;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import javax.validation.constraints.Null;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
+@Service
 public class CustomerInput {
   private static final int LOWEST_PRICE = 1;
   private static final int HIGHEST_PRICE = 2;
@@ -83,19 +85,20 @@ public class CustomerInput {
     return hotels__;
   }
 
-  public List<Hotel> getHotelByCriteria(int criteria) {
+  public List<Hotel> getHotelByCriteria(int category_id, int criteria) {
+    System.out.println("aa"+ category_id);
     if (criteria == CustomerInput.LOWEST_PRICE) {
-      return hr.findAllOrderByPriceAsc();
+      return hr.getHotelOrderedByPriceASC(category_id);
     } else if (criteria == CustomerInput.HIGHEST_PRICE) {
-      return hr.findAllOrderByPriceDesc();
+      return hr.getHotelOrderedByPriceDESC(category_id);
     } else if (criteria == CustomerInput.LOWEST_RATING) {
-      return hr.findAllOrderByRateAsc();
+      return hr.getHotelOrderedByRateASC(category_id);
     } else if (criteria == CustomerInput.HIGHEST_RATING) {
-      return hr.findAllOrderByRateDesc();
+      return hr.getHotelOrderedByRateDESC(category_id);
     } else if (criteria == CustomerInput.MOST_STARS) {
-      return hr.findAllOrderByStarsDesc();
+      return hr.getHotelOrderedByStarsASC(category_id);
     } else if (criteria == CustomerInput.LEAST_STARS) {
-      return hr.findAllOrderByStarsAsc();
+      return hr.getHotelOrderedByStarsDESC(category_id);
     }
     return null;
   }
