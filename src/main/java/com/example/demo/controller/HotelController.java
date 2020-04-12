@@ -75,9 +75,9 @@ public class HotelController {
 
   @GetMapping(path = "/criteria")
   public @ResponseBody
-  List<Hotel> getHotelByCriteria(@RequestParam String category_id) {
+  List<Hotel> getHotelByCriteria(@RequestParam String category_id, @RequestParam String criteria_id) {
     System.out.println("category_id : "+ category_id);
-    return customerInput.getHotelByCriteria(Integer.parseInt(category_id));
+    return customerInput.getHotelByCriteria(Integer.parseInt(category_id), Integer.parseInt(criteria_id));
   }
 
 

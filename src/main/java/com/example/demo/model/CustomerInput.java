@@ -85,22 +85,20 @@ public class CustomerInput {
     return hotels__;
   }
 
-  public List<Hotel> getHotelByCriteria(int criteria) {
+  public List<Hotel> getHotelByCriteria(int category_id, int criteria) {
+    System.out.println("aa"+ category_id);
     if (criteria == CustomerInput.LOWEST_PRICE) {
-      System.out.println("ovdje sam uso");
-      if(hr == null)
-        System.out.println("nula je ?");
-      return hr.findAllOrderByPriceAsc();
+      return hr.getHotelOrderedByPriceASC(category_id);
     } else if (criteria == CustomerInput.HIGHEST_PRICE) {
-      return hr.findAllOrderByPriceDesc();
+      return hr.getHotelOrderedByPriceDESC(category_id);
     } else if (criteria == CustomerInput.LOWEST_RATING) {
-      return hr.findAllOrderByRateAsc();
+      return hr.getHotelOrderedByRateASC(category_id);
     } else if (criteria == CustomerInput.HIGHEST_RATING) {
-      return hr.findAllOrderByRateDesc();
+      return hr.getHotelOrderedByRateDESC(category_id);
     } else if (criteria == CustomerInput.MOST_STARS) {
-      return hr.findAllOrderByStarsDesc();
+      return hr.getHotelOrderedByStarsASC(category_id);
     } else if (criteria == CustomerInput.LEAST_STARS) {
-      return hr.findAllOrderByStarsAsc();
+      return hr.getHotelOrderedByStarsDESC(category_id);
     }
     return null;
   }
