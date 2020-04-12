@@ -12,6 +12,7 @@ import java.util.List;
 public interface HotelRepository extends CrudRepository<Hotel, Long> {
   Hotel findByName(String name);
 
+
   List <Hotel> findByPrice(int price);
 
   List <Hotel> findByRate(int rate);
@@ -65,21 +66,33 @@ public interface HotelRepository extends CrudRepository<Hotel, Long> {
   @Override
   List<Hotel> findAll();
 
-  @Query("FROM Hotel ORDER BY price ASC")
-  List<Hotel> findAllOrderByPriceAsc();
+  @Query(
+    value = "SELECT * FROM hotel WHERE category_id = ?1 ORDER BY price ASC limit 5",
+    nativeQuery = true)
+  List<Hotel> getHotelOrderedByPriceASC(int category_id);
 
-  @Query("FROM Hotel ORDER BY price DESC ")
-  List<Hotel> findAllOrderByPriceDesc();
+  @Query(
+    value = "SELECT * FROM hotel WHERE category_id = ?1 ORDER BY price DESC limit 5",
+    nativeQuery = true)
+  List<Hotel> getHotelOrderedByPriceDESC(int category_id);
 
-  @Query("FROM Hotel ORDER BY rate ASC")
-  List<Hotel> findAllOrderByRateAsc();
+  @Query(
+    value = "SELECT * FROM hotel WHERE category_id = ?1 ORDER BY rate ASC limit 5",
+    nativeQuery = true)
+  List<Hotel> getHotelOrderedByRateASC(int category_id);
 
-  @Query("FROM Hotel ORDER BY rate DESC ")
-  List<Hotel> findAllOrderByRateDesc();
+  @Query(
+    value = "SELECT * FROM hotel WHERE category_id = ?1 ORDER BY rate DESC limit 5",
+    nativeQuery = true)
+  List<Hotel> getHotelOrderedByRateDESC(int category_id);
 
-  @Query("FROM Hotel ORDER BY stars ASC")
-  List<Hotel> findAllOrderByStarsAsc();
+  @Query(
+    value = "SELECT * FROM hotel WHERE category_id = ?1 ORDER BY stars ASC limit 5",
+    nativeQuery = true)
+  List<Hotel> getHotelOrderedByStarsASC(int category_id);
 
-  @Query("FROM Hotel ORDER BY stars DESC ")
-  List<Hotel> findAllOrderByStarsDesc();
+  @Query(
+    value = "SELECT * FROM hotel WHERE category_id = ?1 ORDER BY stars DESC limit 5",
+    nativeQuery = true)
+  List<Hotel> getHotelOrderedByStarsDESC(int category_id);
 }
