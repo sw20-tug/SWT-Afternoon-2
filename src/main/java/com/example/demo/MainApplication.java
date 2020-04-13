@@ -12,15 +12,17 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @SpringBootApplication
 public class MainApplication implements  CommandLineRunner {
   @Autowired
-  HotelRepository hr;
+  public HotelRepository hr;
 
   @Autowired
-  CategoryRepository cr;
+  public CategoryRepository cr;
 
   private CategoryController cc;
   private CategoryService cs;
@@ -34,18 +36,7 @@ public class MainApplication implements  CommandLineRunner {
   @Override
   public void run(String... args) throws Exception {
     System.out.println("Starting main application");
-//    Category category1 = new Category("Romatic");
-//    cr.save(category1);
-//    Category category2 = new Category("Adventure");
-//    cr.save(category2);
-//    Category category3 = new Category("Holiday");
-//    cr.save(category3);
-//    Category category4 = new Category("Wellness");
-//    cr.save(category4);
-//    Category category5 = new Category("Family");
-//    cr.save(category5);
-//    Category category6 = new Category("Camping");
-//    cr.save(category6);
+
 
 
     this.hs = new HotelService(hr);
@@ -53,15 +44,39 @@ public class MainApplication implements  CommandLineRunner {
 
     this.hc = new HotelController(hs);
     this.cc = new CategoryController(cs);
+  //  fill_db();
 
-     //fill_db();
-    // hc.printMeHotel();
-    // cc.printMeCategory();
+    int minPrice = 20;
+    int maxPrice = 500;
+    int minRating = 1;
+    int maxRating = 5;
+    int stars = 1;
+    String ac = "010";
+    List<String> lc = new ArrayList<>();
+    lc.add("Abbiadori");
+    lc.add("Adler");
+    lc.add("Athens");
+    String otfil ="1101010010";
+    List<Hotel> hotels = this.hs.hr.applyFilters(minPrice,maxPrice,minRating,maxRating,stars,ac,lc,otfil);
+  
   }
 
   public void fill_db()
   {
-    String username = "enterYourUserName";
+    Category category1 = new Category("Romatic");
+    cr.save(category1);
+    Category category2 = new Category("Adventure");
+    cr.save(category2);
+    Category category3 = new Category("Holiday");
+    cr.save(category3);
+    Category category4 = new Category("Wellness");
+    cr.save(category4);
+    Category category5 = new Category("Family");
+    cr.save(category5);
+    Category category6 = new Category("Camping");
+    cr.save(category6);
+
+    String username = "Gast1\\Documents";
     String csvFile = "C:\\Users\\"+ username +"\\SWT-Afternoon-2\\import.csv";
     BufferedReader br = null;
     String line = "";
@@ -94,6 +109,13 @@ public class MainApplication implements  CommandLineRunner {
         boolean freeWifi = hotels[14].equals("1") ? true : false;
         boolean sauna = hotels[15].equals("1") ? true : false;
         boolean fitness = hotels[16].equals("1") ? true : false;
+        boolean activity_gym = hotels[18].equals("1") ? true : false;
+        boolean activity_running = hotels[19].equals("1") ? true : false;
+        boolean activity_openbar = hotels[20].equals("1") ? true : false;
+        String activity = hotels[18] + hotels[19] + hotels[20];
+        String otherFilters = hotels[7] + hotels[8] +  hotels[9] + hotels[10] + hotels[11] + hotels[12] + hotels[13] +  hotels[14] + hotels[15] + hotels[16];
+
+
         int rate = Integer.valueOf(hotels[2]);
         int price = Integer.valueOf(hotels[5]);
         int stars = Integer.valueOf(hotels[6]);
@@ -102,7 +124,7 @@ public class MainApplication implements  CommandLineRunner {
 
         Hotel hotel = new Hotel(hotels[0], hotels[1], rate, hotels[3], hotels[4], price,
          stars, category_new, parking,  restaurant,  pets,  smoking,  swimmingPool,  beachFront,
-         airConditioning,  freeWifi,  sauna,  fitness);
+         airConditioning,  freeWifi,  sauna,  fitness,activity_gym,activity_running,activity_openbar,activity,otherFilters);
         hr.save(hotel);
 
       }
