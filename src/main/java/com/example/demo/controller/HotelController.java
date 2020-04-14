@@ -80,7 +80,7 @@ public class HotelController {
     System.out.println("category_id : "+ category_id);
 
   //  System.out.println("Hotel with criteria is ?" + customerInput.getHotelByCriteria(1));
-    return hotelService.getHotelByCriteria(Integer.parseInt(category_id));
+    return hotelService.getHotelByCriteria(Integer.parseInt(category_id), Integer.parseInt(criteria_id));
 
   }
 
