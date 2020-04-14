@@ -84,19 +84,19 @@ public class HotelService {
     return hotels;
   }
 
-  public List<Hotel> getHotelByCriteria(int criteria) {
+  public List<Hotel> getHotelByCriteria(int category_id, int criteria) {
     if (criteria == LOWEST_PRICE) {
-      return hr.findAllOrderByPriceAsc();
+      return hr.getHotelOrderedByPriceASC(category_id);
     } else if (criteria == HIGHEST_PRICE) {
-      return hr.findAllOrderByPriceDesc();
+      return hr.getHotelOrderedByPriceDESC(category_id);
     } else if (criteria == LOWEST_RATING) {
-      return hr.findAllOrderByRateAsc();
+      return hr.getHotelOrderedByRateASC(category_id);
     } else if (criteria == HIGHEST_RATING) {
-      return hr.findAllOrderByRateDesc();
+      return hr.getHotelOrderedByRateDESC(category_id);
     } else if (criteria == MOST_STARS) {
-      return hr.findAllOrderByStarsDesc();
+      return hr.getHotelOrderedByStarsASC(category_id);
     } else if (criteria == LEAST_STARS) {
-      return hr.findAllOrderByStarsAsc();
+      return hr.getHotelOrderedByStarsDESC(category_id);
     }
     return null;
   }
