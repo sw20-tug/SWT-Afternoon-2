@@ -1,9 +1,11 @@
-package com.example.demo.model;
-import com.example.demo.model.CategoryRepository;
+package com.example.demo.services;
+import com.example.demo.model.Hotel;
+import com.example.demo.repository.CategoryRepository;
 import com.example.demo.model.Category;
-import com.sun.xml.bind.v2.model.core.ID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class CategoryService{

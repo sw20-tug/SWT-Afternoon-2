@@ -1,17 +1,12 @@
 package com.example.demo.controller;
-import com.example.demo.model.*;
 
-import com.example.demo.model.Category;
 import com.example.demo.model.Hotel;
-import com.example.demo.model.HotelRepository;
-import com.example.demo.model.HotelService;
+import com.example.demo.repository.HotelRepository;
+import com.example.demo.services.CustomerService;
+import com.example.demo.services.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.ArrayList;
 import java.util.List;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
@@ -24,7 +19,7 @@ public class HotelController {
   private Hotel hotel = new Hotel();
 
   @Autowired
-  private CustomerInput customerInput;
+  private CustomerService customerService;
 
   private static final int DEFAULT = 0;
 

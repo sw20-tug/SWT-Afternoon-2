@@ -1,10 +1,9 @@
-package com.example.demo.model;
+package com.example.demo.services;
 import com.example.demo.controller.Categories;
-import com.example.demo.model.HotelRepository;
+import com.example.demo.repository.HotelRepository;
 import com.example.demo.model.Hotel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -86,6 +85,7 @@ public class HotelService {
 
   public List<Hotel> getHotelByCriteria(int category_id, int criteria) {
     if (criteria == LOWEST_PRICE) {
+      System.out.println("WSize is "+ hr.getHotelOrderedByPriceASC(category_id));
       return hr.getHotelOrderedByPriceASC(category_id);
     } else if (criteria == HIGHEST_PRICE) {
       return hr.getHotelOrderedByPriceDESC(category_id);
