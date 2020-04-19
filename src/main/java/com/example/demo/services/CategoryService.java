@@ -20,11 +20,7 @@ public class CategoryService{
   public Category getCategoryByName(String name) {
     return this.cr.findByName(name);
   }
-  public List<Hotel> hotels_inside_category;
 
-  public void setHotelInsideCategory(Hotel hotel_inside_category) {
-    this.hotels_inside_category.add(hotel_inside_category);
-  }
   public Category getCategoryByID(long id) {
     return this.cr.findById(id);
   }
