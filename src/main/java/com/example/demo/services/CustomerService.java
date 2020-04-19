@@ -1,15 +1,17 @@
-package com.example.demo.model;
+package com.example.demo.services;
 
-import com.example.demo.controller.Categories;
+import com.example.demo.model.Category;
+import com.example.demo.repository.CategoryRepository;
+import com.example.demo.model.Hotel;
+import com.example.demo.repository.HotelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.validation.constraints.Null;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 @Service
-public class CustomerInput {
+public class CustomerService {
   private static final int LOWEST_PRICE = 1;
   private static final int HIGHEST_PRICE = 2;
   private static final int LOWEST_RATING = 3;
@@ -34,7 +36,7 @@ public class CustomerInput {
   private Boolean[] other_filters = null;
 
   //reset all parameters
-  public CustomerInput()
+  public CustomerService()
   {
     this.min_price_per_night = null;
     this.max_price_per_night = null;
@@ -46,9 +48,9 @@ public class CustomerInput {
     this.other_filters = null;
   }
 
-  public CustomerInput(Integer min_price_per_night_, Integer max_price_per_night_,
-                       Integer min_customer_rating_, Integer max_customer_rating_, Integer customer_stars_,
-                       String[] activities_, String[] locations_, Boolean[] other_filters_)
+  public CustomerService(Integer min_price_per_night_, Integer max_price_per_night_,
+                         Integer min_customer_rating_, Integer max_customer_rating_, Integer customer_stars_,
+                         String[] activities_, String[] locations_, Boolean[] other_filters_)
   {
     this.min_price_per_night = min_price_per_night_;
     this.max_price_per_night = max_price_per_night_;
@@ -87,17 +89,17 @@ public class CustomerInput {
 
   public List<Hotel> getHotelByCriteria(int category_id, int criteria) {
     System.out.println("aa"+ category_id);
-    if (criteria == CustomerInput.LOWEST_PRICE) {
+    if (criteria == CustomerService.LOWEST_PRICE) {
       return hr.getHotelOrderedByPriceASC(category_id);
-    } else if (criteria == CustomerInput.HIGHEST_PRICE) {
+    } else if (criteria == CustomerService.HIGHEST_PRICE) {
       return hr.getHotelOrderedByPriceDESC(category_id);
-    } else if (criteria == CustomerInput.LOWEST_RATING) {
+    } else if (criteria == CustomerService.LOWEST_RATING) {
       return hr.getHotelOrderedByRateASC(category_id);
-    } else if (criteria == CustomerInput.HIGHEST_RATING) {
+    } else if (criteria == CustomerService.HIGHEST_RATING) {
       return hr.getHotelOrderedByRateDESC(category_id);
-    } else if (criteria == CustomerInput.MOST_STARS) {
+    } else if (criteria == CustomerService.MOST_STARS) {
       return hr.getHotelOrderedByStarsASC(category_id);
-    } else if (criteria == CustomerInput.LEAST_STARS) {
+    } else if (criteria == CustomerService.LEAST_STARS) {
       return hr.getHotelOrderedByStarsDESC(category_id);
     }
     return null;

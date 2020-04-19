@@ -3,6 +3,10 @@ package com.example.demo;
 import com.example.demo.controller.CategoryController;
 import com.example.demo.controller.HotelController;
 import com.example.demo.model.*;
+import com.example.demo.repository.CategoryRepository;
+import com.example.demo.repository.HotelRepository;
+import com.example.demo.services.CategoryService;
+import com.example.demo.services.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -58,7 +62,7 @@ public class MainApplication implements  CommandLineRunner {
     lc.add("Athens");
     String otfil ="1101010010";
     List<Hotel> hotels = this.hs.hr.applyFilters(minPrice,maxPrice,minRating,maxRating,stars,ac,lc,otfil);
-  
+
   }
 
   public void fill_db()

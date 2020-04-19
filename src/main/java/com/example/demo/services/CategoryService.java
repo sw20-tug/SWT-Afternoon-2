@@ -1,9 +1,11 @@
-package com.example.demo.model;
-import com.example.demo.model.CategoryRepository;
+package com.example.demo.services;
+import com.example.demo.model.Hotel;
+import com.example.demo.repository.CategoryRepository;
 import com.example.demo.model.Category;
-import com.sun.xml.bind.v2.model.core.ID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class CategoryService{
@@ -18,7 +20,11 @@ public class CategoryService{
   public Category getCategoryByName(String name) {
     return this.cr.findByName(name);
   }
+  public List<Hotel> hotels_inside_category;
 
+  public void setHotelInsideCategory(Hotel hotel_inside_category) {
+    this.hotels_inside_category.add(hotel_inside_category);
+  }
   public Category getCategoryByID(long id) {
     return this.cr.findById(id);
   }
