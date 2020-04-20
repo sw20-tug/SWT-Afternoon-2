@@ -1,6 +1,6 @@
-package com.example.demo.controller;
-import com.example.demo.model.Category;
-import com.example.demo.services.CategoryService;
+package com.hotel.controller;
+import com.hotel.model.Category;
+import com.hotel.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

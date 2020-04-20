@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.hotel.controller;
 
 public enum Activities {
     GYM,

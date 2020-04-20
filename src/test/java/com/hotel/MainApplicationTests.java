@@ -1,44 +1,34 @@
-package com.example.demo;
+package com.hotel;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import static org.hamcrest.Matchers.containsString;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.example.demo.controller.Categories;
-import com.example.demo.controller.CategoryController;
-import com.example.demo.controller.HotelController;
-import com.example.demo.model.Category;
-import com.example.demo.model.Hotel;
-import com.example.demo.repository.HotelRepository;
-import com.example.demo.services.CategoryService;
-import com.example.demo.services.CustomerService;
-import com.example.demo.services.HotelService;
+import com.hotel.controller.CategoryController;
+import com.hotel.controller.HotelController;
+import com.hotel.model.Category;
+import com.hotel.model.Hotel;
+import com.hotel.repository.HotelRepository;
+import com.hotel.services.CustomerService;
+import com.hotel.services.HotelService;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @RunWith(MockitoJUnitRunner.class)

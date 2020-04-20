@@ -1,12 +1,13 @@
-package com.example.demo;
+package com.hotel;
 
-import com.example.demo.controller.CategoryController;
-import com.example.demo.controller.HotelController;
-import com.example.demo.model.*;
-import com.example.demo.repository.CategoryRepository;
-import com.example.demo.repository.HotelRepository;
-import com.example.demo.services.CategoryService;
-import com.example.demo.services.HotelService;
+import com.hotel.controller.CategoryController;
+import com.hotel.controller.HotelController;
+import com.hotel.repository.CategoryRepository;
+import com.hotel.repository.HotelRepository;
+import com.hotel.services.CategoryService;
+import com.hotel.services.HotelService;
+import com.hotel.model.Category;
+import com.hotel.model.Hotel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

@@ -1,7 +1,7 @@
-package com.example.demo.services;
-import com.example.demo.controller.Categories;
-import com.example.demo.repository.HotelRepository;
-import com.example.demo.model.Hotel;
+package com.hotel.services;
+import com.hotel.controller.Categories;
+import com.hotel.repository.HotelRepository;
+import com.hotel.model.Hotel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -127,7 +127,7 @@ public class HotelService {
   }
 
   public Iterable<Categories> applyAllFiltersAndGetHotels(int minPrice, int maxPrice, int minRating, int maxRating, int stars,
-                                                          String[] currentlySelectedActivities,String[] currentlySelectedLocations, Boolean[] otherFilters) {
+                                                          String[] currentlySelectedActivities, String[] currentlySelectedLocations, Boolean[] otherFilters) {
     StringBuilder activity = new StringBuilder();
     StringBuilder otherFilters_ = new StringBuilder();
     List<String> locations = Arrays.asList(currentlySelectedLocations);

@@ -1,11 +1,8 @@
-package com.example.demo.services;
-import com.example.demo.model.Hotel;
-import com.example.demo.repository.CategoryRepository;
-import com.example.demo.model.Category;
+package com.hotel.services;
+import com.hotel.repository.CategoryRepository;
+import com.hotel.model.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class CategoryService{
