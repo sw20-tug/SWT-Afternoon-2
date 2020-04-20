@@ -1,6 +1,6 @@
-package com.example.demo.controller;
+package com.hotel.controller;
 
-import com.example.demo.model.Hotel;
+import com.hotel.model.Hotel;
 
 import java.util.List;
 

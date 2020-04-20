@@ -1,9 +1,9 @@
-package com.example.demo.controller;
+package com.hotel.controller;
 
-import com.example.demo.model.Hotel;
-import com.example.demo.repository.HotelRepository;
-import com.example.demo.services.CustomerService;
-import com.example.demo.services.HotelService;
+import com.hotel.model.Hotel;
+import com.hotel.repository.HotelRepository;
+import com.hotel.services.CustomerService;
+import com.hotel.services.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

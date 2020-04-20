@@ -1,9 +1,9 @@
-package com.example.demo.services;
+package com.hotel.services;
 
-import com.example.demo.model.Category;
-import com.example.demo.repository.CategoryRepository;
-import com.example.demo.model.Hotel;
-import com.example.demo.repository.HotelRepository;
+import com.hotel.model.Category;
+import com.hotel.repository.CategoryRepository;
+import com.hotel.model.Hotel;
+import com.hotel.repository.HotelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

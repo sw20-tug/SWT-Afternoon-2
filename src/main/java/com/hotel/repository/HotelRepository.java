@@ -1,6 +1,6 @@
-package com.example.demo.repository;
+package com.hotel.repository;
 
-import com.example.demo.model.Hotel;
+import com.hotel.model.Hotel;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
