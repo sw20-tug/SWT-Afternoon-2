@@ -55,3 +55,17 @@ padding: 10px;
   background-image: none;
   border: 1px solid gray;
 }
+
+.full-width {
+  width: 100%;
+}
+
+.filtersBtnDiv {
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+}
+
+.filtersBtn {
+  text-align: center;
+}
