@@ -44,6 +44,8 @@ export class HttpClientService {
                            currentlySelectedLocations: string[], otherFilters: boolean[]): Observable<Category[]>
   {
 
+    console.log('other filters: ')
+    console.log(otherFilters)
     return this.http.get<Category[]>(this.usersUrl+ '/apply?minPrice=' + this.checkIfUndefined(minPrice) + '&maxPrice=' + this.checkIfUndefined(maxPrice)
       + '&minRating=' + this.checkIfUndefined(minRating)+ '&maxRating=' + this.checkIfUndefined(maxRating) + '&starsFilter=' + starsFilter +
       '&currentlySelectedActivities=' + this.checkIfUndefined(currentlySelectedActivities)
