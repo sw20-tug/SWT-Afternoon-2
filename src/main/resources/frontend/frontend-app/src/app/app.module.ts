@@ -28,7 +28,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
 import { NgSelectModule } from '@ng-select/ng-select';
-
+import {MatChipsModule} from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -60,7 +60,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     MatRadioModule,
     MatButtonModule,
     MatSelectModule,
-    NgSelectModule
+    NgSelectModule,
+    MatChipsModule
   ],
   exports: [
     HeaderComponent

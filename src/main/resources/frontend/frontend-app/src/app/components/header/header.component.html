@@ -1,6 +1,6 @@
 <nav class="navbar navbar-dark bg-dark">
   <a class="navbar-brand fa fa-home" href="#"></a>
   <div class="search">
-    <app-searchbox></app-searchbox>
+    <app-searchbox (searchBoxEvent)="searchBoxEvent($event)" [searchText]="searchText"></app-searchbox>
   </div>
 </nav>

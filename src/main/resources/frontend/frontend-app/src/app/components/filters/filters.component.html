@@ -3,13 +3,13 @@
     <h4 class="price-box">Price per night</h4>
     <div class="row">
         <div class="col-6">
-          <mat-form-field appearance="legacy" style="width: 100%;">
+          <mat-form-field appearance="legacy" class="full-width">
             <mat-label>min</mat-label>
             <input matInput [(ngModel)]="minPrice">
           </mat-form-field>
         </div>
         <div class="col-6">
-          <mat-form-field appearance="legacy" style="width: 100%;">
+          <mat-form-field appearance="legacy" class="full-width">
             <mat-label>max</mat-label>
             <input matInput [(ngModel)]="maxPrice">      
           </mat-form-field>
@@ -20,13 +20,13 @@
     <h4 class="price-box">Customer rating</h4>
     <div class="row">
         <div class="col-6">
-          <mat-form-field appearance="legacy" style="width: 100%;">
+          <mat-form-field appearance="legacy" class="full-width">
             <mat-label>min</mat-label>
             <input matInput [(ngModel)]="minRating">
           </mat-form-field>
         </div>
         <div class="col-6">
-          <mat-form-field appearance="legacy" style="width: 100%;">
+          <mat-form-field appearance="legacy" class="full-width">
             <mat-label>max</mat-label>
             <input matInput [(ngModel)]="maxRating">
           </mat-form-field>
@@ -98,8 +98,8 @@
     <div class="filter-item">
       <mat-checkbox [(ngModel)]="otherFilters.fitnessFilter">Fitness</mat-checkbox>
     </div>
-    <div class="row" style="display: flex; align-items: center; justify-content: center;" (click)="applyAllFilters()">
-      <button mat-raised-button color="accent" style="text-align: center;">Apply all filters</button>
+    <div class="row filtersBtnDiv" (click)="applyAllFilters()">
+      <button mat-raised-button color="accent" class="filtersBtn">Apply all filters</button>
     </div>
   </div>
 </div>
