@@ -14,6 +14,6 @@ export class SearchboxComponent implements OnInit {
   }
 
   search() {
-    this.searchBoxEvent.emit(this.searchText);
+    this.searchBoxEvent.emit(this.searchText.toLowerCase());
   }
 }

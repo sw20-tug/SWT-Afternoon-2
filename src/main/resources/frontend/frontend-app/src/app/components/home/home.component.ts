@@ -49,7 +49,7 @@ export class HomeComponent implements OnInit {
 
     this.categories = this.allCategories.filter(x => x.hotels !== null && typeof x.hotels !== 'undefined');
     this.categories = this.categories.filter(x => {
-      x.hotels = x.hotels.filter(y => y.name.includes(this.searchText));
+      x.hotels = x.hotels.filter(y => y.name.toLowerCase().includes(this.searchText));
       return x.hotels.length > 0;
     });
     this.initializeAllCategories();

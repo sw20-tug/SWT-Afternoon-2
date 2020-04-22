@@ -12,10 +12,17 @@
   border: 1px solid gray;
 }
 
-/*Overriding ng-multiselect-dropdown style*/
+/*Overriding ng-multiselect-dropdown and mat-checkbox style*/
 :host ::ng-deep .multiselect-dropdown .dropdown-btn .selected-item{
-  border: 1px solid #ff7733 !important;
   background: #ff7733 !important;
+}
+
+::ng-deep .mat-checkbox .mat-checkbox-frame {
+  border: 1px solid #ff7733 !important;
+}
+
+::ng-deep .mat-checkbox-checked .mat-checkbox-background {
+  background-color: #ff7733 !important;
 }
 
 :host ::ng-deep .multiselect-item-checkbox input[type=checkbox]:checked + div:before {
@@ -23,7 +30,7 @@
 }
 :host ::ng-deep .multiselect-item-checkbox input[type=checkbox] + div:before {
   color: #ff7733 !important;
-  border: 2px solid #ff7733 !important;
+  border: 1px solid #ff7733 !important;
 }
 
 :host ::ng-deep .mat-flat-button.mat-accent, .mat-raised-button.mat-accent, .mat-fab.mat-accent, .mat-mini-fab.mat-accent {

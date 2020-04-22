@@ -1,3 +1,9 @@
-.search {
-width: 60%;
+:host ::ng-deep .form-inline {
+    width: 100% !important;
+}
+:host ::ng-deep .my-0 {
+    width: 100% !important;
+}
+:host ::ng-deep .form-control {
+    width: 45% !important;
 }
