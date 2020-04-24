@@ -68,7 +68,7 @@ public class MainApplication implements  CommandLineRunner {
 
   public void fill_db()
   {
-    Category category1 = new Category("Romatic");
+    Category category1 = new Category("Romantic");
     cr.save(category1);
     Category category2 = new Category("Adventure");
     cr.save(category2);
