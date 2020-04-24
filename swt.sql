@@ -38,7 +38,7 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`id`, `name`) VALUES
-(1, 'Romatic'),
+(1, 'Romantic'),
 (2, 'Adventure'),
 (3, 'Holiday'),
 (4, 'Wellness'),

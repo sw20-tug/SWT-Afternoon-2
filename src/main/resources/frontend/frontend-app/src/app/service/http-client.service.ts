@@ -45,7 +45,7 @@ export class HttpClientService {
   {
 
     console.log('other filters: ')
-    console.log(otherFilters)
+    console.log(currentlySelectedLocations)
     return this.http.get<Category[]>(this.usersUrl+ '/apply?minPrice=' + this.checkIfUndefined(minPrice) + '&maxPrice=' + this.checkIfUndefined(maxPrice)
       + '&minRating=' + this.checkIfUndefined(minRating)+ '&maxRating=' + this.checkIfUndefined(maxRating) + '&starsFilter=' + starsFilter +
       '&currentlySelectedActivities=' + this.checkIfUndefined(currentlySelectedActivities)

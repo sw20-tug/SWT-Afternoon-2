@@ -20,6 +20,8 @@ public class HotelService {
   private static final int MOST_STARS = 6;
   private static final int LEAST_STARS = 5;
 
+  private static final int NUMBER_OF_ACTIVITIES = 3;
+
   @Autowired
   public HotelRepository hr;
 
@@ -129,6 +131,15 @@ public class HotelService {
   public Iterable<Categories> applyAllFiltersAndGetHotels(int minPrice, int maxPrice, int minRating, int maxRating, int stars,
                                                           String[] currentlySelectedActivities, String[] currentlySelectedLocations, Boolean[] otherFilters) {
     StringBuilder activity = new StringBuilder();
+
+    //we have three activites and need to initialise it
+    for(int i = 0; i < NUMBER_OF_ACTIVITIES; i++)
+    {
+      activity.append(0);
+    }
+    System.out.println("initial activitiy" + activity.toString());
+
+
     StringBuilder otherFilters_ = new StringBuilder();
     List<String> locations = Arrays.asList(currentlySelectedLocations);
 
@@ -143,57 +154,86 @@ public class HotelService {
     for(boolean filter : otherFilters){
        otherFilters_.append(filter ? "1" : "0");
      }
+
      for(String activity_ : currentlySelectedActivities)
      {
        switch(activity_){
-         case "GYM":
+         case "Gym":
          {
-           activity.append("0");
+           activity.replace(0, 1, "1");
            break;
          }
-         case "RUNNING":
+         case "Running":
          {
-           activity.append("1");
+           activity.replace(1, 2, "1");
            break;
          }
-         case "OPEN_BAR":
+         case "Open bar":
          {
-           activity.append("2");
+           activity.replace(2, 3, "1");
            break;
          }
        }
      }
+
+
+
+    System.out.println("minPrice " + minPrice);
+    System.out.println("maxPrice " + maxPrice);
+    System.out.println("minRating " + minRating);
+    System.out.println("maxRating " + maxRating);
+    System.out.println("starts " + stars);
+    System.out.println("activitiy " + activity.toString());
+
+    for(String location: locations)
+      System.out.println("location " + location);
+
+    System.out.println("otherfilters " + otherFilters_.toString());
+
     List <Hotel> hotels = this.hr.applyFilters(minPrice,maxPrice,minRating,maxRating,stars,activity.toString(),locations,otherFilters_.toString());
 
+    System.out.println("found hotels: ");
+    for(Hotel it: hotels)
+      System.out.println(it.getName());
+
+
+
      for(Hotel ht : hotels){
+       System.out.println("hotel is: " + ht.getName());
        switch(ht.getCategory().getName()){
          case "Romantic":
          {
+           System.out.println("romantic");
            category_romantic.setHotelInsideCategory(ht);
            break;
          }
          case "Adventure":
          {
+           System.out.println("adventure");
            category_adventure.setHotelInsideCategory(ht);
            break;
          }
          case "Holiday":
          {
+           System.out.println("holiday");
            category_holiday.setHotelInsideCategory(ht);
            break;
          }
          case "Wellness":
          {
+           System.out.println("wellness");
            category_wellness.setHotelInsideCategory(ht);
            break;
          }
          case "Family":
          {
+           System.out.println("family");
            category_family.setHotelInsideCategory(ht);
            break;
          }
          case "Camping":
          {
+           System.out.println("camping");
            category_camping.setHotelInsideCategory(ht);
            break;
          }
