@@ -88,10 +88,11 @@ export class FiltersComponent {
 
 
     //create list of booleans in order to send it into controller
-    var allFiltersIntoList = [this.otherFilters.parkingFilter, this.otherFilters.restaurantFilter, this.otherFilters.petsAllowedFilter,
-      this.otherFilters.nonsmokingRoomsFilter, this.otherFilters.swimmingPoolFilter, this.otherFilters.beachfrontFilter,
-      this.otherFilters.airConditioningFilter, this.otherFilters.freeWifiFilter,
-      this.otherFilters.saunaFilter, this.otherFilters.fitnessFilter]
+    var allFiltersIntoList = [this.otherFilters.parkingFilter === undefined ? false : true, this.otherFilters.restaurantFilter  === undefined ? false : true,
+      this.otherFilters.petsAllowedFilter  === undefined ? false : true, this.otherFilters.nonsmokingRoomsFilter  === undefined ? false : true,
+      this.otherFilters.swimmingPoolFilter  === undefined ? false : true, this.otherFilters.beachfrontFilter  === undefined ? false : true,
+      this.otherFilters.airConditioningFilter  === undefined ? false : true, this.otherFilters.freeWifiFilter  === undefined ? false : true,
+      this.otherFilters.saunaFilter  === undefined ? false : true, this.otherFilters.fitnessFilter  === undefined ? false : true]
 
 
     this.HttpClientService.getFilteredHotels(this.minPrice, this.maxPrice, this.minRating, this.maxRating,
