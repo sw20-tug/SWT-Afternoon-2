@@ -253,6 +253,19 @@ class MainApplicationTests {
 
   }
 
+  @Test
+  public void checkIfFilteredHotelOtherfilters() throws Exception {
+    List<Hotel> hotels_inside_category = new ArrayList<>();
+    Hotel hotel1 = new Hotel("Apartamentos Palmera Beach", "Wuzhen", 2, "https://traffickcam.com/images/2017/7/20160624_030441_XJDMC3.jpg", "Hotel 'Apartamentos Palmera Beach' at  Wuzhen with parking place,  without restaurant,  not allowing pets, with swimming pooland etc. is waiting for you :)",
+      22, 1, new Category("Adventure"), true, false, false, true, true, true, true, true, false, false, true, false, false, "100", "1001111100");
+    hotels_inside_category.add(hotel1);
+
+    when(hotelRepository.getHotelOrderedByPriceASC(2)).thenReturn(hotels_inside_category);
+    List<Hotel> actual_hotels_inside = customerService.getHotelByCriteria(2, 1);
+    assertThat(actual_hotels_inside.get(0).getOtherFilters()).isEqualTo(hotels_inside_category.get(0).getOtherFilters());
+
+  }
+
 
   @Test
   public void checkApplyFiltersEndPointWithStatus200() throws Exception {
@@ -301,5 +314,156 @@ class MainApplicationTests {
 
   }
 
+  @Test
+  public void checkIfSetterCity() throws Exception {
+    List<Hotel> actual_hotels_inside = customerService.getHotelByCriteria(2, 1);
+    actual_hotels_inside.get(0).setCity("Test City");
+    assertThat(actual_hotels_inside.get(0).getCity()).isEqualTo("Test City");
+
+  }
+
+  @Test
+  public void checkIfSetterDescription() throws Exception {
+    List<Hotel> actual_hotels_inside = customerService.getHotelByCriteria(2, 1);
+    actual_hotels_inside.get(0).setDescription("Test Description");
+    assertThat(actual_hotels_inside.get(0).getDescription()).isEqualTo("Test Description");
+
+  }
+
+  @Test
+  public void checkIfSetterImagePath() throws Exception {
+    List<Hotel> actual_hotels_inside = customerService.getHotelByCriteria(2, 1);
+    actual_hotels_inside.get(0).setImage("path/test");
+    assertThat(actual_hotels_inside.get(0).getImage()).isEqualTo("path/test");
+
+  }
+
+  @Test
+  public void checkIfSetterStars() throws Exception {
+    List<Hotel> actual_hotels_inside = customerService.getHotelByCriteria(2, 1);
+    actual_hotels_inside.get(0).setStars(29);
+    assertThat(actual_hotels_inside.get(0).getStars()).isEqualTo(29);
+
+  }
+
+  @Test
+  public void checkIfSetterParking() throws Exception {
+    List<Hotel> actual_hotels_inside = customerService.getHotelByCriteria(2, 1);
+    actual_hotels_inside.get(0).setParking(true);
+    assertThat(actual_hotels_inside.get(0).getParking()).isEqualTo(true);
+
+  }
+  @Test
+  public void checkIfSetterRestaurant() throws Exception {
+    List<Hotel> actual_hotels_inside = customerService.getHotelByCriteria(2, 1);
+    actual_hotels_inside.get(0).setRestauran(true);
+    assertThat(actual_hotels_inside.get(0).getRestaurant()).isEqualTo(true);
+
+  }
+
+  @Test
+  public void checkIfSetterPets() throws Exception {
+    List<Hotel> actual_hotels_inside = customerService.getHotelByCriteria(2, 1);
+    actual_hotels_inside.get(0).setPets(true);
+    assertThat(actual_hotels_inside.get(0).getPets()).isEqualTo(true);
+
+  }
+
+  @Test
+  public void checkIfSetterSmoking() throws Exception {
+    List<Hotel> actual_hotels_inside = customerService.getHotelByCriteria(2, 1);
+    actual_hotels_inside.get(0).setSmoking(true);
+    assertThat(actual_hotels_inside.get(0).getSmoking()).isEqualTo(true);
+
+  }
+
+  @Test
+  public void checkIfSetterSwimingPool() throws Exception {
+    List<Hotel> actual_hotels_inside = customerService.getHotelByCriteria(2, 1);
+    actual_hotels_inside.get(0).setSwimmingPool(true);
+    assertThat(actual_hotels_inside.get(0).getSwimmingPool()).isEqualTo(true);
+
+  }
+  @Test
+  public void checkIfSetterBeachFront() throws Exception {
+    List<Hotel> actual_hotels_inside = customerService.getHotelByCriteria(2, 1);
+    actual_hotels_inside.get(0).setBeachFront(true);
+    assertThat(actual_hotels_inside.get(0).getBeachFront()).isEqualTo(true);
+
+  }
+
+  @Test
+  public void checkIfSetterAirCondition() throws Exception {
+    List<Hotel> actual_hotels_inside = customerService.getHotelByCriteria(2, 1);
+    actual_hotels_inside.get(0).setAirConditioning(true);
+    assertThat(actual_hotels_inside.get(0).getAirConditioning()).isEqualTo(true);
+
+  }
+  @Test
+  public void checkIfSetterFreeWiFi() throws Exception {
+    List<Hotel> actual_hotels_inside = customerService.getHotelByCriteria(2, 1);
+    actual_hotels_inside.get(0).setFreeWiFi(true);
+    assertThat(actual_hotels_inside.get(0).getFreeWiFi()).isEqualTo(true);
+
+  }
+
+  @Test
+  public void checkIfSetterSauna() throws Exception {
+    List<Hotel> actual_hotels_inside = customerService.getHotelByCriteria(2, 1);
+    actual_hotels_inside.get(0).setSauna(true);
+    assertThat(actual_hotels_inside.get(0).getSauna()).isEqualTo(true);
+
+  }
+  @Test
+  public void checkIfSetterFitness() throws Exception {
+    List<Hotel> actual_hotels_inside = customerService.getHotelByCriteria(2, 1);
+    actual_hotels_inside.get(0).setFitness(true);
+    assertThat(actual_hotels_inside.get(0).getFitness()).isEqualTo(true);
+
+  }
+
+  @Test
+  public void checkIfSetterGym() throws Exception {
+    List<Hotel> actual_hotels_inside = customerService.getHotelByCriteria(2, 1);
+    actual_hotels_inside.get(0).setActivityGym(true);
+    assertThat(actual_hotels_inside.get(0).getActivityGym()).isEqualTo(true);
+
+  }
+
+  @Test
+  public void checkIfSetterRunning() throws Exception {
+    List<Hotel> actual_hotels_inside = customerService.getHotelByCriteria(2, 1);
+    actual_hotels_inside.get(0).setActivityRunning(true);
+    assertThat(actual_hotels_inside.get(0).getActivityRunning()).isEqualTo(true);
+
+  }
+
+  @Test
+  public void checkIfSetterOpenBar() throws Exception {
+    List<Hotel> actual_hotels_inside = customerService.getHotelByCriteria(2, 1);
+    actual_hotels_inside.get(0).setActivityOpenBar(true);
+    assertThat(actual_hotels_inside.get(0).getActivityOpenBar()).isEqualTo(true);
+
+  }
+
+  @Test
+  public void checkIfSetterActivity() throws Exception {
+    List<Hotel> actual_hotels_inside = customerService.getHotelByCriteria(2, 1);
+    actual_hotels_inside.get(0).setActivity("101");
+    assertThat(actual_hotels_inside.get(0).getActivity()).isEqualTo("101");
+
+  }
+
+  @Test
+  public void checkIfSetterNameInBD() throws Exception {
+    List<Hotel> actual_hotels_inside = customerService.getHotelByCriteria(2, 1);
+    String name = actual_hotels_inside.get(1).getName();
+    //Super 8 Bloomington
+    actual_hotels_inside.get(1).setName("Test");
+    hotelRepository.save(actual_hotels_inside.get(1));
+
+    assertThat(actual_hotels_inside.get(1).getName()).isEqualTo("Test");
+
+  }
 
 }
