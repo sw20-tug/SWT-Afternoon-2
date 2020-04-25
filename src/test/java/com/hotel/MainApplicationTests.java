@@ -96,6 +96,163 @@ class MainApplicationTests {
 
   }
 
+  @Test
+  public void checkIfFilteredHotelHasParking() throws Exception {
+    List<Hotel> hotels_inside_category = new ArrayList<>();
+    Hotel hotel1 = new Hotel("Apartamentos Palmera Beach", "Wuzhen", 2, "https://traffickcam.com/images/2017/7/20160624_030441_XJDMC3.jpg", "Hotel 'Apartamentos Palmera Beach' at  Wuzhen with parking place,  without restaurant,  not allowing pets, with swimming pooland etc. is waiting for you :)",
+      22, 1, new Category("Adventure"), true, false, false, true, true, true, true, true, false, false, true, false, false, "100", "1001111100");
+    hotels_inside_category.add(hotel1);
+
+    when(hotelRepository.getHotelOrderedByPriceASC(2)).thenReturn(hotels_inside_category);
+    List<Hotel> actual_hotels_inside = customerService.getHotelByCriteria(2, 1);
+    assertThat(actual_hotels_inside.get(0).getParking()).isEqualTo(hotels_inside_category.get(0).getParking());
+
+  }
+
+  @Test
+  public void checkIfFilteredHotelHasRestaurant() throws Exception {
+    List<Hotel> hotels_inside_category = new ArrayList<>();
+    Hotel hotel1 = new Hotel("Apartamentos Palmera Beach", "Wuzhen", 2, "https://traffickcam.com/images/2017/7/20160624_030441_XJDMC3.jpg", "Hotel 'Apartamentos Palmera Beach' at  Wuzhen with parking place,  without restaurant,  not allowing pets, with swimming pooland etc. is waiting for you :)",
+      22, 1, new Category("Adventure"), true, false, false, true, true, true, true, true, false, false, true, false, false, "100", "1001111100");
+    hotels_inside_category.add(hotel1);
+
+    when(hotelRepository.getHotelOrderedByPriceASC(2)).thenReturn(hotels_inside_category);
+    List<Hotel> actual_hotels_inside = customerService.getHotelByCriteria(2, 1);
+    assertThat(actual_hotels_inside.get(0).getRestaurant()).isEqualTo(hotels_inside_category.get(0).getRestaurant());
+
+  }
+
+  @Test
+  public void checkIfFilteredHotelHasPets() throws Exception {
+    List<Hotel> hotels_inside_category = new ArrayList<>();
+    Hotel hotel1 = new Hotel("Apartamentos Palmera Beach", "Wuzhen", 2, "https://traffickcam.com/images/2017/7/20160624_030441_XJDMC3.jpg", "Hotel 'Apartamentos Palmera Beach' at  Wuzhen with parking place,  without restaurant,  not allowing pets, with swimming pooland etc. is waiting for you :)",
+      22, 1, new Category("Adventure"), true, false, false, true, true, true, true, true, false, false, true, false, false, "100", "1001111100");
+    hotels_inside_category.add(hotel1);
+
+    when(hotelRepository.getHotelOrderedByPriceASC(2)).thenReturn(hotels_inside_category);
+    List<Hotel> actual_hotels_inside = customerService.getHotelByCriteria(2, 1);
+    assertThat(actual_hotels_inside.get(0).getPets()).isEqualTo(hotels_inside_category.get(0).getPets());
+
+  }
+
+  @Test
+  public void checkIfFilteredHotelHasSmoking() throws Exception {
+    List<Hotel> hotels_inside_category = new ArrayList<>();
+    Hotel hotel1 = new Hotel("Apartamentos Palmera Beach", "Wuzhen", 2, "https://traffickcam.com/images/2017/7/20160624_030441_XJDMC3.jpg", "Hotel 'Apartamentos Palmera Beach' at  Wuzhen with parking place,  without restaurant,  not allowing pets, with swimming pooland etc. is waiting for you :)",
+      22, 1, new Category("Adventure"), true, false, false, true, true, true, true, true, false, false, true, false, false, "100", "1001111100");
+    hotels_inside_category.add(hotel1);
+
+    when(hotelRepository.getHotelOrderedByPriceASC(2)).thenReturn(hotels_inside_category);
+    List<Hotel> actual_hotels_inside = customerService.getHotelByCriteria(2, 1);
+    assertThat(actual_hotels_inside.get(0).getSmoking()).isEqualTo(hotels_inside_category.get(0).getSmoking());
+
+  }
+
+  @Test
+  public void checkIfFilteredHotelHasBeachFront() throws Exception {
+    List<Hotel> hotels_inside_category = new ArrayList<>();
+    Hotel hotel1 = new Hotel("Apartamentos Palmera Beach", "Wuzhen", 2, "https://traffickcam.com/images/2017/7/20160624_030441_XJDMC3.jpg", "Hotel 'Apartamentos Palmera Beach' at  Wuzhen with parking place,  without restaurant,  not allowing pets, with swimming pooland etc. is waiting for you :)",
+      22, 1, new Category("Adventure"), true, false, false, true, true, true, true, true, false, false, true, false, false, "100", "1001111100");
+    hotels_inside_category.add(hotel1);
+
+    when(hotelRepository.getHotelOrderedByPriceASC(2)).thenReturn(hotels_inside_category);
+    List<Hotel> actual_hotels_inside = customerService.getHotelByCriteria(2, 1);
+    assertThat(actual_hotels_inside.get(0).getBeachFront()).isEqualTo(hotels_inside_category.get(0).getBeachFront());
+
+  }
+
+  @Test
+  public void checkIfFilteredHotelHasAirConditioning() throws Exception {
+    List<Hotel> hotels_inside_category = new ArrayList<>();
+    Hotel hotel1 = new Hotel("Apartamentos Palmera Beach", "Wuzhen", 2, "https://traffickcam.com/images/2017/7/20160624_030441_XJDMC3.jpg", "Hotel 'Apartamentos Palmera Beach' at  Wuzhen with parking place,  without restaurant,  not allowing pets, with swimming pooland etc. is waiting for you :)",
+      22, 1, new Category("Adventure"), true, false, false, true, true, true, true, true, false, false, true, false, false, "100", "1001111100");
+    hotels_inside_category.add(hotel1);
+
+    when(hotelRepository.getHotelOrderedByPriceASC(2)).thenReturn(hotels_inside_category);
+    List<Hotel> actual_hotels_inside = customerService.getHotelByCriteria(2, 1);
+    assertThat(actual_hotels_inside.get(0).getAirConditioning()).isEqualTo(hotels_inside_category.get(0).getAirConditioning());
+
+  }
+
+  @Test
+  public void checkIfFilteredHotelHasSauna() throws Exception {
+    List<Hotel> hotels_inside_category = new ArrayList<>();
+    Hotel hotel1 = new Hotel("Apartamentos Palmera Beach", "Wuzhen", 2, "https://traffickcam.com/images/2017/7/20160624_030441_XJDMC3.jpg", "Hotel 'Apartamentos Palmera Beach' at  Wuzhen with parking place,  without restaurant,  not allowing pets, with swimming pooland etc. is waiting for you :)",
+      22, 1, new Category("Adventure"), true, false, false, true, true, true, true, true, false, false, true, false, false, "100", "1001111100");
+    hotels_inside_category.add(hotel1);
+
+    when(hotelRepository.getHotelOrderedByPriceASC(2)).thenReturn(hotels_inside_category);
+    List<Hotel> actual_hotels_inside = customerService.getHotelByCriteria(2, 1);
+    assertThat(actual_hotels_inside.get(0).getSauna()).isEqualTo(hotels_inside_category.get(0).getSauna());
+
+  }
+
+  @Test
+  public void checkIfFilteredHotelHasFitness() throws Exception {
+    List<Hotel> hotels_inside_category = new ArrayList<>();
+    Hotel hotel1 = new Hotel("Apartamentos Palmera Beach", "Wuzhen", 2, "https://traffickcam.com/images/2017/7/20160624_030441_XJDMC3.jpg", "Hotel 'Apartamentos Palmera Beach' at  Wuzhen with parking place,  without restaurant,  not allowing pets, with swimming pooland etc. is waiting for you :)",
+      22, 1, new Category("Adventure"), true, false, false, true, true, true, true, true, false, false, true, false, false, "100", "1001111100");
+    hotels_inside_category.add(hotel1);
+
+    when(hotelRepository.getHotelOrderedByPriceASC(2)).thenReturn(hotels_inside_category);
+    List<Hotel> actual_hotels_inside = customerService.getHotelByCriteria(2, 1);
+    assertThat(actual_hotels_inside.get(0).getFitness()).isEqualTo(hotels_inside_category.get(0).getFitness());
+
+  }
+
+  @Test
+  public void checkIfFilteredHotelHasActivityGym() throws Exception {
+    List<Hotel> hotels_inside_category = new ArrayList<>();
+    Hotel hotel1 = new Hotel("Apartamentos Palmera Beach", "Wuzhen", 2, "https://traffickcam.com/images/2017/7/20160624_030441_XJDMC3.jpg", "Hotel 'Apartamentos Palmera Beach' at  Wuzhen with parking place,  without restaurant,  not allowing pets, with swimming pooland etc. is waiting for you :)",
+      22, 1, new Category("Adventure"), true, false, false, true, true, true, true, true, false, false, true, false, false, "100", "1001111100");
+    hotels_inside_category.add(hotel1);
+
+    when(hotelRepository.getHotelOrderedByPriceASC(2)).thenReturn(hotels_inside_category);
+    List<Hotel> actual_hotels_inside = customerService.getHotelByCriteria(2, 1);
+    assertThat(actual_hotels_inside.get(0).getActivityGym()).isEqualTo(hotels_inside_category.get(0).getActivityGym());
+
+  }
+
+  @Test
+  public void checkIfFilteredHotelHasActivityRunning() throws Exception {
+    List<Hotel> hotels_inside_category = new ArrayList<>();
+    Hotel hotel1 = new Hotel("Apartamentos Palmera Beach", "Wuzhen", 2, "https://traffickcam.com/images/2017/7/20160624_030441_XJDMC3.jpg", "Hotel 'Apartamentos Palmera Beach' at  Wuzhen with parking place,  without restaurant,  not allowing pets, with swimming pooland etc. is waiting for you :)",
+      22, 1, new Category("Adventure"), true, false, false, true, true, true, true, true, false, false, true, false, false, "100", "1001111100");
+    hotels_inside_category.add(hotel1);
+
+    when(hotelRepository.getHotelOrderedByPriceASC(2)).thenReturn(hotels_inside_category);
+    List<Hotel> actual_hotels_inside = customerService.getHotelByCriteria(2, 1);
+    assertThat(actual_hotels_inside.get(0).getActivityRunning()).isEqualTo(hotels_inside_category.get(0).getActivityRunning());
+
+  }
+
+  @Test
+  public void checkIfFilteredHotelHasActivityOpenBar() throws Exception {
+    List<Hotel> hotels_inside_category = new ArrayList<>();
+    Hotel hotel1 = new Hotel("Apartamentos Palmera Beach", "Wuzhen", 2, "https://traffickcam.com/images/2017/7/20160624_030441_XJDMC3.jpg", "Hotel 'Apartamentos Palmera Beach' at  Wuzhen with parking place,  without restaurant,  not allowing pets, with swimming pooland etc. is waiting for you :)",
+      22, 1, new Category("Adventure"), true, false, false, true, true, true, true, true, false, false, true, false, false, "100", "1001111100");
+    hotels_inside_category.add(hotel1);
+
+    when(hotelRepository.getHotelOrderedByPriceASC(2)).thenReturn(hotels_inside_category);
+    List<Hotel> actual_hotels_inside = customerService.getHotelByCriteria(2, 1);
+    assertThat(actual_hotels_inside.get(0).getActivityOpenBar()).isEqualTo(hotels_inside_category.get(0).getActivityOpenBar());
+
+  }
+
+
+  @Test
+  public void checkIfFilteredHotelHasSwimmingPool() throws Exception {
+    List<Hotel> hotels_inside_category = new ArrayList<>();
+    Hotel hotel1 = new Hotel("Apartamentos Palmera Beach", "Wuzhen", 2, "https://traffickcam.com/images/2017/7/20160624_030441_XJDMC3.jpg", "Hotel 'Apartamentos Palmera Beach' at  Wuzhen with parking place,  without restaurant,  not allowing pets, with swimming pooland etc. is waiting for you :)",
+      22, 1, new Category("Adventure"), true, false, false, true, true, true, true, true, false, false, true, false, false, "100", "1001111100");
+    hotels_inside_category.add(hotel1);
+
+    when(hotelRepository.getHotelOrderedByPriceASC(2)).thenReturn(hotels_inside_category);
+    List<Hotel> actual_hotels_inside = customerService.getHotelByCriteria(2, 1);
+    assertThat(actual_hotels_inside.get(0).getSwimmingPool()).isEqualTo(hotels_inside_category.get(0).getSwimmingPool());
+
+  }
+
 
   @Test
   public void checkApplyFiltersEndPointWithStatus200() throws Exception {
@@ -125,5 +282,24 @@ class MainApplicationTests {
     Assert.assertEquals(200, result.getStatusCodeValue());
 
   }
+
+  // TEST SETTER
+
+  @Test
+  public void checkIfSetterName() throws Exception {
+    List<Hotel> actual_hotels_inside = customerService.getHotelByCriteria(2, 1);
+    actual_hotels_inside.get(0).setName("Test");
+    assertThat(actual_hotels_inside.get(0).getName()).isEqualTo("Test");
+
+  }
+
+  @Test
+  public void checkIfSetterRate() throws Exception {
+    List<Hotel> actual_hotels_inside = customerService.getHotelByCriteria(2, 1);
+    actual_hotels_inside.get(0).setRate(98);
+    assertThat(actual_hotels_inside.get(0).getRate()).isEqualTo(98);
+
+  }
+
 
 }
