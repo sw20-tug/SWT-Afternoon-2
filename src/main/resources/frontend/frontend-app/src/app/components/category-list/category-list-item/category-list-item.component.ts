@@ -28,27 +28,27 @@ export class CategoryListItemComponent implements OnInit {
     this.determineCategoryID();
   }
   private determineCategoryID() {
-    if(this.category.name == 'Romantic')
+    if(this.category != null && this.category.name == 'Romantic')
     {
       this.categoryID = 1;
     }
-    if(this.category.name == 'Adventure')
+    if(this.category != null && this.category.name == 'Adventure')
     {
       this.categoryID = 2;
     }
-    if(this.category.name == 'Holiday')
+    if(this.category != null && this.category.name == 'Holiday')
     {
       this.categoryID = 3;
     }
-    if(this.category.name == 'Wellness')
+    if(this.category != null && this.category.name == 'Wellness')
     {
       this.categoryID = 4;
     }
-    if(this.category.name == 'Family')
+    if(this.category != null && this.category.name == 'Family')
     {
       this.categoryID = 5;
     }
-    if(this.category.name == 'Camping')
+    if(this.category != null && this.category.name == 'Camping')
     {
       this.categoryID = 6;
     }
