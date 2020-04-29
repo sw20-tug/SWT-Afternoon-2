@@ -10,21 +10,25 @@ import {HttpClientService} from "../../service/http-client.service";
 })
 export class HomeComponent implements OnInit {
   title = 'Hotels';
-  public allCategories: Category[];
-  public categories: Category[];
+  public allCategories: Category[] = [];
+  public categories: Category[] = [];
   public searchText: string = '';
 
   constructor(private HttpClientService: HttpClientService) { }
 
   ngOnInit(): void {
     this.initializeAllCategories();
-    this.categories = this.allCategories;
   }
 
   initializeAllCategories(){
     this.HttpClientService.getCategories().subscribe(categories => {
-          this.allCategories = categories;
+      var listOfCategories = new Array<Category>();
+      categories.forEach(category => {
+         listOfCategories.push(Category.MapCategory(category));
       });
+      this.allCategories = listOfCategories;
+      this.categories = this.allCategories;
+    });
   }
 
   ngOnChanges(text: any){
@@ -49,6 +53,5 @@ export class HomeComponent implements OnInit {
   clearSearchEvent($event){
     this.searchText = "";
     this.initializeAllCategories();
-    this.categories = this.allCategories;
   }
 }

@@ -99,13 +99,14 @@ export class FiltersComponent {
       this.starsFilter,
       this.currentlySelectedActivities,
       this.currentlySelectedLocations, allFiltersIntoList).subscribe( categories => {
-        console.log('Categories sent over are ? ', categories);
-        this.filteredCategories.emit(categories);
+        var listOfCategories = new Array<Category>();
+        categories.forEach(category => {
+           var newCategory = Category.MapCategory(category);
+           if(newCategory.hotels !== null && newCategory.hotels.length > 0)
+            listOfCategories.push(newCategory);
+        });
+        this.filteredCategories.emit(listOfCategories);
     });
-
-    //send this filtersModel to backend and recieve list of categories with filtered hotels, then emit this list
-    //var filteredCategoriesList = [];
-    //this.filteredCategories.emit(filteredCategoriesList);
   }
 
 }
