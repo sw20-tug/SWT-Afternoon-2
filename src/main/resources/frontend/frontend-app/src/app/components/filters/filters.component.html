@@ -1,40 +1,40 @@
 <div class="filters-list">
   <div class="filters">
-    <h4 class="price-box">Price per night</h4>
+    <h4 class="price-box" id="price_per_night">Price per night</h4>
     <div class="row">
         <div class="col-6">
           <mat-form-field appearance="legacy" class="full-width">
-            <mat-label>min</mat-label>
+            <mat-label id="min_price">min</mat-label>
             <input matInput [(ngModel)]="minPrice">
           </mat-form-field>
         </div>
         <div class="col-6">
           <mat-form-field appearance="legacy" class="full-width">
-            <mat-label>max</mat-label>
+            <mat-label id="max_price">max</mat-label>
             <input matInput [(ngModel)]="maxPrice">      
           </mat-form-field>
         </div>
     </div>
   </div>
   <div class="filters">
-    <h4 class="price-box">Customer rating</h4>
+    <h4 class="price-box" id="customer_rating">Customer rating</h4>
     <div class="row">
         <div class="col-6">
           <mat-form-field appearance="legacy" class="full-width">
-            <mat-label>min</mat-label>
+            <mat-label id="min_rating">min</mat-label>
             <input matInput [(ngModel)]="minRating">
           </mat-form-field>
         </div>
         <div class="col-6">
           <mat-form-field appearance="legacy" class="full-width">
-            <mat-label>max</mat-label>
+            <mat-label id="max_rating">max</mat-label>
             <input matInput [(ngModel)]="maxRating">
           </mat-form-field>
         </div>
     </div>
   </div>
   <div class="filters">
-    <h4 class="price-box">Stars</h4>
+    <h4 class="price-box" id="stars">Stars</h4>
     <div class="col-md-8 col-sm-12 col-xs-4 col-lg-12 col-xl-8">
       <ngb-rating [(rate)]="starsFilter" [max]=5 [readonly]=false>
         <ng-template let-fill="fill" let-index="index">
@@ -46,7 +46,7 @@
     </div>
   </div>
   <div class="filters dropdown">
-    <h4 class="price-box">Activities</h4>
+    <h4 class="price-box" id="activities">Activities</h4>
     <ng-multiselect-dropdown
       [placeholder]="'Select activities'"
       [data]="activities"
@@ -57,7 +57,7 @@
     <br/>
   </div>
   <div class="filters dropdown">
-    <h4 class="price-box">Locations</h4>
+    <h4 class="price-box" id="locations">Locations</h4>
     <ng-multiselect-dropdown
       [placeholder]="'Select locations'"
       [data]="locations"
@@ -67,39 +67,39 @@
     <br/>
   </div>
   <div class="filters">
-    <h4 class="price-box">Other filters</h4>
+    <h4 class="price-box" id="other_filters">Other filters</h4>
     <div class="filter-item">
-      <mat-checkbox [(ngModel)]="otherFilters.parkingFilter">Parking</mat-checkbox>
+      <mat-checkbox id="parking" [(ngModel)]="otherFilters.parkingFilter">Parking</mat-checkbox>
     </div>
     <div class="filter-item">
-      <mat-checkbox [(ngModel)]="otherFilters.restaurantFilter">Restaurant</mat-checkbox>
+      <mat-checkbox id="restaurant" [(ngModel)]="otherFilters.restaurantFilter">Restaurant</mat-checkbox>
     </div>
     <div class="filter-item">
-      <mat-checkbox [(ngModel)]="otherFilters.petsAllowedFilter">Pets allowed</mat-checkbox>
+      <mat-checkbox id="pets_allowed" [(ngModel)]="otherFilters.petsAllowedFilter">Pets allowed</mat-checkbox>
     </div>
     <div class="filter-item">
-      <mat-checkbox [(ngModel)]="otherFilters.nonsmokingRoomsFilter">Non-smoking rooms</mat-checkbox>
+      <mat-checkbox id="non_smoking_rooms" [(ngModel)]="otherFilters.nonsmokingRoomsFilter">Non-smoking rooms</mat-checkbox>
     </div>
     <div class="filter-item">
-      <mat-checkbox [(ngModel)]="otherFilters.swimmingPoolFilter">Swimming pool</mat-checkbox>
+      <mat-checkbox id="swimming_pool" [(ngModel)]="otherFilters.swimmingPoolFilter">Swimming pool</mat-checkbox>
     </div>
     <div class="filter-item">
-      <mat-checkbox [(ngModel)]="otherFilters.beachfrontFilter">Beachfront</mat-checkbox>
+      <mat-checkbox id="beachfront" [(ngModel)]="otherFilters.beachfrontFilter">Beachfront</mat-checkbox>
     </div>
     <div class="filter-item">
-      <mat-checkbox [(ngModel)]="otherFilters.airConditioningFilter">Air conditioning</mat-checkbox>
+      <mat-checkbox id="air_conditioning" [(ngModel)]="otherFilters.airConditioningFilter">Air conditioning</mat-checkbox>
     </div>
     <div class="filter-item">
-      <mat-checkbox [(ngModel)]="otherFilters.freeWifiFilter">Free WiFi</mat-checkbox>
+      <mat-checkbox id="free_wifi" [(ngModel)]="otherFilters.freeWifiFilter">Free WiFi</mat-checkbox>
     </div>
     <div class="filter-item">
-      <mat-checkbox [(ngModel)]="otherFilters.saunaFilter">Sauna</mat-checkbox>
+      <mat-checkbox id="sauna" [(ngModel)]="otherFilters.saunaFilter">Sauna</mat-checkbox>
     </div>
     <div class="filter-item">
-      <mat-checkbox [(ngModel)]="otherFilters.fitnessFilter">Fitness</mat-checkbox>
+      <mat-checkbox id="fitness" [(ngModel)]="otherFilters.fitnessFilter">Fitness</mat-checkbox>
     </div>
     <div class="row filtersBtnDiv" (click)="applyAllFilters()">
-      <button mat-raised-button color="accent" class="filtersBtn">Apply all filters</button>
+      <button  mat-raised-button color="accent" id="apply_all_filters" class="filtersBtn">Apply all filters</button>
     </div>
   </div>
 </div>

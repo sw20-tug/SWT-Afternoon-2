@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HotelListComponent } from './hotel-list.component';
+import { HttpClient, HttpHandler } from '@angular/common/http';
 
 describe('HotelListComponent', () => {
   let component: HotelListComponent;
@@ -8,7 +9,11 @@ describe('HotelListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HotelListComponent ]
+      declarations: [ HotelListComponent ],
+      providers: [	
+        HttpClient,	
+        HttpHandler	
+      ],
     })
     .compileComponents();
   }));
