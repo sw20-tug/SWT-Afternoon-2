@@ -143,7 +143,7 @@ public class Hotel implements Comparable<Hotel>{
     return this.category;
   }
   public boolean getParking(){return this.parking;}
-  public boolean getRestauran(){return this.restaurant;}
+  public boolean getRestaurant(){return this.restaurant;}
   public boolean getPets(){return this.pets;}
   public boolean getSmoking(){return this.smoking;}
   public boolean getSwimmingPool(){return this.swimmingPool;}

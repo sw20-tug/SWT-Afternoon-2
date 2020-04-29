@@ -27,6 +27,7 @@ export class CategoryListItemComponent implements OnInit {
   ngOnInit(): void {
     this.determineCategoryID();
   }
+  
   private determineCategoryID() {
     if(this.category.name == 'Romantic')
     {
@@ -58,9 +59,12 @@ export class CategoryListItemComponent implements OnInit {
   }
 
   sortListItems($event) {
-   this.httpClientService.sortByCriteria(this.categoryID, $event.id).subscribe(hotels => {
-     console.log("Hotels?", hotels);
-     this.category.hotels = hotels;
+    this.httpClientService.sortByCriteria(this.categoryID, $event.id).subscribe(hotels => {    
+      var listOfHotels = new Array<Hotel>();
+      hotels.forEach(hotel => {
+       listOfHotels.push(Hotel.MapHotel(hotel));
+      });
+      this.category.hotels = listOfHotels;
    });
 
   }
