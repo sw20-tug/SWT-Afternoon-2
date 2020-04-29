@@ -10,9 +10,9 @@ describe('HomeComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ HomeComponent ],
-      providers: [	
-        HttpClient,	
-        HttpHandler	
+      providers: [
+        HttpClient,
+        HttpHandler
       ],
     })
     .compileComponents();
@@ -27,4 +27,11 @@ describe('HomeComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+it('should call initializeAllCategories in clearSearchEvent', () => {
+    const spyInitializeAllCategories = spyOn(component, 'initializeAllCategories');
+    component.clearSearchEvent('test');
+    expect(spyInitializeAllCategories).toHaveBeenCalled();
+  });
+
 });

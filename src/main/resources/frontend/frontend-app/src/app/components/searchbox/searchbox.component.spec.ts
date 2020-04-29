@@ -10,9 +10,9 @@ describe('SearchboxComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ SearchboxComponent ],
-      providers: [	
-        HttpClient,	
-        HttpHandler	
+      providers: [
+        HttpClient,
+        HttpHandler
       ],
     })
     .compileComponents();
@@ -27,4 +27,13 @@ describe('SearchboxComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+ it('should emit searchBoxEvent in search', () => {
+     component.searchText = 'test';
+     const spyEmit = spyOn(component.searchBoxEvent, 'emit');
+     component.search();
+     expect(spyEmit).toHaveBeenCalled();
+   });
+
+
 });

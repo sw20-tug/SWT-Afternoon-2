@@ -10,9 +10,9 @@ describe('HeaderComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ HeaderComponent ],
-      providers: [	
-        HttpClient,	
-        HttpHandler	
+      providers: [
+        HttpClient,
+        HttpHandler
       ],
     })
     .compileComponents();
@@ -27,4 +27,11 @@ describe('HeaderComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+it('should emit searchHeaderEvent in searchBoxEvent', () => {
+    const spyEmit = spyOn(component.searchHeaderEvent, 'emit');
+    component.searchBoxEvent('test');
+    expect(spyEmit).toHaveBeenCalled();
+  })
+
 });
