@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Hotel } from '../hotel.model';
-import { NgbRatingConfig } from '../../../../../node_modules/@ng-bootstrap/ng-bootstrap';
+import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-hotel-list-item',
