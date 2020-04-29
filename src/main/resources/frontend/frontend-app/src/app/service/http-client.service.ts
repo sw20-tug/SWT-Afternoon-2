@@ -68,6 +68,13 @@ export class HttpClientService {
 
   }
 
+  public getCategories(): Observable<any> {
+    return this.http.get<any[]>(this.usersUrl + '/getCategories', this.httpOptions).pipe(
+      retry(this.retryCount),
+      catchError(this.errorHandler)
+    );
+  }
+
   public errorHandler(error) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {

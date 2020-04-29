@@ -18,10 +18,4 @@ public class CategoryController {
     this.categoryService = categoryService;
     this.category = new Category();
   }
-  public void printMeCategory(){
-    this.category = this.categoryService.getCategoryByName("sexhotel");
-    System.out.println("Category name:" + category.getName());
-  }
-
-
 }

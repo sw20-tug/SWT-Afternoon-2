@@ -42,8 +42,8 @@ public class MainApplication implements  CommandLineRunner {
   public void run(String... args) throws Exception {
     System.out.println("Starting main application");
 
-
-
+  
+    
     this.hs = new HotelService(hr);
     this.cs = new CategoryService(cr);
 

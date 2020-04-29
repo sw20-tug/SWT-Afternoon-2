@@ -48,6 +48,11 @@ public interface HotelRepository extends CrudRepository<Hotel, Long> {
   List <Hotel> findByActivity(String activity);
 
   List <Hotel> findByOtherFilters(String otherFilters);
+
+  @Query(
+    value = "SELECT * FROM hotel WHERE category_id = :categoryId limit 5",
+    nativeQuery = true)
+  List <Hotel> findByCategoryId(@Param("categoryId")int categoryId);
 /*
   @Query("SELECT e FROM Employee e WHERE e.dept = :dept AND "
     + "(SELECT COUNT(DISTINCT e2.salary) FROM Employee e2 "
