@@ -23,5 +23,4 @@ public class CategoryController {
     System.out.println("Category name:" + category.getName());
   }
 
-
 }

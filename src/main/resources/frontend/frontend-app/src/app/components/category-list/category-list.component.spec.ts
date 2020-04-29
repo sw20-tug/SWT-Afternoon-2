@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CategoryListComponent } from './category-list.component';
+import { HttpClient, HttpHandler } from '@angular/common/http';
 
 describe('CategoryListComponent', () => {
   let component: CategoryListComponent;
@@ -8,7 +9,11 @@ describe('CategoryListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CategoryListComponent ]
+      declarations: [ CategoryListComponent ],
+      providers: [	
+        HttpClient,	
+        HttpHandler	
+      ],
     })
     .compileComponents();
   }));

@@ -48,11 +48,13 @@ import {MatChipsModule} from '@angular/material/chips';
     AppRoutingModule,
     NgbModule,
     FormsModule,
+    HttpClient,
     HttpClientModule,
     NoopAnimationsModule,
     NgxBootstrapSliderModule,
     NgMultiSelectDropDownModule.forRoot(),
     MatCardModule,
+    HttpClientService,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
@@ -66,7 +68,7 @@ import {MatChipsModule} from '@angular/material/chips';
   exports: [
     HeaderComponent
   ],
-  providers: [HttpClientService, HttpClient],
+  providers: [HttpClient, HttpClientService, HttpClientModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
