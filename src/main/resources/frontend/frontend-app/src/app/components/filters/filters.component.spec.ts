@@ -75,11 +75,7 @@ describe('FiltersComponent', () => {
     expect(fitnessElement.innerHTML).toMatch('Fitness');
   }));
 
-  it('click apply all filters', async(() => {
-    const applyAllFiltersElement: HTMLElement = fixture.debugElement.query(By.css('#apply_all_filters')).nativeElement;
-    expect(applyAllFiltersElement.innerHTML).toMatch('Apply all filters');
-   /* component.
-    component.applyAllFilters();*/
-    
-  }));
+  afterAll(() => TestBed.resetTestingModule());
+
+
 });

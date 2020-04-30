@@ -31,4 +31,5 @@ describe('AppComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  afterAll(() => TestBed.resetTestingModule());
 });

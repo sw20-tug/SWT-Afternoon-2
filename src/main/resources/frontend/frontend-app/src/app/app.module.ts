@@ -13,7 +13,6 @@ import {HttpClientService} from "./service/http-client.service";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { CategoryListComponent } from './components/category-list/category-list.component';
 import { CategoryListItemComponent } from './components/category-list/category-list-item/category-list-item.component';
-import { CategoryCardComponent } from './components/category-card/category-card.component';
 import { SearchboxComponent } from './components/searchbox/searchbox.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxBootstrapSliderModule } from 'ngx-bootstrap-slider';
@@ -39,7 +38,6 @@ import {MatChipsModule} from '@angular/material/chips';
     HotelListItemComponent,
     CategoryListComponent,
     CategoryListItemComponent,
-    CategoryCardComponent,
     SearchboxComponent,
     FiltersComponent
   ],
@@ -48,13 +46,11 @@ import {MatChipsModule} from '@angular/material/chips';
     AppRoutingModule,
     NgbModule,
     FormsModule,
-    HttpClient,
     HttpClientModule,
     NoopAnimationsModule,
     NgxBootstrapSliderModule,
     NgMultiSelectDropDownModule.forRoot(),
     MatCardModule,
-    HttpClientService,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
@@ -68,7 +64,7 @@ import {MatChipsModule} from '@angular/material/chips';
   exports: [
     HeaderComponent
   ],
-  providers: [HttpClient, HttpClientService, HttpClientModule],
+  providers: [HttpClient, HttpClientService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

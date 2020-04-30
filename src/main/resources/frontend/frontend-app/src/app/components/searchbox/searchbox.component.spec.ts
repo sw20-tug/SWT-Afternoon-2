@@ -28,12 +28,7 @@ describe('SearchboxComponent', () => {
     expect(component).toBeTruthy();
   });
 
- it('should emit searchBoxEvent in search', () => {
-     component.searchText = 'test';
-     const spyEmit = spyOn(component.searchBoxEvent, 'emit');
-     component.search();
-     expect(spyEmit).toHaveBeenCalled();
-   });
+  afterAll(() => TestBed.resetTestingModule());
 
 
 });
