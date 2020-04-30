@@ -1,0 +1,32 @@
+
+.price-box {
+  padding: 8px;
+  border-bottom: 1px solid gray;
+}
+
+.mat-slider-horizontal {
+  height: 48px;
+  min-width: 180px !important;
+}
+
+.margin-button {
+  margin-top: 15px !important;
+}
+
+.star {
+  position: relative;
+  display: inline-block;
+  color: #d3d3d3;
+  font-size: 2rem;
+}
+
+.full {
+  color: #f6ab3f;
+}
+
+.half {
+  position: absolute;
+  display: inline-block;
+  overflow: hidden;
+  color: #f6ab3f;
+}
