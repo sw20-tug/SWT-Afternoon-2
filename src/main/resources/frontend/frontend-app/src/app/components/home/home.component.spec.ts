@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HomeComponent } from './home.component';
-import { HttpClient, HttpHandler } from '@angular/common/http';
+import { HttpClient, HttpHandler  } from '@angular/common/http';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -12,7 +12,7 @@ describe('HomeComponent', () => {
       declarations: [ HomeComponent ],
       providers: [
         HttpClient,
-        HttpHandler
+        HttpHandler 
       ],
     })
     .compileComponents();
@@ -27,11 +27,7 @@ describe('HomeComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-it('should call initializeAllCategories in clearSearchEvent', () => {
-    const spyInitializeAllCategories = spyOn(component, 'initializeAllCategories');
-    component.clearSearchEvent('test');
-    expect(spyInitializeAllCategories).toHaveBeenCalled();
-  });
+  
+  afterAll(() => TestBed.resetTestingModule());
 
 });

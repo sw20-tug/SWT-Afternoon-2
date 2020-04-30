@@ -48,13 +48,12 @@ public interface HotelRepository extends CrudRepository<Hotel, Long> {
   List <Hotel> findByActivity(String activity);
 
   List <Hotel> findByOtherFilters(String otherFilters);
-/*
-  @Query("SELECT e FROM Employee e WHERE e.dept = :dept AND "
-    + "(SELECT COUNT(DISTINCT e2.salary) FROM Employee e2 "
-    + "WHERE e.salary < e2.salary AND e2.dept = :dept) < :topSalNum "
-    + "ORDER BY e.salary DESC")
-  List<Employee> findByDeptTopNSalaries(@Param("topSalNum") long topSalaryNum, @Param("dept") String dept);
-*/
+
+  @Query(
+    value = "SELECT * FROM hotel WHERE category_id = :categoryId limit 5",
+    nativeQuery = true)
+  List <Hotel> findByCategoryId(@Param("categoryId")int categoryId);
+
   @Query("FROM Hotel WHERE price >= :minPrice AND price <= :maxPrice AND rate >= :minRating AND rate <= :maxRating " +
     "AND stars = :stars AND activity = :activity AND city IN (:locations) AND otherFilters = :otherFilters")
     List <Hotel> applyFilters(@Param("minPrice") int minPrice, @Param("maxPrice")int maxPrice, @Param("minRating")int minRating,

@@ -15,13 +15,15 @@ export class HotelListComponent implements OnInit {
 
   constructor(private HttpClientService: HttpClientService, private HotelService: HotelService) {
     this.HotelService.hotelList.subscribe( hotels => {
-      this.hotels = hotels;
+      var listOfHotels = new Array<Hotel>();
+      if(hotels === null || typeof hotels === 'undefined')
+        return;
+
+      hotels.forEach(hotel => {
+        listOfHotels.push(Hotel.MapHotel(hotel));
+      });
+      this.hotels = listOfHotels;
     })
-/*
-    this.HttpClientService.findAll().subscribe( hotel => {
-      console.log("hotel is", hotel);
-      this.hotels = hotel;
-    }) */
   }
 
   ngOnInit(): void {

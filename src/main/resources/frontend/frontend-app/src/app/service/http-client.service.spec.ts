@@ -1,7 +1,7 @@
 import { async, TestBed } from '@angular/core/testing';
 
 import { HttpClientService } from './http-client.service';
-import { HttpClient, HttpHandler } from '@angular/common/http';
+import { HttpClient, HttpHandler, HttpClientModule } from '@angular/common/http';
 
 describe('HttpClientService', () => {
   let service: HttpClientService;
@@ -9,8 +9,7 @@ describe('HttpClientService', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       providers: [	
-        HttpClient,	
-        HttpHandler	
+        HttpClient, HttpHandler
       ],
     })
     .compileComponents();
@@ -25,12 +24,7 @@ describe('HttpClientService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('check if undefined', async(() => {
-   var u = service.checkIfUndefined(undefined);
-    expect(u).toEqual(0);
 
-    var v = service.checkIfUndefined("value");
-    expect(v).toEqual("value");
+  afterAll(() => TestBed.resetTestingModule());
 
-  }));
 });

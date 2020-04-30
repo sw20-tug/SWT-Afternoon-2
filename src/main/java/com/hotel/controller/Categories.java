@@ -9,13 +9,17 @@ public class Categories {
 
   public String categoryName;
 
-  public List <Hotel> hotels_inside_category = new ArrayList<Hotel>();
+  public List <Hotel> hotelsInsideCategory = new ArrayList<Hotel>();
   public Categories(String name) {this.categoryName = name;}
 
-  public void setHotelInsideCategory(Hotel hotel_inside_category) {
-    this.hotels_inside_category.add(hotel_inside_category);
+  public void setHotelInsideCategory(Hotel hotelInsideCategory) {
+    this.hotelsInsideCategory.add(hotelInsideCategory);
   }
   public List <Hotel> getHotelsInsideCategory(){
-    return this.hotels_inside_category;
+    return this.hotelsInsideCategory;
+  }
+
+  public void setHotelsInsideCategory(List<Hotel> hotelsInsideCategory) {
+    this.hotelsInsideCategory.addAll(hotelsInsideCategory);
   }
 }

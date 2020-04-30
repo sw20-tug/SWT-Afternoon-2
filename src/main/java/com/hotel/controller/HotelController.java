@@ -92,4 +92,8 @@ public class HotelController {
                                                   Integer.parseInt(starsFilter),currentlySelectedActivities,currentlySelectedLocations,otherFilters);
   }
 
+  @GetMapping(path="/getCategories")
+  public @ResponseBody List<Categories> getFilledCategories() {
+    return this.hotelService.getCategoriesWithHotels();
+  }
 }

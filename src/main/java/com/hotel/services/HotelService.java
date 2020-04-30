@@ -252,5 +252,29 @@ public class HotelService {
     return hotelsInsideCategories;
   }
 
+  public List<Categories> getCategoriesWithHotels() {
+    Categories categoryRomantic = new Categories("Romantic");
+    Categories categoryAdventure = new Categories("Adventure");
+    Categories categoryHoliday = new Categories("Holiday");
+    Categories categoryWellness = new Categories("Wellness");
+    Categories categoryFamily = new Categories("Family");
+    Categories categoryCamping = new Categories("Camping");
 
+    categoryRomantic.setHotelsInsideCategory(this.hr.findByCategoryId(1));
+    categoryAdventure.setHotelsInsideCategory(this.hr.findByCategoryId(2));
+    categoryHoliday.setHotelsInsideCategory(this.hr.findByCategoryId(3));
+    categoryWellness.setHotelsInsideCategory(this.hr.findByCategoryId(4));
+    categoryFamily.setHotelsInsideCategory(this.hr.findByCategoryId(5));
+    categoryCamping.setHotelsInsideCategory(this.hr.findByCategoryId(6));
+
+    List<Categories> allCategories = new ArrayList<Categories>();
+    allCategories.add(categoryRomantic);
+    allCategories.add(categoryAdventure);
+    allCategories.add(categoryHoliday);
+    allCategories.add(categoryWellness);
+    allCategories.add(categoryFamily);
+    allCategories.add(categoryCamping);
+
+    return allCategories;
+  }
 }

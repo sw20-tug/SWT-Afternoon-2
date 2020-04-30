@@ -18,7 +18,7 @@ export class CategoryListComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-   
+
   }
 
   filteredCategories(filteredCategoryList: any[]){
@@ -26,7 +26,7 @@ export class CategoryListComponent implements OnInit {
   }
 
   onCategoryClick(index: number){
-    
+
   }
 
   clearSearch(){

@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HeaderComponent } from './header.component';
-import { HttpClient, HttpHandler } from '@angular/common/http';
+import { HttpClient, HttpHandler, HttpClientModule  } from '@angular/common/http';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -12,7 +12,7 @@ describe('HeaderComponent', () => {
       declarations: [ HeaderComponent ],
       providers: [
         HttpClient,
-        HttpHandler
+        HttpHandler 
       ],
     })
     .compileComponents();
@@ -28,10 +28,5 @@ describe('HeaderComponent', () => {
     expect(component).toBeTruthy();
   });
 
-it('should emit searchHeaderEvent in searchBoxEvent', () => {
-    const spyEmit = spyOn(component.searchHeaderEvent, 'emit');
-    component.searchBoxEvent('test');
-    expect(spyEmit).toHaveBeenCalled();
-  })
-
+  afterAll(() => TestBed.resetTestingModule());
 });
