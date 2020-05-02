@@ -50,7 +50,7 @@ public interface HotelRepository extends CrudRepository<Hotel, Long> {
   List <Hotel> findByOtherFilters(String otherFilters);
 
   @Query(
-    value = "SELECT * FROM hotel WHERE category_id = :categoryId limit 5",
+    value = "SELECT * FROM hotel WHERE category_id = :categoryId ORDER BY RAND() limit 5",
     nativeQuery = true)
   List <Hotel> findByCategoryId(@Param("categoryId")int categoryId);
 
