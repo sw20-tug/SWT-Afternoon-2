@@ -42,8 +42,6 @@ public class MainApplication implements  CommandLineRunner {
   public void run(String... args) throws Exception {
     System.out.println("Starting main application");
 
-  
-    
     this.hs = new HotelService(hr);
     this.cs = new CategoryService(cr);
 
@@ -64,6 +62,9 @@ public class MainApplication implements  CommandLineRunner {
     String otfil ="1101010010";
     List<Hotel> hotels = this.hs.hr.applyFilters(minPrice,maxPrice,minRating,maxRating,stars,ac,lc,otfil);
 
+
+    System.out.println("test insert into database");
+    this.hs.hr.insertNewHotels(1994, maxPrice, maxRating, stars, ac, lc.get(0), otfil);
   }
 
   public void fill_db()

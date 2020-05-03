@@ -5,6 +5,8 @@ import com.hotel.repository.HotelRepository;
 import com.hotel.services.CustomerService;
 import com.hotel.services.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -95,5 +97,11 @@ public class HotelController {
   @GetMapping(path="/getCategories")
   public @ResponseBody List<Categories> getFilledCategories() {
     return this.hotelService.getCategoriesWithHotels();
+  }
+
+  @PostMapping(path="/addNewHotels")
+  public @ResponseBody ResponseEntity<String> AddNewHotels() {
+    this.hotelService.insertNewHotels();
+    return new ResponseEntity<String>("POST Response", HttpStatus.OK);
   }
 }

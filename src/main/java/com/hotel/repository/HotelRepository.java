@@ -1,10 +1,12 @@
 package com.hotel.repository;
 
 import com.hotel.model.Hotel;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -48,6 +50,15 @@ public interface HotelRepository extends CrudRepository<Hotel, Long> {
   List <Hotel> findByActivity(String activity);
 
   List <Hotel> findByOtherFilters(String otherFilters);
+
+
+  @Transactional
+  @Modifying
+  @Query(
+    value = "INSERT INTO swt.hotel(id, activity, activity_gym, activity_openbar, activity_running, air_conditioning, beach_front, city, description, fitness, free_wi_fi, image_path, name, other_filters, parking, pets, price, rate, restaurant, sauna, smoking, stars, swimming_pool, category_id) VALUES (:id, :activity, b'1', b'0', b'1', b'0', b'1', :city, 'Hotel Ivano-Frankivsk with parking place  without restaurant  allowing pets, with swimming pooland etc. is waiting for you :)', b'0', b'1', 'https://traffickcam.com/images/2017/4/20160304_233556_62JBML.jpg', 'Extended Stay America - Fairbanks - Old Airport Way', :otherFilters, b'1', b'1', :price, :rating, b'0', b'0', b'1', :stars, b'1', 2)",
+    nativeQuery = true)
+  void  insertNewHotels(@Param("id") int id, @Param("price") int price, @Param("rating")int rating, @Param("stars")int stars,
+                       @Param("activity")String activity, @Param("city")String city, @Param("otherFilters")String otherFilters);
 
   @Query(
     value = "SELECT * FROM hotel WHERE category_id = :categoryId ORDER BY RAND() limit 5",

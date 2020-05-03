@@ -277,4 +277,9 @@ public class HotelService {
 
     return allCategories;
   }
+
+  public void insertNewHotels()
+  {
+    //this.hr.insertNewHotels();
+  }
 }
