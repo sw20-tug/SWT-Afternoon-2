@@ -63,8 +63,9 @@ public class MainApplication implements  CommandLineRunner {
     List<Hotel> hotels = this.hs.hr.applyFilters(minPrice,maxPrice,minRating,maxRating,stars,ac,lc,otfil);
 
 
-    System.out.println("test insert into database");
-    this.hs.hr.insertNewHotels(1994, maxPrice, maxRating, stars, ac, lc.get(0), otfil);
+//    System.out.println("test insert into database");
+     // this.hs.hr.insertNewHotels(2025, "name", "description", maxPrice, maxRating, stars, ac, lc.get(0), otfil, "https://traffickcam.com/images/2017/4/20160304_233556_62JBML.jpg");
+
   }
 
   public void fill_db()

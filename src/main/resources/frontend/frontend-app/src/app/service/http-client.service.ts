@@ -75,6 +75,17 @@ export class HttpClientService {
     );
   }
 
+  //TODO parameters: name, description, price, rating, stars, city, activity, otherFilters, image
+  public insertNewHotel(name: string, description: string, price: number, rating: number,
+                        stars: number, city: string, activities: string[], otherFilters: boolean[], image: string): Observable<any> {
+    return this.http.post<any[]>(this.usersUrl + '/addNewHotels?name=' + name + '&description=' + description +
+      '&price=' + price + '&rating=' + rating + '&stars=' + stars + '&city=' + city +
+      '&activities=' + activities + '&otherFilters=' + otherFilters + '&image=' + image, this.httpOptions).pipe(
+      retry(this.retryCount),
+      catchError(this.errorHandler)
+    );
+  }
+
   public errorHandler(error) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
@@ -92,18 +103,6 @@ export class HttpClientService {
       return 0;
     else
       return value;
-  }
-
-  public checkIfEmptyList(list_to_send)
-  {
-    if(list_to_send === undefined)
-    {
-      return '';
-    }
-    else
-    {
-      return list_to_send;
-    }
   }
 
 }

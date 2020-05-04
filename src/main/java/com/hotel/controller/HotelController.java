@@ -100,8 +100,13 @@ public class HotelController {
   }
 
   @PostMapping(path="/addNewHotels")
-  public @ResponseBody ResponseEntity<String> AddNewHotels() {
-    this.hotelService.insertNewHotels();
+  public @ResponseBody ResponseEntity<String> AddNewHotels(@RequestParam String name, @RequestParam String description,
+                                                           @RequestParam String price, @RequestParam String rating,
+                                                           @RequestParam String stars, @RequestParam String city,
+                                                           @RequestParam String[] activities, @RequestParam Boolean[] otherFilters,
+                                                           @RequestParam String image) {
+//    this.hotelService.insertNewHotels(name, description, Integer.parseInt(price), Integer.parseInt(rating),
+//      Integer.parseInt(stars), city, activities, otherFilters, image);
     return new ResponseEntity<String>("POST Response", HttpStatus.OK);
   }
 }
