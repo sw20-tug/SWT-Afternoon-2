@@ -23,6 +23,8 @@ export class HotelListComponent implements OnInit {
         listOfHotels.push(Hotel.MapHotel(hotel));
       });
       this.hotels = listOfHotels;
+     /////// this.hotels = null;
+      console.log('Hotleri', this.hotels);
     })
   }
 

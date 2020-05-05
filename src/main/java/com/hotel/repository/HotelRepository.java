@@ -102,12 +102,12 @@ public interface HotelRepository extends CrudRepository<Hotel, Long> {
   List<Hotel> getHotelOrderedByRateDESC(int category_id);
 
   @Query(
-    value = "SELECT * FROM hotel WHERE category_id = ?1 ORDER BY stars ASC limit 5",
+    value = "SELECT * FROM hotel WHERE category_id = ?1 ORDER BY stars DESC limit 5",
     nativeQuery = true)
   List<Hotel> getHotelOrderedByStarsASC(int category_id);
 
   @Query(
-    value = "SELECT * FROM hotel WHERE category_id = ?1 ORDER BY stars DESC limit 5",
+    value = "SELECT * FROM hotel WHERE category_id = ?1 ORDER BY stars ASC limit 5",
     nativeQuery = true)
   List<Hotel> getHotelOrderedByStarsDESC(int category_id);
 }
