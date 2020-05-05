@@ -28,7 +28,11 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
 import { NgSelectModule } from '@ng-select/ng-select';
 import {MatChipsModule} from '@angular/material/chips';
-
+import { SortByPipe } from './sort-by-pipe.pipe';
+import { NewHotelComponent } from './components/header/new-hotel/new-hotel.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import {UploadService} from "./service/upload.service";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +43,9 @@ import {MatChipsModule} from '@angular/material/chips';
     CategoryListComponent,
     CategoryListItemComponent,
     SearchboxComponent,
-    FiltersComponent
+    FiltersComponent,
+    SortByPipe,
+    NewHotelComponent
   ],
   imports: [
     BrowserModule,
@@ -52,19 +58,21 @@ import {MatChipsModule} from '@angular/material/chips';
     NgMultiSelectDropDownModule.forRoot(),
     MatCardModule,
     MatFormFieldModule,
-    MatIconModule,
     MatInputModule,
     MatCheckboxModule,
     MatRadioModule,
     MatButtonModule,
     MatSelectModule,
     NgSelectModule,
-    MatChipsModule
+    MatChipsModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    MatProgressBarModule
   ],
   exports: [
     HeaderComponent
   ],
-  providers: [HttpClient, HttpClientService],
+  providers: [HttpClient, HttpClientService, SortByPipe, UploadService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
