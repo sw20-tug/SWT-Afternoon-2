@@ -99,9 +99,9 @@ export class NewHotelComponent implements OnInit {
   public insertNewHotel() {
     console.log('im,age url', this.hotelForm.get('otherFilters').value);
     this.httpService.insertNewHotel(this.hotelForm.get('name').value, this.hotelForm.get('descr').value,
-      this.hotelForm.get('category').value, this.hotelForm.get('activities').value, this.hotelForm.get('stars').value,
-      this.hotelForm.get('price').value, this.hotelForm.get('city').value, this.hotelForm.get('rating').value,
-      this.hotelForm.get('otherFilters').value, this.imageURL).subscribe(response => {
+      this.hotelForm.get('category').value, this.hotelForm.get('price').value, this.hotelForm.get('rating').value,
+      this.hotelForm.get('stars').value, this.hotelForm.get('city').value,
+      this.hotelForm.get('activities').value, this.hotelForm.get('otherFilters').value, this.imageURL).subscribe(response => {
         console.log('response', response);
     });
   }
