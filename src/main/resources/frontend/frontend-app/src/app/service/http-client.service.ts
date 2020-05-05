@@ -37,13 +37,36 @@ export class HttpClientService {
     return this.http.get<Hotel[]>(this.serverUrl+ '/hotel?price=' + price);
   }
 
-  public insertNewHotel(name: string, description: string, category: string, activities: string, stars: number, price: number,
-                        city: string, rating: number, otherFilters: number, imageURL: string) {
-    return this.http.post<any>(this.serverUrl + 'addNewHotel/' + name + description + category + activities + stars
-      + price + city + rating + otherFilters + imageURL,this.httpOptions)
-      .pipe(
-        retry(this.retryCount)
-      )
+  // public insertNewHotel(name: string, description: string, category: string, activities: string, stars: number, price: number,
+  //                       city: string, rating: number, otherFilters: number, imageURL: string) {
+  //   return this.http.post<any>(this.serverUrl + 'addNewHotel/' + name + description + category + activities + stars
+  //     + price + city + rating + otherFilters + imageURL,this.httpOptions)
+  //     .pipe(
+  //       retry(this.retryCount)
+  //     )
+  // }
+
+  //TODO parameters: name, description, price, rating, stars, city, activity, otherFilters, image
+  public insertNewHotel(name: string, description: string, category: string, price: number, rating: number,
+                        stars: number, city: string, activities: string, otherFilters: number, imageURL: string) {
+
+
+    console.log("hotel name: " + name)
+    console.log("hotel desc: " + description)
+    console.log("hotel category: " + category)
+    console.log("hotel price: " + price)
+    console.log("hotel rating: " + rating)
+    console.log("hotel stars: " + stars)
+    console.log("hotel city: " + city)
+    console.log("hotel activities: " + activities)
+    console.log("hotel of: " + otherFilters)
+    console.log("hotel image: " + imageURL)
+    return this.http.post<any[]>(this.serverUrl + '/addNewHotel?name=' + name + '&description=' + description +
+      '&category=' + category +
+      '&price=' + price + '&rating=' + rating + '&stars=' + stars + '&city=' + city +
+      '&activities=' + activities + '&otherFilters=' + otherFilters + '&imageURL=' + imageURL, this.httpOptions).pipe(
+        catchError(this.errorHandler)
+    );
   }
 
   public getFilteredHotels(minPrice: number, maxPrice: number,
@@ -100,18 +123,6 @@ export class HttpClientService {
       return 0;
     else
       return value;
-  }
-
-  public checkIfEmptyList(list_to_send)
-  {
-    if(list_to_send === undefined)
-    {
-      return '';
-    }
-    else
-    {
-      return list_to_send;
-    }
   }
 
 }

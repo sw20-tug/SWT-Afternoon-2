@@ -42,8 +42,6 @@ public class MainApplication implements  CommandLineRunner {
   public void run(String... args) throws Exception {
     System.out.println("Starting main application");
 
-  
-    
     this.hs = new HotelService(hr);
     this.cs = new CategoryService(cr);
 
@@ -63,6 +61,10 @@ public class MainApplication implements  CommandLineRunner {
     lc.add("Athens");
     String otfil ="1101010010";
     List<Hotel> hotels = this.hs.hr.applyFilters(minPrice,maxPrice,minRating,maxRating,stars,ac,lc,otfil);
+
+
+//    System.out.println("test insert into database");
+     // this.hs.hr.insertNewHotels(2025, "name", "description", maxPrice, maxRating, stars, ac, lc.get(0), otfil, "https://traffickcam.com/images/2017/4/20160304_233556_62JBML.jpg");
 
   }
 

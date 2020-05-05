@@ -130,18 +130,24 @@ public class HotelService {
 
   public Iterable<Categories> applyAllFiltersAndGetHotels(int minPrice, int maxPrice, int minRating, int maxRating, int stars,
                                                           String[] currentlySelectedActivities, String[] currentlySelectedLocations, Boolean[] otherFilters) {
-    StringBuilder activity = new StringBuilder();
 
-    //we have three activites and need to initialise it
-    for(int i = 0; i < NUMBER_OF_ACTIVITIES; i++)
-    {
-      activity.append(0);
-    }
-    System.out.println("initial activitiy" + activity.toString());
+//    System.out.println("minPrice " + minPrice);
+//    System.out.println("maxPrice " + maxPrice);
+//    System.out.println("minRating " + minRating);
+//    System.out.println("maxRating " + maxRating);
+//    System.out.println("stars " + stars);
+////    System.out.println("activitiy " + activity.toString());
+////
+////    for(String location: locations)
+////      System.out.println("location " + location);
+//
+//    //System.out.println("otherfilters " + otherFilters_.toString());
 
+    List <Hotel> hotels = this.hr.applyFilters(minPrice, maxPrice, minRating, maxRating, stars, convertActivitesToString(currentlySelectedActivities), Arrays.asList(currentlySelectedLocations), convertOtherFiltersToString(otherFilters));
 
-    StringBuilder otherFilters_ = new StringBuilder();
-    List<String> locations = Arrays.asList(currentlySelectedLocations);
+    System.out.println("found hotels: ");
+    for(Hotel it: hotels)
+      System.out.println(it.getName());
 
     Categories category_romantic = new Categories("Romantic");
     Categories category_adventure = new Categories("Adventure");
@@ -150,95 +156,47 @@ public class HotelService {
     Categories category_family = new Categories("Family");
     Categories category_camping = new Categories("Camping");
 
-
-    for(boolean filter : otherFilters){
-       otherFilters_.append(filter ? "1" : "0");
-     }
-
-     for(String activity_ : currentlySelectedActivities)
-     {
-       switch(activity_){
-         case "Gym":
-         {
-           activity.replace(0, 1, "1");
-           break;
-         }
-         case "Running":
-         {
-           activity.replace(1, 2, "1");
-           break;
-         }
-         case "Open bar":
-         {
-           activity.replace(2, 3, "1");
-           break;
-         }
+   for(Hotel ht : hotels){
+     System.out.println("hotel is: " + ht.getName());
+     switch(ht.getCategory().getName()){
+       case "Romantic":
+       {
+         System.out.println("romantic");
+         category_romantic.setHotelInsideCategory(ht);
+         break;
+       }
+       case "Adventure":
+       {
+         System.out.println("adventure");
+         category_adventure.setHotelInsideCategory(ht);
+         break;
+       }
+       case "Holiday":
+       {
+         System.out.println("holiday");
+         category_holiday.setHotelInsideCategory(ht);
+         break;
+       }
+       case "Wellness":
+       {
+         System.out.println("wellness");
+         category_wellness.setHotelInsideCategory(ht);
+         break;
+       }
+       case "Family":
+       {
+         System.out.println("family");
+         category_family.setHotelInsideCategory(ht);
+         break;
+       }
+       case "Camping":
+       {
+         System.out.println("camping");
+         category_camping.setHotelInsideCategory(ht);
+         break;
        }
      }
-
-
-
-    System.out.println("minPrice " + minPrice);
-    System.out.println("maxPrice " + maxPrice);
-    System.out.println("minRating " + minRating);
-    System.out.println("maxRating " + maxRating);
-    System.out.println("starts " + stars);
-    System.out.println("activitiy " + activity.toString());
-
-    for(String location: locations)
-      System.out.println("location " + location);
-
-    System.out.println("otherfilters " + otherFilters_.toString());
-
-    List <Hotel> hotels = this.hr.applyFilters(minPrice,maxPrice,minRating,maxRating,stars,activity.toString(),locations,otherFilters_.toString());
-
-    System.out.println("found hotels: ");
-    for(Hotel it: hotels)
-      System.out.println(it.getName());
-
-
-
-     for(Hotel ht : hotels){
-       System.out.println("hotel is: " + ht.getName());
-       switch(ht.getCategory().getName()){
-         case "Romantic":
-         {
-           System.out.println("romantic");
-           category_romantic.setHotelInsideCategory(ht);
-           break;
-         }
-         case "Adventure":
-         {
-           System.out.println("adventure");
-           category_adventure.setHotelInsideCategory(ht);
-           break;
-         }
-         case "Holiday":
-         {
-           System.out.println("holiday");
-           category_holiday.setHotelInsideCategory(ht);
-           break;
-         }
-         case "Wellness":
-         {
-           System.out.println("wellness");
-           category_wellness.setHotelInsideCategory(ht);
-           break;
-         }
-         case "Family":
-         {
-           System.out.println("family");
-           category_family.setHotelInsideCategory(ht);
-           break;
-         }
-         case "Camping":
-         {
-           System.out.println("camping");
-           category_camping.setHotelInsideCategory(ht);
-           break;
-         }
-       }
-     }
+   }
 
     List<Categories> hotelsInsideCategories = new ArrayList<Categories>();
 
@@ -277,4 +235,57 @@ public class HotelService {
 
     return allCategories;
   }
+
+  public void insertNewHotels(String name, String description, Integer price, Integer rating, Integer stars,
+                              String city, String[] activities, Boolean[] otherFilters, String image)
+  {
+    //generate new id
+    Integer new_id = this.hr.findLastId() + 1;
+    System.out.println("new_id is " + new_id);
+    this.hr.insertNewHotels(new_id, name, description, price, rating, stars, city, convertActivitesToString(activities), convertOtherFiltersToString(otherFilters), image);
+  }
+
+  //helper functions
+  public String convertActivitesToString(String[] currentlySelectedActivities)
+  {
+    StringBuilder activity = new StringBuilder();
+
+    //we have three activites and need to initialise it
+    for(int i = 0; i < NUMBER_OF_ACTIVITIES; i++)
+      activity.append(0);
+
+    for(String activity_ : currentlySelectedActivities)
+    {
+      switch(activity_){
+        case "Gym":
+        {
+          activity.replace(0, 1, "1");
+          break;
+        }
+        case "Running":
+        {
+          activity.replace(1, 2, "1");
+          break;
+        }
+        case "Open bar":
+        {
+          activity.replace(2, 3, "1");
+          break;
+        }
+      }
+    }
+
+    System.out.println("initial activitiy" + activity.toString());
+    return  activity.toString();
+  }
+
+  public String convertOtherFiltersToString(Boolean[] otherFilters)
+  {
+    StringBuilder otherFilters_ = new StringBuilder();
+    for(boolean filter : otherFilters){
+      otherFilters_.append(filter ? "1" : "0");
+    }
+    return otherFilters_.toString();
+  }
+
 }
