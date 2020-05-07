@@ -48,7 +48,7 @@ export class HttpClientService {
 
   //TODO parameters: name, description, price, rating, stars, city, activity, otherFilters, image
   public insertNewHotel(name: string, description: string, category: string, price: number, rating: number,
-                        stars: number, city: string, activities: string, otherFilters: number, imageURL: string) {
+                        stars: number, city: string, activities: string, otherFilters: (boolean)[], imageURL: string) {
 
 
     console.log("hotel name: " + name)

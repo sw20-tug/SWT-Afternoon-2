@@ -6,6 +6,8 @@ import {catchError, map} from "rxjs/operators";
 import {HttpErrorResponse, HttpEventType} from "@angular/common/http";
 import {of} from "rxjs";
 import {HttpClientService} from "../../../service/http-client.service";
+import {OtherFilters} from "../../filters/other-filter.model";
+import {FiltersModel} from "../../filters/filters.model";
 
 export interface OwnerForCreation {
   name: string;
@@ -25,9 +27,11 @@ export class NewHotelComponent implements OnInit {
   @ViewChild("fileUpload", {static: false}) fileUpload: ElementRef;files  = [];
   public uploadButtonClicked: boolean;
   private imageURL: string;
+  public otherFilters: OtherFilters;
 
   constructor(private readonly router: Router, private readonly uploadService: UploadService,
               private readonly httpService: HttpClientService) {
+    this.otherFilters = new OtherFilters();
 
   }
 
@@ -97,11 +101,17 @@ export class NewHotelComponent implements OnInit {
   }
 
   public insertNewHotel() {
-    console.log('im,age url', this.hotelForm.get('otherFilters').value);
+
+    let allFiltersIntoList = [this.otherFilters.parkingFilter === undefined ? false : true, this.otherFilters.restaurantFilter  === undefined ? false : true,
+      this.otherFilters.petsAllowedFilter  === undefined ? false : true, this.otherFilters.nonsmokingRoomsFilter  === undefined ? false : true,
+      this.otherFilters.swimmingPoolFilter  === undefined ? false : true, this.otherFilters.beachfrontFilter  === undefined ? false : true,
+      this.otherFilters.airConditioningFilter  === undefined ? false : true, this.otherFilters.freeWifiFilter  === undefined ? false : true,
+      this.otherFilters.saunaFilter  === undefined ? false : true, this.otherFilters.fitnessFilter  === undefined ? false : true];
+
     this.httpService.insertNewHotel(this.hotelForm.get('name').value, this.hotelForm.get('descr').value,
       this.hotelForm.get('category').value, this.hotelForm.get('price').value, this.hotelForm.get('rating').value,
       this.hotelForm.get('stars').value, this.hotelForm.get('city').value,
-      this.hotelForm.get('activities').value, this.hotelForm.get('otherFilters').value, this.imageURL).subscribe(response => {
+      this.hotelForm.get('activities').value, allFiltersIntoList, this.imageURL).subscribe(response => {
         console.log('response', response);
     });
   }
