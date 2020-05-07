@@ -8,6 +8,7 @@ import {of} from "rxjs";
 import {HttpClientService} from "../../../service/http-client.service";
 import {OtherFilters} from "../../filters/other-filter.model";
 import {FiltersModel} from "../../filters/filters.model";
+import {IDropdownSettings} from "ng-multiselect-dropdown";
 
 export interface OwnerForCreation {
   name: string;
@@ -28,11 +29,31 @@ export class NewHotelComponent implements OnInit {
   public uploadButtonClicked: boolean;
   private imageURL: string;
   public otherFilters: OtherFilters;
+  private _dropdownSettings: IDropdownSettings;
+  public activities: any;
+  public get dropdownSettings() {
+    return this._dropdownSettings;
+  }
+  public selectActivities() {
+    this.selectedActivities.push(this.currentlySelectedActivities);
+  }
+  public currentlySelectedActivities: any;
+
+  public selectedActivities: any[] = [];
 
   constructor(private readonly router: Router, private readonly uploadService: UploadService,
               private readonly httpService: HttpClientService) {
     this.otherFilters = new OtherFilters();
-
+    this._dropdownSettings = {
+      singleSelection: false,
+      idField: 'item_id',
+      textField: 'name',
+      selectAllText: 'Select All',
+      unSelectAllText: 'Unselect All',
+      itemsShowLimit: 14,
+      allowSearchFilter: true
+    };
+    this.activities = ["Gym", "Running", "Open bar"];
   }
 
   ngOnInit() {
@@ -111,7 +132,7 @@ export class NewHotelComponent implements OnInit {
     this.httpService.insertNewHotel(this.hotelForm.get('name').value, this.hotelForm.get('descr').value,
       this.hotelForm.get('category').value, this.hotelForm.get('price').value, this.hotelForm.get('rating').value,
       this.hotelForm.get('stars').value, this.hotelForm.get('city').value,
-      this.hotelForm.get('activities').value, allFiltersIntoList, this.imageURL).subscribe(response => {
+      this.hotelForm.get('activities').value, allFiltersIntoList, this.currentlySelectedActivities, this.imageURL).subscribe(response => {
         console.log('response', response);
     });
   }

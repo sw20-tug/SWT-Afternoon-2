@@ -38,11 +38,9 @@ li {
   margin: 10px;
   white-space: nowrap;
   display: block;
+  flex: 1 0 10%;
 }
 
-.center-filter {
-
-}
 
 ::ng-deep .mat-checkbox .mat-checkbox-frame {
   border: 1px solid #ff7733 !important;
