@@ -109,8 +109,8 @@ public class HotelController {
     return new ResponseEntity<String>("POST Response", HttpStatus.OK);
   }
 
-   @GetMapping(path="/hotel-detail")
-   public @ResponseBody Hotel getHotelById(@RequestParam String hotelId) {
-    return this.hotelService.getHotelById(Integer.parseInt(hotelId));
+   @GetMapping(path="/hotelDetail")
+   public @ResponseBody Hotel getHotelById(@RequestParam String id) {
+    return this.hotelService.getHotelById(Integer.parseInt(id));
   }
 }

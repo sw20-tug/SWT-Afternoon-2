@@ -106,8 +106,8 @@ export class HttpClientService {
     );
   }
 
-  public getHotelById(hotelId: number): Observable<any> {
-    return this.http.get<any>(this.serverUrl + '/hotel-detail/' + hotelId, this.httpOptions).pipe(
+  public getHotelById(id: String): Observable<any> {
+    return this.http.get<any>(this.serverUrl + '/hotelDetail?id=' + id).pipe(
       retry(this.retryCount),
       catchError(this.errorHandler)
     );

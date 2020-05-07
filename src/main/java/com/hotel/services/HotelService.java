@@ -279,7 +279,8 @@ public class HotelService {
     return  activity.toString();
   }
 
-  public Hotel getHotelById(int hotelId){
+  public Hotel getHotelById(int hotelId)
+  {
     return this.hr.findHotelById(hotelId);
   }
 

@@ -16,6 +16,7 @@ export class HotelDetailComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.HttpClientService.getHotelById(params.id).subscribe(hotel => {
         this.hotel = Hotel.MapHotel(hotel);
+        console.log(this.hotel);
       })
     })
   }
