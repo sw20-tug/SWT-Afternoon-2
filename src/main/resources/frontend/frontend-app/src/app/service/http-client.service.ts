@@ -106,6 +106,13 @@ export class HttpClientService {
     );
   }
 
+  public getHotelById(hotelId: number): Observable<any> {
+    return this.http.get<any>(this.serverUrl + '/hotel-detail/' + hotelId, this.httpOptions).pipe(
+      retry(this.retryCount),
+      catchError(this.errorHandler)
+    );
+  }
+
   public errorHandler(error) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {

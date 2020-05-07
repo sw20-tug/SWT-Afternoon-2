@@ -33,6 +33,8 @@ import { NewHotelComponent } from './components/header/new-hotel/new-hotel.compo
 import { ReactiveFormsModule } from '@angular/forms';
 import {UploadService} from "./service/upload.service";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
+import { HotelDetailComponent } from './components/hotel-detail/hotel-detail.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +47,8 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
     SearchboxComponent,
     FiltersComponent,
     SortByPipe,
-    NewHotelComponent
+    NewHotelComponent,
+    HotelDetailComponent
   ],
   imports: [
     BrowserModule,

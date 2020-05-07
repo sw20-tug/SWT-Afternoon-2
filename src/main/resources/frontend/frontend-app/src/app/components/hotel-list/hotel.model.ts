@@ -1,6 +1,7 @@
 import { HotelDetails } from './hotel-details.model';
 
 export class Hotel {
+  public id: number;
   public name: string;
   public description: string;
   public price: string;
@@ -10,7 +11,8 @@ export class Hotel {
   public city: string;
   public hotelDetails: HotelDetails;
 
-  constructor(name: string, description: string, price: string, imagePath: string, stars: number, rate: number, city: string) {
+  constructor(id: number, name: string, description: string, price: string, imagePath: string, stars: number, rate: number, city: string) {
+    this.id = id;
     this.name = name;
     this.description = description;
     this.price = price;
@@ -29,7 +31,7 @@ export class Hotel {
   }
 
   static MapHotel(hotel: any) {
-    var mappedHotel = new Hotel(hotel.name, hotel.description, hotel.price, hotel.imagePath, hotel.stars, hotel.rate, hotel.city);
+    var mappedHotel = new Hotel(hotel.id, hotel.name, hotel.description, hotel.price, hotel.imagePath, hotel.stars, hotel.rate, hotel.city);
     var hotelDetails = new HotelDetails(hotel.activityGym, hotel.activityOpenBar, hotel.activityRunning, hotel.airConditioning,
                                         hotel.beachFront, hotel.fitness, hotel.freeWiFi, hotel.restaurant, hotel.swimmingPool,
                                         hotel.smoking, hotel.sauna, hotel.parking, hotel.pets);

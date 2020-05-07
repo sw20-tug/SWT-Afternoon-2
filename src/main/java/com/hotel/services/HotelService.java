@@ -279,6 +279,10 @@ public class HotelService {
     return  activity.toString();
   }
 
+  public Hotel getHotelById(int hotelId){
+    return this.hr.findHotelById(hotelId);
+  }
+
   public String convertOtherFiltersToString(Boolean[] otherFilters)
   {
     StringBuilder otherFilters_ = new StringBuilder();

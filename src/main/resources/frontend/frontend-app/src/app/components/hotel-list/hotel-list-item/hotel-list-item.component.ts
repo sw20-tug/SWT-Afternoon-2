@@ -12,10 +12,9 @@ export class HotelListItemComponent implements OnInit {
   @Input() hotel: Hotel;
   @Input() index: number;
 
-  constructor() { 
+  constructor() {
   }
 
-  ngOnInit(): void {  
+  ngOnInit(): void {
   }
-
 }
