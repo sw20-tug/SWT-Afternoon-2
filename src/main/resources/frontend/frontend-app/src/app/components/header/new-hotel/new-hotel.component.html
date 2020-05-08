@@ -16,15 +16,25 @@
           <mat-hint align="end">Not more then 100 characters long.</mat-hint>
         </mat-form-field>
         <br>
-        <mat-form-field>
-          <input matInput type="text" placeholder="Hotel category" formControlName="category">
-          <mat-hint align="end">Romantic, Adventure, Holiday, Wellness, Family, Camping</mat-hint>
-        </mat-form-field>
         <br>
-        <mat-form-field>
-          <input matInput type="text" placeholder="Hotel activities" formControlName="activities">
-        </mat-form-field>
-        <br>
+        <div class="container" style="width:350px">
+          <ng-multiselect-dropdown
+            [placeholder]="'Select categories'"
+            [data]="categories"
+            [(ngModel)]="currentlySelectedCategories"
+            [settings]="dropdownSettings"
+            (onSelect)="selectCategories()" [ngModelOptions]="{standalone: true}">
+          </ng-multiselect-dropdown>
+        </div>
+<!--        <mat-form-field>-->
+<!--          <input matInput type="text" placeholder="Hotel category" formControlName="category">-->
+<!--          <mat-hint align="end">Romantic, Adventure, Holiday, Wellness, Family, Camping</mat-hint>-->
+<!--        </mat-form-field>-->
+<!--        <br>-->
+<!--        <mat-form-field>-->
+<!--          <input matInput type="text" placeholder="Hotel activities" formControlName="activities">-->
+<!--        </mat-form-field>-->
+<!--        <br>-->
         <mat-form-field>
           <input matInput type="number" placeholder="Hotel stars" formControlName="stars">
           <mat-hint align="end">1 to 5</mat-hint>
@@ -45,7 +55,7 @@
         <br>
         <br>
 
-        <div class="container" style="width:250px">
+        <div class="container" style="width:350px">
           <ng-multiselect-dropdown
             [placeholder]="'Select activities'"
             [data]="activities"
