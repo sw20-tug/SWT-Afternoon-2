@@ -1,4 +1,4 @@
-<app-header></app-header>
+<app-header xmlns="http://www.w3.org/1999/html"></app-header>
 <section fxLayout="row wrap" fxLayoutAlign="center center">
   <mat-card fxFlex="500px" fxFlex.xs="100%">
     <mat-card-title>Add a new hotel</mat-card-title>
@@ -43,12 +43,72 @@
           <input matInput type="text" placeholder="Hotel city" formControlName="city">
         </mat-form-field>
         <br>
-        <mat-form-field>
-          <input matInput type="number" placeholder="Hotel filters" formControlName="otherFilters">
-          <mat-hint align="end">0 and 1</mat-hint>
-        </mat-form-field>
         <br>
-        <div style="text-align:center; margin-top: 30px; " class="mat-form-fieldd">
+
+        <div class="container" style="width:250px">
+          <ng-multiselect-dropdown
+            [placeholder]="'Select activities'"
+            [data]="activities"
+            [(ngModel)]="currentlySelectedActivities"
+            [settings]="dropdownSettings"
+            (onSelect)="selectActivities()" [ngModelOptions]="{standalone: true}">
+          </ng-multiselect-dropdown>
+          <br/>
+              <div class="filter-item">
+                <mat-checkbox id="parking" [(ngModel)]="otherFilters.parkingFilter"
+                              [ngModelOptions]="{standalone: true}">
+                  Parking
+                </mat-checkbox>
+              </div>
+              <div class="filter-item">
+                <mat-checkbox id="restaurant" [(ngModel)]="otherFilters.restaurantFilter"
+                              [ngModelOptions]="{standalone: true}">Restaurant
+                </mat-checkbox>
+              </div>
+              <div class="filter-item">
+                <mat-checkbox id="pets_allowed" [(ngModel)]="otherFilters.petsAllowedFilter"
+                              [ngModelOptions]="{standalone: true}">Pets allowed
+                </mat-checkbox>
+              </div>
+              <div class="filter-item">
+                <mat-checkbox id="non_smoking_rooms" [(ngModel)]="otherFilters.nonsmokingRoomsFilter"
+                              [ngModelOptions]="{standalone: true}">Non-smoking rooms
+                </mat-checkbox>
+              </div>
+              <div class="filter-item">
+                <mat-checkbox id="swimming_pool" [(ngModel)]="otherFilters.swimmingPoolFilter"
+                              [ngModelOptions]="{standalone: true}">Swimming pool
+                </mat-checkbox>
+              </div>
+              <div class="filter-item">
+                <mat-checkbox id="beachfront" [(ngModel)]="otherFilters.beachfrontFilter"
+                              [ngModelOptions]="{standalone: true}">Beachfront
+                </mat-checkbox>
+              </div>
+              <div class="filter-item">
+                <mat-checkbox id="air_conditioning" [(ngModel)]="otherFilters.airConditioningFilter"
+                              [ngModelOptions]="{standalone: true}">Air conditioning
+                </mat-checkbox>
+              </div>
+              <div class="filter-item">
+                <mat-checkbox id="free_wifi" [(ngModel)]="otherFilters.freeWifiFilter"
+                              [ngModelOptions]="{standalone: true}">Free WiFi
+                </mat-checkbox>
+              </div>
+              <div class="filter-item">
+                <mat-checkbox id="sauna" [(ngModel)]="otherFilters.saunaFilter" [ngModelOptions]="{standalone: true}">
+                  Sauna
+                </mat-checkbox>
+              </div>
+              <div class="filter-item">
+                <mat-checkbox id="fitness" [(ngModel)]="otherFilters.fitnessFilter"
+                              [ngModelOptions]="{standalone: true}">
+                  Fitness
+                </mat-checkbox>
+              </div>
+            </div>
+        <br>
+        <div style="text-align:center; " class="mat-form-fieldd">
           <span>Hotel photo</span>
           <mat-card style="margin-top:10px; width: 100%;">
             <mat-card-content>
@@ -68,7 +128,7 @@
             </mat-card-actions>
           </mat-card>
           <input type="file" #fileUpload id="fileUpload" name="fileUpload" multiple="multiple" accept="image/*"
-                 style="display:none;"/>
+                 style="display:none;">
         </div>
       </mat-card-content>
       <mat-card-actions>
@@ -81,5 +141,4 @@
       </mat-card-actions>
     </form>
   </mat-card>
-
 </section>
