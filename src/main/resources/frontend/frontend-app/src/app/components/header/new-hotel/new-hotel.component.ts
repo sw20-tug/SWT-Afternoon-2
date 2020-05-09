@@ -31,14 +31,22 @@ export class NewHotelComponent implements OnInit {
   public otherFilters: OtherFilters;
   private _dropdownSettings: IDropdownSettings;
   public activities: any;
+  public categories: any;
   public get dropdownSettings() {
     return this._dropdownSettings;
   }
   public selectActivities() {
     this.selectedActivities.push(this.currentlySelectedActivities);
   }
-  public currentlySelectedActivities: any;
 
+  public selectCategories() {
+    this.selectedCategories.push(this.currentlySelectedCategories);
+  }
+
+  public currentlySelectedActivities: any;
+  public currentlySelectedCategories: any;
+
+  public selectedCategories: any[] = [];
   public selectedActivities: any[] = [];
 
   constructor(private readonly router: Router, private readonly uploadService: UploadService,
@@ -54,6 +62,7 @@ export class NewHotelComponent implements OnInit {
       allowSearchFilter: true
     };
     this.activities = ["Gym", "Running", "Open bar"];
+    this.categories = ["Romantic", "Adventure", "Holiday", "Wellness", "Family", "Camping"];
   }
 
   ngOnInit() {
@@ -130,9 +139,9 @@ export class NewHotelComponent implements OnInit {
       this.otherFilters.saunaFilter  === undefined ? false : true, this.otherFilters.fitnessFilter  === undefined ? false : true];
 
     this.httpService.insertNewHotel(this.hotelForm.get('name').value, this.hotelForm.get('descr').value,
-      this.hotelForm.get('category').value, this.hotelForm.get('price').value, this.hotelForm.get('rating').value,
-      this.hotelForm.get('stars').value, this.hotelForm.get('city').value,
-      this.hotelForm.get('activities').value, allFiltersIntoList, this.currentlySelectedActivities, this.imageURL).subscribe(response => {
+      this.currentlySelectedCategories, this.hotelForm.get('price').value, this.hotelForm.get('rating').value,
+      this.hotelForm.get('stars').value, this.hotelForm.get('city').value,  this.currentlySelectedActivities, allFiltersIntoList, this.imageURL).subscribe(response => {
+        console.log("test")
         console.log('response', response);
     });
   }
