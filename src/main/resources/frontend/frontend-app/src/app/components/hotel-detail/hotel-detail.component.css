@@ -1,0 +1,11 @@
+.badge {
+    height: 1.3rem;
+}
+
+.badge-warning {
+    color: white;
+}
+
+.badge.badge-pill{
+    font-size: 0.7vw;
+}
