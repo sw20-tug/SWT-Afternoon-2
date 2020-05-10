@@ -22,6 +22,6 @@ jobs:
         run: |
           sudo systemctl start mysql
           mysql -uroot -proot < swt.sql
-          ./gradlew testMigrate
+          gradle test
       - name: Build and run tests
         run: gradle build
