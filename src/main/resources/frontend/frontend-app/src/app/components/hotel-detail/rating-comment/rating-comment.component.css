@@ -1,0 +1,33 @@
+.category {
+  padding: 10px;
+  border: 1px solid #8c8c8c;
+  border-radius: 10px;
+}
+
+.rating-comment:first-child {
+  border-top: 1px solid lightgray;
+}
+
+.rating-comment {
+  border-bottom: 1px solid lightgray;
+  margin-right: 0px;
+  margin-left: 0px;
+  padding: 15px;
+}
+
+.title {
+  color: gray;
+  font-weight: 400;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.mb-10 {
+  margin-bottom: 10px;
+}
+
+.align-right {
+  text-align: right;
+}

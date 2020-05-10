@@ -44,9 +44,66 @@
         </div>
         <div class="row">
             <div class="col-12">
+                <h3 class="header-info">Facilities</h3>      
+            </div>
+        </div>
+        <div class="row mr-10">
+            <div class="col-2" *ngFor="let facility of hotel.facilitiesList">
+               <i class="{{ facility.icon }}"></i> {{ facility.name }}    
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <h3 class="header-info">Description</h3>      
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
                 <p class="justify-content">{{ hotel.description }}</p>
             </div>
-        </div> 
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-4">
+                <mat-card>
+                    <mat-card-title class="mat-title">Add rating</mat-card-title>
+                    <form [formGroup]="commentForm" autocomplete="off" novalidate>
+                        <mat-card-content>
+                            <mat-form-field class="full-width">
+                                <input matInput type="text" placeholder="Name (optional)" formControlName="name">
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field class="full-width">
+                                <input matInput type="number" placeholder="Hotel rating" formControlName="rating">
+                                <mat-hint align="end">1 to 10</mat-hint>
+                            </mat-form-field>
+                            <br>    
+                            <mat-form-field class="full-width">
+                                <textarea  matInput type="text" placeholder="Comment" formControlName="comment"></textarea>
+                                <mat-hint align="end">Not more then 200 characters long.</mat-hint>
+                            </mat-form-field>
+                            <br>
+                        </mat-card-content>
+                        <button [disabled]="false" mat-raised-button>
+                            Send Rating
+                        </button>
+                    </form>
+                </mat-card>
+            </div>
+            <div class="col-8">
+                <mat-card>
+                    <mat-card-title class="mat-title">Comments and ratings</mat-card-title>
+                    <mat-card-content>    
+                        <div class="row rating-comment" *ngFor="let ratingComment of hotel.ratingComments">
+                            <app-rating-comment
+                                style="width: 100%;"
+                                [ratingComment]="ratingComment">
+                            </app-rating-comment>
+                         </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
     </div>    
   </div>
 </div>

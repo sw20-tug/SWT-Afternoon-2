@@ -18,6 +18,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxBootstrapSliderModule } from 'ngx-bootstrap-slider';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import {MatCardModule} from '@angular/material/card';
+import {MatListModule} from '@angular/material/list';
 import { FiltersComponent } from './components/filters/filters.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule, MatIcon } from '@angular/material/icon';
@@ -34,6 +35,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {UploadService} from "./service/upload.service";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import { HotelDetailComponent } from './components/hotel-detail/hotel-detail.component';
+import {MatSliderModule} from '@angular/material/slider';
+import { RatingCommentComponent } from './components/hotel-detail/rating-comment/rating-comment.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +51,8 @@ import { HotelDetailComponent } from './components/hotel-detail/hotel-detail.com
     FiltersComponent,
     SortByPipe,
     NewHotelComponent,
-    HotelDetailComponent
+    HotelDetailComponent,
+    RatingCommentComponent
   ],
   imports: [
     BrowserModule,
@@ -61,11 +65,13 @@ import { HotelDetailComponent } from './components/hotel-detail/hotel-detail.com
     NgMultiSelectDropDownModule.forRoot(),
     MatCardModule,
     MatFormFieldModule,
+    MatSliderModule,
     MatInputModule,
     MatCheckboxModule,
     MatRadioModule,
     MatButtonModule,
     MatSelectModule,
+    MatListModule,
     NgSelectModule,
     MatChipsModule,
     ReactiveFormsModule,
