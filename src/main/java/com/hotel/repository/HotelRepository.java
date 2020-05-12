@@ -78,6 +78,11 @@ public interface HotelRepository extends CrudRepository<Hotel, Long> {
   @Query("FROM Hotel WHERE activity = :activity")
   List <Hotel> findHotelsByActivities(@Param("activity")String activity);
 
+  @Query(
+    value = "SELECT * FROM hotel WHERE id = :hotelId",
+    nativeQuery = true)
+  Hotel findHotelById(@Param("hotelId")int hotelId);
+
   @Override
   List<Hotel> findAll();
 

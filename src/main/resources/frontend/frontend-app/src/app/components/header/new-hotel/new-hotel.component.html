@@ -5,7 +5,7 @@
     <br>
     <form [formGroup]="hotelForm" autocomplete="off" novalidate fxLayout="column wrap"
           fxLayoutAlign="center center" fxLayoutGap="10px">
-      <mat-card-content style="text-align: center;">
+      <mat-card-content class="center-align">
         <mat-form-field>
           <input matInput type="text" placeholder="Hotel name" formControlName="name" id="name">
           <mat-hint align="end">Not more then 60 characters long.</mat-hint>
@@ -54,7 +54,6 @@
         </mat-form-field>
         <br>
         <br>
-
         <div class="container" style="width:350px">
           <ng-multiselect-dropdown
             [placeholder]="'Select activities'"
@@ -118,9 +117,9 @@
               </div>
             </div>
         <br>
-        <div style="text-align:center; " class="mat-form-fieldd">
+        <div class="center-align mat-form-fieldd">
           <span>Hotel photo</span>
-          <mat-card style="margin-top:10px; width: 100%;">
+          <mat-card class="mat-card-style">
             <mat-card-content>
               <ul>
                 <li *ngFor="let file of files">
@@ -137,8 +136,7 @@
               </button>
             </mat-card-actions>
           </mat-card>
-          <input type="file" #fileUpload id="fileUpload" name="fileUpload" multiple="multiple" accept="image/*"
-                 style="display:none;">
+          <input type="file" #fileUpload id="fileUpload" name="fileUpload" multiple="multiple" accept="image/*" class="display-none"/>
         </div>
       </mat-card-content>
       <mat-card-actions>
