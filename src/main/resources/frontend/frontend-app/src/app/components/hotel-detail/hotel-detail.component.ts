@@ -13,10 +13,13 @@ import { RatingComment } from './rating-comment.model';
 export class HotelDetailComponent implements OnInit {
   public hotel: Hotel;
   public commentForm: FormGroup;
+  public images: any[] = [];
 
   constructor(private route: ActivatedRoute, private HttpClientService: HttpClientService) { }
 
   ngOnInit(): void {
+    // TODO: LOAD IMAGES FOR HOTEL
+    this.images = ["https://www.w3schools.com/w3css/img_lights.jpg", "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg"];
     this.route.params.subscribe(params => {
       this.HttpClientService.getHotelById(params.id).subscribe(hotel => {
         this.hotel = Hotel.MapHotel(hotel);

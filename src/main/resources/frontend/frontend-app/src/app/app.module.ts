@@ -76,7 +76,8 @@ import { RatingCommentComponent } from './components/hotel-detail/rating-comment
     MatChipsModule,
     ReactiveFormsModule,
     MatIconModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    NgbModule
   ],
   exports: [
     HeaderComponent

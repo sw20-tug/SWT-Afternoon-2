@@ -1,13 +1,13 @@
 <app-header [isSearchboxVisible]="false"></app-header>
-<div class="container col-md-12 col-sm-12 col-xs-9 col-lg-12 col-xl-10" style="margin-top: 10px;">
+<div class="container col-md-12 col-sm-12 col-xs-9 col-lg-12 col-xl-10 margin-top-10">
     <div *ngIf="hotel" class="row hotel-item">
        <div class="col-md-12 col-lg-12">
             <div class="row">
-                <div class="col-10 name-text" style="font-size: 26px;">
+                <div class="col-10 name-text font-size-26">
                     {{ hotel.name }}
                 </div>
                 <div class="col-2">
-                    <ngb-rating [rate]="hotel.stars" [readonly]="true" [max]="5" style="float: right;">
+                    <ngb-rating [rate]="hotel.stars" [readonly]="true" [max]="5" class="float-right">
                         <ng-template let-fill="fill">
                                         <span class="star" [class.full]="fill === 100">
                                             <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
@@ -33,7 +33,7 @@
                     </div>                    
                 </div>
                 <div class="col-2">
-                    <p class="price" style="float: right;">Per night: {{ hotel.price }}</p>
+                    <p class="price float-right">Per night: {{ hotel.price }}</p>
                 </div>
             </div>
             <div class="row">
@@ -52,17 +52,33 @@
                <i class="{{ facility.icon }}"></i> {{ facility.name }}    
             </div>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <h3 class="header-info">Description</h3>      
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <p class="justify-content">{{ hotel.description }}</p>
-            </div>
-        </div>
         <br>
+        <div class="row">
+            <div class="col-4">
+                <ngb-carousel *ngIf="images" [showNavigationArrows]="true" [showNavigationIndicators]="true">
+                    <ng-template ngbSlide *ngFor="let image of images">
+                        <div class="row">
+                            <div class="picsum-img-wrapper">
+                                <img [src]="image" alt="Error loading picture">
+                            </div>
+                        </div>                        
+                    </ng-template>
+                </ngb-carousel>
+            </div>
+            <div class="col-8">
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class="header-info">Description</h3>      
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <p class="justify-content">{{ hotel.description }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br/>        
         <div class="row">
             <div class="col-4">
                 <mat-card>
@@ -95,9 +111,7 @@
                     <mat-card-title class="mat-title">Comments and ratings</mat-card-title>
                     <mat-card-content>    
                         <div class="row rating-comment" *ngFor="let ratingComment of hotel.ratingComments">
-                            <app-rating-comment
-                                style="width: 100%;"
-                                [ratingComment]="ratingComment">
+                            <app-rating-comment class="width-100" [ratingComment]="ratingComment">
                             </app-rating-comment>
                          </div>
                     </mat-card-content>
