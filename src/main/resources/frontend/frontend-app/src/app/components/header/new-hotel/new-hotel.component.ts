@@ -6,6 +6,9 @@ import {catchError, map} from "rxjs/operators";
 import {HttpErrorResponse, HttpEventType} from "@angular/common/http";
 import {of} from "rxjs";
 import {HttpClientService} from "../../../service/http-client.service";
+import {OtherFilters} from "../../filters/other-filter.model";
+import {FiltersModel} from "../../filters/filters.model";
+import {IDropdownSettings} from "ng-multiselect-dropdown";
 
 export interface OwnerForCreation {
   name: string;
@@ -25,10 +28,41 @@ export class NewHotelComponent implements OnInit {
   @ViewChild("fileUpload", {static: false}) fileUpload: ElementRef;files  = [];
   public uploadButtonClicked: boolean;
   private imageURL: string;
+  public otherFilters: OtherFilters;
+  private _dropdownSettings: IDropdownSettings;
+  public activities: any;
+  public categories: any;
+  public get dropdownSettings() {
+    return this._dropdownSettings;
+  }
+  public selectActivities() {
+    this.selectedActivities.push(this.currentlySelectedActivities);
+  }
+
+  public selectCategories() {
+    this.selectedCategories.push(this.currentlySelectedCategories);
+  }
+
+  public currentlySelectedActivities: any;
+  public currentlySelectedCategories: any;
+
+  public selectedCategories: any[] = [];
+  public selectedActivities: any[] = [];
 
   constructor(private readonly router: Router, private readonly uploadService: UploadService,
               private readonly httpService: HttpClientService) {
-
+    this.otherFilters = new OtherFilters();
+    this._dropdownSettings = {
+      singleSelection: false,
+      idField: 'item_id',
+      textField: 'name',
+      selectAllText: 'Select All',
+      unSelectAllText: 'Unselect All',
+      itemsShowLimit: 14,
+      allowSearchFilter: true
+    };
+    this.activities = ["Gym", "Running", "Open bar"];
+    this.categories = ["Romantic", "Adventure", "Holiday", "Wellness", "Family", "Camping"];
   }
 
   ngOnInit() {
@@ -97,11 +131,17 @@ export class NewHotelComponent implements OnInit {
   }
 
   public insertNewHotel() {
-    console.log('im,age url', this.hotelForm.get('otherFilters').value);
+
+    let allFiltersIntoList = [this.otherFilters.parkingFilter === undefined ? false : true, this.otherFilters.restaurantFilter  === undefined ? false : true,
+      this.otherFilters.petsAllowedFilter  === undefined ? false : true, this.otherFilters.nonsmokingRoomsFilter  === undefined ? false : true,
+      this.otherFilters.swimmingPoolFilter  === undefined ? false : true, this.otherFilters.beachfrontFilter  === undefined ? false : true,
+      this.otherFilters.airConditioningFilter  === undefined ? false : true, this.otherFilters.freeWifiFilter  === undefined ? false : true,
+      this.otherFilters.saunaFilter  === undefined ? false : true, this.otherFilters.fitnessFilter  === undefined ? false : true];
+
     this.httpService.insertNewHotel(this.hotelForm.get('name').value, this.hotelForm.get('descr').value,
-      this.hotelForm.get('category').value, this.hotelForm.get('price').value, this.hotelForm.get('rating').value,
-      this.hotelForm.get('stars').value, this.hotelForm.get('city').value,
-      this.hotelForm.get('activities').value, this.hotelForm.get('otherFilters').value, this.imageURL).subscribe(response => {
+      this.currentlySelectedCategories, this.hotelForm.get('price').value, this.hotelForm.get('rating').value,
+      this.hotelForm.get('stars').value, this.hotelForm.get('city').value,  this.currentlySelectedActivities, allFiltersIntoList, this.imageURL).subscribe(response => {
+        console.log("test")
         console.log('response', response);
     });
   }

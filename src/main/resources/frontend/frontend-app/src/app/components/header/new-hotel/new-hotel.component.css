@@ -45,3 +45,22 @@ ul, li {
 .display-none {
   display:none;
 }
+
+.filter-add-hotel {
+  padding-top: 10px !important;
+}
+
+.filter-item {
+  margin: 10px;
+  white-space: nowrap;
+  display: block;
+  flex: 1 0 10%;
+}
+
+::ng-deep .mat-checkbox .mat-checkbox-frame {
+  border: 1px solid #ff7733 !important;
+}
+
+::ng-deep .mat-checkbox-checked .mat-checkbox-background {
+  background-color: #ff7733 !important;
+}

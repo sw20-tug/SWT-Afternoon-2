@@ -48,7 +48,8 @@ export class HttpClientService {
 
   //TODO parameters: name, description, price, rating, stars, city, activity, otherFilters, image
   public insertNewHotel(name: string, description: string, category: string, price: number, rating: number,
-                        stars: number, city: string, activities: string, otherFilters: number, imageURL: string) {
+                        stars: number, city: string, currentlySelectedActivities: string[], otherFilters: (boolean)[],
+                        imageURL: string) {
 
 
     console.log("hotel name: " + name)
@@ -58,13 +59,14 @@ export class HttpClientService {
     console.log("hotel rating: " + rating)
     console.log("hotel stars: " + stars)
     console.log("hotel city: " + city)
-    console.log("hotel activities: " + activities)
+    console.log("hotel activities: " + currentlySelectedActivities)
     console.log("hotel of: " + otherFilters)
     console.log("hotel image: " + imageURL)
-    return this.http.post<any[]>(this.serverUrl + '/addNewHotel?name=' + name + '&description=' + description +
+    return this.http.post(this.serverUrl + '/addNewHotels?name=' + name + '&description=' + description +
       '&category=' + category +
       '&price=' + price + '&rating=' + rating + '&stars=' + stars + '&city=' + city +
-      '&activities=' + activities + '&otherFilters=' + otherFilters + '&imageURL=' + imageURL, this.httpOptions).pipe(
+      '&currentlySelectedActivities=' + currentlySelectedActivities + '&otherFilters=' + otherFilters
+     + '&imageURL=' + imageURL, this.httpOptions, {responseType: 'text'}).pipe(
         catchError(this.errorHandler)
     );
   }
