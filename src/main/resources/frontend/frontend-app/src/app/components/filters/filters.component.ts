@@ -7,6 +7,7 @@ import { Category } from '../category-list/category.model';
 import { OtherFilters } from './other-filter.model';
 import { FiltersModel } from './filters.model';
 
+
 @Component({
   selector: 'filters',
   templateUrl: './filters.component.html',
@@ -17,7 +18,8 @@ import { FiltersModel } from './filters.model';
 export class FiltersComponent {
   @Output()
   filteredCategories: EventEmitter<Category[]> = new EventEmitter();
-
+  @Input()
+  public isAdmin: boolean;
   private selectedItems: Map<string, Array<any>>;
   private _dropdownSettings: IDropdownSettings;
   public activities: any;

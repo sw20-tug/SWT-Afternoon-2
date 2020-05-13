@@ -12,6 +12,7 @@ import {SortByPipe} from "../../../sort-by-pipe.pipe";
 })
 export class CategoryListItemComponent implements OnInit {
   @Input() category: Category;
+  @Input() isAdmin: boolean;
   private categoryID: number;
   private temp_hotels: Hotel[];
 

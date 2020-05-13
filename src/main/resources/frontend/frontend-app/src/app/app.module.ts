@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -33,6 +32,9 @@ import { NewHotelComponent } from './components/header/new-hotel/new-hotel.compo
 import { ReactiveFormsModule } from '@angular/forms';
 import {UploadService} from "./service/upload.service";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
+import { LoginComponent } from './components/header/login/login.component';
+import { ConfirmationDialogComponent } from './components/header/login/confirmation-dialogue/confirmation-dialogue.component';
+import { ConfirmationDialogService } from './components/header/login/confirmation-dialogue/confirmation-dialogue.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +47,9 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
     SearchboxComponent,
     FiltersComponent,
     SortByPipe,
-    NewHotelComponent
+    NewHotelComponent,
+    LoginComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -57,6 +61,7 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
     NgxBootstrapSliderModule,
     NgMultiSelectDropDownModule.forRoot(),
     MatCardModule,
+
     MatFormFieldModule,
     MatInputModule,
     MatCheckboxModule,
@@ -72,7 +77,7 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
   exports: [
     HeaderComponent
   ],
-  providers: [HttpClient, HttpClientService, SortByPipe, UploadService],
+  providers: [HttpClient, HttpClientService, SortByPipe, UploadService, ConfirmationDialogService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

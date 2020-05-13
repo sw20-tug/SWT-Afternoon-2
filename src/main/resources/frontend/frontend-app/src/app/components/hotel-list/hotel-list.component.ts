@@ -11,6 +11,8 @@ import {HotelService} from "../../service/hotel.service";
 export class HotelListComponent implements OnInit {
   @Input()
   public hotels: Hotel[];
+  @Input()
+  public isAdmin: boolean;
 
 
   constructor(private HttpClientService: HttpClientService, private HotelService: HotelService) {

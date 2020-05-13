@@ -28,11 +28,21 @@
         </div>
       </div>
       <div class="col-md-4 col-sm-12 col-xs-12 col-lg-3 col-xl-3">
+        <div *ngIf="isAdmin" class="row-options" >
+          <div ngbDropdown>
+            <button class="btn btn-outline-primary" id="dropdownConfig" ngbDropdownToggle>Options</button>
+            <div ngbDropdownMenu aria-labelledby="dropdownConfig">
+              <button ngbDropdownItem>Edit</button>
+              <button ngbDropdownItem>Delete</button>
+            </div>
+          </div>
+        </div>
         <div class="row">
           <div class="col-md-12 col-sm-6 col-xs-6 col-lg-12 col-xl-12">
             <p class="price">Per night: {{ hotel.price }}</p>
           </div>
         </div>
+        
         <div class="row">
           <div class="col-md-3 col-sm-2 col-2 col-lg-4 col-xl-5">
             <span class="badge badge-pill"

@@ -1,9 +1,9 @@
-<app-header (searchHeaderEvent)="searchHeaderEvent($event)" [searchText]="searchText"></app-header>
+<app-header (loginHeaderEvent)="loginHeaderEvent($event)" [isAdmin]="isAdmin" (searchHeaderEvent)="searchHeaderEvent($event)" [searchText]="searchText"></app-header>
 <div class="container col-md-12 col-sm-12 col-xs-9 col-lg-12 col-xl-10">
   <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12">
       <div id = "container">
-        <app-category-list class="full-width" [categories]="categories" [searchText]="searchText" (clearSearchEvent)="clearSearchEvent($event)"></app-category-list>
+        <app-category-list [isAdmin]="isAdmin" class="full-width" [categories]="categories" [searchText]="searchText" (clearSearchEvent)="clearSearchEvent($event)"></app-category-list>
       </div>
     </div>
   </div>

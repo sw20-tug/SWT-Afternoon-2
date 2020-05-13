@@ -3,4 +3,5 @@
   <div class="search">
     <app-searchbox (searchBoxEvent)="searchBoxEvent($event)" [searchText]="searchText"></app-searchbox>
   </div>
+  <app-login (loginEvent)="loginEvent($event)" [isAdmin]="isAdmin"></app-login>
 </nav>
