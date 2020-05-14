@@ -52,11 +52,6 @@ public interface HotelRepository extends CrudRepository<Hotel, Long> {
   List <Hotel> findByOtherFilters(String otherFilters);
 
   @Query(
-    value = "SELECT * FROM swt.hotel where id=:id",
-    nativeQuery = true)
-  Hotel findHotelById(@Param("id") int id);
-
-  @Query(
     value = "SELECT id FROM swt.hotel ORDER BY id DESC LIMIT 1",
     nativeQuery = true)
   Integer findLastId();
