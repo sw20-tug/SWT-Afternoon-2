@@ -29,6 +29,14 @@ public class HotelService {
     this.hr = hr;
   }
 
+  public Integer getLastHotelId() {
+    return this.hr.findLastId();
+  }
+
+  public Hotel getHotelById(Integer id) {
+    return this.hr.findHotelById(id);
+  }
+
   public Hotel getHotelByName(String name) {
     return this.hr.findByName(name);
   }
@@ -277,6 +285,11 @@ public class HotelService {
 
     System.out.println("initial activitiy" + activity.toString());
     return  activity.toString();
+  }
+
+  public Hotel getHotelById(int hotelId)
+  {
+    return this.hr.findHotelById(hotelId);
   }
 
   public String convertOtherFiltersToString(Boolean[] otherFilters)

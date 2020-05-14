@@ -3,8 +3,7 @@ package com.hotel;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+
 
 import com.hotel.controller.CategoryController;
 import com.hotel.controller.HotelController;

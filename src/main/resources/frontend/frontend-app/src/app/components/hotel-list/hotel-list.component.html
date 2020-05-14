@@ -2,5 +2,6 @@
     <app-hotel-list-item
       [hotel]="hotel"
       [isAdmin]="isAdmin">
+      (click)="openHotelDetailPage(hotel.id)">
     </app-hotel-list-item>
 </div>

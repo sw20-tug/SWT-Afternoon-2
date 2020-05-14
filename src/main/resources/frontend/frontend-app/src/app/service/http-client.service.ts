@@ -108,6 +108,13 @@ export class HttpClientService {
     );
   }
 
+  public getHotelById(id: String): Observable<any> {
+    return this.http.get<any>(this.serverUrl + '/hotelDetail?id=' + id).pipe(
+      retry(this.retryCount),
+      catchError(this.errorHandler)
+    );
+  }
+
   public errorHandler(error) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {

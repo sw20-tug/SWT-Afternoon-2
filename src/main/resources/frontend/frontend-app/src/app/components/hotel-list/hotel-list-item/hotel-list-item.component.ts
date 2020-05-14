@@ -13,10 +13,9 @@ export class HotelListItemComponent implements OnInit {
   @Input() index: number;
   @Input() isAdmin: boolean;
 
-  constructor() { 
+  constructor() {
   }
 
-  ngOnInit(): void {  
+  ngOnInit(): void {
   }
-
 }

@@ -17,6 +17,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxBootstrapSliderModule } from 'ngx-bootstrap-slider';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import {MatCardModule} from '@angular/material/card';
+import {MatListModule} from '@angular/material/list';
 import { FiltersComponent } from './components/filters/filters.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule, MatIcon } from '@angular/material/icon';
@@ -32,9 +33,16 @@ import { NewHotelComponent } from './components/header/new-hotel/new-hotel.compo
 import { ReactiveFormsModule } from '@angular/forms';
 import {UploadService} from "./service/upload.service";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
+
 import { LoginComponent } from './components/header/login/login.component';
 import { ConfirmationDialogComponent } from './components/header/login/confirmation-dialogue/confirmation-dialogue.component';
 import { ConfirmationDialogService } from './components/header/login/confirmation-dialogue/confirmation-dialogue.service';
+
+import { HotelDetailComponent } from './components/hotel-detail/hotel-detail.component';
+import {MatSliderModule} from '@angular/material/slider';
+import { RatingCommentComponent } from './components/hotel-detail/rating-comment/rating-comment.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,6 +58,8 @@ import { ConfirmationDialogService } from './components/header/login/confirmatio
     NewHotelComponent,
     LoginComponent,
     ConfirmationDialogComponent
+    HotelDetailComponent,
+    RatingCommentComponent
   ],
   imports: [
     BrowserModule,
@@ -63,16 +73,19 @@ import { ConfirmationDialogService } from './components/header/login/confirmatio
     MatCardModule,
 
     MatFormFieldModule,
+    MatSliderModule,
     MatInputModule,
     MatCheckboxModule,
     MatRadioModule,
     MatButtonModule,
     MatSelectModule,
+    MatListModule,
     NgSelectModule,
     MatChipsModule,
     ReactiveFormsModule,
     MatIconModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    NgbModule
   ],
   exports: [
     HeaderComponent
