@@ -12,6 +12,8 @@ import { Router } from '@angular/router';
 export class HotelListComponent implements OnInit {
   @Input()
   public hotels: Hotel[];
+  @Input()
+  public isAdmin: boolean;
 
 
   constructor(private HttpClientService: HttpClientService, private HotelService: HotelService, private router: Router) {

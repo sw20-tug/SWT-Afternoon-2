@@ -11,6 +11,7 @@ import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 export class HotelListItemComponent implements OnInit {
   @Input() hotel: Hotel;
   @Input() index: number;
+  @Input() isAdmin: boolean;
 
   constructor() {
   }

@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-lg-3 col-md-4">
     <filters
-    (filteredCategories)="filteredCategories($event)"></filters>
+    (filteredCategories)="filteredCategories($event)" [isAdmin]="isAdmin"></filters>
   </div>
   <div class="col-lg-9 col-md-8">
     <div class="row searchChip" *ngIf="searchText">
@@ -34,7 +34,8 @@
     <div class="row">
       <div class="col-md-12" *ngFor="let category of categories; let i=index">
         <app-category-list-item
-          [category]="category">
+          [category]="category"
+          [isAdmin]="isAdmin">
         </app-category-list-item>
       </div>
     </div>

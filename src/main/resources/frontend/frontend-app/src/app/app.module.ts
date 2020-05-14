@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -34,9 +33,15 @@ import { NewHotelComponent } from './components/header/new-hotel/new-hotel.compo
 import { ReactiveFormsModule } from '@angular/forms';
 import {UploadService} from "./service/upload.service";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
+
+import { LoginComponent } from './components/header/login/login.component';
+import { ConfirmationDialogComponent } from './components/header/login/confirmation-dialogue/confirmation-dialogue.component';
+import { ConfirmationDialogService } from './components/header/login/confirmation-dialogue/confirmation-dialogue.service';
+
 import { HotelDetailComponent } from './components/hotel-detail/hotel-detail.component';
 import {MatSliderModule} from '@angular/material/slider';
 import { RatingCommentComponent } from './components/hotel-detail/rating-comment/rating-comment.component';
+
 
 @NgModule({
   declarations: [
@@ -51,6 +56,8 @@ import { RatingCommentComponent } from './components/hotel-detail/rating-comment
     FiltersComponent,
     SortByPipe,
     NewHotelComponent,
+    LoginComponent,
+    ConfirmationDialogComponent
     HotelDetailComponent,
     RatingCommentComponent
   ],
@@ -64,6 +71,7 @@ import { RatingCommentComponent } from './components/hotel-detail/rating-comment
     NgxBootstrapSliderModule,
     NgMultiSelectDropDownModule.forRoot(),
     MatCardModule,
+
     MatFormFieldModule,
     MatSliderModule,
     MatInputModule,
@@ -82,7 +90,7 @@ import { RatingCommentComponent } from './components/hotel-detail/rating-comment
   exports: [
     HeaderComponent
   ],
-  providers: [HttpClient, HttpClientService, SortByPipe, UploadService],
+  providers: [HttpClient, HttpClientService, SortByPipe, UploadService, ConfirmationDialogService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,5 @@
 <div class="filters-list">
-  <a class="navbar-brand fa fa-plus-square " href="#" routerLink="/new-hotel"></a>
+  <a class="navbar-brand fa fa-plus-circle"  [style.display]="!isAdmin ? 'none' : 'block'" href="#" routerLink="/new-hotel">  Add new</a>
   <div class="filters">
     <h4 class="price-box" id="price_per_night">Price per night</h4>
     <div class="row">
