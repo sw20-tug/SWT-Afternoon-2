@@ -18,12 +18,20 @@
         <br>
         <br>
         <div class="container" style="width:350px">
+<!--          <ng-multiselect-dropdown-->
+<!--            [placeholder]="'Select categories'"-->
+<!--            [data]="categories"-->
+<!--            [(ngModel)]="currentlySelectedCategories"-->
+<!--            [settings]="dropdownSettings"-->
+<!--            (onSelect)="selectCategories()" [ngModelOptions]="{standalone: true}">-->
+<!--          </ng-multiselect-dropdown>-->
           <ng-multiselect-dropdown
-            [placeholder]="'Select categories'"
+            [placeholder]="'Select category'"
             [data]="categories"
             [(ngModel)]="currentlySelectedCategories"
-            [settings]="dropdownSettings"
-            (onSelect)="selectCategories()" [ngModelOptions]="{standalone: true}">
+            [settings]="get_dropdownSettings"
+            (onSelect)="selectCategories()" [ngModelOptions]="{standalone: true}"
+          >
           </ng-multiselect-dropdown>
         </div>
 <!--        <mat-form-field>-->
