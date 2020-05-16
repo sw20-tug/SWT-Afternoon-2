@@ -12,6 +12,8 @@ export class CategoryListComponent implements OnInit {
   public categories: Category[];
   @Input()
   public searchText: string;
+  @Input()
+  public isAdmin: boolean = false;
   @Output()
   public clearSearchEvent = new EventEmitter<boolean>();
 

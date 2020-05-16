@@ -30,16 +30,34 @@ export class NewHotelComponent implements OnInit {
   private imageURL: string;
   public otherFilters: OtherFilters;
   private _dropdownSettings: IDropdownSettings;
+  private dropdownSettingsCategory: IDropdownSettings;
   public activities: any;
+  public categories: any;
+
+
+
   public get dropdownSettings() {
     return this._dropdownSettings;
+  }
+
+  public get get_dropdownSettings() {
+    return this.dropdownSettingsCategory;
   }
   public selectActivities() {
     this.selectedActivities.push(this.currentlySelectedActivities);
   }
-  public currentlySelectedActivities: any;
 
+  public selectCategories() {
+    this.selectedCategories.push(this.currentlySelectedCategories);
+  }
+
+  public currentlySelectedActivities: any;
+  public currentlySelectedCategories: any;
+
+  public selectedCategories: any[] = [];
   public selectedActivities: any[] = [];
+
+
 
   constructor(private readonly router: Router, private readonly uploadService: UploadService,
               private readonly httpService: HttpClientService) {
@@ -53,7 +71,17 @@ export class NewHotelComponent implements OnInit {
       itemsShowLimit: 14,
       allowSearchFilter: true
     };
+
+    this.dropdownSettingsCategory = {
+      singleSelection: true,
+      idField: 'item_id',
+      textField: 'item_text',
+      enableCheckAll: false,
+      itemsShowLimit: 1,
+      allowSearchFilter: false
+    };
     this.activities = ["Gym", "Running", "Open bar"];
+    this.categories = ["Romantic", "Adventure", "Holiday", "Wellness", "Family", "Camping"];
   }
 
   ngOnInit() {
@@ -69,6 +97,7 @@ export class NewHotelComponent implements OnInit {
       activity: new FormControl('', [Validators.maxLength(50)]),
       otherFilters: new FormControl('', [Validators.maxLength(50)])
     });
+
   }
 
   uploadFile(file) {
@@ -110,6 +139,16 @@ export class NewHotelComponent implements OnInit {
     fileUpload.click();
   }
 
+  onItemSelect(item: any) {
+    console.log('test')
+    console.log(item);
+  }
+  onSelectAll(items: any) {
+    console.log('test2');
+    console.log(items);
+
+  }
+
   public onCancel = () => {
     this.router.navigateByUrl('');
   };
@@ -130,9 +169,9 @@ export class NewHotelComponent implements OnInit {
       this.otherFilters.saunaFilter  === undefined ? false : true, this.otherFilters.fitnessFilter  === undefined ? false : true];
 
     this.httpService.insertNewHotel(this.hotelForm.get('name').value, this.hotelForm.get('descr').value,
-      this.hotelForm.get('category').value, this.hotelForm.get('price').value, this.hotelForm.get('rating').value,
-      this.hotelForm.get('stars').value, this.hotelForm.get('city').value,
-      this.hotelForm.get('activities').value, allFiltersIntoList, this.currentlySelectedActivities, this.imageURL).subscribe(response => {
+      this.currentlySelectedCategories, this.hotelForm.get('price').value, this.hotelForm.get('rating').value,
+      this.hotelForm.get('stars').value, this.hotelForm.get('city').value,  this.currentlySelectedActivities, allFiltersIntoList, this.imageURL).subscribe(response => {
+        console.log("test")
         console.log('response', response);
     });
   }

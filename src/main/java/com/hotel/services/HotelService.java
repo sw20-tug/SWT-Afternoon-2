@@ -29,6 +29,14 @@ public class HotelService {
     this.hr = hr;
   }
 
+  public Integer getLastHotelId() {
+    return this.hr.findLastId();
+  }
+
+  public Hotel getHotelById(Integer id) {
+    return this.hr.findHotelById(id);
+  }
+
   public Hotel getHotelByName(String name) {
     return this.hr.findByName(name);
   }
@@ -236,13 +244,13 @@ public class HotelService {
     return allCategories;
   }
 
-  public void insertNewHotels(String name, String description, Integer price, Integer rating, Integer stars,
+  public void insertNewHotels(String name, String description, String category[], Integer price, Integer rating, Integer stars,
                               String city, String[] activities, Boolean[] otherFilters, String image)
   {
     //generate new id
     Integer new_id = this.hr.findLastId() + 1;
     System.out.println("new_id is " + new_id);
-    this.hr.insertNewHotels(new_id, name, description, price, rating, stars, city, convertActivitesToString(activities), convertOtherFiltersToString(otherFilters), image);
+    this.hr.insertNewHotels(new_id, name, description, findCategoryId(category), price, rating, stars, city, convertActivitesToString(activities), convertOtherFiltersToString(otherFilters), image);
   }
 
   //helper functions
@@ -279,6 +287,11 @@ public class HotelService {
     return  activity.toString();
   }
 
+  public Hotel getHotelById(int hotelId)
+  {
+    return this.hr.findHotelById(hotelId);
+  }
+
   public String convertOtherFiltersToString(Boolean[] otherFilters)
   {
     StringBuilder otherFilters_ = new StringBuilder();
@@ -286,6 +299,42 @@ public class HotelService {
       otherFilters_.append(filter ? "1" : "0");
     }
     return otherFilters_.toString();
+  }
+  public int findCategoryId(String selectedCategory[]) {
+
+    for(String category : selectedCategory)
+    {
+      switch(category){
+        case "Romantic":
+        {
+          return 1;
+        }
+        case "Adventure":
+        {
+          return 2;
+        }
+        case "Holiday":
+        {
+          return 3;
+        }
+        case "Wellness":
+        {
+          return 4;
+        }
+        case "Family":
+        {
+          return 5;
+        }
+        case "Camping":
+        {
+          return 6;
+        }
+
+      }
+    }
+
+    //should never been reached
+    return 0;
   }
 
 }

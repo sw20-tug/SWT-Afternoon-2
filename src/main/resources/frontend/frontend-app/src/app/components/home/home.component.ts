@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
   public allCategories: Category[] = [];
   public categories: Category[] = [];
   public searchText: string = '';
+  public isAdmin: boolean = false;
 
   constructor(private HttpClientService: HttpClientService) { }
 
@@ -48,6 +49,9 @@ export class HomeComponent implements OnInit {
       return x.hotels.length > 0;
     });
     this.initializeAllCategories();
+  }
+  loginHeaderEvent($event) {
+    this.isAdmin = $event;
   }
 
   clearSearchEvent($event){

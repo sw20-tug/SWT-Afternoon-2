@@ -78,7 +78,6 @@ public class HotelController {
 
   //  System.out.println("Hotel with criteria is ?" + customerInput.getHotelByCriteria(1));
     return hotelService.getHotelByCriteria(Integer.parseInt(category_id), Integer.parseInt(criteria_id));
-
   }
 
 
@@ -101,12 +100,19 @@ public class HotelController {
 
   @PostMapping(path="/addNewHotels")
   public @ResponseBody ResponseEntity<String> AddNewHotels(@RequestParam String name, @RequestParam String description,
+                                                           @RequestParam String category[],
                                                            @RequestParam String price, @RequestParam String rating,
                                                            @RequestParam String stars, @RequestParam String city,
-                                                           @RequestParam String[] activities, @RequestParam Boolean[] otherFilters,
-                                                           @RequestParam String image) {
-//    this.hotelService.insertNewHotels(name, description, Integer.parseInt(price), Integer.parseInt(rating),
-//      Integer.parseInt(stars), city, activities, otherFilters, image);
+                                                           @RequestParam String[] currentlySelectedActivities, @RequestParam Boolean[] otherFilters,
+                                                           @RequestParam String imageURL) {
+    System.out.println("add new hotel");
+    this.hotelService.insertNewHotels(name, description, category, Integer.parseInt(price), Integer.parseInt(rating),
+      Integer.parseInt(stars), city, currentlySelectedActivities, otherFilters, imageURL);
     return new ResponseEntity<String>("POST Response", HttpStatus.OK);
+  }
+
+   @GetMapping(path="/hotelDetail")
+   public @ResponseBody Hotel getHotelById(@RequestParam String id) {
+    return this.hotelService.getHotelById(Integer.parseInt(id));
   }
 }

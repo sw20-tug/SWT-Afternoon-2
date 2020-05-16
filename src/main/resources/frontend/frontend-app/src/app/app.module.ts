@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import {LOCALE_ID, NgModule} from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -18,6 +17,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxBootstrapSliderModule } from 'ngx-bootstrap-slider';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import {MatCardModule} from '@angular/material/card';
+import {MatListModule} from '@angular/material/list';
 import { FiltersComponent } from './components/filters/filters.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule, MatIcon } from '@angular/material/icon';
@@ -33,6 +33,16 @@ import { NewHotelComponent } from './components/header/new-hotel/new-hotel.compo
 import { ReactiveFormsModule } from '@angular/forms';
 import {UploadService} from "./service/upload.service";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
+
+import { LoginComponent } from './components/header/login/login.component';
+import { ConfirmationDialogComponent } from './components/header/login/confirmation-dialogue/confirmation-dialogue.component';
+import { ConfirmationDialogService } from './components/header/login/confirmation-dialogue/confirmation-dialogue.service';
+
+import { HotelDetailComponent } from './components/hotel-detail/hotel-detail.component';
+import {MatSliderModule} from '@angular/material/slider';
+import { RatingCommentComponent } from './components/hotel-detail/rating-comment/rating-comment.component';
+
+
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {registerLocaleData} from "@angular/common";
 import localeBs from '@angular/common/locales/bs-Latn';
@@ -56,7 +66,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     SearchboxComponent,
     FiltersComponent,
     SortByPipe,
-    NewHotelComponent
+    NewHotelComponent,
+    LoginComponent,
+    ConfirmationDialogComponent,
+    HotelDetailComponent,
+    RatingCommentComponent
   ],
   imports: [
     BrowserModule,
@@ -69,11 +83,13 @@ export function HttpLoaderFactory(http: HttpClient) {
     NgMultiSelectDropDownModule.forRoot(),
     MatCardModule,
     MatFormFieldModule,
+    MatSliderModule,
     MatInputModule,
     MatCheckboxModule,
     MatRadioModule,
     MatButtonModule,
     MatSelectModule,
+    MatListModule,
     NgSelectModule,
     MatChipsModule,
     ReactiveFormsModule,
@@ -86,12 +102,14 @@ export function HttpLoaderFactory(http: HttpClient) {
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    })
+    }),
+    MatProgressBarModule,
+    NgbModule
   ],
   exports: [
     HeaderComponent
   ],
-  providers: [HttpClient, HttpClientService, SortByPipe, UploadService],
+  providers: [HttpClient, HttpClientService, SortByPipe, UploadService, ConfirmationDialogService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

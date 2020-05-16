@@ -10,7 +10,11 @@
 .no-padding {
     padding: 0;
 }
-.row{
+.row-options {
+    margin-right: 1%;
+    margin-bottom: 7%;
+}
+.row, .row-options{
     padding-top: 1%;
 }
 .price-text {

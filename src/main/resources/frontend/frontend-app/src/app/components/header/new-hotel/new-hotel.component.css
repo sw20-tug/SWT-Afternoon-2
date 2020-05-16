@@ -7,8 +7,7 @@ mat-card-title {
   text-align: center;
 }
 
-ul,
-li {
+ul, li {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -30,6 +29,23 @@ li {
   letter-spacing: normal;
 }
 
+.center-align {
+  text-align: center;
+}
+
+.margin-top-30 {
+  margin-top: 30px;
+}
+
+.mat-card-style {
+  margin-top:10px; 
+  width: 100%;
+}
+
+.display-none {
+  display:none;
+}
+
 .filter-add-hotel {
   padding-top: 10px !important;
 }
@@ -40,7 +56,6 @@ li {
   display: block;
   flex: 1 0 10%;
 }
-
 
 ::ng-deep .mat-checkbox .mat-checkbox-frame {
   border: 1px solid #ff7733 !important;
