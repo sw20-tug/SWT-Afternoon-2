@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -33,6 +33,17 @@ import { NewHotelComponent } from './components/header/new-hotel/new-hotel.compo
 import { ReactiveFormsModule } from '@angular/forms';
 import {UploadService} from "./service/upload.service";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
+import {registerLocaleData} from "@angular/common";
+import localeBs from '@angular/common/locales/bs-Latn';
+import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+
+registerLocaleData(localeBs, 'bs-Latn');
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,7 +78,15 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
     MatChipsModule,
     ReactiveFormsModule,
     MatIconModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    TranslateModule.forRoot({
+      defaultLanguage: 'bs',
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   exports: [
     HeaderComponent
