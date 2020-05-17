@@ -50,6 +50,10 @@
   "CITY": "Grad",
   "DSCR": "Opis hotela",
   "NAME": "Ime hotela",
-  "CREATE": "Napravi"
+  "CREATE": "Napravi",
+  "FACITILIES": "TODO",
+  "ADD RATING": "Dodaj ocjenu",
+  "SEND RATING": "Pošalji ocjenu",
+  "COMMENTS": "Komentari i ocjene"
 }
 

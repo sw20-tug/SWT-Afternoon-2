@@ -33,6 +33,7 @@ export class HomeComponent implements OnInit {
          listOfCategories.push(Category.MapCategory(category));
       });
       this.allCategories = listOfCategories;
+      console.log('kategorije"', this.allCategories); 
       this.categories = this.allCategories;
     });
   }

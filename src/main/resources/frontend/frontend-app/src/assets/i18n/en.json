@@ -40,6 +40,12 @@
   "CITY": "Hotel City",
   "DSCR": "Hotel Description",
   "NAME": "Hotel name",
-  "CREATE": "Create"
+  "CREATE": "Create",
+  "SORT": "Sort by",
+  "FACILITIES": "Facilities",
+  "ADD RATING": "Add rating",
+  "SEND RATING": "Send rating",
+  "COMMENTS": "Comments and ratings",
+  "SIGNOUT": "Sign out"
 }
 
