@@ -1,17 +1,21 @@
 <div class="container">
-    <button type="button" [style.display]="isAdmin ? 'none' : 'block'" class="btn btn-primary" (click) = "show()">Login</button>
-    <button type="button" [style.display]="isAdmin ? 'block' : 'none'" class="btn btn-primary" (click) = "signOut()">Sign out</button>    
+  <div style="padding-right: 50px">
+    <img (click)="changeLanguage('bs')" style="padding-right: 10px"  height="14px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Flag_of_Bosnia_and_Herzegovina.svg/1200px-Flag_of_Bosnia_and_Herzegovina.svg.png" alt="Bosna">
+    <img (click)="changeLanguage('en')" src="https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg"  height="14px"  width="38px" alt="USA">
+  </div>
+    <button type="button" [style.display]="isAdmin ? 'none' : 'block'" class="btn btn-primary" (click) = "show()">{{'LOGIN' | translate}}</button>
+    <button type="button" [style.display]="isAdmin ? 'block' : 'none'" class="btn btn-primary" (click) = "signOut()">{{'SIGNOUT' | translate}}</button>
 </div>
 <div [style.display]="showModal ? 'block' : 'none'" [style.background]="showModal ? 'linear-gradient(45deg, black, transparent)' : 'none'" class="modal" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title" id="myModalLabel">Login</h4>
+          <h4 class="modal-title" id="myModalLabel">{{'LOGIN' | translate}}</h4>
         </div>
         <div class="modal-body">
             <form [formGroup]="registerForm"  (ngSubmit)="onSubmit()">
                 <div class="form-group">
-                    <label>Username</label>
+                    <label>{{'USERNAME' | translate}}</label>
                     <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
                     <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
                         <div *ngIf="f.username.errors?.required">Username is required!</div>
@@ -20,7 +24,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>Password</label>
+                    <label>{{'PASSWORD' | translate}}</label>
                     <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }"/>
                     <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                         <div *ngIf="f.password.errors?.required">Password is required!</div>
@@ -29,12 +33,12 @@
                 </div>
               <div class="form-group form-check">
               </div>
-              <button type="submit" class="btn btn-primary">Log in</button>
+              <button type="submit" class="btn btn-primary">{{'LOGIN' | translate}}</button>
             </form>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-dark" data-dismiss="modal" (click) = "hide()">Cancel</button>
-        
+            <button type="button" class="btn btn-dark" data-dismiss="modal" (click) = "hide()">{{'CANCEL' | translate}}</button>
+
         </div>
       </div>
     </div>

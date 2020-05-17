@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import {LOCALE_ID, NgModule} from '@angular/core';
+import {Injector, LOCALE_ID, NgModule} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -47,6 +47,7 @@ import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {registerLocaleData} from "@angular/common";
 import localeBs from '@angular/common/locales/bs-Latn';
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+import {InjectorService} from "./service/injector.service";
 
 registerLocaleData(localeBs, 'bs-Latn');
 
@@ -109,7 +110,11 @@ export function HttpLoaderFactory(http: HttpClient) {
   exports: [
     HeaderComponent
   ],
-  providers: [HttpClient, HttpClientService, SortByPipe, UploadService, ConfirmationDialogService],
+  providers: [HttpClient, HttpClientService, SortByPipe, UploadService, ConfirmationDialogService, InjectorService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(private injector: Injector){    // Create global Service Injector.
+    InjectorService.injector = this.injector;
+  }
+}

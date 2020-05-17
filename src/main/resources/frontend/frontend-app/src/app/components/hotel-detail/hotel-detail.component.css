@@ -15,6 +15,21 @@
     border-bottom: 1px solid lightgray;
 }
 
+.badge-successs {
+  color: #fff;
+  background-color: #28a745;
+}
+
+.badge-warningg {
+  color: #212529;
+  background-color: #ffc107;
+}
+
+.badge-dangerr {
+  color: #fff;
+  background-color: #dc3545;
+}
+
 .mr-10 {
     margin-bottom: 10px;
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Category } from '../category-list/category.model';
 import { Hotel } from '../hotel-list/hotel.model';
 import {HttpClientService} from "../../service/http-client.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-home',
@@ -15,9 +16,13 @@ export class HomeComponent implements OnInit {
   public searchText: string = '';
   public isAdmin: boolean = false;
 
-  constructor(private HttpClientService: HttpClientService) { }
+  constructor(private HttpClientService: HttpClientService, public translate: TranslateService) {
+
+  }
 
   ngOnInit(): void {
+    this.translate.setDefaultLang('bs');
+    this.translate.use('bs');
     this.initializeAllCategories();
   }
 

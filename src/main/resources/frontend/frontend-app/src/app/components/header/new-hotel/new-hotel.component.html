@@ -1,32 +1,23 @@
 <app-header xmlns="http://www.w3.org/1999/html"></app-header>
 <section fxLayout="row wrap" fxLayoutAlign="center center">
   <mat-card fxFlex="500px" fxFlex.xs="100%">
-    <mat-card-title>Add a new hotel</mat-card-title>
+    <mat-card-title>{{'ADD' | translate}}</mat-card-title>
     <br>
     <form [formGroup]="hotelForm" autocomplete="off" novalidate fxLayout="column wrap"
           fxLayoutAlign="center center" fxLayoutGap="10px">
       <mat-card-content class="center-align">
         <mat-form-field>
-          <input matInput type="text" placeholder="Hotel name" formControlName="name" id="name">
-          <mat-hint align="end">Not more then 60 characters long.</mat-hint>
+          <input matInput type="text" placeholder="{{'NAME' | translate}}" formControlName="name" id="name">
         </mat-form-field>
         <br>
         <mat-form-field>
-          <input matInput type="text" placeholder="Hotel description" formControlName="descr">
-          <mat-hint align="end">Not more then 100 characters long.</mat-hint>
+          <input matInput type="text" placeholder="{{'DSCR' | translate}}" formControlName="descr">
         </mat-form-field>
         <br>
         <br>
         <div class="container" style="width:350px">
-<!--          <ng-multiselect-dropdown-->
-<!--            [placeholder]="'Select categories'"-->
-<!--            [data]="categories"-->
-<!--            [(ngModel)]="currentlySelectedCategories"-->
-<!--            [settings]="dropdownSettings"-->
-<!--            (onSelect)="selectCategories()" [ngModelOptions]="{standalone: true}">-->
-<!--          </ng-multiselect-dropdown>-->
           <ng-multiselect-dropdown
-            [placeholder]="'Select category'"
+            [placeholder]="'SELECT CATEGORY' | translate"
             [data]="categories"
             [(ngModel)]="currentlySelectedCategories"
             [settings]="get_dropdownSettings"
@@ -34,37 +25,28 @@
           >
           </ng-multiselect-dropdown>
         </div>
-<!--        <mat-form-field>-->
-<!--          <input matInput type="text" placeholder="Hotel category" formControlName="category">-->
-<!--          <mat-hint align="end">Romantic, Adventure, Holiday, Wellness, Family, Camping</mat-hint>-->
-<!--        </mat-form-field>-->
-<!--        <br>-->
-<!--        <mat-form-field>-->
-<!--          <input matInput type="text" placeholder="Hotel activities" formControlName="activities">-->
-<!--        </mat-form-field>-->
-<!--        <br>-->
         <mat-form-field>
-          <input matInput type="number" placeholder="Hotel stars" formControlName="stars">
-          <mat-hint align="end">1 to 5</mat-hint>
+          <input matInput type="number" placeholder="{{'STARS' | translate}}" formControlName="stars">
+          <mat-hint align="end">1-5</mat-hint>
         </mat-form-field>
         <br>
         <mat-form-field>
-          <input matInput type="number" placeholder="Hotel price" formControlName="price">
+          <input matInput type="number" placeholder="{{'PRICE' | translate}}" formControlName="price">
         </mat-form-field>
         <br>
         <mat-form-field>
-          <input matInput type="number" placeholder="Hotel rating" formControlName="rating">
-          <mat-hint align="end">1 to 10</mat-hint>
+          <input matInput type="number" placeholder="{{'RATING' | translate}}" formControlName="rating">
+          <mat-hint align="end">1-10</mat-hint>
         </mat-form-field>
         <br>
         <mat-form-field>
-          <input matInput type="text" placeholder="Hotel city" formControlName="city">
+          <input matInput type="text" placeholder="{{'CITY' | translate}}" formControlName="city">
         </mat-form-field>
         <br>
         <br>
         <div class="container" style="width:350px">
           <ng-multiselect-dropdown
-            [placeholder]="'Select activities'"
+            [placeholder]="'SELECT ACTIVITIES' | translate"
             [data]="activities"
             [(ngModel)]="currentlySelectedActivities"
             [settings]="dropdownSettings"
@@ -79,38 +61,34 @@
               </div>
               <div class="filter-item">
                 <mat-checkbox id="restaurant" [(ngModel)]="otherFilters.restaurantFilter"
-                              [ngModelOptions]="{standalone: true}">Restaurant
+                              [ngModelOptions]="{standalone: true}">{{'RESTAURANT' | translate }}
                 </mat-checkbox>
               </div>
               <div class="filter-item">
                 <mat-checkbox id="pets_allowed" [(ngModel)]="otherFilters.petsAllowedFilter"
-                              [ngModelOptions]="{standalone: true}">Pets allowed
-                </mat-checkbox>
+                              [ngModelOptions]="{standalone: true}">{{'PETS' | translate }}</mat-checkbox>
               </div>
               <div class="filter-item">
                 <mat-checkbox id="non_smoking_rooms" [(ngModel)]="otherFilters.nonsmokingRoomsFilter"
-                              [ngModelOptions]="{standalone: true}">Non-smoking rooms
+                              [ngModelOptions]="{standalone: true}">{{'SMOKE' | translate }}
                 </mat-checkbox>
               </div>
               <div class="filter-item">
                 <mat-checkbox id="swimming_pool" [(ngModel)]="otherFilters.swimmingPoolFilter"
-                              [ngModelOptions]="{standalone: true}">Swimming pool
-                </mat-checkbox>
+                              [ngModelOptions]="{standalone: true}">{{'POOL' | translate }}</mat-checkbox>
               </div>
               <div class="filter-item">
                 <mat-checkbox id="beachfront" [(ngModel)]="otherFilters.beachfrontFilter"
-                              [ngModelOptions]="{standalone: true}">Beachfront
-                </mat-checkbox>
+                              [ngModelOptions]="{standalone: true}">{{'BEACH' | translate }}</mat-checkbox>
               </div>
               <div class="filter-item">
                 <mat-checkbox id="air_conditioning" [(ngModel)]="otherFilters.airConditioningFilter"
-                              [ngModelOptions]="{standalone: true}">Air conditioning
+                              [ngModelOptions]="{standalone: true}">{{'AC' | translate }}
                 </mat-checkbox>
               </div>
               <div class="filter-item">
                 <mat-checkbox id="free_wifi" [(ngModel)]="otherFilters.freeWifiFilter"
-                              [ngModelOptions]="{standalone: true}">Free WiFi
-                </mat-checkbox>
+                              [ngModelOptions]="{standalone: true}">{{'WIFI' | translate }}</mat-checkbox>
               </div>
               <div class="filter-item">
                 <mat-checkbox id="sauna" [(ngModel)]="otherFilters.saunaFilter" [ngModelOptions]="{standalone: true}">
@@ -120,13 +98,12 @@
               <div class="filter-item">
                 <mat-checkbox id="fitness" [(ngModel)]="otherFilters.fitnessFilter"
                               [ngModelOptions]="{standalone: true}">
-                  Fitness
+                  {{'FITNESS' | translate }}
                 </mat-checkbox>
               </div>
             </div>
         <br>
         <div class="center-align mat-form-fieldd">
-          <span>Hotel photo</span>
           <mat-card class="mat-card-style">
             <mat-card-content>
               <ul>
@@ -140,7 +117,7 @@
             <mat-card-actions>
               <button mat-button color="warn" (click)="onClick()">
                 <mat-icon>file_upload</mat-icon>
-                Upload
+                {{'UPLOAD' | translate }}
               </button>
             </mat-card-actions>
           </mat-card>
@@ -150,9 +127,11 @@
       <mat-card-actions>
         <mat-card-actions align="center">
           <button [disabled]="!uploadButtonClicked" mat-raised-button color="primary" (click)="insertNewHotel()">
-            Create
+            {{'CREATE' | translate}}
           </button>
-          <button type="button" mat-raised-button color="warn" (click)="onCancel()">Cancel</button>
+          <button type="button" mat-raised-button color="warn" (click)="onCancel()">
+            {{'CANCEL' | translate}}
+          </button>
         </mat-card-actions>
       </mat-card-actions>
     </form>

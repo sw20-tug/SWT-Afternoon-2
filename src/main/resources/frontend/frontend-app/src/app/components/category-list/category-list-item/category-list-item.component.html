@@ -9,7 +9,7 @@
         [virtualScroll]="true"
         bindValue="id"
         appendTo="body"
-        placeholder="Sort by:"
+        [placeholder]="'SORT' | translate"
         [(ngModel)]="selectedSortOption"
         (change)="sortListItems($event)">
         </ng-select>

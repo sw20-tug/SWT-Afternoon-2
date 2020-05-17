@@ -1,6 +1,8 @@
 import { FacilityItem } from '../hotel-detail/facility-item.model';
 import { Facilities } from '../hotel-detail/facilities.enum';
 import { RatingComment } from '../hotel-detail/rating-comment.model';
+import {TranslateService} from "@ngx-translate/core";
+import {InjectorService} from "../../service/injector.service";
 
 export class Hotel {
   public id: number;
@@ -13,8 +15,9 @@ export class Hotel {
   public city: string;
   public facilitiesList: FacilityItem[];
   public ratingComments: RatingComment[];
-
-  constructor(id: number, name: string, description: string, price: string, imagePath: string, stars: number, rate: number, city: string) {
+  public translateService;
+  constructor(id: number, name: string, description: string, price: string, imagePath: string, stars: number, rate: number, city: string
+             ) {
     this.id = id;
     this.name = name;
     this.description = description;
@@ -23,14 +26,15 @@ export class Hotel {
     this.stars = stars;
     this.rate = rate;
     this.city = city;
+    this.translateService = InjectorService.injector.get(TranslateService);
   }
 
   getRating() {
     if (this.rate <= 10 && this.rate >= 8) {
-      return "Excellent";
+      return this.translateService.instant('EXCELLENT')
     } else if (this.rate < 8 && this.rate >= 5) {
-      return "Good"
-    } else return "Poor";
+      return this.translateService.instant('GOOD');
+    } else return this.translateService.instant('POOR');
   }
 
   static MapHotel(hotel: any) {
@@ -40,7 +44,7 @@ export class Hotel {
       new FacilityItem("AirConditioning", hotel.airConditioning, Facilities["AirConditioning"]), new FacilityItem("BeachFront", hotel.beachFront, Facilities["BeachFront"]), new FacilityItem("Fitness", hotel.fitness, Facilities["Fitness"]),
       new FacilityItem("FreeWiFi", hotel.freeWiFi, Facilities["FreeWiFi"]), new FacilityItem("Restaurant", hotel.restaurant, Facilities["Restaurant"]), new FacilityItem("SwimmingPool", hotel.swimmingPool, Facilities["SwimmingPool"]),
       new FacilityItem("Smoking", hotel.smoking, Facilities["Smoking"]), new FacilityItem("Sauna", hotel.sauna, Facilities["Sauna"]), new FacilityItem("Parking", hotel.parking, Facilities["Parking"]), new FacilityItem("Pets", hotel.pets, Facilities["Pets"])
-    ]; 
+    ];
     return mappedHotel;
   }
 }
