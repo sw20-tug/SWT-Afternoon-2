@@ -57,7 +57,7 @@ import { RatingCommentComponent } from './components/hotel-detail/rating-comment
     SortByPipe,
     NewHotelComponent,
     LoginComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
     HotelDetailComponent,
     RatingCommentComponent
   ],
