@@ -131,7 +131,7 @@ public class MainApplication implements  CommandLineRunner {
 
         Hotel hotel = new Hotel(hotels[0], hotels[1], rate, hotels[3], hotels[4], price,
          stars, category_new, parking,  restaurant,  pets,  smoking,  swimmingPool,  beachFront,
-         airConditioning,  freeWifi,  sauna,  fitness,activity_gym,activity_running,activity_openbar,activity,otherFilters);
+         airConditioning,  freeWifi,  sauna,  fitness,activity_gym,activity_running,activity_openbar,activity,otherFilters, 0);
         hr.save(hotel);
 
       }

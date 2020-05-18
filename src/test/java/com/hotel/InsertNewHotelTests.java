@@ -45,7 +45,7 @@ public class InsertNewHotelTests {
     RestTemplate restTemplate = new RestTemplate();
 
     Hotel new_hotel = new Hotel("test_hotel", "Graz", 2, "new_image.jpg", "HotelDescription",
-      22, 1, new Category("Adventure"), true, false, false, true, true, true, true, true, false, false, true, false, false, "100", "1001111100");
+      22, 1, new Category("Adventure"), true, false, false, true, true, true, true, true, false, false, true, false, false, "100", "1001111100", 0);
 
     final String baseUrl = "http://localhost:" + randomServerPort + "/addNewHotels?name=" + new_hotel.getName() + "&description=" + new_hotel.getDescription() +
       "&category=Romantic" +
