@@ -1,7 +1,10 @@
 package com.hotel.controller;
 
+import com.hotel.model.Comment;
 import com.hotel.model.Hotel;
+import com.hotel.repository.CommentRepository;
 import com.hotel.repository.HotelRepository;
+import com.hotel.services.CommentService;
 import com.hotel.services.CustomerService;
 import com.hotel.services.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +20,12 @@ public class HotelController {
   @Autowired
   private HotelService hotelService;
   @Autowired
+  private CommentService commentService;
+  @Autowired
   private HotelRepository hotelRepository;
+  @Autowired
+  private CommentRepository commentRepository;
+
   private Hotel hotel = new Hotel();
 
   @Autowired
@@ -114,5 +122,11 @@ public class HotelController {
    @GetMapping(path="/hotelDetail")
    public @ResponseBody Hotel getHotelById(@RequestParam String id) {
     return this.hotelService.getHotelById(Integer.parseInt(id));
+  }
+
+  @GetMapping(path = "/commentHotel")
+  public @ResponseBody List<Comment> getCommentList(@RequestParam String id){
+    //TODO: check for input param
+    return this.commentService.getCommentsByHotelID(Long.parseLong(id));
   }
 }

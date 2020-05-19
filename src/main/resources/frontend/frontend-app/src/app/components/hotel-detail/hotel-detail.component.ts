@@ -4,6 +4,7 @@ import {HttpClientService} from "../../service/http-client.service";
 import { Hotel } from '../hotel-list/hotel.model';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import { RatingComment } from './rating-comment.model';
+import {Category} from "../category-list/category.model";
 
 @Component({
   selector: 'app-hotel-detail',
@@ -25,16 +26,20 @@ export class HotelDetailComponent implements OnInit {
         this.hotel = Hotel.MapHotel(hotel);
         this.hotel.facilitiesList = this.hotel.facilitiesList.filter(x => x.value);
         // DELETE THIS AFTER DB IS FILLED WITH ACTUAL RATING+COMMENTS !
-        this.hotel.ratingComments = [new RatingComment("First user", "This is a comment.", 5),
-                                    new RatingComment("Second user", "This is a larger larger larger larger comment.", 10)];
-        console.log(this.hotel);
+        this.HttpClientService.getCommentList("10").subscribe(comments => {
+          var list_of_comments = new Array<RatingComment>();
+          comments.forEach(commment => {
+            list_of_comments.push(new RatingComment("stefa", "kk", 1));
+          });
+          this.hotel.ratingComments = list_of_comments;
+        });
       })
     });
 
     this.commentForm = new FormGroup({
       name: new FormControl('', [Validators.maxLength(60)]),
       rating: new FormControl('', [Validators.max(10), Validators.min(0), Validators.required]),
-      comment: new FormControl('', [Validators.maxLength(200), Validators.required])
+      comment: new FormControl('', [Validators.maxLength(200)])
     });
   }
 }
