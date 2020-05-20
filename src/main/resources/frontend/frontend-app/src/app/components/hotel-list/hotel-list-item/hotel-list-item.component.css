@@ -53,6 +53,21 @@
     margin-right: 2%;
 }
 
+.badge-successs {
+  color: #fff;
+  background-color: #28a745;
+}
+
+.badge-warningg {
+  color: #212529;
+  background-color: #ffc107;
+}
+
+.badge-dangerr {
+  color: #fff;
+  background-color: #dc3545;
+}
+
 .badge.badge-pill{
     font-size: 1.4vw;
 }
@@ -107,9 +122,9 @@
             height: 1.2rem;
             width: 124%;
         }
-    
+
 }
-    
+
 
 @media (min-width: 200px)  and ( max-width: 575px){
 .justify-content{ font-size: 0.85rem; }
@@ -233,4 +248,4 @@
 {
    padding: 0%;
    margin-bottom: 1%;
-} 
+}

@@ -30,24 +30,26 @@
       <div class="col-md-4 col-sm-12 col-xs-12 col-lg-3 col-xl-3">
         <div *ngIf="isAdmin" class="row-options" >
           <div ngbDropdown>
-            <button class="btn btn-outline-primary" id="dropdownConfig" ngbDropdownToggle>Options</button>
+            <button class="btn btn-outline-primary" id="dropdownConfig" ngbDropdownToggle>{{'OPTIONS' | translate}}</button>
             <div ngbDropdownMenu aria-labelledby="dropdownConfig">
-              <button ngbDropdownItem>Edit</button>
-              <button ngbDropdownItem>Delete</button>
+              <button ngbDropdownItem>{{'EDIT' | translate}}</button>
+              <button ngbDropdownItem>{{'DELETE' | translate}}</button>
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col-md-12 col-sm-6 col-xs-6 col-lg-12 col-xl-12">
-            <p class="price">Per night: {{ hotel.price }}</p>
+            <p class="price">{{'PRICE' | translate }}: {{ hotel.price }}</p>
           </div>
         </div>
-        
+
         <div class="row">
           <div class="col-md-3 col-sm-2 col-2 col-lg-4 col-xl-5">
             <span class="badge badge-pill"
-                  [ngClass]="{'badge-success' : hotel.getRating() == 'Excellent', 'badge-warning' : hotel.getRating() == 'Good','badge-danger' : hotel.getRating() == 'Poor' }">
-                  {{ hotel.rate | number:'1.1-1' }}
+                  [ngClass]="{'badge-success' : hotel.getRating() === 'Excellent','badge-successs':  hotel.getRating() === 'Odličan',
+                                'badge-warning' :  hotel.getRating() === 'Good','badge-warningg': hotel.getRating() === 'Dobar',
+                                'badge-danger' :  hotel.getRating() === 'Poor',  'badge-dangerr': hotel.getRating() === 'Loš'}">
+                                {{ hotel.rate | number:'1.1-1' }}
             </span>
           </div>
           <div class="col-md-9 col-sm-10 col-10 col-lg-8 col-xl-7">

@@ -23,7 +23,9 @@
                     <div class="row">
                         <div class="col-1">
                             <span class="badge badge-pill"
-                                [ngClass]="{'badge-success' : hotel.getRating() == 'Excellent', 'badge-warning' : hotel.getRating() == 'Good','badge-danger' : hotel.getRating() == 'Poor' }">
+                                [ngClass]="{'badge-success' : hotel.getRating() === 'Excellent','badge-successs':  hotel.getRating() === 'Odličan',
+                                'badge-warning' :  hotel.getRating() === 'Good','badge-warningg': hotel.getRating() === 'Dobar',
+                                'badge-danger' :  hotel.getRating() === 'Poor',  'badge-dangerr': hotel.getRating() === 'Loš'}">
                                 {{ hotel.rate | number:'1.1-1' }}
                             </span>
                         </div>
@@ -33,7 +35,7 @@
                     </div>
                 </div>
                 <div class="col-2">
-                    <p class="price float-right">Per night: {{ hotel.price }}</p>
+                    <p class="price float-right">{{'PRICE' | translate }}: {{ hotel.price }}</p>
                 </div>
             </div>
             <div class="row">
@@ -44,7 +46,7 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <h3 class="header-info">Facilities</h3>
+                <h3 class="header-info">{{'FACILITIES' | translate }}</h3>
             </div>
         </div>
         <div class="row mr-10">
@@ -68,7 +70,7 @@
             <div class="col-8">
                 <div class="row">
                     <div class="col-12">
-                        <h3 class="header-info">Description</h3>
+                        <h3 class="header-info">{{'DSCR' | translate }}</h3>
                     </div>
                 </div>
                 <div class="row">
@@ -82,33 +84,31 @@
         <div class="row">
             <div class="col-4">
                 <mat-card>
-                    <mat-card-title class="mat-title">Add rating</mat-card-title>
+                    <mat-card-title class="mat-title">{{'ADD RATING' | translate }}</mat-card-title>
                     <form [formGroup]="commentForm" autocomplete="off" novalidate>
                         <mat-card-content>
                             <mat-form-field class="full-width">
-                                <input matInput type="text" placeholder="Name (optional)" formControlName="name">
+                                <input matInput type="text" placeholder="{{'NAME' | translate}}" formControlName="name">
                             </mat-form-field>
                             <br>
                             <mat-form-field class="full-width">
-                                <input matInput type="number" placeholder="Hotel rating" formControlName="rating">
-                                <mat-hint align="end">1 to 10</mat-hint>
+                                <input matInput type="number" placeholder="{{'RATING' | translate}}" formControlName="rating">
+                                <mat-hint align="end">1-10</mat-hint>
                             </mat-form-field>
                             <br>
                             <mat-form-field class="full-width">
-                                <textarea  matInput type="text" placeholder="Comment" formControlName="comment"></textarea>
-                                <mat-hint align="end">Not more then 200 characters long.</mat-hint>
+                                <textarea  matInput type="text" placeholder="{{'NAME' | translate}}" formControlName="comment"></textarea>
                             </mat-form-field>
                             <br>
                         </mat-card-content>
-                        <button [disabled]=false mat-raised-button (click)="insertNewComment()">
-                            Send Rating
-                        </button>
+                        <button [disabled]="false" mat-raised-button (click)="insertNewComment()">
+                          {{'SEND RATING' | translate }}</button>
                     </form>
                 </mat-card>
             </div>
             <div class="col-8">
                 <mat-card>
-                    <mat-card-title class="mat-title">Comments and ratings</mat-card-title>
+                    <mat-card-title class="mat-title">{{'COMMENTS' | translate }}</mat-card-title>
                     <mat-card-content>
                         <div class="row rating-comment" *ngFor="let ratingComment of hotel.ratingComments">
                             <app-rating-comment class="width-100" [ratingComment]="ratingComment">

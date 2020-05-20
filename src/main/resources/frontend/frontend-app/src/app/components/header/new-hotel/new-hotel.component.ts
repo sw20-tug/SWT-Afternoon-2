@@ -9,6 +9,9 @@ import {HttpClientService} from "../../../service/http-client.service";
 import {OtherFilters} from "../../filters/other-filter.model";
 import {FiltersModel} from "../../filters/filters.model";
 import {IDropdownSettings} from "ng-multiselect-dropdown";
+import {Hotel} from "../../hotel-list/hotel.model";
+import {TranslateService} from "@ngx-translate/core";
+import {HotelService} from "../../../service/hotel.service";
 
 export interface OwnerForCreation {
   name: string;
@@ -60,17 +63,30 @@ export class NewHotelComponent implements OnInit {
 
 
   constructor(private readonly router: Router, private readonly uploadService: UploadService,
-              private readonly httpService: HttpClientService) {
+              private readonly httpService: HttpClientService, private translateService: TranslateService,
+              private HotelService: HotelService) {
     this.otherFilters = new OtherFilters();
     this._dropdownSettings = {
       singleSelection: false,
       idField: 'item_id',
       textField: 'name',
-      selectAllText: 'Select All',
-      unSelectAllText: 'Unselect All',
+      selectAllText: this.translateService.instant('UNSELECT'),
+      unSelectAllText: this.translateService.instant('UNSELECT'),
       itemsShowLimit: 14,
       allowSearchFilter: true
     };
+    this.HotelService.translateAsObs.subscribe(trigger => {
+      console.log('Trigger?', trigger);
+      this._dropdownSettings = {
+        singleSelection: false,
+        idField: 'item_id',
+        textField: 'name',
+        selectAllText: this.translateService.instant('SELECT'),
+        unSelectAllText: this.translateService.instant( 'UNSELECT'),
+        itemsShowLimit: 14,
+        allowSearchFilter: true
+      };
+    });
 
     this.dropdownSettingsCategory = {
       singleSelection: true,
@@ -80,7 +96,7 @@ export class NewHotelComponent implements OnInit {
       itemsShowLimit: 1,
       allowSearchFilter: false
     };
-    this.activities = ["Gym", "Running", "Open bar"];
+    this.activities = [Hotel.translateService.instant('FITNESS'), Hotel.translateService.instant('RUNNING'), Hotel.translateService.instant('OPEN BAR')];
     this.categories = ["Romantic", "Adventure", "Holiday", "Wellness", "Family", "Camping"];
   }
 
