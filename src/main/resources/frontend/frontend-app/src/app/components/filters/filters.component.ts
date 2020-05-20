@@ -1,4 +1,4 @@
-import {Component, Input, Output, EventEmitter} from '@angular/core';
+import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
 import {IDropdownSettings} from "ng-multiselect-dropdown";
 import {HttpClientService} from "../../service/http-client.service";
 import {HotelService} from "../../service/hotel.service";
@@ -6,6 +6,9 @@ import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Category } from '../category-list/category.model';
 import { OtherFilters } from './other-filter.model';
 import { FiltersModel } from './filters.model';
+import {TranslateService} from "@ngx-translate/core";
+import {InjectorService} from "../../service/injector.service";
+import {Hotel} from "../hotel-list/hotel.model";
 
 
 @Component({
@@ -34,7 +37,6 @@ export class FiltersComponent {
   public currentlySelectedActivities: any;
   public currentlySelectedLocations: any;
   public otherFilters: OtherFilters;
-
   public get dropdownSettings() {
     return this._dropdownSettings;
   }
@@ -54,25 +56,57 @@ export class FiltersComponent {
     })
   }
 
-  constructor(private HttpClientService: HttpClientService, private HotelService: HotelService) {
+  constructor(private HttpClientService: HttpClientService, private HotelService: HotelService,
+              private readonly translateService: TranslateService) {
 
-    this._dropdownSettings = {
-      singleSelection: false,
-      idField: 'item_id',
-      textField: 'name',
-      selectAllText: 'Select All',
-      unSelectAllText: 'Unselect All',
-      itemsShowLimit: 14,
-      allowSearchFilter: true
-    };
-    this.activities = ["Gym", "Running", "Open bar"];
+    this.instantiateDropdownSettings();
+    console.log('kurac', this.translateService.instant('FITNESS'));
+    this.HotelService.translateAsObs.subscribe(trigger => {
+      if(trigger) {
+        this.activities = [this.translateService.instant('FITNESS'), this.translateService.instant('RUNNING'), this.translateService.instant('OPEN BAR')];
+      } else {
+        this.activities = [this.translateService.instant('Fitness'), this.translateService.instant('Running'), this.translateService.instant('Open Bar')];
+
+      }
+    });
     this.locations = ["Graz", "Vienna", "Salzburg", "Paris", "Dubai", "Munich", "Berlin", "Stuttgart", "Hamburg", "Frankfurt", "Madrid", "Barcelona", "Rome", "Venice", "Milan", "London", "Amsterdam", "Florence", "Prague", "Istanbul", "Sarajevo", "Zagreb", "Athens", "Maldives", "Phuket", "Ljubljana", "Belgrade", "Budapest"];
     this.selectedActivities = [];
     this.otherFilters = new OtherFilters();
+  }
 
+
+  private instantiateDropdownSettings() {
+
+
+    this.HotelService.translateAsObs.subscribe(trigger => {
+      if(trigger) {
+        this._dropdownSettings = {
+          singleSelection: false,
+          idField: 'item_id',
+          textField: 'name',
+          selectAllText: this.translateService.instant('SELECT'),
+          unSelectAllText: this.translateService.instant('UNSELECT'),
+          itemsShowLimit: 14,
+          allowSearchFilter: true
+        };
+      } else {
+        this._dropdownSettings = {
+          singleSelection: false,
+          idField: 'item_id',
+          textField: 'name',
+          selectAllText: 'Select All',
+          unSelectAllText: 'Unselect All',
+          itemsShowLimit: 14,
+          allowSearchFilter: true
+        };
+      }
+      console.log('Trigger?', trigger);
+
+    });
   }
 
   public selectActivities() {
+
     this.selectedActivities.push(this.currentlySelectedActivities);
   }
 

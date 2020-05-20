@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Category } from '../category-list/category.model';
 import { Hotel } from '../hotel-list/hotel.model';
 import {HttpClientService} from "../../service/http-client.service";
+import {TranslateService} from "@ngx-translate/core";
+import {HotelService} from "../../service/hotel.service";
 
 @Component({
   selector: 'app-home',
@@ -15,9 +17,13 @@ export class HomeComponent implements OnInit {
   public searchText: string = '';
   public isAdmin: boolean = false;
 
-  constructor(private HttpClientService: HttpClientService) { }
+  constructor(private HttpClientService: HttpClientService, public translate: TranslateService, private hotelService: HotelService) {
+
+  }
 
   ngOnInit(): void {
+    this.translate.setDefaultLang('bs');
+    this.translate.use('bs');
     this.initializeAllCategories();
   }
 
@@ -29,6 +35,15 @@ export class HomeComponent implements OnInit {
       });
       this.allCategories = listOfCategories;
       this.categories = this.allCategories;
+      this.hotelService.translateAsObs.subscribe(trigger => {
+        this.categories[0].name = this.translate.instant('ROMANTIC');
+        this.categories[1].name = this.translate.instant('ADVENTURE');
+        this.categories[2].name = this.translate.instant('HOLIDAY');
+        this.categories[4].name = this.translate.instant('FAMILY');
+        this.categories[5].name = this.translate.instant('CAMPING');
+      });
+
+      console.log('kategorije"', this.categories);
     });
   }
 
