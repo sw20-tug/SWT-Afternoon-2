@@ -5,6 +5,7 @@ import { Hotel } from '../hotel-list/hotel.model';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import { RatingComment } from './rating-comment.model';
 import {HotelService} from "../../service/hotel.service";
+import {Category} from "../category-list/category.model";
 
 @Component({
   selector: 'app-hotel-detail',
@@ -63,16 +64,53 @@ export class HotelDetailComponent implements OnInit {
           }
         });
         // DELETE THIS AFTER DB IS FILLED WITH ACTUAL RATING+COMMENTS !
-        this.hotel.ratingComments = [new RatingComment("First user", "This is a comment.", 5),
-                                    new RatingComment("Second user", "This is a larger larger larger larger comment.", 10)];
-        console.log(this.hotel);
+        this.HttpClientService.getCommentList(params.id).subscribe(comments => {
+          var list_of_comments = new Array<RatingComment>();
+          comments.forEach(comment => {
+            console.log("ID HOTELA " + params.id);
+            console.log("COMMMENTTTTTT" + comment.id);
+            console.log("COMMMENTTTTTT" + comment.comm_text);
+            list_of_comments.push(new RatingComment(comment.user_name, comment.comm_text, comment.rate));
+          });
+          this.hotel.ratingComments = list_of_comments;
+        });
       })
     });
 
     this.commentForm = new FormGroup({
       name: new FormControl('', [Validators.maxLength(60)]),
       rating: new FormControl('', [Validators.max(10), Validators.min(0), Validators.required]),
-      comment: new FormControl('', [Validators.maxLength(200), Validators.required])
+      comment: new FormControl('', [Validators.maxLength(200)])
+
     });
+  }
+
+  public insertNewComment()
+  {
+    this.route.params.subscribe(params => {
+      console.log("NAMEEEEEEEEEEEEEE " + this.commentForm.get('name').value);
+      console.log("NAMEEEEEEEEEEEEEE " + this.commentForm.get('comment').value);
+      console.log("NAMEEEEEEEEEEEEEE " + this.commentForm.get('rating').value);
+      console.log("NAMEEEEEEEEEEEEEE " + params.id);
+      this.HttpClientService.insertNewComment(this.commentForm.get('comment').value, this.commentForm.get('name').value,
+        this.commentForm.get('rating').value, params.id).subscribe(response => {
+        console.log("test")
+        console.log('response', response);
+
+      });
+      // this.HttpClientService.getCommentList(params.id).subscribe(comments => {
+      //   var list_of_comments = new Array<RatingComment>();
+      //   comments.forEach(comment => {
+      //     console.log("ID HOTELA " + params.id);
+      //     console.log("COMMMENTTTTTT" + comment.id);
+      //     console.log("COMMMENTTTTTT" + comment.comm_text);
+      //     list_of_comments.push(new RatingComment(comment.user_name, comment.comm_text, comment.rate));
+      //   });
+      //   this.hotel.ratingComments = list_of_comments;
+      // });
+
+    });
+
+
   }
 }

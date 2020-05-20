@@ -82,9 +82,13 @@ public class Hotel implements Comparable<Hotel>{
   @Column
   private String otherFilters;
 
+  @Column
+  private int rating_num;
+
   public Hotel(String name, String city, int rate, String imagePath, String description, Integer price,  int stars, Category category,
                boolean parking, boolean restaurant, boolean pets, boolean smoking, boolean swimmingPool, boolean beachFront,
-               boolean airConditioning, boolean freeWifi, boolean sauna, boolean fitness,boolean activity_gym, boolean activity_running, boolean activity_openbar,String activity, String otherFilters) {
+               boolean airConditioning, boolean freeWifi, boolean sauna, boolean fitness,boolean activity_gym, boolean activity_running,
+               boolean activity_openbar,String activity, String otherFilters, int rating_num) {
     this.rate = rate;
     this.name = name;
     this.price = price;
@@ -108,6 +112,7 @@ public class Hotel implements Comparable<Hotel>{
     this.activity_openbar = activity_openbar;
     this.activity = activity;
     this.otherFilters = otherFilters;
+    this.rating_num = rating_num;
 
     //this.category = category;
   }
@@ -155,6 +160,7 @@ public class Hotel implements Comparable<Hotel>{
   public boolean getActivityGym(){return this.activity_gym;}
   public boolean getActivityRunning(){return this.activity_running;}
   public boolean getActivityOpenBar(){return this.activity_openbar;}
+  public int getRating_num(){return this.rating_num;}
 
   public String getActivity(){return this.activity;}
   public String getOtherFilters(){return this.otherFilters;};
@@ -198,6 +204,7 @@ public class Hotel implements Comparable<Hotel>{
   public void setActivityOpenBar(boolean activity_openbar){this.activity_openbar = activity_openbar;}
   public void setActivity(String activity){this.activity = activity;}
   public void setOtherFilters(String otherFilters){this.otherFilters = otherFilters; }
+  public void setRating_num(int rating_num){this.rating_num = rating_num;}
 
   @Override
   public int compareTo(Hotel hotel) {

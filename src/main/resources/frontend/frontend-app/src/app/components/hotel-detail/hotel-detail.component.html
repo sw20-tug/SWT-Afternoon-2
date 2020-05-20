@@ -101,9 +101,8 @@
                             </mat-form-field>
                             <br>
                         </mat-card-content>
-                        <button [disabled]="false" mat-raised-button>
-                          {{'SEND RATING' | translate }}
-                        </button>
+                        <button [disabled]="false" mat-raised-button (click)="insertNewComment()">
+                          {{'SEND RATING' | translate }}</button>
                     </form>
                 </mat-card>
             </div>
