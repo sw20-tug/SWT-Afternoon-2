@@ -29,12 +29,13 @@
   "RATING LOWEST": "Najgora ocjena",
   "RATING HIGHEST": "Najbolja ocjena",
   "STARS LOWEST": "Najmanje zvjezdica",
-  "STARS LOWEST": "Najviše zvjezdica",
+  "STARS HIGHEST": "Najviše zvjezdica",
   "SEARCH": "Pretraži",
   "POOR": "Loš",
   "GOOD": "Dobar",
   "EXCELLENT": "Odličan",
-  "SELECT": "Odaberite sve",
+  "SELECT": "Označi sve",
+  "UNSELECT": "Odznači sve",
   "GYM": "Teretana",
   "SORT": "Sortiraj po",
   "OPTIONS": "Opcije",
@@ -54,6 +55,12 @@
   "FACITILIES": "TODO",
   "ADD RATING": "Dodaj ocjenu",
   "SEND RATING": "Pošalji ocjenu",
-  "COMMENTS": "Komentari i ocjene"
+  "COMMENTS": "Komentari i ocjene",
+  "COMMENT": "Komentar",
+  "RUNNING": "Trčanje",
+  "OPEN BAR": "Otvoreni bar",
+  "USER RATING": "Ocjena korisnika",
+  "SIGNOUT MSG": "Uspješno ste se odjavili",
+  "NO RESULTS": "Nema rezultata"
 }
 

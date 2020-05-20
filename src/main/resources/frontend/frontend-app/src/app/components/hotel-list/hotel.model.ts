@@ -15,7 +15,7 @@ export class Hotel {
   public city: string;
   public facilitiesList: FacilityItem[];
   public ratingComments: RatingComment[];
-  public translateService;
+  public static translateService;
   constructor(id: number, name: string, description: string, price: string, imagePath: string, stars: number, rate: number, city: string
              ) {
     this.id = id;
@@ -26,21 +26,21 @@ export class Hotel {
     this.stars = stars;
     this.rate = rate;
     this.city = city;
-    this.translateService = InjectorService.injector.get(TranslateService);
+    Hotel.translateService = InjectorService.injector.get(TranslateService);
   }
 
   getRating() {
     if (this.rate <= 10 && this.rate >= 8) {
-      return this.translateService.instant('EXCELLENT')
+      return Hotel.translateService.instant('EXCELLENT')
     } else if (this.rate < 8 && this.rate >= 5) {
-      return this.translateService.instant('GOOD');
-    } else return this.translateService.instant('POOR');
+      return Hotel.translateService.instant('GOOD');
+    } else return Hotel.translateService.instant('POOR');
   }
 
   static MapHotel(hotel: any) {
     var mappedHotel = new Hotel(hotel.id, hotel.name, hotel.description, hotel.price, hotel.imagePath, hotel.stars, hotel.rate, hotel.city);
     mappedHotel.facilitiesList = [
-      new FacilityItem("Gym", hotel.activityGym, Facilities["Gym"]), new FacilityItem("OpenBar", hotel.activityOpenBar, Facilities["OpenBar"]), new FacilityItem("Running", hotel.activityRunning, Facilities["Running"]),
+      new FacilityItem(Hotel.translateService.instant('FITNESS'), hotel.activityGym, Facilities[Hotel.translateService.instant('FITNESS')]), new FacilityItem("OpenBar", hotel.activityOpenBar, Facilities["OpenBar"]), new FacilityItem("Running", hotel.activityRunning, Facilities["Running"]),
       new FacilityItem("AirConditioning", hotel.airConditioning, Facilities["AirConditioning"]), new FacilityItem("BeachFront", hotel.beachFront, Facilities["BeachFront"]), new FacilityItem("Fitness", hotel.fitness, Facilities["Fitness"]),
       new FacilityItem("FreeWiFi", hotel.freeWiFi, Facilities["FreeWiFi"]), new FacilityItem("Restaurant", hotel.restaurant, Facilities["Restaurant"]), new FacilityItem("SwimmingPool", hotel.swimmingPool, Facilities["SwimmingPool"]),
       new FacilityItem("Smoking", hotel.smoking, Facilities["Smoking"]), new FacilityItem("Sauna", hotel.sauna, Facilities["Sauna"]), new FacilityItem("Parking", hotel.parking, Facilities["Parking"]), new FacilityItem("Pets", hotel.pets, Facilities["Pets"])

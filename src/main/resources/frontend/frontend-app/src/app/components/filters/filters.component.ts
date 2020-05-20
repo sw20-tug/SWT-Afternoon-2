@@ -8,6 +8,7 @@ import { OtherFilters } from './other-filter.model';
 import { FiltersModel } from './filters.model';
 import {TranslateService} from "@ngx-translate/core";
 import {InjectorService} from "../../service/injector.service";
+import {Hotel} from "../hotel-list/hotel.model";
 
 
 @Component({
@@ -57,12 +58,18 @@ export class FiltersComponent {
 
   constructor(private HttpClientService: HttpClientService, private HotelService: HotelService,
               private readonly translateService: TranslateService) {
+
     this.instantiateDropdownSettings();
-    this.activities = [this.translateService.instant('GYM'), "Running", "Open bar"];
+    console.log('kurac', this.translateService.instant('FITNESS'));
+    this.activities = [this.translateService.instant('FITNESS'), this.translateService.instant('RUNNING'), this.translateService.instant('OPEN BAR')];
+    this.HotelService.translateAsObs.subscribe(trigger => {
+      this.activities = [this.translateService.instant('FITNESS'), this.translateService.instant('RUNNING'), this.translateService.instant('OPEN BAR')];
+    });
     this.locations = ["Graz", "Vienna", "Salzburg", "Paris", "Dubai", "Munich", "Berlin", "Stuttgart", "Hamburg", "Frankfurt", "Madrid", "Barcelona", "Rome", "Venice", "Milan", "London", "Amsterdam", "Florence", "Prague", "Istanbul", "Sarajevo", "Zagreb", "Athens", "Maldives", "Phuket", "Ljubljana", "Belgrade", "Budapest"];
     this.selectedActivities = [];
     this.otherFilters = new OtherFilters();
   }
+
 
   private instantiateDropdownSettings() {
 
@@ -70,11 +77,23 @@ export class FiltersComponent {
       singleSelection: false,
       idField: 'item_id',
       textField: 'name',
-      selectAllText: this.translateService.instant('SELECT'),
+      selectAllText: this.translateService.instant('UNSELECT'),
       unSelectAllText: 'Unselect All',
       itemsShowLimit: 14,
       allowSearchFilter: true
     };
+    this.HotelService.translateAsObs.subscribe(trigger => {
+      console.log('Trigger?', trigger);
+      this._dropdownSettings = {
+        singleSelection: false,
+        idField: 'item_id',
+        textField: 'name',
+        selectAllText: this.translateService.instant('SELECT'),
+        unSelectAllText: this.translateService.instant('UNSELECT'),
+        itemsShowLimit: 14,
+        allowSearchFilter: true
+      };
+    });
   }
 
   public selectActivities() {

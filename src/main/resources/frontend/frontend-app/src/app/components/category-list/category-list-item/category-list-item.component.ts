@@ -25,14 +25,25 @@ export class CategoryListItemComponent implements OnInit {
 
   ngOnInit(): void {
     this.translateService = InjectorService.injector.get(TranslateService);
-   this.sortOptions = [
+    this.sortOptions = [
       {id: 1, name: this.translateService.instant('PRICE LOWEST')},
       {id: 2, name: this.translateService.instant('PRICE HIGHEST')},
       {id: 3, name: this.translateService.instant('RATING LOWEST')},
       {id: 4, name: this.translateService.instant('RATING HIGHEST')},
       {id: 5, name: this.translateService.instant('STARS LOWEST')},
-      {id: 6, name: this.translateService.instant('STARS LOWEST')}
+      {id: 6, name: this.translateService.instant('STARS HIGHEST')}
     ];
+    this.hotelService.translateAsObs.subscribe(trigger => {
+      this.sortOptions = [
+        {id: 1, name: this.translateService.instant('PRICE LOWEST')},
+        {id: 2, name: this.translateService.instant('PRICE HIGHEST')},
+        {id: 3, name: this.translateService.instant('RATING LOWEST')},
+        {id: 4, name: this.translateService.instant('RATING HIGHEST')},
+        {id: 5, name: this.translateService.instant('STARS LOWEST')},
+        {id: 6, name: this.translateService.instant('STARS HIGHEST')}
+      ];
+    });
+
     this.determineCategoryID();
   }
 
@@ -59,7 +70,7 @@ export class CategoryListItemComponent implements OnInit {
 
   constructor(private httpClientService: HttpClientService, private hotelService: HotelService,
               private readonly sortByPipe: SortByPipe) {
-
+    console.log('??????????????', this.category);
   }
 
   sortListItems($event) {

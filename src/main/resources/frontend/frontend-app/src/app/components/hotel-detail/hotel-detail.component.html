@@ -88,16 +88,16 @@
                     <form [formGroup]="commentForm" autocomplete="off" novalidate>
                         <mat-card-content>
                             <mat-form-field class="full-width">
-                                <input matInput type="text" placeholder="Name (optional)" formControlName="name">
+                                <input matInput type="text" placeholder="{{'NAME' | translate}}" formControlName="name">
                             </mat-form-field>
                             <br>
                             <mat-form-field class="full-width">
-                                <input matInput type="number" placeholder="Hotel rating" formControlName="rating">
+                                <input matInput type="number" placeholder="{{'RATING' | translate}}" formControlName="rating">
                                 <mat-hint align="end">1-10</mat-hint>
                             </mat-form-field>
                             <br>
                             <mat-form-field class="full-width">
-                                <textarea  matInput type="text" placeholder="Comment" formControlName="comment"></textarea>
+                                <textarea  matInput type="text" placeholder="{{'NAME' | translate}}" formControlName="comment"></textarea>
                             </mat-form-field>
                             <br>
                         </mat-card-content>

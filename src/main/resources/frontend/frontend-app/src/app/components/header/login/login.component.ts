@@ -4,6 +4,9 @@ import { UsernameValidator, PasswordValidator } from './validators/custom.valida
 import { ConfirmationDialogService } from './confirmation-dialogue/confirmation-dialogue.service';
 import {TranslateService} from "@ngx-translate/core";
 import {CookieService} from "ngx-cookie-service";
+import {Router} from "@angular/router";
+import {Hotel} from "../../hotel-list/hotel.model";
+import {HotelService} from "../../../service/hotel.service";
 
 @Component({
   selector: 'app-login',
@@ -18,11 +21,13 @@ export class LoginComponent implements OnInit{
   submitted = false;
   _isAdmin = false;
   constructor(private formBuilder: FormBuilder, private confirmationDialogService: ConfirmationDialogService,  public translate: TranslateService,
-              private cookieService: CookieService) { }
+              private cookieService: CookieService, private readonly router: Router, private readonly hotelService: HotelService) { }
+
+
   public changeLanguage(language: string) {
     this.translate.setDefaultLang(language);
     this.translate.use(language);
-    this.translate.currentLang
+    this.hotelService.translateHotels(true);
   }
   show()
   {
@@ -36,7 +41,7 @@ export class LoginComponent implements OnInit{
     this.cookieService.set('password', "");
     this.login();
 
-    this.confirmationDialogService.confirm('Sign out', 'You have been successfully signed out!')
+    this.confirmationDialogService.confirm(Hotel.translateService.instant('SIGNOUT'), Hotel.translateService.instant('SIGNOUT MSG'))
       .then((confirmed) => this.isAdmin = !confirmed)
       .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
 

@@ -1,4 +1,5 @@
 export enum Facilities {
+    Teretana = "fas fa-dumbbell",
     Gym = "fas fa-dumbbell",
     OpenBar = "fas fa-cocktail",
     Running = "fas fa-running",

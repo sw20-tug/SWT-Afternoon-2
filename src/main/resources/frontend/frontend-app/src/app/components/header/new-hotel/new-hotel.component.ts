@@ -9,6 +9,7 @@ import {HttpClientService} from "../../../service/http-client.service";
 import {OtherFilters} from "../../filters/other-filter.model";
 import {FiltersModel} from "../../filters/filters.model";
 import {IDropdownSettings} from "ng-multiselect-dropdown";
+import {Hotel} from "../../hotel-list/hotel.model";
 
 export interface OwnerForCreation {
   name: string;
@@ -80,7 +81,7 @@ export class NewHotelComponent implements OnInit {
       itemsShowLimit: 1,
       allowSearchFilter: false
     };
-    this.activities = ["Gym", "Running", "Open bar"];
+    this.activities = [Hotel.translateService.instant('FITNESS'), Hotel.translateService.instant('RUNNING'), Hotel.translateService.instant('OPEN BAR')];
     this.categories = ["Romantic", "Adventure", "Holiday", "Wellness", "Family", "Camping"];
   }
 
