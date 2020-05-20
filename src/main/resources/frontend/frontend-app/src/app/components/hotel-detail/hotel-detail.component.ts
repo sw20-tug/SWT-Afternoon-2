@@ -26,10 +26,13 @@ export class HotelDetailComponent implements OnInit {
         this.hotel = Hotel.MapHotel(hotel);
         this.hotel.facilitiesList = this.hotel.facilitiesList.filter(x => x.value);
         // DELETE THIS AFTER DB IS FILLED WITH ACTUAL RATING+COMMENTS !
-        this.HttpClientService.getCommentList("10").subscribe(comments => {
+        this.HttpClientService.getCommentList(params.id).subscribe(comments => {
           var list_of_comments = new Array<RatingComment>();
-          comments.forEach(commment => {
-            list_of_comments.push(new RatingComment("stefa", "kk", 1));
+          comments.forEach(comment => {
+            console.log("ID HOTELA " + params.id);
+            console.log("COMMMENTTTTTT" + comment.id);
+            console.log("COMMMENTTTTTT" + comment.comm_text);
+            list_of_comments.push(new RatingComment(comment.user_name, comment.comm_text, comment.rate));
           });
           this.hotel.ratingComments = list_of_comments;
         });
