@@ -124,7 +124,8 @@ public class HotelController {
                                                            @RequestParam String rate,
                                                            @RequestParam String hotel_id) {
 
-    this.commentService.insertNewHotels(comment, user_name, Integer.parseInt(rate), Long.parseLong(hotel_id));
+    System.out.print("USLI SMO U BACKEND");
+    this.commentService.insertNewComment(comment, user_name, Integer.parseInt(rate), Long.parseLong(hotel_id));
     return new ResponseEntity<String>("POST Response", HttpStatus.OK);
   }
 

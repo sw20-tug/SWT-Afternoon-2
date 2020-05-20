@@ -14,12 +14,12 @@ public class CommentService {
   @Autowired
   CommentRepository cr;
 
-  public void insertNewHotels(String comment, String user_name, Integer rating, long hotel_id)
+  public void insertNewComment(String comment, String user_name, Integer rating, long hotel_id)
   {
     //generate new id
     Integer new_id = this.cr.findLastId() + 1;
     System.out.println("new_id is " + new_id);
-    this.cr.insertNewHotels(new_id, comment, user_name, rating, hotel_id);
+    this.cr.insertNewComment(new_id, comment, user_name, rating, hotel_id);
   }
 
   public CommentService(CommentRepository cr)

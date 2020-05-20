@@ -30,6 +30,6 @@ public interface CommentRepository extends CrudRepository<Comment, Long> {
   @Query(
     value = "INSERT INTO swt.comment(id, comment, user_name, rate, hotel_id)",
     nativeQuery = true)
-  void  insertNewHotels(@Param("id") long id, @Param("comment") String comment,  @Param("user_name") String user_name, @Param("rate") int rate, @Param("hotel_id") long hotel_id);
+  void  insertNewComment(@Param("id") long id, @Param("comment") String comment,  @Param("user_name") String user_name, @Param("rate") int rate, @Param("hotel_id") long hotel_id);
 }
 

@@ -43,6 +43,20 @@ export class HotelDetailComponent implements OnInit {
       name: new FormControl('', [Validators.maxLength(60)]),
       rating: new FormControl('', [Validators.max(10), Validators.min(0), Validators.required]),
       comment: new FormControl('', [Validators.maxLength(200)])
+
     });
+  }
+
+  public insertNewComment()
+  {
+    this.route.params.subscribe(params => {
+      console.log("NAMEEEEEEEEEEEEEE" + this.commentForm.get('name').value);
+      console.log("NAMEEEEEEEEEEEEEE" + this.commentForm.get('comment').value);
+      console.log("NAMEEEEEEEEEEEEEE" + this.commentForm.get('rating').value);
+      console.log("NAMEEEEEEEEEEEEEE" + params.id);
+
+    });
+    this.HttpClientService.insertNewComment(this.commentForm.get('comment').value, this.commentForm.get('name').value,
+      this.commentForm.get('rating').value, 805);
   }
 }

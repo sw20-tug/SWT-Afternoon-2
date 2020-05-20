@@ -15,8 +15,8 @@
                         </ng-template>
                     </ngb-rating>
                 </div>
-            </div>        
-        </div>                
+            </div>
+        </div>
         <div class="col-md-12 col-lg-12">
             <div class="row">
                 <div class="col-10">
@@ -30,7 +30,7 @@
                         <div class="col-11">
                             <p class="rating">{{ hotel.getRating() }}</p>
                         </div>
-                    </div>                    
+                    </div>
                 </div>
                 <div class="col-2">
                     <p class="price float-right">Per night: {{ hotel.price }}</p>
@@ -44,12 +44,12 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <h3 class="header-info">Facilities</h3>      
+                <h3 class="header-info">Facilities</h3>
             </div>
         </div>
         <div class="row mr-10">
             <div class="col-2" *ngFor="let facility of hotel.facilitiesList">
-               <i class="{{ facility.icon }}"></i> {{ facility.name }}    
+               <i class="{{ facility.icon }}"></i> {{ facility.name }}
             </div>
         </div>
         <br>
@@ -61,14 +61,14 @@
                             <div class="picsum-img-wrapper">
                                 <img [src]="image" alt="Error loading picture">
                             </div>
-                        </div>                        
+                        </div>
                     </ng-template>
                 </ngb-carousel>
             </div>
             <div class="col-8">
                 <div class="row">
                     <div class="col-12">
-                        <h3 class="header-info">Description</h3>      
+                        <h3 class="header-info">Description</h3>
                     </div>
                 </div>
                 <div class="row">
@@ -78,7 +78,7 @@
                 </div>
             </div>
         </div>
-        <br/>        
+        <br/>
         <div class="row">
             <div class="col-4">
                 <mat-card>
@@ -93,14 +93,14 @@
                                 <input matInput type="number" placeholder="Hotel rating" formControlName="rating">
                                 <mat-hint align="end">1 to 10</mat-hint>
                             </mat-form-field>
-                            <br>    
+                            <br>
                             <mat-form-field class="full-width">
                                 <textarea  matInput type="text" placeholder="Comment" formControlName="comment"></textarea>
                                 <mat-hint align="end">Not more then 200 characters long.</mat-hint>
                             </mat-form-field>
                             <br>
                         </mat-card-content>
-                        <button [disabled]="false" mat-raised-button>
+                        <button [disabled]=false mat-raised-button (click)="insertNewComment()">
                             Send Rating
                         </button>
                     </form>
@@ -109,7 +109,7 @@
             <div class="col-8">
                 <mat-card>
                     <mat-card-title class="mat-title">Comments and ratings</mat-card-title>
-                    <mat-card-content>    
+                    <mat-card-content>
                         <div class="row rating-comment" *ngFor="let ratingComment of hotel.ratingComments">
                             <app-rating-comment class="width-100" [ratingComment]="ratingComment">
                             </app-rating-comment>
@@ -118,6 +118,6 @@
                 </mat-card>
             </div>
         </div>
-    </div>    
+    </div>
   </div>
 </div>
