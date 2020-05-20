@@ -71,6 +71,15 @@ export class HttpClientService {
     );
   }
 
+  public insertNewComment(comment: string, user_name: string, rate: int, hotel_id: long) {
+  return this.http.post(this.serverUrl + '/addNewComment?comment=' + comment + '&user_name=' + user_name +
+        '&rate=' + rate +
+        '&hotel_id=' + hotel_id, this.httpOptions, {responseType: 'text'}).pipe(
+          catchError(this.errorHandler)
+      );
+
+  }
+
   public getFilteredHotels(minPrice: number, maxPrice: number,
                            minRating: number, maxRating: number,
                            starsFilter: number, currentlySelectedActivities: string[],

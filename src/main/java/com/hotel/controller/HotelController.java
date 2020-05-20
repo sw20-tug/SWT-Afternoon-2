@@ -119,7 +119,16 @@ public class HotelController {
     return new ResponseEntity<String>("POST Response", HttpStatus.OK);
   }
 
-   @GetMapping(path="/hotelDetail")
+  @PostMapping(path="/addNewComment")
+  public @ResponseBody ResponseEntity<String> AddNewComment(@RequestParam String comment, @RequestParam String user_name,
+                                                           @RequestParam String rate,
+                                                           @RequestParam String hotel_id) {
+
+    this.commentService.insertNewHotels(comment, user_name, Integer.parseInt(rate), Long.parseLong(hotel_id));
+    return new ResponseEntity<String>("POST Response", HttpStatus.OK);
+  }
+
+  @GetMapping(path="/hotelDetail")
    public @ResponseBody Hotel getHotelById(@RequestParam String id) {
     return this.hotelService.getHotelById(Integer.parseInt(id));
   }
