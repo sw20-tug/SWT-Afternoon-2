@@ -12,7 +12,7 @@ export class AppComponent {
   constructor(private  translate: TranslateService, private hotelService: HotelService) {
     this.translate.setDefaultLang('en');
     this.translate.use('en');
-    this.hotelService.translateHotels(true);
+   // this.hotelService.translateHotels(true);
   }
 }
 

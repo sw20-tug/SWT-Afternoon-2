@@ -52,7 +52,7 @@
   "DSCR": "Opis hotela",
   "NAME": "Ime hotela",
   "CREATE": "Napravi",
-  "FACITILIES": "TODO",
+  "FACILITIES": "Sadržaji",
   "ADD RATING": "Dodaj ocjenu",
   "SEND RATING": "Pošalji ocjenu",
   "COMMENTS": "Komentari i ocjene",
@@ -61,6 +61,7 @@
   "OPEN BAR": "Otvoreni bar",
   "USER RATING": "Ocjena korisnika",
   "SIGNOUT MSG": "Uspješno ste se odjavili",
-  "NO RESULTS": "Nema rezultata"
+  "NO RESULTS": "Nema rezultata",
+  "ADD": "Dodaj novi"
 }
 

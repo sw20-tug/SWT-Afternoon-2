@@ -61,9 +61,13 @@ export class FiltersComponent {
 
     this.instantiateDropdownSettings();
     console.log('kurac', this.translateService.instant('FITNESS'));
-    this.activities = [this.translateService.instant('FITNESS'), this.translateService.instant('RUNNING'), this.translateService.instant('OPEN BAR')];
     this.HotelService.translateAsObs.subscribe(trigger => {
-      this.activities = [this.translateService.instant('FITNESS'), this.translateService.instant('RUNNING'), this.translateService.instant('OPEN BAR')];
+      if(trigger) {
+        this.activities = [this.translateService.instant('FITNESS'), this.translateService.instant('RUNNING'), this.translateService.instant('OPEN BAR')];
+      } else {
+        this.activities = [this.translateService.instant('Fitness'), this.translateService.instant('Running'), this.translateService.instant('Open Bar')];
+
+      }
     });
     this.locations = ["Graz", "Vienna", "Salzburg", "Paris", "Dubai", "Munich", "Berlin", "Stuttgart", "Hamburg", "Frankfurt", "Madrid", "Barcelona", "Rome", "Venice", "Milan", "London", "Amsterdam", "Florence", "Prague", "Istanbul", "Sarajevo", "Zagreb", "Athens", "Maldives", "Phuket", "Ljubljana", "Belgrade", "Budapest"];
     this.selectedActivities = [];
@@ -73,26 +77,31 @@ export class FiltersComponent {
 
   private instantiateDropdownSettings() {
 
-    this._dropdownSettings = {
-      singleSelection: false,
-      idField: 'item_id',
-      textField: 'name',
-      selectAllText: this.translateService.instant('UNSELECT'),
-      unSelectAllText: 'Unselect All',
-      itemsShowLimit: 14,
-      allowSearchFilter: true
-    };
+
     this.HotelService.translateAsObs.subscribe(trigger => {
+      if(trigger) {
+        this._dropdownSettings = {
+          singleSelection: false,
+          idField: 'item_id',
+          textField: 'name',
+          selectAllText: this.translateService.instant('SELECT'),
+          unSelectAllText: this.translateService.instant('UNSELECT'),
+          itemsShowLimit: 14,
+          allowSearchFilter: true
+        };
+      } else {
+        this._dropdownSettings = {
+          singleSelection: false,
+          idField: 'item_id',
+          textField: 'name',
+          selectAllText: 'Select All',
+          unSelectAllText: 'Unselect All',
+          itemsShowLimit: 14,
+          allowSearchFilter: true
+        };
+      }
       console.log('Trigger?', trigger);
-      this._dropdownSettings = {
-        singleSelection: false,
-        idField: 'item_id',
-        textField: 'name',
-        selectAllText: this.translateService.instant('SELECT'),
-        unSelectAllText: this.translateService.instant('UNSELECT'),
-        itemsShowLimit: 14,
-        allowSearchFilter: true
-      };
+
     });
   }
 

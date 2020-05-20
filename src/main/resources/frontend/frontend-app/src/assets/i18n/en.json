@@ -52,6 +52,13 @@
   "OPEN BAR": "Open bar",
   "SIGNOUT MSG": "You have been successfully signed out!",
   "RUNNING": "Running",
-  "NO RESULTS": "No results"
+  "NO RESULTS": "No results",
+  "LOGIN": "Login",
+  "USERNAME": "Username",
+  "PASSWORD": "Password",
+  "LOGIN": "Login",
+  "CANCEL": "Cancel",
+  "OPTIONS": "Options",
+  "ADD": "Add new"
 }
 

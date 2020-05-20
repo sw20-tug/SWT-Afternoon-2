@@ -40,7 +40,7 @@ export class Hotel {
   static MapHotel(hotel: any) {
     var mappedHotel = new Hotel(hotel.id, hotel.name, hotel.description, hotel.price, hotel.imagePath, hotel.stars, hotel.rate, hotel.city);
     mappedHotel.facilitiesList = [
-      new FacilityItem(Hotel.translateService.instant('FITNESS'), hotel.activityGym, Facilities[Hotel.translateService.instant('FITNESS')]), new FacilityItem("OpenBar", hotel.activityOpenBar, Facilities["OpenBar"]), new FacilityItem("Running", hotel.activityRunning, Facilities["Running"]),
+      new FacilityItem("Gym", hotel.activityGym, Facilities["Gym"]), new FacilityItem("OpenBar", hotel.activityOpenBar, Facilities["OpenBar"]), new FacilityItem("Running", hotel.activityRunning, Facilities["Running"]),
       new FacilityItem("AirConditioning", hotel.airConditioning, Facilities["AirConditioning"]), new FacilityItem("BeachFront", hotel.beachFront, Facilities["BeachFront"]), new FacilityItem("Fitness", hotel.fitness, Facilities["Fitness"]),
       new FacilityItem("FreeWiFi", hotel.freeWiFi, Facilities["FreeWiFi"]), new FacilityItem("Restaurant", hotel.restaurant, Facilities["Restaurant"]), new FacilityItem("SwimmingPool", hotel.swimmingPool, Facilities["SwimmingPool"]),
       new FacilityItem("Smoking", hotel.smoking, Facilities["Smoking"]), new FacilityItem("Sauna", hotel.sauna, Facilities["Sauna"]), new FacilityItem("Parking", hotel.parking, Facilities["Parking"]), new FacilityItem("Pets", hotel.pets, Facilities["Pets"])

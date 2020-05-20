@@ -21,7 +21,9 @@ export class LoginComponent implements OnInit{
   submitted = false;
   _isAdmin = false;
   constructor(private formBuilder: FormBuilder, private confirmationDialogService: ConfirmationDialogService,  public translate: TranslateService,
-              private cookieService: CookieService, private readonly router: Router, private readonly hotelService: HotelService) { }
+              private cookieService: CookieService, private readonly router: Router, private readonly hotelService: HotelService) {
+
+  }
 
 
   public changeLanguage(language: string) {
@@ -53,6 +55,7 @@ export class LoginComponent implements OnInit{
     this.resetForm(this.registerForm);
   }
   ngOnInit() {
+
     console.log("hellooo   " + this.cookieService.get("isAdmin"));
     this._isAdmin = this.isAdmin = this.cookieService.get("isAdmin") === "true" ? true : false;
     this.registerForm = this.formBuilder.group({
