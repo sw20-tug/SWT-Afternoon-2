@@ -28,8 +28,8 @@ public interface CommentRepository extends CrudRepository<Comment, Long> {
   @Transactional
   @Modifying
   @Query(
-    value = "INSERT INTO swt.comment(id, comment, user_name, rate, hotel_id)",
+    value = "INSERT INTO swt.comment(id, comm_text, user_name, rate, hotel_id) VALUES (:id, :comm_text, :user_name, :rate, :hotel_id)",
     nativeQuery = true)
-  void  insertNewComment(@Param("id") long id, @Param("comment") String comment,  @Param("user_name") String user_name, @Param("rate") int rate, @Param("hotel_id") long hotel_id);
+  void  insertNewComment(@Param("id") long id, @Param("comm_text") String comm_text,  @Param("user_name") String user_name, @Param("rate") int rate, @Param("hotel_id") long hotel_id);
 }
 

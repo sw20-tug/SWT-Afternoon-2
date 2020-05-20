@@ -50,13 +50,29 @@ export class HotelDetailComponent implements OnInit {
   public insertNewComment()
   {
     this.route.params.subscribe(params => {
-      console.log("NAMEEEEEEEEEEEEEE" + this.commentForm.get('name').value);
-      console.log("NAMEEEEEEEEEEEEEE" + this.commentForm.get('comment').value);
-      console.log("NAMEEEEEEEEEEEEEE" + this.commentForm.get('rating').value);
-      console.log("NAMEEEEEEEEEEEEEE" + params.id);
+      console.log("NAMEEEEEEEEEEEEEE " + this.commentForm.get('name').value);
+      console.log("NAMEEEEEEEEEEEEEE " + this.commentForm.get('comment').value);
+      console.log("NAMEEEEEEEEEEEEEE " + this.commentForm.get('rating').value);
+      console.log("NAMEEEEEEEEEEEEEE " + params.id);
+      this.HttpClientService.insertNewComment(this.commentForm.get('comment').value, this.commentForm.get('name').value,
+        this.commentForm.get('rating').value, params.id).subscribe(response => {
+        console.log("test")
+        console.log('response', response);
+
+      });
+      // this.HttpClientService.getCommentList(params.id).subscribe(comments => {
+      //   var list_of_comments = new Array<RatingComment>();
+      //   comments.forEach(comment => {
+      //     console.log("ID HOTELA " + params.id);
+      //     console.log("COMMMENTTTTTT" + comment.id);
+      //     console.log("COMMMENTTTTTT" + comment.comm_text);
+      //     list_of_comments.push(new RatingComment(comment.user_name, comment.comm_text, comment.rate));
+      //   });
+      //   this.hotel.ratingComments = list_of_comments;
+      // });
 
     });
-    this.HttpClientService.insertNewComment(this.commentForm.get('comment').value, this.commentForm.get('name').value,
-      this.commentForm.get('rating').value, 805);
+
+
   }
 }

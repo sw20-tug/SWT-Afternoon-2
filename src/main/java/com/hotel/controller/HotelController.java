@@ -120,12 +120,10 @@ public class HotelController {
   }
 
   @PostMapping(path="/addNewComment")
-  public @ResponseBody ResponseEntity<String> AddNewComment(@RequestParam String comment, @RequestParam String user_name,
-                                                           @RequestParam String rate,
-                                                           @RequestParam String hotel_id) {
-
-    System.out.print("USLI SMO U BACKEND");
-    this.commentService.insertNewComment(comment, user_name, Integer.parseInt(rate), Long.parseLong(hotel_id));
+  public @ResponseBody ResponseEntity<String> AddNewComment(@RequestParam String comm_text, @RequestParam String user_name,
+                                                           @RequestParam String rate, @RequestParam String hotel_id) {
+    System.out.println("add new comment");
+    this.commentService.insertNewComment(comm_text, user_name, Integer.parseInt(rate), Long.parseLong(hotel_id));
     return new ResponseEntity<String>("POST Response", HttpStatus.OK);
   }
 
