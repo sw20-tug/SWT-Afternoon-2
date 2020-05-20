@@ -1,3 +1,6 @@
+import {FacilityItem} from "./facility-item.model";
+import {Facilities} from "./facilities.enum";
+
 export class RatingComment {
     public name: string;
     public comment: string;
@@ -8,4 +11,10 @@ export class RatingComment {
         this.comment = comment;
         this.rating = rating;
     }
+
+  static MapComment(comment: any) {
+    var mappedHotel = new RatingComment(comment.name, comment.comment, comment.rating);
+
+    return mappedHotel;
+  }
 }

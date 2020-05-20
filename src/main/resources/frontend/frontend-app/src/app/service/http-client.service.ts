@@ -50,18 +50,6 @@ export class HttpClientService {
   public insertNewHotel(name: string, description: string, category: string, price: number, rating: number,
                         stars: number, city: string, currentlySelectedActivities: string[], otherFilters: (boolean)[],
                         imageURL: string) {
-
-
-    console.log("hotel name: " + name)
-    console.log("hotel desc: " + description)
-    console.log("hotel category: " + category)
-    console.log("hotel price: " + price)
-    console.log("hotel rating: " + rating)
-    console.log("hotel stars: " + stars)
-    console.log("hotel city: " + city)
-    console.log("hotel activities: " + currentlySelectedActivities)
-    console.log("hotel of: " + otherFilters)
-    console.log("hotel image: " + imageURL)
     return this.http.post(this.serverUrl + '/addNewHotels?name=' + name + '&description=' + description +
       '&category=' + category +
       '&price=' + price + '&rating=' + rating + '&stars=' + stars + '&city=' + city +
@@ -69,6 +57,20 @@ export class HttpClientService {
      + '&imageURL=' + imageURL, this.httpOptions, {responseType: 'text'}).pipe(
         catchError(this.errorHandler)
     );
+  }
+
+  public insertNewComment(comm_text: string, user_name: string, rate: number, hotel_id: number) {
+    console.log("Usli u frontend  " + comm_text)
+    console.log("Usli u frontend  " + user_name)
+    console.log("Usli u frontend  " + rate)
+    console.log("Usli u frontend  " + hotel_id)
+    return this.http.post(this.serverUrl + '/addNewComment?comm_text=' + comm_text + '&user_name=' + user_name +
+      '&rate=' + rate +
+      '&hotel_id=' + hotel_id, this.httpOptions, {responseType: 'text'}).pipe(
+      catchError(this.errorHandler)
+    );
+
+
   }
 
   public getFilteredHotels(minPrice: number, maxPrice: number,
@@ -110,6 +112,13 @@ export class HttpClientService {
 
   public getHotelById(id: String): Observable<any> {
     return this.http.get<any>(this.serverUrl + '/hotelDetail?id=' + id).pipe(
+      retry(this.retryCount),
+      catchError(this.errorHandler)
+    );
+  }
+
+  public getCommentList(id: String): Observable<any> {
+    return this.http.get<any[]>(this.serverUrl + '/commentHotel?id=' + id).pipe(
       retry(this.retryCount),
       catchError(this.errorHandler)
     );

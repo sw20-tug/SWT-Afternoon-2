@@ -1,7 +1,10 @@
 package com.hotel.controller;
 
+import com.hotel.model.Comment;
 import com.hotel.model.Hotel;
+import com.hotel.repository.CommentRepository;
 import com.hotel.repository.HotelRepository;
+import com.hotel.services.CommentService;
 import com.hotel.services.CustomerService;
 import com.hotel.services.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +20,12 @@ public class HotelController {
   @Autowired
   private HotelService hotelService;
   @Autowired
+  private CommentService commentService;
+  @Autowired
   private HotelRepository hotelRepository;
+  @Autowired
+  private CommentRepository commentRepository;
+
   private Hotel hotel = new Hotel();
 
   @Autowired
@@ -111,8 +119,22 @@ public class HotelController {
     return new ResponseEntity<String>("POST Response", HttpStatus.OK);
   }
 
-   @GetMapping(path="/hotelDetail")
+  @PostMapping(path="/addNewComment")
+  public @ResponseBody ResponseEntity<String> AddNewComment(@RequestParam String comm_text, @RequestParam String user_name,
+                                                           @RequestParam String rate, @RequestParam String hotel_id) {
+    System.out.println("add new comment");
+    this.commentService.insertNewComment(comm_text, user_name, Integer.parseInt(rate), Long.parseLong(hotel_id));
+    return new ResponseEntity<String>("POST Response", HttpStatus.OK);
+  }
+
+  @GetMapping(path="/hotelDetail")
    public @ResponseBody Hotel getHotelById(@RequestParam String id) {
     return this.hotelService.getHotelById(Integer.parseInt(id));
+  }
+
+  @GetMapping(path = "/commentHotel")
+  public @ResponseBody List<Comment> getCommentList(@RequestParam String id){
+    //TODO: check for input param
+    return this.commentService.getCommentsByHotelID(Long.parseLong(id));
   }
 }
