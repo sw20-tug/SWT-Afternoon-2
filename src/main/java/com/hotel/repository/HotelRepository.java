@@ -83,6 +83,13 @@ public interface HotelRepository extends CrudRepository<Hotel, Long> {
     nativeQuery = true)
   Hotel findHotelById(@Param("hotelId")int hotelId);
 
+  @Transactional
+  @Modifying
+  @Query(
+    value = "DELETE  FROM hotel WHERE name = :hotel_name",
+    nativeQuery = true)
+  void deleteHotel(@Param("hotel_name") String hotel_name);
+
   @Override
   List<Hotel> findAll();
 

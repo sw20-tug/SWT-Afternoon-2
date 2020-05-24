@@ -292,6 +292,11 @@ public class HotelService {
     return this.hr.findHotelById(hotelId);
   }
 
+  public void deleteHotel(String hotel_name)
+  {
+    this.hr.deleteHotel(hotel_name);
+  }
+
   public String convertOtherFiltersToString(Boolean[] otherFilters)
   {
     StringBuilder otherFilters_ = new StringBuilder();

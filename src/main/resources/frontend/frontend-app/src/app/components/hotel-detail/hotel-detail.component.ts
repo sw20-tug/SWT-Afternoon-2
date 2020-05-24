@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {HttpClientService} from "../../service/http-client.service";
 import { Hotel } from '../hotel-list/hotel.model';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import { RatingComment } from './rating-comment.model';
 import {HotelService} from "../../service/hotel.service";
 import {Category} from "../category-list/category.model";
+import {FiltersComponent} from "../filters/filters.component";
+import {HomeComponent} from "../home/home.component";
+
 
 @Component({
   selector: 'app-hotel-detail',
@@ -16,8 +19,11 @@ export class HotelDetailComponent implements OnInit {
   public hotel: Hotel;
   public commentForm: FormGroup;
   public images: any[] = [];
+  public showDeleteConfirmationDialog: boolean;
+  public isAdminForDelete: boolean;
 
-  constructor(private route: ActivatedRoute, private HttpClientService: HttpClientService, private hotelService: HotelService) { }
+
+  constructor(private router: Router, private route: ActivatedRoute, private HttpClientService: HttpClientService, private hotelService: HotelService) { }
 
 
   ngOnInit(): void {
@@ -83,6 +89,29 @@ export class HotelDetailComponent implements OnInit {
       comment: new FormControl('', [Validators.maxLength(200)])
 
     });
+
+
+  }
+
+  show()
+  {
+    this.showDeleteConfirmationDialog = true;
+  }
+
+  deleteHotel()
+  {
+    this.HttpClientService.deleteHotel(this.hotel.name).subscribe(response => {
+      console.log("response")
+      console.log('response from controller', response);
+      this.showDeleteConfirmationDialog = false;
+      this.router.navigate(['']);
+    });
+
+  }
+
+  hide()
+  {
+    this.showDeleteConfirmationDialog = false;
   }
 
   public insertNewComment()

@@ -119,5 +119,30 @@
             </div>
         </div>
     </div>
-  </div>
+        <div class="col-md-12 col-lg-12">
+        <div class="row">
+          <div class="col-10 name-text font-size-26">
+          </div>
+          <div class="col-2">
+            <button [disabled]=false color="primary"  mat-raised-button (click)="show()">
+              {{'DELETE' | translate }}</button>
+          </div>
+        </div>
+      </div>
+      <div [style.display]="showDeleteConfirmationDialog ? 'block' : 'none'" [style.background]="showDeleteConfirmationDialog ? 'linear-gradient(45deg, black, transparent)' : 'none'" class="modal" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="myModalLabel">{{'DELETE CHECK' | translate}}</h4>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal" (click) = "deleteHotel()">{{'YES' | translate}}</button>
+              <button type="button" class="btn btn-dark" data-dismiss="modal" (click) = "hide()">{{'NO' | translate}}</button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
 </div>

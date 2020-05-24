@@ -137,4 +137,11 @@ public class HotelController {
     //TODO: check for input param
     return this.commentService.getCommentsByHotelID(Long.parseLong(id));
   }
+
+  @PostMapping(path="/deleteHotel")
+  public @ResponseBody ResponseEntity<String> deleteHotel(@RequestParam String hotel_name) {
+    System.out.println("delete hotel " + hotel_name);
+    this.hotelService.deleteHotel(hotel_name);
+    return new ResponseEntity<String>("POST Response", HttpStatus.OK);
+  }
 }
