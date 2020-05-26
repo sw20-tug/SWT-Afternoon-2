@@ -12,8 +12,7 @@ import java.util.List;
 
 @Repository
 public interface HotelRepository extends CrudRepository<Hotel, Long> {
-  Hotel findByName(String name);
-
+  List <Hotel> findByName(String name);
 
   List <Hotel> findByPrice(int price);
 

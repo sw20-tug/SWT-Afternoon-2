@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 
+import com.hotel.controller.Categories;
 import com.hotel.controller.CategoryController;
 import com.hotel.controller.HotelController;
 import com.hotel.model.Category;
@@ -38,6 +39,8 @@ class MainApplicationTests {
   @Autowired
   CategoryController categoryController;
   HotelController hotelController;
+
+  @Autowired
   HotelService hotelService;
 
   @LocalServerPort
@@ -472,7 +475,94 @@ class MainApplicationTests {
     //Super 8 Bloomington
     actual_hotels_inside.get(1).setRating_num(10);
     //hotelRepository.save(actual_hotels_inside.get(1));
-
     assertThat(actual_hotels_inside.get(1).getRating_num()).isEqualTo(10);
+  }
+
+  @Test
+  public void deleteHotel() throws Exception {
+    List<Hotel> hotels = hotelRepository.findByName("The Inn at the Tides");
+    String name = hotels.size() != 0 ? hotels.get(0).getName() : "";
+    //Super 8 Bloomington
+    hotelRepository.deleteHotel(name);
+    //hotelRepository.save(actual_hotels_inside.get(1));
+    assertThat(hotelRepository.findByName(name).size()).isEqualTo(0);
+  }
+  @Test
+  public void applyFilter01() throws Exception {
+    int minPrice = 20;
+    int maxPrice = 500;
+    int minRating = 1;
+    int maxRating = 5;
+    int stars = 1;
+    String[] ac = {"0","0","0"};
+    String[] lc = {"Abbiadori","Adler","Athens"};
+    Boolean[] otfil ={true,true,false,true,false,true,false,false,true,false};
+    Iterable<Categories> categories = this.hotelService.applyAllFiltersAndGetHotels(minPrice,maxPrice,minRating,maxRating,stars,ac,lc,otfil);
+    assertThat(categories).isNotNull();
+  }
+  @Test
+  public void applyFilter02() throws Exception {
+    int minPrice = 20;
+    int maxPrice = 500;
+    int minRating = 1;
+    int maxRating = 5;
+    int stars = 1;
+    String[] ac = {"0","0","0"};
+    String[] lc = {"0","0","0"};
+    Boolean[] otfil ={true,true,false,true,false,true,false,false,true,false};
+    Iterable<Categories> categories = this.hotelService.applyAllFiltersAndGetHotels(minPrice,maxPrice,minRating,maxRating,stars,ac,lc,otfil);
+    assertThat(categories).isNotNull();
+  }
+  @Test
+  public void applyFilter03() throws Exception {
+    int minPrice = 20;
+    int maxPrice = 500;
+    int minRating = 1;
+    int maxRating = 5;
+    int stars = 1;
+    String[] ac = {"0","0","0"};
+    String[] lc = {"0","0","0"};
+    Boolean[] otfil ={false,false,false,false,false,false,false,false,false,false};
+    Iterable<Categories> categories = this.hotelService.applyAllFiltersAndGetHotels(minPrice,maxPrice,minRating,maxRating,stars,ac,lc,otfil);
+    assertThat(categories).isNotNull();
+  }
+  @Test
+  public void applyFilter04() throws Exception {
+    int minPrice = 20;
+    int maxPrice = 500;
+    int minRating = 1;
+    int maxRating = 5;
+    int stars = 1;
+    String[] ac = {"0","0","0"};
+    String[] lc = {"Abbiadori","Adler","Athens"};
+    Boolean[] otfil ={false,false,false,false,false,false,false,false,false,false};
+    Iterable<Categories> categories = this.hotelService.applyAllFiltersAndGetHotels(minPrice,maxPrice,minRating,maxRating,stars,ac,lc,otfil);
+    assertThat(categories).isNotNull();
+  }
+  @Test
+  public void applyFilter05() throws Exception {
+    int minPrice = 20;
+    int maxPrice = 0;
+    int minRating = 1;
+    int maxRating = 5;
+    int stars = 1;
+    String[] ac = {"0","Running","0"};
+    String[] lc = {"Abbiadori","Adler","Athens"};
+    Boolean[] otfil ={true,true,false,true,false,true,false,false,true,false};
+    Iterable<Categories> categories = this.hotelService.applyAllFiltersAndGetHotels(minPrice,maxPrice,minRating,maxRating,stars,ac,lc,otfil);
+    assertThat(categories).isNotNull();
+  }
+  @Test
+  public void applyFilter06() throws Exception {
+    int minPrice = 20;
+    int maxPrice = 0;
+    int minRating = 1;
+    int maxRating = 5;
+    int stars = 1;
+    String[] ac = {"0","Running","0"};
+    String[] lc = {"Abbiadori","Adler","Athens"};
+    Boolean[] otfil ={false,false,false,false,false,false,false,false,false,false};
+    Iterable<Categories> categories = this.hotelService.applyAllFiltersAndGetHotels(minPrice,maxPrice,minRating,maxRating,stars,ac,lc,otfil);
+    assertThat(categories).isNotNull();
   }
 }

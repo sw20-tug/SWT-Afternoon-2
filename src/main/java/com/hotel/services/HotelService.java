@@ -37,7 +37,7 @@ public class HotelService {
     return this.hr.findHotelById(id);
   }
 
-  public Hotel getHotelByName(String name) {
+  public List<Hotel> getHotelByName(String name) {
     return this.hr.findByName(name);
   }
 
