@@ -59,6 +59,10 @@
   "LOGIN": "Login",
   "CANCEL": "Cancel",
   "OPTIONS": "Options",
-  "ADD": "Add new"
+  "ADD": "Add new",
+  "DELETE": "Delete hotel",
+  "DELETE CHECK": "Are you sure, that you want to delete this hotel?",
+  "YES": "Yes",
+  "NO": "No"
 }
 

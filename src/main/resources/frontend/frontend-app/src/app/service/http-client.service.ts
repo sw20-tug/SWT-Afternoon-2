@@ -73,6 +73,14 @@ export class HttpClientService {
 
   }
 
+  public deleteHotel(hotel_name: string)
+  {
+    console.log("delete hotel with name: " + hotel_name)
+    return this.http.post(this.serverUrl + '/deleteHotel?hotel_name=' + hotel_name, this.httpOptions, {responseType: 'text'}).pipe(
+      catchError(this.errorHandler)
+    );
+  }
+
   public getFilteredHotels(minPrice: number, maxPrice: number,
                            minRating: number, maxRating: number,
                            starsFilter: number, currentlySelectedActivities: string[],
