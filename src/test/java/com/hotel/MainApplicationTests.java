@@ -474,7 +474,5 @@ class MainApplicationTests {
     //hotelRepository.save(actual_hotels_inside.get(1));
 
     assertThat(actual_hotels_inside.get(1).getRating_num()).isEqualTo(10);
-
   }
-
 }

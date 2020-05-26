@@ -78,6 +78,32 @@ public interface HotelRepository extends CrudRepository<Hotel, Long> {
   @Query("FROM Hotel WHERE activity = :activity")
   List <Hotel> findHotelsByActivities(@Param("activity")String activity);
 
+  @Query("FROM Hotel WHERE price >= :minPrice AND price <= :maxPrice AND rate >= :minRating AND rate <= :maxRating " +
+    "AND stars = :stars AND city IN (:locations) AND otherFilters = :otherFilters")
+  List <Hotel> applyFiltersWithoutActivity(@Param("minPrice") int minPrice, @Param("maxPrice")int maxPrice, @Param("minRating")int minRating,
+                            @Param("maxRating") int maxRating,
+                            @Param("stars") int stars, @Param("locations")List<String> locations, @Param("otherFilters") String otherFilters);
+
+  @Query("FROM Hotel WHERE price >= :minPrice AND price <= :maxPrice AND rate >= :minRating AND rate <= :maxRating " +
+    "AND stars = :stars AND activity = :activity AND city IN (:locations)")
+  List <Hotel> applyFiltersWithoutOtherFilters(@Param("minPrice") int minPrice, @Param("maxPrice")int maxPrice, @Param("minRating")int minRating,
+                            @Param("maxRating") int maxRating,
+                            @Param("stars") int stars, @Param("activity")String activity, @Param("locations")List<String> locations);
+
+  @Query("FROM Hotel WHERE price >= :minPrice AND price <= :maxPrice AND rate >= :minRating AND rate <= :maxRating " +
+    "AND stars = :stars AND city IN (:locations)")
+  List <Hotel> applyFiltersWithoutActivityandOtherFilters(@Param("minPrice") int minPrice, @Param("maxPrice")int maxPrice, @Param("minRating")int minRating,
+                            @Param("maxRating") int maxRating,
+                            @Param("stars") int stars, @Param("locations")List<String> locations);
+
+  @Query(value="SELECT max(price) FROM hotel",
+    nativeQuery = true)
+  int getMaxPrice();
+
+  @Query(value="SELECT max(rate) FROM hotel",
+    nativeQuery = true)
+  int getMaxRating();
+
   @Query(
     value = "SELECT * FROM hotel WHERE id = :hotelId",
     nativeQuery = true)
