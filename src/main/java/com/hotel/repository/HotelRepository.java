@@ -70,7 +70,7 @@ public interface HotelRepository extends CrudRepository<Hotel, Long> {
   List <Hotel> findByCategoryId(@Param("categoryId")int categoryId);
 
   @Query("FROM Hotel WHERE price >= :minPrice AND price <= :maxPrice AND rate >= :minRating AND rate <= :maxRating " +
-    "AND stars = :stars AND activity = :activity AND city IN (:locations) AND otherFilters = :otherFilters")
+    "AND stars >= :stars AND activity = :activity AND city IN (:locations) AND otherFilters = :otherFilters")
     List <Hotel> applyFilters(@Param("minPrice") int minPrice, @Param("maxPrice")int maxPrice, @Param("minRating")int minRating,
                             @Param("maxRating") int maxRating,
                             @Param("stars") int stars, @Param("activity")String activity, @Param("locations")List<String> locations, @Param("otherFilters") String otherFilters);
@@ -78,19 +78,19 @@ public interface HotelRepository extends CrudRepository<Hotel, Long> {
   List <Hotel> findHotelsByActivities(@Param("activity")String activity);
 
   @Query("FROM Hotel WHERE price >= :minPrice AND price <= :maxPrice AND rate >= :minRating AND rate <= :maxRating " +
-    "AND stars = :stars AND city IN (:locations) AND otherFilters = :otherFilters")
+    "AND stars >= :stars AND city IN (:locations) AND otherFilters = :otherFilters")
   List <Hotel> applyFiltersWithoutActivity(@Param("minPrice") int minPrice, @Param("maxPrice")int maxPrice, @Param("minRating")int minRating,
                             @Param("maxRating") int maxRating,
                             @Param("stars") int stars, @Param("locations")List<String> locations, @Param("otherFilters") String otherFilters);
 
   @Query("FROM Hotel WHERE price >= :minPrice AND price <= :maxPrice AND rate >= :minRating AND rate <= :maxRating " +
-    "AND stars = :stars AND activity = :activity AND city IN (:locations)")
+    "AND stars >= :stars AND activity = :activity AND city IN (:locations)")
   List <Hotel> applyFiltersWithoutOtherFilters(@Param("minPrice") int minPrice, @Param("maxPrice")int maxPrice, @Param("minRating")int minRating,
                             @Param("maxRating") int maxRating,
                             @Param("stars") int stars, @Param("activity")String activity, @Param("locations")List<String> locations);
 
   @Query("FROM Hotel WHERE price >= :minPrice AND price <= :maxPrice AND rate >= :minRating AND rate <= :maxRating " +
-    "AND stars = :stars AND city IN (:locations)")
+    "AND stars >= :stars AND city IN (:locations)")
   List <Hotel> applyFiltersWithoutActivityandOtherFilters(@Param("minPrice") int minPrice, @Param("maxPrice")int maxPrice, @Param("minRating")int minRating,
                             @Param("maxRating") int maxRating,
                             @Param("stars") int stars, @Param("locations")List<String> locations);
