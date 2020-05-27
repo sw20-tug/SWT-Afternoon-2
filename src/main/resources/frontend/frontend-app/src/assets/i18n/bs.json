@@ -66,6 +66,7 @@
   "DELETE": "Izbrisi hotel",
   "DELETE CHECK": "Da li ste sigurni da zelite izbrisati ovaj hotel?",
   "YES": "Da",
-  "NO": "Ne"
+  "NO": "Ne",
+  "EDIT": "Uredi"
 }
 

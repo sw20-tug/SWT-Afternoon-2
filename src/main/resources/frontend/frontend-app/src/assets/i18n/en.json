@@ -63,6 +63,7 @@
   "DELETE": "Delete hotel",
   "DELETE CHECK": "Are you sure, that you want to delete this hotel?",
   "YES": "Yes",
-  "NO": "No"
+  "NO": "No",
+  "EDIT": "Edit"
 }
 
