@@ -57,8 +57,7 @@ public class MainApplication implements  CommandLineRunner {
     this.cc = new CategoryController(cs);
 
     //fill_comments();
-    System.out.println(cms.getCommentsByHotelID(10).get(0).getComm_text());
-    System.out.println(cms.getCommentsByHotelID(10).get(1).getComm_text());
+
   //  fill_db();
 
     int minPrice = 20;

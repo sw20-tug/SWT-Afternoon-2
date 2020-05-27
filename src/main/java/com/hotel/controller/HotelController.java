@@ -134,6 +134,7 @@ public class HotelController {
 
   @PostMapping(path="/changeRating")
   public @ResponseBody ResponseEntity<String>  changeRating(@RequestParam String new_rate, @RequestParam String id) {
+
     this.hotelService.changeRating(Integer.parseInt(new_rate), Long.parseLong(id));
     return new ResponseEntity<String>("POST Response", HttpStatus.OK);
 

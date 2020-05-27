@@ -150,9 +150,12 @@ export class HttpClientService {
 
   public changeRating (new_rate: number, id: number) {
   console.log("ID ID ID ID ID" + id);
-  return this.http.post(this.serverUrl + '/changeRating?rate=' + new_rate + '&id=' + id, this.httpOptions, {responseType: 'text'}).pipe(
+  console.log("ID ID ID ID ID" + new_rate);
+
+  return this.http.post(this.serverUrl + '/changeRating?new_rate=' + new_rate + '&id=' + id, this.httpOptions, {responseType: 'text'}).pipe(
         catchError(this.errorHandler)
       );
   }
+
 
 }

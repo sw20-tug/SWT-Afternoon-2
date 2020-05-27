@@ -310,7 +310,18 @@ public class HotelService {
   }
 
   public void changeRating (Integer new_rate, long id) {
-    this.hr.changeRating(new_rate,id);
+    Hotel hotel = this.hr.findHotelById((int) id);
+    if (hotel.getRating_num() == 0)
+    {
+      this.hr.changeRating(new_rate, id);
+    }
+    else
+    {
+      int old_rate = hotel.getRate();
+      int rate = (hotel.getRating_num() * old_rate  + new_rate) / (hotel.getRating_num() + 1);
+      this.hr.changeRating(rate, id);
+    }
+
   }
 
   public int findCategoryId(String selectedCategory[]) {

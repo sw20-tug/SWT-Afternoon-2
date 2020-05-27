@@ -151,7 +151,7 @@ public interface HotelRepository extends CrudRepository<Hotel, Long> {
   @Transactional
   @Modifying
   @Query(
-    value = "UPDATE swt.hotel SET rate = (rating_num * rate  + new_rate) / (rating_num + 1), rating_num = rating_num + 1 WHERE id = id",
+    value = "UPDATE swt.hotel SET swt.hotel.rate = :rate, rating_num = rating_num + 1 WHERE id = :id",
     nativeQuery = true)
-  void changeRating(@Param("rate") int new_rate, @Param("id") long id);
+  void changeRating(@Param("rate") int rate, @Param("id") long id);
 }

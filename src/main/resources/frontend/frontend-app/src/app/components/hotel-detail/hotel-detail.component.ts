@@ -8,6 +8,7 @@ import {HotelService} from "../../service/hotel.service";
 import {Category} from "../category-list/category.model";
 import {FiltersComponent} from "../filters/filters.component";
 import {HomeComponent} from "../home/home.component";
+import {ConfirmationDialogService} from "../header/login/confirmation-dialogue/confirmation-dialogue.service";
 
 
 @Component({
@@ -23,7 +24,8 @@ export class HotelDetailComponent implements OnInit {
   public isAdminForDelete: boolean;
 
 
-  constructor(private router: Router, private route: ActivatedRoute, private HttpClientService: HttpClientService, private hotelService: HotelService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private HttpClientService: HttpClientService, private hotelService: HotelService,
+              private confirmationDialogService: ConfirmationDialogService) { }
 
 
   ngOnInit(): void {
@@ -121,6 +123,10 @@ export class HotelDetailComponent implements OnInit {
       });
 
     });
+
+    this.confirmationDialogService.confirm("Comment confirmation", "You have sent feedback!")
+      .then((confirmed) =>  !confirmed)
+      .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
 
 
   }
