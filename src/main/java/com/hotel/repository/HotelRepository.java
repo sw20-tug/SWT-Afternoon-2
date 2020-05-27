@@ -95,6 +95,9 @@ public interface HotelRepository extends CrudRepository<Hotel, Long> {
                             @Param("maxRating") int maxRating,
                             @Param("stars") int stars, @Param("locations")List<String> locations);
 
+  @Query(value = "select city from swt.hotel", nativeQuery = true)
+  List<String> getAllCities();
+
   @Query(value="SELECT max(price) FROM hotel",
     nativeQuery = true)
   int getMaxPrice();
