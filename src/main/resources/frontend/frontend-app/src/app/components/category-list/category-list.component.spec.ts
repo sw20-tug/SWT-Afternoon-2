@@ -10,9 +10,9 @@ describe('CategoryListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ CategoryListComponent ],
-      providers: [	
-        HttpClient,	
-        HttpHandler	
+      providers: [
+        HttpClient,
+        HttpHandler
       ],
     })
     .compileComponents();
@@ -27,4 +27,12 @@ describe('CategoryListComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should emit clearSearchEvent', () => {
+      component.searchText = 'test';
+      const spyEmit = spyOn(component.clearSearchEvent, 'emit');
+      component.clearSearch();
+      expect(spyEmit).toHaveBeenCalled();
+    });
+
 });

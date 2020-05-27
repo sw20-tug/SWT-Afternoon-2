@@ -10,9 +10,9 @@ describe('CategoryListItemComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ CategoryListItemComponent ],
-      providers: [	
-        HttpClient,	
-        HttpHandler	
+      providers: [
+        HttpClient,
+        HttpHandler
       ],
     })
     .compileComponents();
@@ -27,4 +27,11 @@ describe('CategoryListItemComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should call determineCategoryID when created', () => {
+      const spyDetermineCategoryID = spyOn(component as any, 'determineCategoryID');
+      fixture.detectChanges();
+      expect(spyDetermineCategoryID).toHaveBeenCalled();
+    });
+
 });

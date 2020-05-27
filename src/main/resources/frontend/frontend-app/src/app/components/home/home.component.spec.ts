@@ -12,7 +12,7 @@ describe('HomeComponent', () => {
       declarations: [ HomeComponent ],
       providers: [
         HttpClient,
-        HttpHandler 
+        HttpHandler
       ],
     })
     .compileComponents();
@@ -27,7 +27,13 @@ describe('HomeComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  
+
   afterAll(() => TestBed.resetTestingModule());
+
+it('should call initializeAllCategories when created', () => {
+    const spyInitializeAllCategories = spyOn(component, 'initializeAllCategories');
+    fixture.detectChanges();
+    expect(spyInitializeAllCategories).toHaveBeenCalled();
+  });
 
 });

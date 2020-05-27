@@ -147,4 +147,11 @@ public interface HotelRepository extends CrudRepository<Hotel, Long> {
     value = "SELECT * FROM hotel WHERE category_id = ?1 ORDER BY stars ASC limit 5",
     nativeQuery = true)
   List<Hotel> getHotelOrderedByStarsDESC(int category_id);
+
+  @Transactional
+  @Modifying
+  @Query(
+    value = "UPDATE swt.hotel SET swt.hotel.rate = :rate, rating_num = rating_num + 1 WHERE id = :id",
+    nativeQuery = true)
+  void changeRating(@Param("rate") int rate, @Param("id") long id);
 }
