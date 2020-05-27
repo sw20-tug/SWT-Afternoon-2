@@ -86,7 +86,6 @@ public class HotelService {
 
       if (hotel.getPrice() <= Integer.parseInt(price)) {
         hotels.add(hotel);
-        System.out.println("hotel name is: " + hotel.getName() + " and price is " + hotel.getPrice());
       }
     }
     Collections.sort(hotels);
@@ -95,7 +94,7 @@ public class HotelService {
 
   public List<Hotel> getHotelByCriteria(int category_id, int criteria) {
     if (criteria == LOWEST_PRICE) {
-      System.out.println("WSize is "+ hr.getHotelOrderedByPriceASC(category_id));
+
       return hr.getHotelOrderedByPriceASC(category_id);
     } else if (criteria == HIGHEST_PRICE) {
       return hr.getHotelOrderedByPriceDESC(category_id);
@@ -305,6 +304,11 @@ public class HotelService {
     }
     return otherFilters_.toString();
   }
+
+  public void changeRating (Integer new_rate, long id) {
+    this.hr.changeRating(new_rate,id);
+  }
+
   public int findCategoryId(String selectedCategory[]) {
 
     for(String category : selectedCategory)

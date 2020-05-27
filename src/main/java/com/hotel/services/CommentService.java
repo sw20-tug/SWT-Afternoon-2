@@ -16,9 +16,7 @@ public class CommentService {
 
   public void insertNewComment(String comm_text, String user_name, Integer rate, long hotel_id)
   {
-    //generate new id
     Integer new_id = this.cr.findLastId() + 1;
-    System.out.println("new_id is " + new_id);
     this.cr.insertNewComment(new_id, comm_text, user_name, rate, hotel_id);
   }
 
