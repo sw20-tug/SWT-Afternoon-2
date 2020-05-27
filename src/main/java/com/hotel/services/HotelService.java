@@ -268,22 +268,15 @@ public class HotelService {
 
     for(String activity_ : currentlySelectedActivities)
     {
-      switch(activity_){
-        case "Gym":
-        {
-          activity.replace(0, 1, "1");
-          break;
-        }
-        case "Running":
-        {
-          activity.replace(1, 2, "1");
-          break;
-        }
-        case "Open bar":
-        {
-          activity.replace(2, 3, "1");
-          break;
-        }
+      if(activity_.equals("Fitness")) {
+        activity.replace(0, 1, "1");
+      }
+      else if(activity_.equals("Running")) {
+        activity.replace(1, 2, "1");
+      }
+      else if(activity_.equals("Open Bar")) {
+        activity.replace(2, 3, "1");
+
       }
     }
 
