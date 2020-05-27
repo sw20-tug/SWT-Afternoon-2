@@ -37,7 +37,7 @@ public class HotelService {
     return this.hr.findHotelById(id);
   }
 
-  public Hotel getHotelByName(String name) {
+  public List<Hotel> getHotelByName(String name) {
     return this.hr.findByName(name);
   }
 
@@ -136,22 +136,26 @@ public class HotelService {
     return this.hr.findHotelsByActivities(activity.toString());
   }
 
+
+
   public Iterable<Categories> applyAllFiltersAndGetHotels(int minPrice, int maxPrice, int minRating, int maxRating, int stars,
                                                           String[] currentlySelectedActivities, String[] currentlySelectedLocations, Boolean[] otherFilters) {
 
-//    System.out.println("minPrice " + minPrice);
-//    System.out.println("maxPrice " + maxPrice);
-//    System.out.println("minRating " + minRating);
-//    System.out.println("maxRating " + maxRating);
-//    System.out.println("stars " + stars);
-////    System.out.println("activitiy " + activity.toString());
-////
-////    for(String location: locations)
-////      System.out.println("location " + location);
-//
-//    //System.out.println("otherfilters " + otherFilters_.toString());
-
-    List <Hotel> hotels = this.hr.applyFilters(minPrice, maxPrice, minRating, maxRating, stars, convertActivitesToString(currentlySelectedActivities), Arrays.asList(currentlySelectedLocations), convertOtherFiltersToString(otherFilters));
+      List <Hotel> hotels = null;
+      List<String>locations_ = new ArrayList<>();
+      locations_.add("Abbiadori");
+      if(convertActivitesToString(currentlySelectedActivities).equals("000") && convertOtherFiltersToString(otherFilters).equals("0000000000")){
+         hotels = this.hr.applyFiltersWithoutActivityandOtherFilters(minPrice, maxPrice == 0 ? hr.getMaxPrice() + 1 : maxPrice, minRating, maxRating == 0 ? hr.getMaxRating() : maxRating, stars, ((Arrays.asList(currentlySelectedLocations)).get(0).equals("0")) ? locations_ : Arrays.asList(currentlySelectedLocations));
+      }
+      else if(convertActivitesToString(currentlySelectedActivities).equals("000")){
+       hotels = this.hr.applyFiltersWithoutActivity(minPrice, maxPrice == 0 ? hr.getMaxPrice() + 1 : maxPrice, minRating, maxRating == 0 ? hr.getMaxRating() : maxRating, stars, ((Arrays.asList(currentlySelectedLocations)).get(0).equals("0")) ? locations_ : Arrays.asList(currentlySelectedLocations), convertOtherFiltersToString(otherFilters));
+      }
+      else if(convertOtherFiltersToString(otherFilters).equals("0000000000")){
+         hotels = this.hr.applyFiltersWithoutOtherFilters(minPrice, maxPrice == 0 ? hr.getMaxPrice() + 1 : maxPrice, minRating, maxRating == 0 ? hr.getMaxRating() : maxRating, stars, convertActivitesToString(currentlySelectedActivities), ((Arrays.asList(currentlySelectedLocations)).get(0).equals("0")) ? locations_ : Arrays.asList(currentlySelectedLocations));
+      }
+      else{
+        hotels = this.hr.applyFilters(minPrice, maxPrice == 0 ? hr.getMaxPrice() + 1 : maxPrice, minRating, maxRating == 0 ? hr.getMaxRating() : maxRating, stars, convertActivitesToString(currentlySelectedActivities), ((Arrays.asList(currentlySelectedLocations)).get(0).equals("0")) ? locations_ : Arrays.asList(currentlySelectedLocations), convertOtherFiltersToString(otherFilters));
+      }
 
     System.out.println("found hotels: ");
     for(Hotel it: hotels)
@@ -290,6 +294,11 @@ public class HotelService {
   public Hotel getHotelById(int hotelId)
   {
     return this.hr.findHotelById(hotelId);
+  }
+
+  public void deleteHotel(String hotel_name)
+  {
+    this.hr.deleteHotel(hotel_name);
   }
 
   public String convertOtherFiltersToString(Boolean[] otherFilters)
