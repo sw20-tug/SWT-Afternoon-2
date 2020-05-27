@@ -60,10 +60,7 @@ export class HttpClientService {
   }
 
   public insertNewComment(comm_text: string, user_name: string, rate: number, hotel_id: number) {
-    console.log("Usli u frontend  " + comm_text)
-    console.log("Usli u frontend  " + user_name)
-    console.log("Usli u frontend  " + rate)
-    console.log("Usli u frontend  " + hotel_id)
+
     return this.http.post(this.serverUrl + '/addNewComment?comm_text=' + comm_text + '&user_name=' + user_name +
       '&rate=' + rate +
       '&hotel_id=' + hotel_id, this.httpOptions, {responseType: 'text'}).pipe(
@@ -149,6 +146,13 @@ export class HttpClientService {
       return 0;
     else
       return value;
+  }
+
+  public changeRating (new_rate: number, id: number) {
+  console.log("ID ID ID ID ID" + id);
+  return this.http.post(this.serverUrl + '/changeRating?rate=' + new_rate + '&id=' + id, this.httpOptions, {responseType: 'text'}).pipe(
+        catchError(this.errorHandler)
+      );
   }
 
 }

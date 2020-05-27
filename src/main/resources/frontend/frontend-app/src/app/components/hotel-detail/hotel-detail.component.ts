@@ -33,7 +33,7 @@ export class HotelDetailComponent implements OnInit {
       this.HttpClientService.getHotelById(params.id).subscribe(hotel => {
         this.hotel = Hotel.MapHotel(hotel);
         this.hotel.facilitiesList = this.hotel.facilitiesList.filter(x => x.value);
-        console.log('AAAAAAAAAAAAAAAAAAAA', this.hotel.facilitiesList[0].name);
+
         this.hotelService.translateAsObs.subscribe(trigger => {
           for(let i=0; i<this.hotel.facilitiesList.length; i++)
           {
@@ -73,9 +73,6 @@ export class HotelDetailComponent implements OnInit {
         this.HttpClientService.getCommentList(params.id).subscribe(comments => {
           var list_of_comments = new Array<RatingComment>();
           comments.forEach(comment => {
-            console.log("ID HOTELA " + params.id);
-            console.log("COMMMENTTTTTT" + comment.id);
-            console.log("COMMMENTTTTTT" + comment.comm_text);
             list_of_comments.push(new RatingComment(comment.user_name, comment.comm_text, comment.rate));
           });
           this.hotel.ratingComments = list_of_comments;
@@ -101,8 +98,6 @@ export class HotelDetailComponent implements OnInit {
   deleteHotel()
   {
     this.HttpClientService.deleteHotel(this.hotel.name).subscribe(response => {
-      console.log("response")
-      console.log('response from controller', response);
       this.showDeleteConfirmationDialog = false;
       this.router.navigate(['']);
     });
@@ -117,26 +112,13 @@ export class HotelDetailComponent implements OnInit {
   public insertNewComment()
   {
     this.route.params.subscribe(params => {
-      console.log("NAMEEEEEEEEEEEEEE " + this.commentForm.get('name').value);
-      console.log("NAMEEEEEEEEEEEEEE " + this.commentForm.get('comment').value);
-      console.log("NAMEEEEEEEEEEEEEE " + this.commentForm.get('rating').value);
-      console.log("NAMEEEEEEEEEEEEEE " + params.id);
+
       this.HttpClientService.insertNewComment(this.commentForm.get('comment').value, this.commentForm.get('name').value,
         this.commentForm.get('rating').value, params.id).subscribe(response => {
-        console.log("test")
-        console.log('response', response);
-
       });
-      // this.HttpClientService.getCommentList(params.id).subscribe(comments => {
-      //   var list_of_comments = new Array<RatingComment>();
-      //   comments.forEach(comment => {
-      //     console.log("ID HOTELA " + params.id);
-      //     console.log("COMMMENTTTTTT" + comment.id);
-      //     console.log("COMMMENTTTTTT" + comment.comm_text);
-      //     list_of_comments.push(new RatingComment(comment.user_name, comment.comm_text, comment.rate));
-      //   });
-      //   this.hotel.ratingComments = list_of_comments;
-      // });
+
+      this.HttpClientService.changeRating(this.commentForm.get('rating').value, params.id).subscribe(response => {
+      });
 
     });
 
