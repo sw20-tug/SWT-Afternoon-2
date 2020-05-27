@@ -142,17 +142,30 @@ public class HotelService {
 
       List <Hotel> hotels = null;
       List<String>locations_ = new ArrayList<>();
-      locations_.add("Abbiadori");
+      locations_ = hr.getAllCities();
       if(convertActivitesToString(currentlySelectedActivities).equals("000") && convertOtherFiltersToString(otherFilters).equals("0000000000")){
+
          hotels = this.hr.applyFiltersWithoutActivityandOtherFilters(minPrice, maxPrice == 0 ? hr.getMaxPrice() + 1 : maxPrice, minRating, maxRating == 0 ? hr.getMaxRating() : maxRating, stars, ((Arrays.asList(currentlySelectedLocations)).get(0).equals("0")) ? locations_ : Arrays.asList(currentlySelectedLocations));
       }
       else if(convertActivitesToString(currentlySelectedActivities).equals("000")){
+
+        for(String loc: currentlySelectedLocations)
+          System.out.println("loc " + loc);
+
        hotels = this.hr.applyFiltersWithoutActivity(minPrice, maxPrice == 0 ? hr.getMaxPrice() + 1 : maxPrice, minRating, maxRating == 0 ? hr.getMaxRating() : maxRating, stars, ((Arrays.asList(currentlySelectedLocations)).get(0).equals("0")) ? locations_ : Arrays.asList(currentlySelectedLocations), convertOtherFiltersToString(otherFilters));
       }
       else if(convertOtherFiltersToString(otherFilters).equals("0000000000")){
+
+        for(String loc: currentlySelectedLocations)
+          System.out.println("loc " + loc);
+
          hotels = this.hr.applyFiltersWithoutOtherFilters(minPrice, maxPrice == 0 ? hr.getMaxPrice() + 1 : maxPrice, minRating, maxRating == 0 ? hr.getMaxRating() : maxRating, stars, convertActivitesToString(currentlySelectedActivities), ((Arrays.asList(currentlySelectedLocations)).get(0).equals("0")) ? locations_ : Arrays.asList(currentlySelectedLocations));
       }
       else{
+
+        for(String loc: currentlySelectedLocations)
+          System.out.println("loc " + loc);
+
         hotels = this.hr.applyFilters(minPrice, maxPrice == 0 ? hr.getMaxPrice() + 1 : maxPrice, minRating, maxRating == 0 ? hr.getMaxRating() : maxRating, stars, convertActivitesToString(currentlySelectedActivities), ((Arrays.asList(currentlySelectedLocations)).get(0).equals("0")) ? locations_ : Arrays.asList(currentlySelectedLocations), convertOtherFiltersToString(otherFilters));
       }
 
