@@ -21,6 +21,7 @@ export class HotelDetailComponent implements OnInit {
   public commentForm: FormGroup;
   public images: any[] = [];
   public showDeleteConfirmationDialog: boolean;
+  public showEditForm: boolean;
   public isAdminForDelete: boolean;
 
 
@@ -92,6 +93,13 @@ export class HotelDetailComponent implements OnInit {
 
   }
 
+
+  showEdit()
+  {
+    this.showEditForm = true;
+  }
+
+
   show()
   {
     this.showDeleteConfirmationDialog = true;
@@ -104,6 +112,11 @@ export class HotelDetailComponent implements OnInit {
       this.router.navigate(['']);
     });
 
+  }
+
+  hideEdit()
+  {
+    this.showEditForm = false;
   }
 
   hide()
