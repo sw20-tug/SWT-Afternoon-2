@@ -22,8 +22,8 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.translate.setDefaultLang('bs');
-    this.translate.use('bs');
+    //this.translate.setDefaultLang('bs');
+    //this.translate.use('bs');
     this.initializeAllCategories();
   }
 
