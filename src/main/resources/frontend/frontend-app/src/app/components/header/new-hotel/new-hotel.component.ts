@@ -96,7 +96,7 @@ export class NewHotelComponent implements OnInit {
       itemsShowLimit: 1,
       allowSearchFilter: false
     };
-    this.activities = [Hotel.translateService.instant('FITNESS'), Hotel.translateService.instant('RUNNING'), Hotel.translateService.instant('OPEN BAR')];
+    this.activities = ["Gym", "Running", "Open bar"];
     this.categories = ["Romantic", "Adventure", "Holiday", "Wellness", "Family", "Camping"];
   }
 

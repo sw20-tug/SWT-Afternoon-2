@@ -5,6 +5,9 @@ import { HttpClient, HttpHandler } from '@angular/common/http';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { MatButton } from '@angular/material/button';
+import {RouterTestingModule} from "@angular/router/testing";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {TranslateModule} from "@ngx-translate/core";
 
 describe('FiltersComponent', () => {
   let component: FiltersComponent;
@@ -13,10 +16,12 @@ describe('FiltersComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [RouterTestingModule, HttpClientTestingModule, TranslateModule.forRoot()],
+
       declarations: [ FiltersComponent ],
-      providers: [	
-        HttpClient,	
-        HttpHandler	
+      providers: [
+        HttpClient,
+        HttpHandler
       ],
     })
     .compileComponents();
