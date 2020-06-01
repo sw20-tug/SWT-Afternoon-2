@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
   public allCategories: Category[] = [];
   public categories: Category[] = [];
   public searchText: string = '';
-  public isAdmin: boolean  = this.cookieService.get("isAdmin") === "true" ? true : false;
+  public isAdmin: boolean  = this.cookieService.get("isAdmin") === "true";
 
   constructor(private HttpClientService: HttpClientService, public translate: TranslateService, private hotelService: HotelService, private cookieService: CookieService) {
 
@@ -44,7 +44,7 @@ export class HomeComponent implements OnInit {
         this.categories[5].name = this.translate.instant('CAMPING');
       });
 
-      
+
     });
   }
 
