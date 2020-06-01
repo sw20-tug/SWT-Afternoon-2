@@ -1,0 +1,12 @@
+:host ::ng-deep .modal-header {
+    background-color: #343a40;
+    color: white;
+}
+
+:host ::ng-deep #myModalLabel{
+    font-size: 2rem;
+    margin-top: 2%;
+}
+:host ::ng-deep .label {
+    font-size: 1rem;
+}

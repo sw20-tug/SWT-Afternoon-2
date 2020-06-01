@@ -76,7 +76,6 @@ export class NewHotelComponent implements OnInit {
       allowSearchFilter: true
     };
     this.HotelService.translateAsObs.subscribe(trigger => {
-      console.log('Trigger?', trigger);
       this._dropdownSettings = {
         singleSelection: false,
         idField: 'item_id',
@@ -136,9 +135,7 @@ export class NewHotelComponent implements OnInit {
       })).subscribe((event: any) => {
       if (typeof (event) === 'object') {
         this.uploadButtonClicked = true;
-        console.log('jel to to', event.body.link);
         this.imageURL = event.body.link;
-        console.log('value is ' , this.hotelForm.get('stars').value);
       }
     });
   }
@@ -187,8 +184,7 @@ export class NewHotelComponent implements OnInit {
     this.httpService.insertNewHotel(this.hotelForm.get('name').value, this.hotelForm.get('descr').value,
       this.currentlySelectedCategories, this.hotelForm.get('price').value, this.hotelForm.get('rating').value,
       this.hotelForm.get('stars').value, this.hotelForm.get('city').value,  this.currentlySelectedActivities, allFiltersIntoList, this.imageURL).subscribe(response => {
-        console.log("test")
-        console.log('response', response);
+ 
     });
   }
 }

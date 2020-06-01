@@ -25,7 +25,6 @@ export class CategoryListComponent implements OnInit {
 
   filteredCategories(filteredCategoryList: any[]){
     this.categories = filteredCategoryList;
-    console.log('cat', this.categories);
   }
 
   onCategoryClick(index: number){

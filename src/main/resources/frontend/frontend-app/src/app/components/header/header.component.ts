@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnChanges(x) {
-    console.log(x)
+    
   }
 
   searchBoxEvent($event){

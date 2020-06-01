@@ -51,7 +51,7 @@ export class FiltersComponent {
 
   sortHotelsByPrice($event) {
     this.HttpClientService.getHotelWithinPriceRange(this.value).subscribe(hotels => {
-      console.log(hotels)
+
       //this.HotelService.updateHotelList(hotels);
     })
   }
@@ -60,7 +60,6 @@ export class FiltersComponent {
               private readonly translateService: TranslateService) {
 
     this.instantiateDropdownSettings();
-    console.log('kurac', this.translateService.instant('FITNESS'));
     this.HotelService.translateAsObs.subscribe(trigger => {
       if(trigger) {
         this.activities = [this.translateService.instant('FITNESS'), this.translateService.instant('RUNNING'), this.translateService.instant('OPEN BAR')];

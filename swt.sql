@@ -120,7 +120,7 @@ CREATE TABLE `hotel` (
   `stars` int DEFAULT NULL,
   `swimming_pool` bit(1) DEFAULT NULL,
   `category_id` bigint DEFAULT NULL,
-  `rating_num` int DEFAULT (0),
+  `rating_num` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKcwvmmtpfa1hsm8gwya0k0hmfk` (`category_id`),
   CONSTRAINT `FKcwvmmtpfa1hsm8gwya0k0hmfk` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`)

@@ -43,12 +43,12 @@ export class HomeComponent implements OnInit {
         this.categories[5].name = this.translate.instant('CAMPING');
       });
 
-      console.log('kategorije"', this.categories);
+      
     });
   }
 
   ngOnChanges(text: any){
-    console.log(text);
+
   }
 
   searchHeaderEvent($event) {

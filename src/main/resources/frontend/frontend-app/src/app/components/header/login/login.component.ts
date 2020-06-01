@@ -55,8 +55,6 @@ export class LoginComponent implements OnInit{
     this.resetForm(this.registerForm);
   }
   ngOnInit() {
-
-    console.log("hellooo   " + this.cookieService.get("isAdmin"));
     this._isAdmin = this.isAdmin = this.cookieService.get("isAdmin") === "true" ? true : false;
     this.registerForm = this.formBuilder.group({
       username: ['', [UsernameValidator]],

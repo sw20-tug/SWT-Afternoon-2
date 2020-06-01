@@ -70,7 +70,7 @@ export class CategoryListItemComponent implements OnInit {
 
   constructor(private httpClientService: HttpClientService, private hotelService: HotelService,
               private readonly sortByPipe: SortByPipe) {
-    console.log('??????????????', this.category);
+
   }
 
   sortListItems($event) {
