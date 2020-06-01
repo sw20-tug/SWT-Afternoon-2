@@ -10,9 +10,9 @@ describe('HotelListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ HotelListComponent ],
-      providers: [	
-        HttpClient,	
-        HttpHandler	
+      providers: [
+        HttpClient,
+        HttpHandler
       ],
     })
     .compileComponents();
