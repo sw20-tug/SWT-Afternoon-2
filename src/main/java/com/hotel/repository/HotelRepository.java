@@ -58,7 +58,7 @@ public interface HotelRepository extends CrudRepository<Hotel, Long> {
   @Transactional
   @Modifying
   @Query(
-    value = "UPDATE swt.hotel SET name=:name, description=:description, category_id=:category, price=:price, rating_num=:rating, stars=:stars, city=:city, activity=:activity, other_filters=:otherFilters WHERE id=:id",
+    value = "UPDATE swt.hotel SET name=:name, description=:description, category_id=:category, price=:price, rate=:rating, stars=:stars, city=:city, activity=:activity, other_filters=:otherFilters WHERE id=:id",
     nativeQuery = true)
   void  editHotel(@Param("id") int id, @Param("name") String name, @Param("description") String description, @Param("category") int category, @Param("price") int price, @Param("rating")int rating, @Param("stars")int stars,
                         @Param("city")String city, @Param("activity")String activity, @Param("otherFilters")String otherFilters);
@@ -67,7 +67,7 @@ public interface HotelRepository extends CrudRepository<Hotel, Long> {
   @Transactional
   @Modifying
   @Query(
-    value = "INSERT INTO swt.hotel(id, activity, activity_gym, activity_openbar, activity_running, air_conditioning, beach_front, city, description, fitness, free_wi_fi, image_path, name, other_filters, parking, pets, price, rating_num, restaurant, sauna, smoking, stars, swimming_pool, category_id) VALUES (:id, :activity, b'1', b'0', b'1', b'0', b'1', :city, :description, b'0', b'1', :image, :name, :otherFilters, b'1', b'1', :price, :rating, b'0', b'0', b'1', :stars, b'1', :category)",
+    value = "INSERT INTO swt.hotel(id, activity, activity_gym, activity_openbar, activity_running, air_conditioning, beach_front, city, description, fitness, free_wi_fi, image_path, name, other_filters, parking, pets, price, rate, restaurant, sauna, smoking, stars, swimming_pool, category_id) VALUES (:id, :activity, b'1', b'0', b'1', b'0', b'1', :city, :description, b'0', b'1', :image, :name, :otherFilters, b'1', b'1', :price, :rating, b'0', b'0', b'1', :stars, b'1', :category)",
     nativeQuery = true)
   void  insertNewHotels(@Param("id") int id,  @Param("name") String name, @Param("description") String description, @Param("category") int category, @Param("price") int price, @Param("rating")int rating, @Param("stars")int stars,
                         @Param("city")String city, @Param("activity")String activity, @Param("otherFilters")String otherFilters, @Param("image")String image);

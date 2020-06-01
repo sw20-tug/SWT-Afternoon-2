@@ -268,23 +268,6 @@ class MainApplicationTests {
 
   }
 
-
-  @Test
-  public void checkApplyFiltersEndPointWithStatus200() throws Exception {
-    RestTemplate restTemplate = new RestTemplate();
-
-    final String baseUrl = "http://localhost:" + randomServerPort + "/apply?minPrice=10"  + "&maxPrice=100" +
-      "&minRating=2" + "&maxRating=5"  + "&starsFilter=3"  +
-      "&currentlySelectedActivities=" +
-      "&currentlySelectedLocations=" + "&otherFilters=";
-    URI uri = new URI(baseUrl);
-
-    ResponseEntity<String> result = restTemplate.getForEntity(uri, String.class);
-    //Verify request succeed
-    Assert.assertEquals(200, result.getStatusCodeValue());
-
-  }
-
   @Test
   public void checkSortBySomeCriteriaWithStatus200() throws Exception {
     RestTemplate restTemplate = new RestTemplate();
