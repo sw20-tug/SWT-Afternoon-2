@@ -9,6 +9,7 @@ import { FiltersModel } from './filters.model';
 import {TranslateService} from "@ngx-translate/core";
 import {InjectorService} from "../../service/injector.service";
 import {Hotel} from "../hotel-list/hotel.model";
+import {CookieService} from "ngx-cookie-service";
 
 
 @Component({
@@ -22,7 +23,7 @@ export class FiltersComponent {
   @Output()
   filteredCategories: EventEmitter<Category[]> = new EventEmitter();
   @Input()
-  public isAdmin: boolean;
+  public isAdmin: boolean = this.cookieService.get("isAdmin") === "true" ? true : false;
   private selectedItems: Map<string, Array<any>>;
   private _dropdownSettings: IDropdownSettings;
   public activities: any;
@@ -51,13 +52,13 @@ export class FiltersComponent {
 
   sortHotelsByPrice($event) {
     this.HttpClientService.getHotelWithinPriceRange(this.value).subscribe(hotels => {
-      console.log(hotels)
+
       //this.HotelService.updateHotelList(hotels);
     })
   }
 
   constructor(private HttpClientService: HttpClientService, private HotelService: HotelService,
-              private readonly translateService: TranslateService) {
+              private readonly translateService: TranslateService, private cookieService: CookieService) {
 
     this.instantiateDropdownSettings();
     this.HotelService.translateAsObs.subscribe(trigger => {

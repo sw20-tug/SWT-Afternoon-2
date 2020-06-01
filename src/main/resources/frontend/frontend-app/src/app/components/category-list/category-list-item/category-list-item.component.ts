@@ -6,6 +6,7 @@ import {HotelService} from '../../../service/hotel.service';
 import {SortByPipe} from "../../../sort-by-pipe.pipe";
 import {InjectorService} from "../../../service/injector.service";
 import {TranslateService} from "@ngx-translate/core";
+import {CookieService} from "ngx-cookie-service";
 
 @Component({
   selector: 'app-category-list-item',
@@ -14,7 +15,7 @@ import {TranslateService} from "@ngx-translate/core";
 })
 export class CategoryListItemComponent implements OnInit {
   @Input() category: Category;
-  @Input() isAdmin: boolean;
+  @Input() isAdmin: boolean = this.cookieService.get("isAdmin") === "true" ? true : false;
   private categoryID: number;
   private temp_hotels: Hotel[];
   private translateService;
@@ -69,8 +70,8 @@ export class CategoryListItemComponent implements OnInit {
   }
 
   constructor(private httpClientService: HttpClientService, private hotelService: HotelService,
-              private readonly sortByPipe: SortByPipe) {
-    console.log('??????????????', this.category);
+              private readonly sortByPipe: SortByPipe, private cookieService: CookieService) {
+
   }
 
   sortListItems($event) {
