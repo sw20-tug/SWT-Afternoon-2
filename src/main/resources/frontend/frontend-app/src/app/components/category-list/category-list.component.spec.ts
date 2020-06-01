@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CategoryListComponent } from './category-list.component';
 import { HttpClient, HttpHandler } from '@angular/common/http';
+import {SortByPipe} from "../../sort-by-pipe.pipe";
 
 describe('CategoryListComponent', () => {
   let component: CategoryListComponent;
@@ -12,7 +13,8 @@ describe('CategoryListComponent', () => {
       declarations: [ CategoryListComponent ],
       providers: [
         HttpClient,
-        HttpHandler
+        HttpHandler,
+        SortByPipe
       ],
     })
     .compileComponents();

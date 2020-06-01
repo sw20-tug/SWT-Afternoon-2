@@ -54,6 +54,7 @@ export class HomeComponent implements OnInit {
   searchHeaderEvent($event) {
     this.searchText = $event;
     if(this.searchText ==='' || typeof this.searchText === 'undefined'){
+      this.initializeAllCategories();
       this.categories = this.allCategories;
       return;
     }
@@ -63,7 +64,6 @@ export class HomeComponent implements OnInit {
       x.hotels = x.hotels.filter(y => y.name.toLowerCase().includes(this.searchText));
       return x.hotels.length > 0;
     });
-    this.initializeAllCategories();
   }
   loginHeaderEvent($event) {
     this.isAdmin = $event;
