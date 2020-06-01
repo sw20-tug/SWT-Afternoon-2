@@ -243,9 +243,17 @@
     }
 }
 
-
 .row.hotel-item
 {
    padding: 0%;
    margin-bottom: 1%;
+}
+
+h5.name-text:hover {
+    cursor: pointer;
+    font-weight: 500;
+}
+
+img.img-fluid.medium-size-image {
+    cursor: pointer;
 }
