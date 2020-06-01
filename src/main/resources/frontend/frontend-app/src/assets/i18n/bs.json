@@ -47,6 +47,8 @@
   "USERNAME": "Korisničko ime",
   "PASSWORD": "Lozinka",
   "ADD": "Dodaj novi hotel",
+  "EDIT HOTEL": "Uredi hotel",
+  "CONFIRM": "Potvrdi",
   "UPLOAD": "Dodaj sliku",
   "CITY": "Grad",
   "DSCR": "Opis hotela",

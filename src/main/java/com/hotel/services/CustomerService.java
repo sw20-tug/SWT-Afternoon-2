@@ -63,32 +63,8 @@ public class CustomerService {
     this.other_filters = other_filters_;
   }
 
-  public Iterable<Hotel> filter_getHotelWithinPriceRange(String price, HotelService hotelService_) {
-
-    List<Category> categories = new ArrayList<Category>();
-
-    List<Hotel> hotels_within_price_range = new ArrayList<Hotel>();
-    for (Hotel hotel : hotelService_.getHotels()) {
-
-      if (hotel.getPrice() <= Integer.parseInt(price)) {
-        hotels_within_price_range.add(hotel);
-        System.out.println("hotel name is: " + hotel.getName() + " and price is " + hotel.getPrice());
-      }
-    }
-
-    Collections.sort(hotels_within_price_range);
-    //    for(Hotel hotel_sorted: hotels_within_price_range)
-    //      System.out.println("hotel is: " + hotel_sorted.getName() + " and price is " + hotel_sorted.getPrice());
-
-    Iterable<Hotel> hotels__ = hotels_within_price_range;
-    for (Hotel it : hotels__)
-      System.out.println(it.getName() + " " + it.getPrice());
-
-    return hotels__;
-  }
 
   public List<Hotel> getHotelByCriteria(int category_id, int criteria) {
-    System.out.println("aa"+ category_id);
     if (criteria == CustomerService.LOWEST_PRICE) {
       return hr.getHotelOrderedByPriceASC(category_id);
     } else if (criteria == CustomerService.HIGHEST_PRICE) {

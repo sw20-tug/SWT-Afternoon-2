@@ -1,34 +1,23 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {Router} from "@angular/router";
-import {UploadService} from "../../../service/upload.service";
-import {catchError, map} from "rxjs/operators";
-import {HttpErrorResponse, HttpEventType} from "@angular/common/http";
-import {of} from "rxjs";
+import {ActivatedRoute, Router} from "@angular/router";
 import {HttpClientService} from "../../../service/http-client.service";
 import {OtherFilters} from "../../filters/other-filter.model";
-import {FiltersModel} from "../../filters/filters.model";
 import {IDropdownSettings} from "ng-multiselect-dropdown";
 import {Hotel} from "../../hotel-list/hotel.model";
 import {TranslateService} from "@ngx-translate/core";
 import {HotelService} from "../../../service/hotel.service";
+import {HotelDetailComponent} from "../../hotel-detail/hotel-detail.component";
 
-export interface OwnerForCreation {
-  name: string;
-  dateOfBirth: Date;
-  address: string;
-}
 
 @Component({
-  selector: 'app-new-hotel',
+  selector: 'app-edit-hotel',
   templateUrl: './edit-hotel.component.html',
   styleUrls: ['./edit-hotel.component.css']
 })
 export class EditHotelComponent implements OnInit {
 
   public hotelForm: FormGroup;
-  public starsFilter: number = null;
-  @ViewChild("fileUpload", {static: false}) fileUpload: ElementRef;files  = [];
   public uploadButtonClicked: boolean;
   private imageURL: string;
   public otherFilters: OtherFilters;
@@ -36,7 +25,10 @@ export class EditHotelComponent implements OnInit {
   private dropdownSettingsCategory: IDropdownSettings;
   public activities: any;
   public categories: any;
-
+  public hotel_id: number;
+  public hotel_: Hotel;
+  public hotelDetail: HotelDetailComponent;
+  public userInput: boolean;
 
 
   public get dropdownSettings() {
@@ -62,9 +54,17 @@ export class EditHotelComponent implements OnInit {
 
 
 
-  constructor(private readonly router: Router, private readonly uploadService: UploadService,
-              private readonly httpService: HttpClientService, private translateService: TranslateService,
-              private HotelService: HotelService) {
+  constructor(private hotelService: HotelService, private HttpClientService: HttpClientService, private route: ActivatedRoute, private readonly router: Router,
+              private readonly httpService: HttpClientService, private translateService: TranslateService) {
+
+
+    this.hotel_id = this.router.getCurrentNavigation().extras.state.hotel_id;
+    this.HttpClientService.getHotelById(this.hotel_id.toString()).subscribe(hotel => {
+      this.hotel_ = hotel;
+
+    });
+
+
     this.otherFilters = new OtherFilters();
     this._dropdownSettings = {
       singleSelection: false,
@@ -75,8 +75,7 @@ export class EditHotelComponent implements OnInit {
       itemsShowLimit: 14,
       allowSearchFilter: true
     };
-    this.HotelService.translateAsObs.subscribe(trigger => {
-      console.log('Trigger?', trigger);
+    this.hotelService.translateAsObs.subscribe(trigger => {
       this._dropdownSettings = {
         singleSelection: false,
         idField: 'item_id',
@@ -100,7 +99,8 @@ export class EditHotelComponent implements OnInit {
     this.categories = ["Romantic", "Adventure", "Holiday", "Wellness", "Family", "Camping"];
   }
 
-  ngOnInit() {
+  ngOnInit() : void{
+
     this.hotelForm = new FormGroup({
       name: new FormControl('', [Validators.maxLength(60)]),
       descr: new FormControl('', [Validators.maxLength(100)]),
@@ -116,67 +116,34 @@ export class EditHotelComponent implements OnInit {
 
   }
 
-  uploadFile(file) {
-    const formData = new FormData();
-    formData.append('file', file.data);
-    file.inProgress = true;
-    this.uploadService.upload(formData).pipe(
-      map(event => {
-        switch (event.type) {
-          case HttpEventType.UploadProgress:
-            file.progress = Math.round(event.loaded * 100 / event.total);
-            break;
-          case HttpEventType.Response:
-            return event;
-        }
-      }),
-      catchError((error: HttpErrorResponse) => {
-        file.inProgress = false;
-        return of(`${file.data.name} upload failed.`);
-      })).subscribe((event: any) => {
-      if (typeof (event) === 'object') {
-        this.uploadButtonClicked = true;
-        console.log('jel to to', event.body.link);
-        this.imageURL = event.body.link;
-        console.log('value is ' , this.hotelForm.get('stars').value);
-      }
-    });
-  }
-
-  onClick() {
-    const fileUpload = this.fileUpload.nativeElement;fileUpload.onchange = () => {
-      for (let index = 0; index < fileUpload.files.length; index++)
-      {
-        const file = fileUpload.files[index];
-        this.files.push({ data: file, inProgress: false, progress: 0});
-      }
-      this.uploadFiles();
-    };
-    fileUpload.click();
-  }
 
   onItemSelect(item: any) {
-    console.log('test')
     console.log(item);
   }
   onSelectAll(items: any) {
-    console.log('test2');
     console.log(items);
 
   }
 
   public onCancel = () => {
+    console.log(this.hotel_.name)
     this.router.navigateByUrl('');
   };
 
-  private uploadFiles() {
-    this.fileUpload.nativeElement.value = '';
-    this.files.forEach(file => {
-      this.uploadFile(file);
-    });
+  public checkUserInput ()
+  {
+    if(this.hotelForm.get('name').value == '' || this.hotelForm.get('descr').value == ''
+      || this.hotelForm.get('price').value == null || this.hotelForm.get('rating').value == null
+      || this.hotelForm.get('stars').value == null || this.hotelForm.get('city').value == ''
+      || this.selectedCategories == null || this.selectedActivities == null
+      || this.currentlySelectedCategories == null || this.currentlySelectedActivities == null)
+      return false;
+    else
+      return true;
   }
 
-  public insertNewHotel() {
+
+  public editHotel() {
 
     let allFiltersIntoList = [this.otherFilters.parkingFilter === undefined ? false : true, this.otherFilters.restaurantFilter  === undefined ? false : true,
       this.otherFilters.petsAllowedFilter  === undefined ? false : true, this.otherFilters.nonsmokingRoomsFilter  === undefined ? false : true,
@@ -184,11 +151,10 @@ export class EditHotelComponent implements OnInit {
       this.otherFilters.airConditioningFilter  === undefined ? false : true, this.otherFilters.freeWifiFilter  === undefined ? false : true,
       this.otherFilters.saunaFilter  === undefined ? false : true, this.otherFilters.fitnessFilter  === undefined ? false : true];
 
-    this.httpService.insertNewHotel(this.hotelForm.get('name').value, this.hotelForm.get('descr').value,
+    this.httpService.editHotel(this.hotelForm.get('name').value, this.hotelForm.get('descr').value,
       this.currentlySelectedCategories, this.hotelForm.get('price').value, this.hotelForm.get('rating').value,
-      this.hotelForm.get('stars').value, this.hotelForm.get('city').value,  this.currentlySelectedActivities, allFiltersIntoList, this.imageURL).subscribe(response => {
-        console.log("test")
-        console.log('response', response);
+      this.hotelForm.get('stars').value, this.hotelForm.get('city').value,  this.currentlySelectedActivities, allFiltersIntoList, this.hotel_.id).subscribe(response => {
+          this.router.navigateByUrl('');
     });
   }
 }

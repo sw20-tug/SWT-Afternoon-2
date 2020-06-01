@@ -187,8 +187,7 @@ export class NewHotelComponent implements OnInit {
     this.httpService.insertNewHotel(this.hotelForm.get('name').value, this.hotelForm.get('descr').value,
       this.currentlySelectedCategories, this.hotelForm.get('price').value, this.hotelForm.get('rating').value,
       this.hotelForm.get('stars').value, this.hotelForm.get('city').value,  this.currentlySelectedActivities, allFiltersIntoList, this.imageURL).subscribe(response => {
-        console.log("test")
-        console.log('response', response);
+        this.router.navigateByUrl('');
     });
   }
 }

@@ -5,9 +5,6 @@ import { Hotel } from '../hotel-list/hotel.model';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import { RatingComment } from './rating-comment.model';
 import {HotelService} from "../../service/hotel.service";
-import {Category} from "../category-list/category.model";
-import {FiltersComponent} from "../filters/filters.component";
-import {HomeComponent} from "../home/home.component";
 import {ConfirmationDialogService} from "../header/login/confirmation-dialogue/confirmation-dialogue.service";
 
 
@@ -35,6 +32,7 @@ export class HotelDetailComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.HttpClientService.getHotelById(params.id).subscribe(hotel => {
         this.hotel = Hotel.MapHotel(hotel);
+
         this.hotel.facilitiesList = this.hotel.facilitiesList.filter(x => x.value);
 
         this.hotelService.translateAsObs.subscribe(trigger => {
@@ -90,6 +88,12 @@ export class HotelDetailComponent implements OnInit {
 
     });
 
+
+  }
+
+  editHotel(hotel)
+  {
+    this.router.navigate(['/edit-hotel/', hotel.id], { state: { hotel_id: hotel.id} });
 
   }
 

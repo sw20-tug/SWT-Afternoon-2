@@ -59,6 +59,18 @@ export class HttpClientService {
     );
   }
 
+  public editHotel(name: string, description: string, category: string, price: number, rating: number,
+                        stars: number, city: string, currentlySelectedActivities: string[], otherFilters: (boolean)[],
+                        id:number) {
+    return this.http.post(this.serverUrl + '/editHotels?name=' + name + '&description=' + description +
+      '&category=' + category +
+      '&price=' + price + '&rating=' + rating + '&stars=' + stars + '&city=' + city +
+      '&currentlySelectedActivities=' + currentlySelectedActivities + '&otherFilters=' + otherFilters + '&id=' + id,
+      this.httpOptions, {responseType: 'text'}).pipe(
+      catchError(this.errorHandler)
+    );
+  }
+
   public insertNewComment(comm_text: string, user_name: string, rate: number, hotel_id: number) {
 
     return this.http.post(this.serverUrl + '/addNewComment?comm_text=' + comm_text + '&user_name=' + user_name +
