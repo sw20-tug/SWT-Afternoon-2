@@ -1,0 +1,148 @@
+<app-header [isSearchboxVisible]="false"></app-header>
+<div class="container col-md-12 col-sm-12 col-xs-9 col-lg-12 col-xl-10 margin-top-10">
+    <div *ngIf="hotel" class="row hotel-item">
+       <div class="col-md-12 col-lg-12">
+            <div class="row">
+                <div class="col-10 name-text font-size-26">
+                    {{ hotel.name }}
+                </div>
+                <div class="col-2">
+                    <ngb-rating [rate]="hotel.stars" [readonly]="true" [max]="5" class="float-right">
+                        <ng-template let-fill="fill">
+                                        <span class="star" [class.full]="fill === 100">
+                                            <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+                                        </span>
+                        </ng-template>
+                    </ngb-rating>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-lg-12">
+            <div class="row">
+                <div class="col-10">
+                    <div class="row">
+                        <div class="col-1">
+                            <span class="badge badge-pill"
+                                [ngClass]="{'badge-success' : hotel.getRating() === 'Excellent','badge-successs':  hotel.getRating() === 'Odličan',
+                                'badge-warning' :  hotel.getRating() === 'Good','badge-warningg': hotel.getRating() === 'Dobar',
+                                'badge-danger' :  hotel.getRating() === 'Poor',  'badge-dangerr': hotel.getRating() === 'Loš'}">
+                                {{ hotel.rate | number:'1.1-1' }}
+                            </span>
+                        </div>
+                        <div class="col-11">
+                            <p class="rating">{{ hotel.getRating() }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <p class="price float-right">{{'PRICE' | translate }}: {{ hotel.price }}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12">
+                    <i class="fa fa-location-arrow float-left text-icon " aria-hidden="true"></i>
+                    <p class="city">{{ hotel.city }}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <h3 class="header-info">{{'FACILITIES' | translate }}</h3>
+            </div>
+        </div>
+        <div class="row mr-10">
+            <div class="col-2" *ngFor="let facility of hotel.facilitiesList">
+               <i class="{{ facility.icon }}"></i> {{ facility.name }}
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-4">
+                <ngb-carousel *ngIf="images" [showNavigationArrows]="true" [showNavigationIndicators]="true">
+                    <ng-template ngbSlide *ngFor="let image of images">
+                        <div class="row">
+                            <div class="picsum-img-wrapper">
+                                <img [src]="image" alt="Error loading picture">
+                            </div>
+                        </div>
+                    </ng-template>
+                </ngb-carousel>
+            </div>
+            <div class="col-8">
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class="header-info">{{'DSCR' | translate }}</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <p class="justify-content">{{ hotel.description }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col-4">
+                <mat-card>
+                    <mat-card-title class="mat-title">{{'ADD RATING' | translate }}</mat-card-title>
+                    <form [formGroup]="commentForm" autocomplete="off" novalidate>
+                        <mat-card-content>
+                            <mat-form-field class="full-width">
+                                <input matInput type="text" placeholder="{{'USERNAME' | translate}}" formControlName="name">
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field class="full-width">
+                                <input matInput type="number" placeholder="{{'RATING' | translate}}" formControlName="rating">
+                                <mat-hint align="end">1-10</mat-hint>
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field class="full-width">
+                                <textarea  matInput type="text" placeholder="{{'COMMENT' | translate}}" formControlName="comment"></textarea>
+                            </mat-form-field>
+                            <br>
+                        </mat-card-content>
+                        <button [disabled]="false" mat-raised-button (click)="insertNewComment()">
+                          {{'SEND RATING' | translate }}</button>
+                    </form>
+                </mat-card>
+            </div>
+            <div class="col-8">
+                <mat-card>
+                    <mat-card-title class="mat-title">{{'COMMENTS' | translate }}</mat-card-title>
+                    <mat-card-content>
+                        <div class="row rating-comment" *ngFor="let ratingComment of hotel.ratingComments">
+                            <app-rating-comment class="width-100" [ratingComment]="ratingComment">
+                            </app-rating-comment>
+                         </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+        <div class="col-md-12 col-lg-12">
+        <div class="row">
+          <div class="col-10 name-text font-size-26">
+          </div>
+          <div class="col-2">
+            <button [disabled]=false color="primary"  mat-raised-button (click)="show()">
+              {{'DELETE' | translate }}</button>
+          </div>
+        </div>
+      </div>
+      <div [style.display]="showDeleteConfirmationDialog ? 'block' : 'none'" [style.background]="showDeleteConfirmationDialog ? 'linear-gradient(45deg, black, transparent)' : 'none'" class="modal" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="myModalLabel">{{'DELETE CHECK' | translate}}</h4>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal" (click) = "deleteHotel()">{{'YES' | translate}}</button>
+              <button type="button" class="btn btn-dark" data-dismiss="modal" (click) = "hide()">{{'NO' | translate}}</button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+</div>

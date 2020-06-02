@@ -1,0 +1,6 @@
+<div class="col-md-12" *ngFor="let hotel of hotels; let i=index" >
+    <app-hotel-list-item
+      [hotel]="hotel"
+      [isAdmin]="isAdmin">
+    </app-hotel-list-item>
+</div>

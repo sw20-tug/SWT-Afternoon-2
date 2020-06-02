@@ -1,0 +1,108 @@
+<div class="filters-list">
+  <button class="btn btn-primary add-button" [style.display]="!isAdmin ? 'none' : 'block'" routerLink="/new-hotel"><i class="fa fa-plus-circle"></i><span class="add-text">{{'ADD' | translate}}</span></button>
+  <div class="filters">
+    <h4 class="price-box" id="price_per_night">{{'PRICE' | translate }}</h4>
+    <div class="row">
+      <div class="col-6">
+        <mat-form-field appearance="legacy" class="full-width">
+          <mat-label id="min_price">min</mat-label>
+          <input matInput [(ngModel)]="minPrice">
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <mat-form-field appearance="legacy" class="full-width">
+          <mat-label id="max_price">max</mat-label>
+          <input matInput [(ngModel)]="maxPrice">
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div class="filters">
+    <h4 class="price-box" id="customer_rating">{{'RATING' | translate }}</h4>
+    <div class="row">
+      <div class="col-6">
+        <mat-form-field appearance="legacy" class="full-width">
+          <mat-label id="min_rating">min</mat-label>
+          <input matInput [(ngModel)]="minRating">
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <mat-form-field appearance="legacy" class="full-width">
+          <mat-label id="max_rating">max</mat-label>
+          <input matInput [(ngModel)]="maxRating">
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div class="filters">
+    <h4 class="price-box" id="stars">{{'STARS' | translate }}</h4>
+    <div class="col-md-8 col-sm-12 col-xs-4 col-lg-12 col-xl-8">
+      <ngb-rating [(rate)]="starsFilter" [max]=5 [readonly]=false>
+        <ng-template let-fill="fill" let-index="index">
+            <span class="star" [class.full]="fill === 100">
+              <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+            </span>
+        </ng-template>
+      </ngb-rating>
+    </div>
+  </div>
+  <div class="filters dropdown">
+    <h4 class="price-box" id="activities">{{'ACTIVITIES' | translate }}</h4>
+    <ng-multiselect-dropdown
+      [placeholder]="'SELECT ACTIVITIES' | translate"
+      [data]="activities"
+      [(ngModel)]="currentlySelectedActivities"
+      [settings]="dropdownSettings"
+      (onSelect)="selectActivities()">
+    </ng-multiselect-dropdown>
+    <br/>
+  </div>
+  <div class="filters dropdown">
+    <h4 class="price-box" id="locations">{{'LOCATIONS' | translate }}</h4>
+    <ng-multiselect-dropdown
+      [placeholder]= "'SELECT LOCATIONS' | translate"
+      [data]="locations"
+      [(ngModel)]="currentlySelectedLocations"
+      [settings]="dropdownSettings">
+    </ng-multiselect-dropdown>
+    <br/>
+  </div>
+  <div class="filters">
+    <h4 class="price-box" id="other_filters">{{'FILTERS' | translate }}</h4>
+    <div class="filter-item">
+      <mat-checkbox id="parking" [(ngModel)]="otherFilters.parkingFilter">Parking</mat-checkbox>
+    </div>
+    <div class="filter-item">
+      <mat-checkbox id="restaurant" [(ngModel)]="otherFilters.restaurantFilter">{{'RESTAURANT' | translate }}</mat-checkbox>
+    </div>
+    <div class="filter-item">
+      <mat-checkbox id="pets_allowed" [(ngModel)]="otherFilters.petsAllowedFilter">{{'PETS' | translate }}</mat-checkbox>
+    </div>
+    <div class="filter-item">
+      <mat-checkbox id="non_smoking_rooms" [(ngModel)]="otherFilters.nonsmokingRoomsFilter">{{'SMOKE' | translate }}
+      </mat-checkbox>
+    </div>
+    <div class="filter-item">
+      <mat-checkbox id="swimming_pool" [(ngModel)]="otherFilters.swimmingPoolFilter">{{'POOL' | translate }}</mat-checkbox>
+    </div>
+    <div class="filter-item">
+      <mat-checkbox id="beachfront" [(ngModel)]="otherFilters.beachfrontFilter">{{'BEACH' | translate }}</mat-checkbox>
+    </div>
+    <div class="filter-item">
+      <mat-checkbox id="air_conditioning" [(ngModel)]="otherFilters.airConditioningFilter">{{'AC' | translate }}
+      </mat-checkbox>
+    </div>
+    <div class="filter-item">
+      <mat-checkbox id="free_wifi" [(ngModel)]="otherFilters.freeWifiFilter">{{'WIFI' | translate }}</mat-checkbox>
+    </div>
+    <div class="filter-item">
+      <mat-checkbox id="sauna" [(ngModel)]="otherFilters.saunaFilter">Sauna</mat-checkbox>
+    </div>
+    <div class="filter-item">
+      <mat-checkbox id="fitness" [(ngModel)]="otherFilters.fitnessFilter">{{'FITNESS' | translate }}</mat-checkbox>
+    </div>
+    <div class="row filtersBtnDiv" (click)="applyAllFilters()">
+      <button mat-raised-button color="accent" id="apply_all_filters" class="filtersBtn">{{'AAFILTERS' | translate }}</button>
+    </div>
+  </div>
+</div>

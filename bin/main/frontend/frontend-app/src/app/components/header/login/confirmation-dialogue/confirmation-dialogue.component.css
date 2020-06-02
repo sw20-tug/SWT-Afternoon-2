@@ -1,0 +1,22 @@
+.modal-header {
+    background-color: #343a40;
+    color: white;
+}
+
+.modal-title {
+    font-size: 1.8rem; 
+    margin-top: 2%;
+}
+
+.close {
+    color: white;
+}
+
+.modal-body {
+    height: 6rem; 
+    font-size: 1rem; 
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+
