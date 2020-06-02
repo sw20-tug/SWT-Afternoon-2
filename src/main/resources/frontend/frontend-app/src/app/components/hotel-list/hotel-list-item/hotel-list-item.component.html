@@ -1,14 +1,12 @@
 <div *ngIf="hotel" class="row hotel-item">
-  <div class="col-md-12 col-sm-12 col-xs-12 col-lg-2 col-xl-3 center-image no-padding">
-
+  <div class="col-md-12 col-sm-12 col-xs-12 col-lg-2 col-xl-3 center-image no-padding" (click)="openHotelDetailPage(hotel.id)">
     <img src="{{ hotel.imagePath }}" alt="{{ hotel.name }}" class="img-fluid medium-size-image">
-
   </div>
   <div class="col-md-12 col-sm-12 col-xs-12 col-lg-10 col-xl-9 medium-size-text ">
     <div class="row">
       <div class="col-md-8 col-sm-12 col-xs-12 col-lg-9 col-xl-9">
         <div class="row">
-          <div class="col-md-12 col-sm-12 col-xs-8 col-lg-9 col-xl-9">
+          <div class="col-md-12 col-sm-12 col-xs-8 col-lg-9 col-xl-9" (click)="openHotelDetailPage(hotel.id)">
             <h5 class="name-text">{{ hotel.name }}</h5>
           </div>
           <div class="col-md-8 col-sm-12 col-xs-4 col-lg-12 col-xl-8">

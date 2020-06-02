@@ -3,6 +3,8 @@ import {Hotel} from './hotel.model';
 import {HttpClientService} from "../../service/http-client.service";
 import {HotelService} from "../../service/hotel.service";
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
+
 
 @Component({
   selector: 'app-hotel-list',
@@ -13,10 +15,11 @@ export class HotelListComponent implements OnInit {
   @Input()
   public hotels: Hotel[];
   @Input()
-  public isAdmin: boolean;
+  public isAdmin: boolean = this.cookieService.get("isAdmin") === "true" ? true : false;
 
 
-  constructor(private HttpClientService: HttpClientService, private HotelService: HotelService, private router: Router) {
+
+  constructor(private HttpClientService: HttpClientService, private HotelService: HotelService, private router: Router, private cookieService: CookieService) {
     this.HotelService.hotelList.subscribe( hotels => {
       var listOfHotels = new Array<Hotel>();
       if(hotels === null || typeof hotels === 'undefined')
@@ -26,8 +29,7 @@ export class HotelListComponent implements OnInit {
         listOfHotels.push(Hotel.MapHotel(hotel));
       });
       this.hotels = listOfHotels;
-     /////// this.hotels = null;
-      console.log('Hotels', this.hotels);
+
     })
   }
 
@@ -35,7 +37,4 @@ export class HotelListComponent implements OnInit {
 
   }  
 
-  openHotelDetailPage(id: number){
-    this.router.navigate(['/hotel-detail', id]);
-  }
 }

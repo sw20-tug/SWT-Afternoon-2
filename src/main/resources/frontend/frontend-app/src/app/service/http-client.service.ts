@@ -84,7 +84,6 @@ export class HttpClientService {
 
   public deleteHotel(hotel_name: string)
   {
-    console.log("delete hotel with name: " + hotel_name)
     return this.http.post(this.serverUrl + '/deleteHotel?hotel_name=' + hotel_name, this.httpOptions, {responseType: 'text'}).pipe(
       catchError(this.errorHandler)
     );
@@ -96,8 +95,7 @@ export class HttpClientService {
                            currentlySelectedLocations: string[], otherFilters: boolean[]): Observable<Category[]>
   {
 
-    console.log('other filters: ')
-    console.log(currentlySelectedLocations)
+
     return this.http.get<Category[]>(this.serverUrl+ '/apply?minPrice=' + this.checkIfUndefined(minPrice) + '&maxPrice=' + this.checkIfUndefined(maxPrice)
       + '&minRating=' + this.checkIfUndefined(minRating)+ '&maxRating=' + this.checkIfUndefined(maxRating) + '&starsFilter=' + starsFilter +
       '&currentlySelectedActivities=' + this.checkIfUndefined(currentlySelectedActivities)
@@ -112,7 +110,6 @@ export class HttpClientService {
   }
 
   public sortByCriteria(category_id: number, criteria_id: number): Observable<any> {
-    console.log("Htp options are, ", new HttpHeaders());
     return this.http.get<Hotel[]>(this.serverUrl + '/criteria?category_id=' + category_id + '&criteria_id=' + criteria_id, this.httpOptions).pipe(
       retry(this.retryCount),
       catchError(this.errorHandler)
@@ -161,8 +158,6 @@ export class HttpClientService {
   }
 
   public changeRating (new_rate: number, id: number) {
-  console.log("ID ID ID ID ID" + id);
-  console.log("ID ID ID ID ID" + new_rate);
 
   return this.http.post(this.serverUrl + '/changeRating?new_rate=' + new_rate + '&id=' + id, this.httpOptions, {responseType: 'text'}).pipe(
         catchError(this.errorHandler)

@@ -1,7 +1,6 @@
 import { AbstractControl } from '@angular/forms';
 
 export function UsernameValidator(control: AbstractControl) {
-    console.log('vrijednost control.value = ' + control.value)
   if (control.value === "admin") {
 
     return { required : false, usernameValid: true };

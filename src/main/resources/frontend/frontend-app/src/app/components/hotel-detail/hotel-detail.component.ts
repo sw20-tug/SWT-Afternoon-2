@@ -27,11 +27,11 @@ export class HotelDetailComponent implements OnInit {
 
 
   ngOnInit(): void {
-    // TODO: LOAD IMAGES FOR HOTEL
-    this.images = ["https://www.w3schools.com/w3css/img_lights.jpg", "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg"];
     this.route.params.subscribe(params => {
       this.HttpClientService.getHotelById(params.id).subscribe(hotel => {
         this.hotel = Hotel.MapHotel(hotel);
+
+        this.images = [this.hotel.imagePath, this.hotel.imagePath];
 
         this.hotel.facilitiesList = this.hotel.facilitiesList.filter(x => x.value);
 
@@ -91,6 +91,7 @@ export class HotelDetailComponent implements OnInit {
 
   }
 
+
   editHotel(hotel)
   {
     this.router.navigate(['/edit-hotel/', hotel.id], { state: { hotel_id: hotel.id} });
@@ -104,13 +105,12 @@ export class HotelDetailComponent implements OnInit {
   }
 
 
-  show()
-  {
+  show() {
+
     this.showDeleteConfirmationDialog = true;
   }
 
-  deleteHotel()
-  {
+  deleteHotel() {
     this.HttpClientService.deleteHotel(this.hotel.name).subscribe(response => {
       this.showDeleteConfirmationDialog = false;
       this.router.navigate(['']);
@@ -118,18 +118,19 @@ export class HotelDetailComponent implements OnInit {
 
   }
 
+
   hideEdit()
   {
     this.showEditForm = false;
   }
 
-  hide()
-  {
+
+  hide() {
+
     this.showDeleteConfirmationDialog = false;
   }
 
-  public insertNewComment()
-  {
+  public insertNewComment() {
     this.route.params.subscribe(params => {
 
       this.HttpClientService.insertNewComment(this.commentForm.get('comment').value, this.commentForm.get('name').value,
