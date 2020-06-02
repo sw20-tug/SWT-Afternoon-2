@@ -55,6 +55,14 @@ public interface HotelRepository extends CrudRepository<Hotel, Long> {
     nativeQuery = true)
   Integer findLastId();
 
+  @Transactional
+  @Modifying
+  @Query(
+    value = "UPDATE swt.hotel SET name=:name, description=:description, category_id=:category, price=:price, rate=:rating, stars=:stars, city=:city, activity=:activity, other_filters=:otherFilters WHERE id=:id",
+    nativeQuery = true)
+  void  editHotel(@Param("id") int id, @Param("name") String name, @Param("description") String description, @Param("category") int category, @Param("price") int price, @Param("rating")int rating, @Param("stars")int stars,
+                        @Param("city")String city, @Param("activity")String activity, @Param("otherFilters")String otherFilters);
+
 
   @Transactional
   @Modifying

@@ -30,6 +30,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import {MatChipsModule} from '@angular/material/chips';
 import { SortByPipe } from './sort-by-pipe.pipe';
 import { NewHotelComponent } from './components/header/new-hotel/new-hotel.component';
+import {EditHotelComponent} from "./components/header/edit-hotel/edit-hotel.component";
 import { ReactiveFormsModule } from '@angular/forms';
 import {UploadService} from "./service/upload.service";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
@@ -68,6 +69,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     FiltersComponent,
     SortByPipe,
     NewHotelComponent,
+    EditHotelComponent,
     LoginComponent,
     ConfirmationDialogComponent,
     HotelDetailComponent,

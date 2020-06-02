@@ -5,9 +5,6 @@ import { Hotel } from '../hotel-list/hotel.model';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import { RatingComment } from './rating-comment.model';
 import {HotelService} from "../../service/hotel.service";
-import {Category} from "../category-list/category.model";
-import {FiltersComponent} from "../filters/filters.component";
-import {HomeComponent} from "../home/home.component";
 import {ConfirmationDialogService} from "../header/login/confirmation-dialogue/confirmation-dialogue.service";
 
 
@@ -21,6 +18,7 @@ export class HotelDetailComponent implements OnInit {
   public commentForm: FormGroup;
   public images: any[] = [];
   public showDeleteConfirmationDialog: boolean;
+  public showEditForm: boolean;
   public isAdminForDelete: boolean;
 
 
@@ -32,7 +30,9 @@ export class HotelDetailComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.HttpClientService.getHotelById(params.id).subscribe(hotel => {
         this.hotel = Hotel.MapHotel(hotel);
+
         this.images = [this.hotel.imagePath, this.hotel.imagePath];
+
         this.hotel.facilitiesList = this.hotel.facilitiesList.filter(x => x.value);
 
         this.hotelService.translateAsObs.subscribe(trigger => {
@@ -91,7 +91,22 @@ export class HotelDetailComponent implements OnInit {
 
   }
 
+
+  editHotel(hotel)
+  {
+    this.router.navigate(['/edit-hotel/', hotel.id], { state: { hotel_id: hotel.id} });
+
+  }
+
+
+  showEdit()
+  {
+    this.showEditForm = true;
+  }
+
+
   show() {
+
     this.showDeleteConfirmationDialog = true;
   }
 
@@ -103,7 +118,15 @@ export class HotelDetailComponent implements OnInit {
 
   }
 
+
+  hideEdit()
+  {
+    this.showEditForm = false;
+  }
+
+
   hide() {
+
     this.showDeleteConfirmationDialog = false;
   }
 

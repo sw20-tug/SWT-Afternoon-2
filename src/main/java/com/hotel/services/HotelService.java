@@ -149,29 +149,16 @@ public class HotelService {
       }
       else if(convertActivitesToString(currentlySelectedActivities).equals("000")){
 
-        for(String loc: currentlySelectedLocations)
-          System.out.println("loc " + loc);
-
        hotels = this.hr.applyFiltersWithoutActivity(minPrice, maxPrice == 0 ? hr.getMaxPrice() + 1 : maxPrice, minRating, maxRating == 0 ? hr.getMaxRating() : maxRating, stars, ((Arrays.asList(currentlySelectedLocations)).get(0).equals("0")) ? locations_ : Arrays.asList(currentlySelectedLocations), convertOtherFiltersToString(otherFilters));
       }
       else if(convertOtherFiltersToString(otherFilters).equals("0000000000")){
-
-        for(String loc: currentlySelectedLocations)
-          System.out.println("loc " + loc);
 
          hotels = this.hr.applyFiltersWithoutOtherFilters(minPrice, maxPrice == 0 ? hr.getMaxPrice() + 1 : maxPrice, minRating, maxRating == 0 ? hr.getMaxRating() : maxRating, stars, convertActivitesToString(currentlySelectedActivities), ((Arrays.asList(currentlySelectedLocations)).get(0).equals("0")) ? locations_ : Arrays.asList(currentlySelectedLocations));
       }
       else{
 
-        for(String loc: currentlySelectedLocations)
-          System.out.println("loc " + loc);
-
         hotels = this.hr.applyFilters(minPrice, maxPrice == 0 ? hr.getMaxPrice() + 1 : maxPrice, minRating, maxRating == 0 ? hr.getMaxRating() : maxRating, stars, convertActivitesToString(currentlySelectedActivities), ((Arrays.asList(currentlySelectedLocations)).get(0).equals("0")) ? locations_ : Arrays.asList(currentlySelectedLocations), convertOtherFiltersToString(otherFilters));
       }
-
-    System.out.println("found hotels: ");
-    for(Hotel it: hotels)
-      System.out.println(it.getName());
 
     Categories category_romantic = new Categories("Romantic");
     Categories category_adventure = new Categories("Adventure");
@@ -181,41 +168,34 @@ public class HotelService {
     Categories category_camping = new Categories("Camping");
 
    for(Hotel ht : hotels){
-     System.out.println("hotel is: " + ht.getName());
      switch(ht.getCategory().getName()){
        case "Romantic":
        {
-         System.out.println("romantic");
          category_romantic.setHotelInsideCategory(ht);
          break;
        }
        case "Adventure":
        {
-         System.out.println("adventure");
          category_adventure.setHotelInsideCategory(ht);
          break;
        }
        case "Holiday":
        {
-         System.out.println("holiday");
          category_holiday.setHotelInsideCategory(ht);
          break;
        }
        case "Wellness":
        {
-         System.out.println("wellness");
          category_wellness.setHotelInsideCategory(ht);
          break;
        }
        case "Family":
        {
-         System.out.println("family");
          category_family.setHotelInsideCategory(ht);
          break;
        }
        case "Camping":
        {
-         System.out.println("camping");
          category_camping.setHotelInsideCategory(ht);
          break;
        }
@@ -265,8 +245,13 @@ public class HotelService {
   {
     //generate new id
     Integer new_id = this.hr.findLastId() + 1;
-    System.out.println("new_id is " + new_id);
     this.hr.insertNewHotels(new_id, name, description, findCategoryId(category), price, rating, stars, city, convertActivitesToString(activities), convertOtherFiltersToString(otherFilters), image);
+  }
+
+  public void editHotel(String name, String description, String category[], Integer price, Integer rating, Integer stars,
+                              String city, String[] activities, Boolean[] otherFilters, Integer id)
+  {
+    this.hr.editHotel(id, name, description, findCategoryId(category), price, rating, stars, city, convertActivitesToString(activities), convertOtherFiltersToString(otherFilters));
   }
 
   //helper functions
@@ -292,7 +277,6 @@ public class HotelService {
       }
     }
 
-    System.out.println("initial activitiy" + activity.toString());
     return  activity.toString();
   }
 
