@@ -5,6 +5,7 @@ import {HotelService} from "../../service/hotel.service";
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 
+
 @Component({
   selector: 'app-hotel-list',
   templateUrl: './hotel-list.component.html',
@@ -15,6 +16,7 @@ export class HotelListComponent implements OnInit {
   public hotels: Hotel[];
   @Input()
   public isAdmin: boolean = this.cookieService.get("isAdmin") === "true" ? true : false;
+
 
 
   constructor(private HttpClientService: HttpClientService, private HotelService: HotelService, private router: Router, private cookieService: CookieService) {
@@ -35,7 +37,4 @@ export class HotelListComponent implements OnInit {
 
   }  
 
-  openHotelDetailPage(id: number){
-    this.router.navigate(['/hotel-detail', id]);
-  }
 }

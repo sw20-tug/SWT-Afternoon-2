@@ -71,7 +71,6 @@ export class CategoryListItemComponent implements OnInit {
 
   constructor(private httpClientService: HttpClientService, private hotelService: HotelService,
               private readonly sortByPipe: SortByPipe, private cookieService: CookieService) {
-
   }
 
   sortListItems($event) {

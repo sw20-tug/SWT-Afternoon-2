@@ -44,7 +44,6 @@ export class HomeComponent implements OnInit {
         this.categories[5].name = this.translate.instant('CAMPING');
       });
 
-
     });
   }
 

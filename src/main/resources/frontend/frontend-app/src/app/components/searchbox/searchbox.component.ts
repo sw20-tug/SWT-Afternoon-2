@@ -15,7 +15,7 @@ export class SearchboxComponent implements OnInit {
   }
 
   ngOnChanges(x) {
-    console.log("Seacrhbox:", x)
+
   }
 
   search() {
