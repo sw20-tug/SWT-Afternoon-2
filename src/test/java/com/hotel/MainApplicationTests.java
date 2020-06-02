@@ -9,8 +9,10 @@ import com.hotel.controller.Categories;
 import com.hotel.controller.CategoryController;
 import com.hotel.controller.HotelController;
 import com.hotel.model.Category;
+import com.hotel.model.Comment;
 import com.hotel.model.Hotel;
 import com.hotel.repository.HotelRepository;
+import com.hotel.services.CommentService;
 import com.hotel.services.CustomerService;
 import com.hotel.services.HotelService;
 import org.junit.Assert;
@@ -42,6 +44,9 @@ class MainApplicationTests {
 
   @Autowired
   HotelService hotelService;
+
+  @Autowired
+  CommentService commentService;
 
   @LocalServerPort
   private int port;
@@ -564,5 +569,26 @@ class MainApplicationTests {
     Boolean[] otfil ={false,false,false,false,false,false,false,false,false,false};
     Iterable<Categories> categories = this.hotelService.applyAllFiltersAndGetHotels(minPrice,maxPrice,minRating,maxRating,stars,ac,lc,otfil);
     assertThat(categories).isNotNull();
+  }
+
+  @Test
+  public void applyRating() throws Exception {
+
+    Hotel tmp = hotelService.getHotelById(100);
+    int num = tmp.getRating_num();
+    this.hotelService.changeRating(5, 100);
+    tmp = hotelService.getHotelById(100);
+
+    assertThat(tmp.getRating_num()).isEqualTo(num+1);
+  }
+
+  @Test
+  public void newComment() throws Exception {
+
+    int num = commentService.getCommentsByHotelID(100).size();
+    commentService.insertNewComment("Good", "SWT", 8, 100);
+    List<Comment> tmp = commentService.getCommentsByHotelID(100);
+
+    assertThat(tmp.size()).isEqualTo(num+1);
   }
 }
