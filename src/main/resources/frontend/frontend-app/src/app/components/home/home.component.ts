@@ -4,6 +4,7 @@ import { Hotel } from '../hotel-list/hotel.model';
 import {HttpClientService} from "../../service/http-client.service";
 import {TranslateService} from "@ngx-translate/core";
 import {HotelService} from "../../service/hotel.service";
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-home',
@@ -15,9 +16,9 @@ export class HomeComponent implements OnInit {
   public allCategories: Category[] = [];
   public categories: Category[] = [];
   public searchText: string = '';
-  public isAdmin: boolean = false;
+  public isAdmin: boolean  = this.cookieService.get("isAdmin") === "true";
 
-  constructor(private HttpClientService: HttpClientService, public translate: TranslateService, private hotelService: HotelService) {
+  constructor(private HttpClientService: HttpClientService, public translate: TranslateService, private hotelService: HotelService, private cookieService: CookieService) {
 
   }
 
@@ -43,12 +44,12 @@ export class HomeComponent implements OnInit {
         this.categories[5].name = this.translate.instant('CAMPING');
       });
 
-      console.log('kategorije"', this.categories);
+
     });
   }
 
   ngOnChanges(text: any){
-    console.log(text);
+
   }
 
   searchHeaderEvent($event) {

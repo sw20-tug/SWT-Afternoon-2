@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-header',
@@ -10,17 +11,17 @@ export class HeaderComponent implements OnInit {
   @Output() loginHeaderEvent = new EventEmitter<boolean>();
   @Input() public searchText: string = '';
 
-  @Input() public isAdmin: boolean = false;
+  @Input() public isAdmin: boolean = this.cookieService.get("isAdmin") === "true" ? true : false;
 
   @Input() public isSearchboxVisible: boolean = true;
 
-  constructor() { }
+  constructor(private cookieService: CookieService) { }
 
   ngOnInit(): void {
   }
 
   ngOnChanges(x) {
-    console.log(x)
+    
   }
 
   searchBoxEvent($event){

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Category } from './category.model'
 import { Hotel } from '../hotel-list/hotel.model';
+import {CookieService} from "ngx-cookie-service";
 
 @Component({
   selector: 'app-category-list',
@@ -15,12 +16,12 @@ export class CategoryListComponent implements OnInit {
   @Input()
   public searchText: string;
   @Input()
-  public isAdmin: boolean = false;
+  public isAdmin: boolean = this.cookieService.get("isAdmin") === "true" ? true : false;
   @Output()
   public clearSearchEvent = new EventEmitter<boolean>();
   selectedCategoryFilters: Array<number>;
 
-  constructor() { }
+  constructor(private cookieService: CookieService) { }
 
   ngOnInit(): void {
     this.selectedCategoryFilters = new Array<number>();
