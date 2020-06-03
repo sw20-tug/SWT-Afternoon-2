@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Hotel } from '../hotel.model';
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-hotel-list-item',
@@ -11,11 +12,15 @@ import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 export class HotelListItemComponent implements OnInit {
   @Input() hotel: Hotel;
   @Input() index: number;
+  @Input() isAdmin: boolean;
 
-  constructor() { 
+  constructor(private router: Router) {
   }
 
-  ngOnInit(): void {  
+  ngOnInit(): void {
   }
 
+  openHotelDetailPage(id: number){
+    this.router.navigate(['/hotel-detail', id]);
+  }
 }

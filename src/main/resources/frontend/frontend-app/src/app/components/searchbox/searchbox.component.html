@@ -1,6 +1,6 @@
 <form class="form-inline mr-auto">
-  <div class="md-form my-0">
-    <input class="form-control" type="text" placeholder="Search" aria-label="Search" [(ngModel)]="searchText" name="searchtext">
+  <div class="md-form my-0" *ngIf="isSearchboxVisible">
+    <input class="form-control" type="text" placeholder="{{'SEARCH' | translate}}"  aria-label="Search" [(ngModel)]="searchText" name="searchtext">
     <button mat-icon-button (click)="search()">
       <i class="fas fa-search text-white ml-3" aria-hidden="true"></i>
     </button>

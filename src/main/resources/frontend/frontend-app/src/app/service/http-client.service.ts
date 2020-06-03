@@ -10,7 +10,7 @@ import {catchError, retry} from "rxjs/operators";
 })
 export class HttpClientService {
 
-  private usersUrl: string;
+  private serverUrl: string;
   private retryCount: number;
   private httpOptions: any;
 
@@ -19,12 +19,12 @@ export class HttpClientService {
       headers: new HttpHeaders()
     };
     this.httpOptions.headers.append('Content-Type: application/json', '*');
-    this.usersUrl = 'http://localhost:8080';
+    this.serverUrl = 'http://localhost:8080';
     this.retryCount = 1;
   }
 
   public findAll(): Observable<Hotel[]> {
-    return this.http.get<Hotel[]>(this.usersUrl + '/hotels');
+    return this.http.get<Hotel[]>(this.serverUrl + '/hotels');
   }
 
   /* TODO
@@ -34,8 +34,59 @@ export class HttpClientService {
 
   public getHotelWithinPriceRange(price: number): Observable<Hotel[]>
   {
+    return this.http.get<Hotel[]>(this.serverUrl+ '/hotel?price=' + price);
+  }
 
-    return this.http.get<Hotel[]>(this.usersUrl+ '/hotel?price=' + price);
+  // public insertNewHotel(name: string, description: string, category: string, activities: string, stars: number, price: number,
+  //                       city: string, rating: number, otherFilters: number, imageURL: string) {
+  //   return this.http.post<any>(this.serverUrl + 'addNewHotel/' + name + description + category + activities + stars
+  //     + price + city + rating + otherFilters + imageURL,this.httpOptions)
+  //     .pipe(
+  //       retry(this.retryCount)
+  //     )
+  // }
+
+  //TODO parameters: name, description, price, rating, stars, city, activity, otherFilters, image
+  public insertNewHotel(name: string, description: string, category: string, price: number, rating: number,
+                        stars: number, city: string, currentlySelectedActivities: string[], otherFilters: (boolean)[],
+                        imageURL: string) {
+    return this.http.post(this.serverUrl + '/addNewHotels?name=' + name + '&description=' + description +
+      '&category=' + category +
+      '&price=' + price + '&rating=' + rating + '&stars=' + stars + '&city=' + city +
+      '&currentlySelectedActivities=' + currentlySelectedActivities + '&otherFilters=' + otherFilters
+     + '&imageURL=' + imageURL, this.httpOptions, {responseType: 'text'}).pipe(
+        catchError(this.errorHandler)
+    );
+  }
+
+  public editHotel(name: string, description: string, category: string, price: number, rating: number,
+                        stars: number, city: string, currentlySelectedActivities: string[], otherFilters: (boolean)[],
+                        id:number) {
+    return this.http.post(this.serverUrl + '/editHotels?name=' + name + '&description=' + description +
+      '&category=' + category +
+      '&price=' + price + '&rating=' + rating + '&stars=' + stars + '&city=' + city +
+      '&currentlySelectedActivities=' + currentlySelectedActivities + '&otherFilters=' + otherFilters + '&id=' + id,
+      this.httpOptions, {responseType: 'text'}).pipe(
+      catchError(this.errorHandler)
+    );
+  }
+
+  public insertNewComment(comm_text: string, user_name: string, rate: number, hotel_id: number) {
+
+    return this.http.post(this.serverUrl + '/addNewComment?comm_text=' + comm_text + '&user_name=' + user_name +
+      '&rate=' + rate +
+      '&hotel_id=' + hotel_id, this.httpOptions, {responseType: 'text'}).pipe(
+      catchError(this.errorHandler)
+    );
+
+
+  }
+
+  public deleteHotel(hotel_name: string)
+  {
+    return this.http.post(this.serverUrl + '/deleteHotel?hotel_name=' + hotel_name, this.httpOptions, {responseType: 'text'}).pipe(
+      catchError(this.errorHandler)
+    );
   }
 
   public getFilteredHotels(minPrice: number, maxPrice: number,
@@ -44,24 +95,22 @@ export class HttpClientService {
                            currentlySelectedLocations: string[], otherFilters: boolean[]): Observable<Category[]>
   {
 
-    console.log('other filters: ')
-    console.log(currentlySelectedLocations)
-    return this.http.get<Category[]>(this.usersUrl+ '/apply?minPrice=' + this.checkIfUndefined(minPrice) + '&maxPrice=' + this.checkIfUndefined(maxPrice)
+
+    return this.http.get<Category[]>(this.serverUrl+ '/apply?minPrice=' + this.checkIfUndefined(minPrice) + '&maxPrice=' + this.checkIfUndefined(maxPrice)
       + '&minRating=' + this.checkIfUndefined(minRating)+ '&maxRating=' + this.checkIfUndefined(maxRating) + '&starsFilter=' + starsFilter +
       '&currentlySelectedActivities=' + this.checkIfUndefined(currentlySelectedActivities)
       + '&currentlySelectedLocations=' + this.checkIfUndefined(currentlySelectedLocations) + '&otherFilters=' + otherFilters);
   }
 
   public getHotelWithActivities(activities: string[]): Observable<any> {
-    return this.http.get<Hotel[]>(this.usersUrl + '/activities=' + activities, this.httpOptions).pipe(
+    return this.http.get<Hotel[]>(this.serverUrl + '/activities=' + activities, this.httpOptions).pipe(
       retry(this.retryCount),
       catchError(this.errorHandler)
     );
   }
 
   public sortByCriteria(category_id: number, criteria_id: number): Observable<any> {
-    console.log("Htp options are, ", new HttpHeaders());
-    return this.http.get<Hotel[]>(this.usersUrl + '/criteria?category_id=' + category_id + '&criteria_id=' + criteria_id, this.httpOptions).pipe(
+    return this.http.get<Hotel[]>(this.serverUrl + '/criteria?category_id=' + category_id + '&criteria_id=' + criteria_id, this.httpOptions).pipe(
       retry(this.retryCount),
       catchError(this.errorHandler)
     );
@@ -69,7 +118,21 @@ export class HttpClientService {
   }
 
   public getCategories(): Observable<any> {
-    return this.http.get<any[]>(this.usersUrl + '/getCategories', this.httpOptions).pipe(
+    return this.http.get<any[]>(this.serverUrl + '/getCategories', this.httpOptions).pipe(
+      retry(this.retryCount),
+      catchError(this.errorHandler)
+    );
+  }
+
+  public getHotelById(id: String): Observable<any> {
+    return this.http.get<any>(this.serverUrl + '/hotelDetail?id=' + id).pipe(
+      retry(this.retryCount),
+      catchError(this.errorHandler)
+    );
+  }
+
+  public getCommentList(id: String): Observable<any> {
+    return this.http.get<any[]>(this.serverUrl + '/commentHotel?id=' + id).pipe(
       retry(this.retryCount),
       catchError(this.errorHandler)
     );
@@ -94,16 +157,12 @@ export class HttpClientService {
       return value;
   }
 
-  public checkIfEmptyList(list_to_send)
-  {
-    if(list_to_send === undefined)
-    {
-      return '';
-    }
-    else
-    {
-      return list_to_send;
-    }
+  public changeRating (new_rate: number, id: number) {
+
+  return this.http.post(this.serverUrl + '/changeRating?new_rate=' + new_rate + '&id=' + id, this.httpOptions, {responseType: 'text'}).pipe(
+        catchError(this.errorHandler)
+      );
   }
+
 
 }

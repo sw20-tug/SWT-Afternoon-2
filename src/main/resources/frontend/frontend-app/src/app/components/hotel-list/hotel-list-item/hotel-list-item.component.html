@@ -1,14 +1,12 @@
 <div *ngIf="hotel" class="row hotel-item">
-  <div class="col-md-12 col-sm-12 col-xs-12 col-lg-2 col-xl-3 center-image no-padding">
-
+  <div class="col-md-12 col-sm-12 col-xs-12 col-lg-2 col-xl-3 center-image no-padding" (click)="openHotelDetailPage(hotel.id)">
     <img src="{{ hotel.imagePath }}" alt="{{ hotel.name }}" class="img-fluid medium-size-image">
-
   </div>
   <div class="col-md-12 col-sm-12 col-xs-12 col-lg-10 col-xl-9 medium-size-text ">
     <div class="row">
       <div class="col-md-8 col-sm-12 col-xs-12 col-lg-9 col-xl-9">
         <div class="row">
-          <div class="col-md-12 col-sm-12 col-xs-8 col-lg-9 col-xl-9">
+          <div class="col-md-12 col-sm-12 col-xs-8 col-lg-9 col-xl-9" (click)="openHotelDetailPage(hotel.id)">
             <h5 class="name-text">{{ hotel.name }}</h5>
           </div>
           <div class="col-md-8 col-sm-12 col-xs-4 col-lg-12 col-xl-8">
@@ -30,14 +28,17 @@
       <div class="col-md-4 col-sm-12 col-xs-12 col-lg-3 col-xl-3">
         <div class="row">
           <div class="col-md-12 col-sm-6 col-xs-6 col-lg-12 col-xl-12">
-            <p class="price">Per night: {{ hotel.price }}</p>
+            <p class="price">{{'PRICE' | translate }}: {{ hotel.price }}</p>
           </div>
         </div>
+
         <div class="row">
           <div class="col-md-3 col-sm-2 col-2 col-lg-4 col-xl-5">
             <span class="badge badge-pill"
-                  [ngClass]="{'badge-success' : hotel.getRating() == 'Excellent', 'badge-warning' : hotel.getRating() == 'Good','badge-danger' : hotel.getRating() == 'Poor' }">
-                  {{ hotel.rate | number:'1.1-1' }}
+                  [ngClass]="{'badge-success' : hotel.getRating() === 'Excellent','badge-successs':  hotel.getRating() === 'Odličan',
+                                'badge-warning' :  hotel.getRating() === 'Good','badge-warningg': hotel.getRating() === 'Dobar',
+                                'badge-danger' :  hotel.getRating() === 'Poor',  'badge-dangerr': hotel.getRating() === 'Loš'}">
+                                {{ hotel.rate | number:'1.1-1' }}
             </span>
           </div>
           <div class="col-md-9 col-sm-10 col-10 col-lg-8 col-xl-7">

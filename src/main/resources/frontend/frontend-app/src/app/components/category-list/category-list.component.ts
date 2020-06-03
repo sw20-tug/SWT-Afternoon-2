@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Category } from './category.model'
 import { Hotel } from '../hotel-list/hotel.model';
+import {CookieService} from "ngx-cookie-service";
 
 @Component({
   selector: 'app-category-list',
@@ -11,26 +12,45 @@ export class CategoryListComponent implements OnInit {
   @Input()
   public categories: Category[];
   @Input()
+  public initialCategories: Category[];
+  @Input()
   public searchText: string;
+  @Input()
+  public isAdmin: boolean = this.cookieService.get("isAdmin") === "true" ? true : false;
   @Output()
   public clearSearchEvent = new EventEmitter<boolean>();
+  selectedCategoryFilters: Array<number>;
 
-  constructor() { }
+  constructor(private cookieService: CookieService) { }
 
   ngOnInit(): void {
-
+    this.selectedCategoryFilters = new Array<number>();
   }
 
   filteredCategories(filteredCategoryList: any[]){
     this.categories = filteredCategoryList;
+    this.initialCategories = filteredCategoryList;
   }
 
   onCategoryClick(index: number){
-
+    if(!this.selectedCategoryFilters.includes(index)) {
+      this.selectedCategoryFilters.push(index);
+    }
+    else {
+      var indexOfSelectedCategory =  this.selectedCategoryFilters.indexOf(index);
+      this.selectedCategoryFilters.splice(indexOfSelectedCategory, 1);
+    }
+    if(!this.selectedCategoryFilters.length){
+      this.categories = this.initialCategories;
+    }
+    else {
+      this.categories = this.initialCategories.filter(x => this.selectedCategoryFilters.includes(this.initialCategories.indexOf(x)));
+    }
   }
 
   clearSearch(){
     this.searchText = "";
     this.clearSearchEvent.emit(true);
+    this.selectedCategoryFilters = new Array<number>();
   }
 }

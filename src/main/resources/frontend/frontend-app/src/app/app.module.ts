@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {Injector, LOCALE_ID, NgModule} from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -18,6 +17,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxBootstrapSliderModule } from 'ngx-bootstrap-slider';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import {MatCardModule} from '@angular/material/card';
+import {MatListModule} from '@angular/material/list';
 import { FiltersComponent } from './components/filters/filters.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule, MatIcon } from '@angular/material/icon';
@@ -28,6 +28,33 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
 import { NgSelectModule } from '@ng-select/ng-select';
 import {MatChipsModule} from '@angular/material/chips';
+import { SortByPipe } from './sort-by-pipe.pipe';
+import { NewHotelComponent } from './components/header/new-hotel/new-hotel.component';
+import {EditHotelComponent} from "./components/header/edit-hotel/edit-hotel.component";
+import { ReactiveFormsModule } from '@angular/forms';
+import {UploadService} from "./service/upload.service";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
+
+import { LoginComponent } from './components/header/login/login.component';
+import { ConfirmationDialogComponent } from './components/header/login/confirmation-dialogue/confirmation-dialogue.component';
+import { ConfirmationDialogService } from './components/header/login/confirmation-dialogue/confirmation-dialogue.service';
+
+import { HotelDetailComponent } from './components/hotel-detail/hotel-detail.component';
+import {MatSliderModule} from '@angular/material/slider';
+import { RatingCommentComponent } from './components/hotel-detail/rating-comment/rating-comment.component';
+
+
+import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
+import {registerLocaleData} from "@angular/common";
+import localeBs from '@angular/common/locales/bs-Latn';
+import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+import {InjectorService} from "./service/injector.service";
+
+registerLocaleData(localeBs, 'bs-Latn');
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -39,7 +66,14 @@ import {MatChipsModule} from '@angular/material/chips';
     CategoryListComponent,
     CategoryListItemComponent,
     SearchboxComponent,
-    FiltersComponent
+    FiltersComponent,
+    SortByPipe,
+    NewHotelComponent,
+    EditHotelComponent,
+    LoginComponent,
+    ConfirmationDialogComponent,
+    HotelDetailComponent,
+    RatingCommentComponent
   ],
   imports: [
     BrowserModule,
@@ -52,19 +86,37 @@ import {MatChipsModule} from '@angular/material/chips';
     NgMultiSelectDropDownModule.forRoot(),
     MatCardModule,
     MatFormFieldModule,
-    MatIconModule,
+    MatSliderModule,
     MatInputModule,
     MatCheckboxModule,
     MatRadioModule,
     MatButtonModule,
     MatSelectModule,
+    MatListModule,
     NgSelectModule,
-    MatChipsModule
+    MatChipsModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    MatProgressBarModule,
+    TranslateModule.forRoot({
+      defaultLanguage: 'bs',
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
+    MatProgressBarModule,
+    NgbModule
   ],
   exports: [
     HeaderComponent
   ],
-  providers: [HttpClient, HttpClientService],
+  providers: [HttpClient, HttpClientService, SortByPipe, UploadService, ConfirmationDialogService, InjectorService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(private injector: Injector){    // Create global Service Injector.
+    InjectorService.injector = this.injector;
+  }
+}

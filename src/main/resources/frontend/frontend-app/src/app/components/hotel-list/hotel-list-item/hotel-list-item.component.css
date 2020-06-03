@@ -10,7 +10,11 @@
 .no-padding {
     padding: 0;
 }
-.row{
+.row-options {
+    margin-right: 1%;
+    margin-bottom: 7%;
+}
+.row, .row-options{
     padding-top: 1%;
 }
 .price-text {
@@ -47,6 +51,21 @@
 .text-icon {
     line-height: inherit;
     margin-right: 2%;
+}
+
+.badge-successs {
+  color: #fff;
+  background-color: #28a745;
+}
+
+.badge-warningg {
+  color: #212529;
+  background-color: #ffc107;
+}
+
+.badge-dangerr {
+  color: #fff;
+  background-color: #dc3545;
 }
 
 .badge.badge-pill{
@@ -103,9 +122,9 @@
             height: 1.2rem;
             width: 124%;
         }
-    
+
 }
-    
+
 
 @media (min-width: 200px)  and ( max-width: 575px){
 .justify-content{ font-size: 0.85rem; }
@@ -224,9 +243,17 @@
     }
 }
 
-
 .row.hotel-item
 {
    padding: 0%;
    margin-bottom: 1%;
-} 
+}
+
+h5.name-text:hover {
+    cursor: pointer;
+    font-weight: 500;
+}
+
+img.img-fluid.medium-size-image {
+    cursor: pointer;
+}

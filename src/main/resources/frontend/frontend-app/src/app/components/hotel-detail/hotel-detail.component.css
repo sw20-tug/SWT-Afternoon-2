@@ -1,0 +1,80 @@
+.badge {
+    height: 1.3rem;
+}
+
+.badge-warning {
+    color: white;
+}
+
+.badge.badge-pill {
+    font-size: 0.7vw;
+}
+
+.header-info {
+    margin-bottom: 10px;
+    border-bottom: 1px solid lightgray;
+}
+
+.badge-successs {
+  color: #fff;
+  background-color: #28a745;
+}
+
+.badge-warningg {
+  color: #212529;
+  background-color: #ffc107;
+}
+
+.badge-dangerr {
+  color: #fff;
+  background-color: #dc3545;
+}
+
+.mr-10 {
+    margin-bottom: 10px;
+}
+
+.filters {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    padding: 10px;
+    margin: 10px;
+    white-space: nowrap;
+    width: 100%;
+    border: 1px solid gray;
+  }
+
+.full-width {
+    width: 100%;
+}
+
+.mat-title {
+    font-size: 20px;
+}
+
+.rating-comment {
+    width: 100%;
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+.picsum-img-wrapper > img {
+    display:block;
+    margin:auto;
+}
+
+.margin-top-10 {
+    margin-top: 10px;
+}
+
+.font-size-26 {
+    font-size: 26px;
+}
+
+.float-right {
+    float: right;
+}
+
+.width-100 {
+    width: 100%;
+}

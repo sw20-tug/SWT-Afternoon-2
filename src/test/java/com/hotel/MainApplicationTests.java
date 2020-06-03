@@ -3,14 +3,16 @@ package com.hotel;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
+
+import com.hotel.controller.Categories;
 import com.hotel.controller.CategoryController;
 import com.hotel.controller.HotelController;
 import com.hotel.model.Category;
+import com.hotel.model.Comment;
 import com.hotel.model.Hotel;
 import com.hotel.repository.HotelRepository;
+import com.hotel.services.CommentService;
 import com.hotel.services.CustomerService;
 import com.hotel.services.HotelService;
 import org.junit.Assert;
@@ -39,7 +41,12 @@ class MainApplicationTests {
   @Autowired
   CategoryController categoryController;
   HotelController hotelController;
+
+  @Autowired
   HotelService hotelService;
+
+  @Autowired
+  CommentService commentService;
 
   @LocalServerPort
   private int port;
@@ -74,7 +81,7 @@ class MainApplicationTests {
   public void checkIfFilteredHotelsContainSpecifiedHotel() throws Exception {
     List<Hotel> hotels_inside_category = new ArrayList<>();
     Hotel hotel1 = new Hotel("Apartamentos Palmera Beach", "Wuzhen", 2, "https://traffickcam.com/images/2017/7/20160624_030441_XJDMC3.jpg", "Hotel 'Apartamentos Palmera Beach' at  Wuzhen with parking place,  without restaurant,  not allowing pets, with swimming pooland etc. is waiting for you :)",
-      22, 1, new Category("Adventure"), true, false, false, true, true, true, true, true, false, false, true, false, false, "100", "1001111100");
+      22, 1, new Category("Adventure"), true, false, false, true, true, true, true, true, false, false, true, false, false, "100", "1001111100", 0);
     hotels_inside_category.add(hotel1);
 
     when(hotelRepository.getHotelOrderedByPriceASC(2)).thenReturn(hotels_inside_category);
@@ -87,7 +94,7 @@ class MainApplicationTests {
   public void checkIfFilteredHotelHasFreeWiFi() throws Exception {
     List<Hotel> hotels_inside_category = new ArrayList<>();
     Hotel hotel1 = new Hotel("Apartamentos Palmera Beach", "Wuzhen", 2, "https://traffickcam.com/images/2017/7/20160624_030441_XJDMC3.jpg", "Hotel 'Apartamentos Palmera Beach' at  Wuzhen with parking place,  without restaurant,  not allowing pets, with swimming pooland etc. is waiting for you :)",
-      22, 1, new Category("Adventure"), true, false, false, true, true, true, true, true, false, false, true, false, false, "100", "1001111100");
+      22, 1, new Category("Adventure"), true, false, false, true, true, true, true, true, false, false, true, false, false, "100", "1001111100", 0);
     hotels_inside_category.add(hotel1);
 
     when(hotelRepository.getHotelOrderedByPriceASC(2)).thenReturn(hotels_inside_category);
@@ -100,7 +107,7 @@ class MainApplicationTests {
   public void checkIfFilteredHotelHasParking() throws Exception {
     List<Hotel> hotels_inside_category = new ArrayList<>();
     Hotel hotel1 = new Hotel("Apartamentos Palmera Beach", "Wuzhen", 2, "https://traffickcam.com/images/2017/7/20160624_030441_XJDMC3.jpg", "Hotel 'Apartamentos Palmera Beach' at  Wuzhen with parking place,  without restaurant,  not allowing pets, with swimming pooland etc. is waiting for you :)",
-      22, 1, new Category("Adventure"), true, false, false, true, true, true, true, true, false, false, true, false, false, "100", "1001111100");
+      22, 1, new Category("Adventure"), true, false, false, true, true, true, true, true, false, false, true, false, false, "100", "1001111100", 0);
     hotels_inside_category.add(hotel1);
 
     when(hotelRepository.getHotelOrderedByPriceASC(2)).thenReturn(hotels_inside_category);
@@ -113,7 +120,7 @@ class MainApplicationTests {
   public void checkIfFilteredHotelHasRestaurant() throws Exception {
     List<Hotel> hotels_inside_category = new ArrayList<>();
     Hotel hotel1 = new Hotel("Apartamentos Palmera Beach", "Wuzhen", 2, "https://traffickcam.com/images/2017/7/20160624_030441_XJDMC3.jpg", "Hotel 'Apartamentos Palmera Beach' at  Wuzhen with parking place,  without restaurant,  not allowing pets, with swimming pooland etc. is waiting for you :)",
-      22, 1, new Category("Adventure"), true, false, false, true, true, true, true, true, false, false, true, false, false, "100", "1001111100");
+      22, 1, new Category("Adventure"), true, false, false, true, true, true, true, true, false, false, true, false, false, "100", "1001111100", 0);
     hotels_inside_category.add(hotel1);
 
     when(hotelRepository.getHotelOrderedByPriceASC(2)).thenReturn(hotels_inside_category);
@@ -126,7 +133,7 @@ class MainApplicationTests {
   public void checkIfFilteredHotelHasPets() throws Exception {
     List<Hotel> hotels_inside_category = new ArrayList<>();
     Hotel hotel1 = new Hotel("Apartamentos Palmera Beach", "Wuzhen", 2, "https://traffickcam.com/images/2017/7/20160624_030441_XJDMC3.jpg", "Hotel 'Apartamentos Palmera Beach' at  Wuzhen with parking place,  without restaurant,  not allowing pets, with swimming pooland etc. is waiting for you :)",
-      22, 1, new Category("Adventure"), true, false, false, true, true, true, true, true, false, false, true, false, false, "100", "1001111100");
+      22, 1, new Category("Adventure"), true, false, false, true, true, true, true, true, false, false, true, false, false, "100", "1001111100", 0);
     hotels_inside_category.add(hotel1);
 
     when(hotelRepository.getHotelOrderedByPriceASC(2)).thenReturn(hotels_inside_category);
@@ -139,7 +146,7 @@ class MainApplicationTests {
   public void checkIfFilteredHotelHasSmoking() throws Exception {
     List<Hotel> hotels_inside_category = new ArrayList<>();
     Hotel hotel1 = new Hotel("Apartamentos Palmera Beach", "Wuzhen", 2, "https://traffickcam.com/images/2017/7/20160624_030441_XJDMC3.jpg", "Hotel 'Apartamentos Palmera Beach' at  Wuzhen with parking place,  without restaurant,  not allowing pets, with swimming pooland etc. is waiting for you :)",
-      22, 1, new Category("Adventure"), true, false, false, true, true, true, true, true, false, false, true, false, false, "100", "1001111100");
+      22, 1, new Category("Adventure"), true, false, false, true, true, true, true, true, false, false, true, false, false, "100", "1001111100", 0);
     hotels_inside_category.add(hotel1);
 
     when(hotelRepository.getHotelOrderedByPriceASC(2)).thenReturn(hotels_inside_category);
@@ -152,7 +159,7 @@ class MainApplicationTests {
   public void checkIfFilteredHotelHasBeachFront() throws Exception {
     List<Hotel> hotels_inside_category = new ArrayList<>();
     Hotel hotel1 = new Hotel("Apartamentos Palmera Beach", "Wuzhen", 2, "https://traffickcam.com/images/2017/7/20160624_030441_XJDMC3.jpg", "Hotel 'Apartamentos Palmera Beach' at  Wuzhen with parking place,  without restaurant,  not allowing pets, with swimming pooland etc. is waiting for you :)",
-      22, 1, new Category("Adventure"), true, false, false, true, true, true, true, true, false, false, true, false, false, "100", "1001111100");
+      22, 1, new Category("Adventure"), true, false, false, true, true, true, true, true, false, false, true, false, false, "100", "1001111100", 0);
     hotels_inside_category.add(hotel1);
 
     when(hotelRepository.getHotelOrderedByPriceASC(2)).thenReturn(hotels_inside_category);
@@ -165,7 +172,7 @@ class MainApplicationTests {
   public void checkIfFilteredHotelHasAirConditioning() throws Exception {
     List<Hotel> hotels_inside_category = new ArrayList<>();
     Hotel hotel1 = new Hotel("Apartamentos Palmera Beach", "Wuzhen", 2, "https://traffickcam.com/images/2017/7/20160624_030441_XJDMC3.jpg", "Hotel 'Apartamentos Palmera Beach' at  Wuzhen with parking place,  without restaurant,  not allowing pets, with swimming pooland etc. is waiting for you :)",
-      22, 1, new Category("Adventure"), true, false, false, true, true, true, true, true, false, false, true, false, false, "100", "1001111100");
+      22, 1, new Category("Adventure"), true, false, false, true, true, true, true, true, false, false, true, false, false, "100", "1001111100", 0);
     hotels_inside_category.add(hotel1);
 
     when(hotelRepository.getHotelOrderedByPriceASC(2)).thenReturn(hotels_inside_category);
@@ -178,7 +185,7 @@ class MainApplicationTests {
   public void checkIfFilteredHotelHasSauna() throws Exception {
     List<Hotel> hotels_inside_category = new ArrayList<>();
     Hotel hotel1 = new Hotel("Apartamentos Palmera Beach", "Wuzhen", 2, "https://traffickcam.com/images/2017/7/20160624_030441_XJDMC3.jpg", "Hotel 'Apartamentos Palmera Beach' at  Wuzhen with parking place,  without restaurant,  not allowing pets, with swimming pooland etc. is waiting for you :)",
-      22, 1, new Category("Adventure"), true, false, false, true, true, true, true, true, false, false, true, false, false, "100", "1001111100");
+      22, 1, new Category("Adventure"), true, false, false, true, true, true, true, true, false, false, true, false, false, "100", "1001111100", 0);
     hotels_inside_category.add(hotel1);
 
     when(hotelRepository.getHotelOrderedByPriceASC(2)).thenReturn(hotels_inside_category);
@@ -191,7 +198,7 @@ class MainApplicationTests {
   public void checkIfFilteredHotelHasFitness() throws Exception {
     List<Hotel> hotels_inside_category = new ArrayList<>();
     Hotel hotel1 = new Hotel("Apartamentos Palmera Beach", "Wuzhen", 2, "https://traffickcam.com/images/2017/7/20160624_030441_XJDMC3.jpg", "Hotel 'Apartamentos Palmera Beach' at  Wuzhen with parking place,  without restaurant,  not allowing pets, with swimming pooland etc. is waiting for you :)",
-      22, 1, new Category("Adventure"), true, false, false, true, true, true, true, true, false, false, true, false, false, "100", "1001111100");
+      22, 1, new Category("Adventure"), true, false, false, true, true, true, true, true, false, false, true, false, false, "100", "1001111100", 0);
     hotels_inside_category.add(hotel1);
 
     when(hotelRepository.getHotelOrderedByPriceASC(2)).thenReturn(hotels_inside_category);
@@ -204,7 +211,7 @@ class MainApplicationTests {
   public void checkIfFilteredHotelHasActivityGym() throws Exception {
     List<Hotel> hotels_inside_category = new ArrayList<>();
     Hotel hotel1 = new Hotel("Apartamentos Palmera Beach", "Wuzhen", 2, "https://traffickcam.com/images/2017/7/20160624_030441_XJDMC3.jpg", "Hotel 'Apartamentos Palmera Beach' at  Wuzhen with parking place,  without restaurant,  not allowing pets, with swimming pooland etc. is waiting for you :)",
-      22, 1, new Category("Adventure"), true, false, false, true, true, true, true, true, false, false, true, false, false, "100", "1001111100");
+      22, 1, new Category("Adventure"), true, false, false, true, true, true, true, true, false, false, true, false, false, "100", "1001111100", 0);
     hotels_inside_category.add(hotel1);
 
     when(hotelRepository.getHotelOrderedByPriceASC(2)).thenReturn(hotels_inside_category);
@@ -217,7 +224,7 @@ class MainApplicationTests {
   public void checkIfFilteredHotelHasActivityRunning() throws Exception {
     List<Hotel> hotels_inside_category = new ArrayList<>();
     Hotel hotel1 = new Hotel("Apartamentos Palmera Beach", "Wuzhen", 2, "https://traffickcam.com/images/2017/7/20160624_030441_XJDMC3.jpg", "Hotel 'Apartamentos Palmera Beach' at  Wuzhen with parking place,  without restaurant,  not allowing pets, with swimming pooland etc. is waiting for you :)",
-      22, 1, new Category("Adventure"), true, false, false, true, true, true, true, true, false, false, true, false, false, "100", "1001111100");
+      22, 1, new Category("Adventure"), true, false, false, true, true, true, true, true, false, false, true, false, false, "100", "1001111100", 0);
     hotels_inside_category.add(hotel1);
 
     when(hotelRepository.getHotelOrderedByPriceASC(2)).thenReturn(hotels_inside_category);
@@ -230,7 +237,7 @@ class MainApplicationTests {
   public void checkIfFilteredHotelHasActivityOpenBar() throws Exception {
     List<Hotel> hotels_inside_category = new ArrayList<>();
     Hotel hotel1 = new Hotel("Apartamentos Palmera Beach", "Wuzhen", 2, "https://traffickcam.com/images/2017/7/20160624_030441_XJDMC3.jpg", "Hotel 'Apartamentos Palmera Beach' at  Wuzhen with parking place,  without restaurant,  not allowing pets, with swimming pooland etc. is waiting for you :)",
-      22, 1, new Category("Adventure"), true, false, false, true, true, true, true, true, false, false, true, false, false, "100", "1001111100");
+      22, 1, new Category("Adventure"), true, false, false, true, true, true, true, true, false, false, true, false, false, "100", "1001111100", 0);
     hotels_inside_category.add(hotel1);
 
     when(hotelRepository.getHotelOrderedByPriceASC(2)).thenReturn(hotels_inside_category);
@@ -244,7 +251,7 @@ class MainApplicationTests {
   public void checkIfFilteredHotelHasSwimmingPool() throws Exception {
     List<Hotel> hotels_inside_category = new ArrayList<>();
     Hotel hotel1 = new Hotel("Apartamentos Palmera Beach", "Wuzhen", 2, "https://traffickcam.com/images/2017/7/20160624_030441_XJDMC3.jpg", "Hotel 'Apartamentos Palmera Beach' at  Wuzhen with parking place,  without restaurant,  not allowing pets, with swimming pooland etc. is waiting for you :)",
-      22, 1, new Category("Adventure"), true, false, false, true, true, true, true, true, false, false, true, false, false, "100", "1001111100");
+      22, 1, new Category("Adventure"), true, false, false, true, true, true, true, true, false, false, true, false, false, "100", "1001111100", 0);
     hotels_inside_category.add(hotel1);
 
     when(hotelRepository.getHotelOrderedByPriceASC(2)).thenReturn(hotels_inside_category);
@@ -257,29 +264,12 @@ class MainApplicationTests {
   public void checkIfFilteredHotelOtherfilters() throws Exception {
     List<Hotel> hotels_inside_category = new ArrayList<>();
     Hotel hotel1 = new Hotel("Apartamentos Palmera Beach", "Wuzhen", 2, "https://traffickcam.com/images/2017/7/20160624_030441_XJDMC3.jpg", "Hotel 'Apartamentos Palmera Beach' at  Wuzhen with parking place,  without restaurant,  not allowing pets, with swimming pooland etc. is waiting for you :)",
-      22, 1, new Category("Adventure"), true, false, false, true, true, true, true, true, false, false, true, false, false, "100", "1001111100");
+      22, 1, new Category("Adventure"), true, false, false, true, true, true, true, true, false, false, true, false, false, "100", "1001111100", 0);
     hotels_inside_category.add(hotel1);
 
     when(hotelRepository.getHotelOrderedByPriceASC(2)).thenReturn(hotels_inside_category);
     List<Hotel> actual_hotels_inside = customerService.getHotelByCriteria(2, 1);
     assertThat(actual_hotels_inside.get(0).getOtherFilters()).isEqualTo(hotels_inside_category.get(0).getOtherFilters());
-
-  }
-
-
-  @Test
-  public void checkApplyFiltersEndPointWithStatus200() throws Exception {
-    RestTemplate restTemplate = new RestTemplate();
-
-    final String baseUrl = "http://localhost:" + randomServerPort + "/apply?minPrice=10"  + "&maxPrice=100" +
-      "&minRating=2" + "&maxRating=5"  + "&starsFilter=3"  +
-      "&currentlySelectedActivities=" +
-      "&currentlySelectedLocations=" + "&otherFilters=";
-    URI uri = new URI(baseUrl);
-
-    ResponseEntity<String> result = restTemplate.getForEntity(uri, String.class);
-    //Verify request succeed
-    Assert.assertEquals(200, result.getStatusCodeValue());
 
   }
 
@@ -466,4 +456,122 @@ class MainApplicationTests {
 
   }
 
+  @Test
+  public void getRatingNum() throws Exception {
+    List<Hotel> actual_hotels_inside = customerService.getHotelByCriteria(2, 1);
+    String name = actual_hotels_inside.get(1).getName();
+    //Super 8 Bloomington
+    actual_hotels_inside.get(1).setRating_num(10);
+    //hotelRepository.save(actual_hotels_inside.get(1));
+    assertThat(actual_hotels_inside.get(1).getRating_num()).isEqualTo(10);
+  }
+
+  @Test
+  public void deleteHotel() throws Exception {
+    List<Hotel> hotels = hotelRepository.findByName("The Inn at the Tides");
+    String name = hotels.size() != 0 ? hotels.get(0).getName() : "";
+    //Super 8 Bloomington
+    hotelRepository.deleteHotel(name);
+    //hotelRepository.save(actual_hotels_inside.get(1));
+    assertThat(hotelRepository.findByName(name).size()).isEqualTo(0);
+  }
+  @Test
+  public void applyFilter01() throws Exception {
+    int minPrice = 20;
+    int maxPrice = 500;
+    int minRating = 1;
+    int maxRating = 5;
+    int stars = 1;
+    String[] ac = {"0","0","0"};
+    String[] lc = {"Abbiadori","Adler","Athens"};
+    Boolean[] otfil ={true,true,false,true,false,true,false,false,true,false};
+    Iterable<Categories> categories = this.hotelService.applyAllFiltersAndGetHotels(minPrice,maxPrice,minRating,maxRating,stars,ac,lc,otfil);
+    assertThat(categories).isNotNull();
+  }
+  @Test
+  public void applyFilter02() throws Exception {
+    int minPrice = 20;
+    int maxPrice = 500;
+    int minRating = 1;
+    int maxRating = 5;
+    int stars = 1;
+    String[] ac = {"0","0","0"};
+    String[] lc = {"0","0","0"};
+    Boolean[] otfil ={true,true,false,true,false,true,false,false,true,false};
+    Iterable<Categories> categories = this.hotelService.applyAllFiltersAndGetHotels(minPrice,maxPrice,minRating,maxRating,stars,ac,lc,otfil);
+    assertThat(categories).isNotNull();
+  }
+  @Test
+  public void applyFilter03() throws Exception {
+    int minPrice = 20;
+    int maxPrice = 500;
+    int minRating = 1;
+    int maxRating = 5;
+    int stars = 1;
+    String[] ac = {"0","0","0"};
+    String[] lc = {"0","0","0"};
+    Boolean[] otfil ={false,false,false,false,false,false,false,false,false,false};
+    Iterable<Categories> categories = this.hotelService.applyAllFiltersAndGetHotels(minPrice,maxPrice,minRating,maxRating,stars,ac,lc,otfil);
+    assertThat(categories).isNotNull();
+  }
+  @Test
+  public void applyFilter04() throws Exception {
+    int minPrice = 20;
+    int maxPrice = 500;
+    int minRating = 1;
+    int maxRating = 5;
+    int stars = 1;
+    String[] ac = {"0","0","0"};
+    String[] lc = {"Abbiadori","Adler","Athens"};
+    Boolean[] otfil ={false,false,false,false,false,false,false,false,false,false};
+    Iterable<Categories> categories = this.hotelService.applyAllFiltersAndGetHotels(minPrice,maxPrice,minRating,maxRating,stars,ac,lc,otfil);
+    assertThat(categories).isNotNull();
+  }
+  @Test
+  public void applyFilter05() throws Exception {
+    int minPrice = 20;
+    int maxPrice = 0;
+    int minRating = 1;
+    int maxRating = 5;
+    int stars = 1;
+    String[] ac = {"0","Running","0"};
+    String[] lc = {"Abbiadori","Adler","Athens"};
+    Boolean[] otfil ={true,true,false,true,false,true,false,false,true,false};
+    Iterable<Categories> categories = this.hotelService.applyAllFiltersAndGetHotels(minPrice,maxPrice,minRating,maxRating,stars,ac,lc,otfil);
+    assertThat(categories).isNotNull();
+  }
+  @Test
+  public void applyFilter06() throws Exception {
+    int minPrice = 20;
+    int maxPrice = 0;
+    int minRating = 1;
+    int maxRating = 5;
+    int stars = 1;
+    String[] ac = {"0","Running","0"};
+    String[] lc = {"Abbiadori","Adler","Athens"};
+    Boolean[] otfil ={false,false,false,false,false,false,false,false,false,false};
+    Iterable<Categories> categories = this.hotelService.applyAllFiltersAndGetHotels(minPrice,maxPrice,minRating,maxRating,stars,ac,lc,otfil);
+    assertThat(categories).isNotNull();
+  }
+
+  @Test
+  public void applyRating() throws Exception {
+
+    Hotel tmp = hotelService.getHotelById(100);
+    int num = tmp.getRating_num();
+    this.hotelService.changeRating(5, 100);
+    tmp = hotelService.getHotelById(100);
+
+    assertThat(tmp.getRating_num()).isEqualTo(num+1);
+  }
+
+  @Test
+  public void newComment() throws Exception {
+
+    int num = commentService.getCommentsByHotelID(100).size();
+    commentService.insertNewComment("Good", "SWT", 8, 100);
+    List<Comment> tmp = commentService.getCommentsByHotelID(100);
+
+    assertThat(tmp.size()).isEqualTo(num+1);
+  }
 }

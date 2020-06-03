@@ -3,7 +3,7 @@
 }
 
 .filters {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   padding: 10px;
   margin: 10px;
@@ -13,7 +13,7 @@
 }
 
 /*Overriding ng-multiselect-dropdown and mat-checkbox style*/
-:host ::ng-deep .multiselect-dropdown .dropdown-btn .selected-item{
+:host ::ng-deep .multiselect-dropdown .dropdown-btn .selected-item {
   background: #ff7733 !important;
 }
 
@@ -28,6 +28,7 @@
 :host ::ng-deep .multiselect-item-checkbox input[type=checkbox]:checked + div:before {
   background: #ff7733 !important;
 }
+
 :host ::ng-deep .multiselect-item-checkbox input[type=checkbox] + div:before {
   color: #ff7733 !important;
   border: 1px solid #ff7733 !important;
@@ -43,15 +44,16 @@
 }
 
 .custom-control {
-padding: 10px;
+  padding: 10px;
   margin: 10px;
 }
 
+
 .btn {
-    border-radius: 5px;
-    display: block;
-    width: 80px;
-    margin: 0px auto 0px auto;
+  border-radius: 5px;
+  display: block;
+  width: 80px;
+  margin: 0px auto 0px auto;
 }
 
 .dropdown {
@@ -68,11 +70,23 @@ padding: 10px;
 }
 
 .filtersBtnDiv {
-  display: flex; 
-  align-items: center; 
+  display: flex;
+  align-items: center;
   justify-content: center;
 }
 
 .filtersBtn {
   text-align: center;
+}
+
+.fa-plus-circle {
+  margin-left: 3%;
+}
+
+.add-button {
+  width: 8rem;
+}
+
+.add-text {
+  margin-left: 5%;
 }

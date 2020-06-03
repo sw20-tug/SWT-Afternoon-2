@@ -2,9 +2,12 @@ package com.hotel;
 
 import com.hotel.controller.CategoryController;
 import com.hotel.controller.HotelController;
+import com.hotel.model.Comment;
 import com.hotel.repository.CategoryRepository;
+import com.hotel.repository.CommentRepository;
 import com.hotel.repository.HotelRepository;
 import com.hotel.services.CategoryService;
+import com.hotel.services.CommentService;
 import com.hotel.services.HotelService;
 import com.hotel.model.Category;
 import com.hotel.model.Hotel;
@@ -29,10 +32,14 @@ public class MainApplication implements  CommandLineRunner {
   @Autowired
   public CategoryRepository cr;
 
+  @Autowired
+  public CommentRepository cmr;
+
   private CategoryController cc;
   private CategoryService cs;
   private HotelController hc;
   private HotelService hs;
+  private CommentService cms;
 
   public static void main(String[] args) {
     SpringApplication.run(MainApplication.class, args);
@@ -40,15 +47,16 @@ public class MainApplication implements  CommandLineRunner {
 
   @Override
   public void run(String... args) throws Exception {
-    System.out.println("Starting main application");
 
-  
-    
     this.hs = new HotelService(hr);
     this.cs = new CategoryService(cr);
+    this.cms = new CommentService(cmr);
 
     this.hc = new HotelController(hs);
     this.cc = new CategoryController(cs);
+
+    //fill_comments();
+
   //  fill_db();
 
     int minPrice = 20;
@@ -64,6 +72,16 @@ public class MainApplication implements  CommandLineRunner {
     String otfil ="1101010010";
     List<Hotel> hotels = this.hs.hr.applyFilters(minPrice,maxPrice,minRating,maxRating,stars,ac,lc,otfil);
 
+  }
+
+  public void fill_comments()
+  {
+    String comm_text = "comment2";
+    String user_name = "Stefan2";
+    int rate = 9;
+    long hotel_id = 10;
+    Comment comment = new Comment(comm_text, user_name, rate, hotel_id);
+    cmr.save(comment);
   }
 
   public void fill_db()
@@ -129,7 +147,7 @@ public class MainApplication implements  CommandLineRunner {
 
         Hotel hotel = new Hotel(hotels[0], hotels[1], rate, hotels[3], hotels[4], price,
          stars, category_new, parking,  restaurant,  pets,  smoking,  swimmingPool,  beachFront,
-         airConditioning,  freeWifi,  sauna,  fitness,activity_gym,activity_running,activity_openbar,activity,otherFilters);
+         airConditioning,  freeWifi,  sauna,  fitness,activity_gym,activity_running,activity_openbar,activity,otherFilters, 0);
         hr.save(hotel);
 
       }
@@ -148,11 +166,5 @@ public class MainApplication implements  CommandLineRunner {
       }
     }
 
-
-
-//    Category category1 = new Category("lifehotel");
-//    cr.save(category1);
-//    Hotel hotel1 = new Hotel("Graz Hotel", 5, 100, "Graz", "best hotel", "no image", 5,category1);
-//    hr.save(hotel1);
   }
 }

@@ -1,0 +1,45 @@
+<div class="container">
+  <div style="padding-right: 50px">
+    <img (click)="changeLanguage('bs')" style="padding-right: 10px"  height="14px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Flag_of_Bosnia_and_Herzegovina.svg/1200px-Flag_of_Bosnia_and_Herzegovina.svg.png" alt="Bosna">
+    <img id="test" (click)="changeLanguage('en')" src="https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg"  height="14px"  width="38px" alt="USA">
+  </div>
+    <button type="button" [style.display]="isAdmin ? 'none' : 'block'" class="btn btn-primary" (click) = "show()">{{'LOGIN' | translate}}</button>
+    <button type="button" [style.display]="isAdmin ? 'block' : 'none'" class="btn btn-primary" (click) = "signOut()">{{'SIGNOUT' | translate}}</button>
+</div>
+<div [style.display]="showModal ? 'block' : 'none'" [style.background]="showModal ? 'linear-gradient(45deg, black, transparent)' : 'none'" class="modal" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">{{'LOGIN' | translate}}</h4>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="registerForm"  (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label>{{'USERNAME' | translate}}</label>
+                    <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                        <div *ngIf="f.username.errors?.required">Username is required!</div>
+                        <div *ngIf="!f.username.errors?.required && !f.username.errors?.usernameValid">Username is invalid!</div>
+                        <!--<div *ngIf="f.username.errors.username">Username must be a valid username address!</div>-->
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>{{'PASSWORD' | translate}}</label>
+                    <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }"/>
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors?.required">Password is required!</div>
+                        <div *ngIf="!f.password.errors?.required && !f.password.errors?.passwordValid">Password is invalid!</div>
+                    </div>
+                </div>
+              <div class="form-group form-check">
+              </div>
+              <button type="submit" class="btn btn-primary">{{'LOGIN' | translate}}</button>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-dark" data-dismiss="modal" (click) = "hide()">{{'CANCEL' | translate}}</button>
+
+        </div>
+      </div>
+    </div>
+    </div>

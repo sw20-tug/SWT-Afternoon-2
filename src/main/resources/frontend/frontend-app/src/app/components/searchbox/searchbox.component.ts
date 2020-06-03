@@ -8,9 +8,14 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 export class SearchboxComponent implements OnInit {
   @Input() public searchText: string;
   @Output() searchBoxEvent = new EventEmitter<string>();
+  @Input() public isSearchboxVisible: boolean;
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  ngOnChanges(x) {
+
   }
 
   search() {
