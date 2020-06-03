@@ -26,15 +26,6 @@
         </div>
       </div>
       <div class="col-md-4 col-sm-12 col-xs-12 col-lg-3 col-xl-3">
-        <div *ngIf="isAdmin" class="row-options" >
-          <div ngbDropdown>
-            <button class="btn btn-outline-primary" id="dropdownConfig" ngbDropdownToggle>{{'OPTIONS' | translate}}</button>
-            <div ngbDropdownMenu aria-labelledby="dropdownConfig">
-              <button ngbDropdownItem>{{'EDIT' | translate}}</button>
-              <button ngbDropdownItem>{{'DELETE' | translate}}</button>
-            </div>
-          </div>
-        </div>
         <div class="row">
           <div class="col-md-12 col-sm-6 col-xs-6 col-lg-12 col-xl-12">
             <p class="price">{{'PRICE' | translate }}: {{ hotel.price }}</p>

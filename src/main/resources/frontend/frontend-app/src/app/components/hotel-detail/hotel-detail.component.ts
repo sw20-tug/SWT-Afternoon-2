@@ -6,6 +6,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import { RatingComment } from './rating-comment.model';
 import {HotelService} from "../../service/hotel.service";
 import {ConfirmationDialogService} from "../header/login/confirmation-dialogue/confirmation-dialogue.service";
+import { CookieService } from 'ngx-cookie-service';
 
 
 @Component({
@@ -20,13 +21,15 @@ export class HotelDetailComponent implements OnInit {
   public showDeleteConfirmationDialog: boolean;
   public showEditForm: boolean;
   public isAdminForDelete: boolean;
+  public isAdmin: boolean ;
 
 
   constructor(private router: Router, private route: ActivatedRoute, private HttpClientService: HttpClientService, private hotelService: HotelService,
-              private confirmationDialogService: ConfirmationDialogService) { }
+              private confirmationDialogService: ConfirmationDialogService, private cookieService : CookieService) { }
 
 
   ngOnInit(): void {
+    this.isAdmin = this.cookieService.get("isAdmin") === "true" ? true : false;
     this.route.params.subscribe(params => {
       this.HttpClientService.getHotelById(params.id).subscribe(hotel => {
         this.hotel = Hotel.MapHotel(hotel);
