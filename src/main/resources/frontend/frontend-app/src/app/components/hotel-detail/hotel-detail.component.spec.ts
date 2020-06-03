@@ -27,4 +27,5 @@ describe('HotelDetailComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });

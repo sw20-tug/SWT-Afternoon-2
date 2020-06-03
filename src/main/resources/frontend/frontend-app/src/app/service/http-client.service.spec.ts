@@ -21,7 +21,6 @@ describe('HttpClientService', () => {
 
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
     service = TestBed.inject(HttpClientService);
   });
 

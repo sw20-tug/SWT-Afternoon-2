@@ -12,7 +12,6 @@ describe('HomeComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule, HttpClientTestingModule, TranslateModule.forRoot()],
-
       declarations: [ HomeComponent ],
       providers: [
         HttpClient,
@@ -32,12 +31,7 @@ describe('HomeComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  afterAll(() => TestBed.resetTestingModule());
 
-it('should call initializeAllCategories when created', () => {
-    const spyInitializeAllCategories = spyOn(component, 'initializeAllCategories');
-    fixture.detectChanges();
-    expect(spyInitializeAllCategories).toHaveBeenCalled();
-  });
+  afterAll(() => TestBed.resetTestingModule());
 
 });
