@@ -3,9 +3,15 @@
     <div *ngIf="hotel" class="row hotel-item">
        <div class="col-md-12 col-lg-12">
             <div class="row">
-                <div class="col-10 name-text font-size-26">
+                <div class="col-4 name-text font-size-26">
                     {{ hotel.name }}
                 </div>
+                <div class="col-6">
+                    <button [disabled]=false *ngIf="isAdmin" color="grey"  mat-raised-button href="#"  (click)="editHotel(hotel)" >
+                      {{'EDIT' | translate }}</button>&nbsp;
+                      <button [disabled]=false *ngIf="isAdmin" color="primary"  mat-raised-button (click)="show()">
+                        {{'DELETE' | translate }}</button>
+                  </div>
                 <div class="col-2">
                     <ngb-rating [rate]="hotel.stars" [readonly]="true" [max]="5" class="float-right">
                         <ng-template let-fill="fill">
@@ -15,6 +21,7 @@
                         </ng-template>
                     </ngb-rating>
                 </div>
+                
             </div>
         </div>
         <div class="col-md-12 col-lg-12">
@@ -35,7 +42,7 @@
                     </div>
                 </div>
                 <div class="col-2">
-                    <p class="price float-right">{{'PRICE' | translate }}: {{ hotel.price }}</p>
+                    <p class="price float-right">{{'PRICE' | translate }}: {{ hotel.price }} €</p>
                 </div>
             </div>
             <div class="row">
@@ -122,13 +129,6 @@
         <div class="col-md-12 col-lg-12">
         <div class="row">
           <div class="col-10 name-text font-size-26">
-          </div>
-          <div class="col-2">
-            <button [disabled]=false color="primary"  mat-raised-button (click)="show()">
-              {{'DELETE' | translate }}</button>
-            &nbsp;
-            <button [disabled]=false color="grey"  mat-raised-button href="#"  (click)="editHotel(hotel)" >
-              {{'EDIT' | translate }}</button>
           </div>
         </div>
       </div>
