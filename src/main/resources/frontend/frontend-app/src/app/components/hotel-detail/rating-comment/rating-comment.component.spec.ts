@@ -1,5 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
+import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {TranslateModule} from "@ngx-translate/core";
 import { RatingCommentComponent } from './rating-comment.component';
 
 describe('RatingCommentComponent', () => {
@@ -8,6 +10,7 @@ describe('RatingCommentComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [RouterTestingModule, HttpClientTestingModule, TranslateModule.forRoot()],
       declarations: [ RatingCommentComponent ]
     })
     .compileComponents();
@@ -20,6 +23,8 @@ describe('RatingCommentComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+  const spy = spyOnProperty(component, 'ratingComment').and.returnValue(
+   {name: 'test', comment: 'comment', rating: 5});
+
   });
 });

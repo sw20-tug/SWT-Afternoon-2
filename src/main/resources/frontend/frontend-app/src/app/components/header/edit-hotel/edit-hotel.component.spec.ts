@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClient, HttpHandler } from '@angular/common/http';
+import {TranslateModule} from "@ngx-translate/core";
 import { EditHotelComponent } from './edit-hotel.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('EditHotelComponent', () => {
   let component: EditHotelComponent;
@@ -8,7 +11,11 @@ describe('EditHotelComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditHotelComponent ]
+      imports: [RouterTestingModule, HttpClientTestingModule, TranslateModule.forRoot()],
+      declarations: [ EditHotelComponent ],
+      providers: [
+        HttpClient,
+        HttpHandler      ]
     })
     .compileComponents();
   }));

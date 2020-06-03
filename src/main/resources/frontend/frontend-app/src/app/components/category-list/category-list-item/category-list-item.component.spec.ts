@@ -30,10 +30,6 @@ describe('CategoryListItemComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call determineCategoryID when created', () => {
-      const spyDetermineCategoryID = spyOn(component as any, 'determineCategoryID');
-      fixture.detectChanges();
-      expect(spyDetermineCategoryID).toHaveBeenCalled();
-    });
+
 
 });
